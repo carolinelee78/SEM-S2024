@@ -1,0 +1,193 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+01/18/2024   1:37 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:      A simple multiple regression
+
+  DATA:       FILE IS ex3.9.dat;
+
+  VARIABLE:   NAMES ARE y1 x1 x2;
+
+  MODEL:      y1 on x1 x2;
+
+  OUTPUT:     STDYX;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+A simple multiple regression
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         500
+
+Number of dependent variables                                    1
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   Y1
+
+Observed independent variables
+   X1          X2
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  ex3.9.dat
+
+Input data format  FREE
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y1                    0.582       0.779      -4.162    0.20%      -0.935      0.041      0.351
+             500.000       3.455       1.861       9.755    0.20%       0.749      1.946
+     X1                    0.026       0.029      -2.612    0.20%      -0.801     -0.208      0.031
+             500.000       0.940      -0.246       2.987    0.20%       0.303      0.848
+     X2                    0.005       0.048      -3.015    0.20%      -0.891     -0.343     -0.010
+             500.000       1.117       0.136       3.199    0.20%       0.290      0.855
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        4
+
+Loglikelihood
+
+          H0 Value                        -875.740
+          H1 Value                        -875.740
+
+Information Criteria
+
+          Akaike (AIC)                    1759.481
+          Bayesian (BIC)                  1776.339
+          Sample-Size Adjusted BIC        1763.643
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            287.312
+          Degrees of Freedom                     2
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ Y1       ON
+    X1                 0.957      0.067     14.246      0.000
+    X2                 0.550      0.062      8.931      0.000
+
+ Intercepts
+    Y1                 0.554      0.062      8.884      0.000
+
+ Residual Variances
+    Y1                 1.945      0.123     15.810      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.192E+00
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ Y1       ON
+    X1                 0.499      0.031     15.848      0.000
+    X2                 0.313      0.034      9.179      0.000
+
+ Intercepts
+    Y1                 0.298      0.035      8.518      0.000
+
+ Residual Variances
+    Y1                 0.563      0.033     16.911      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    Y1                 0.437      0.033     13.131      0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\48909138\onedrive - southern methodist university\desktop\sem-s2024\week 1\02_simple regression.dgm
+
+     Beginning Time:  13:37:29
+        Ending Time:  13:37:30
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

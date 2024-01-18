@@ -1,0 +1,142 @@
+---
+title: "SEM Project 1"
+author: "Caroline Lee"
+date: "`r Sys.Date()`"
+---
+
+```{r message=F}
+# detach all libraries
+
+detachAllPackages <- function() {
+  basic.packages <- c("package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "package:base")
+  package.list <- search()[ifelse(unlist(gregexpr("package:", search()))==1, TRUE, FALSE)]
+  package.list <- setdiff(package.list, basic.packages)
+  if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
+}
+detachAllPackages()
+
+# function to load libraries
+
+pkgTest <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg,  dependencies = TRUE)
+  sapply(pkg,  require,  character.only = TRUE)
+}
+
+# loading packages 
+
+lapply(c("DT"),pkgTest)
+lapply(c("haven"),pkgTest)
+lapply(c("lavaan"),pkgTest)
+lapply(c("MplusAutomation"),pkgTest)
+lapply(c("readxl"),pkgTest)
+lapply(c("sjlabelled"),pkgTest)
+lapply(c("sjmisc"),pkgTest)
+lapply(c("texreg"),pkgTest)
+lapply(c("tidyverse"),pkgTest)
+
+library(DT)
+library(haven)
+library(lavaan)
+library(MplusAutomation)
+library(readxl)
+library(sjlabelled)
+library(sjmisc)
+library(texreg)
+library(tidyverse)
+```
+
+### Part 1
+
+```{r message = F}
+# read the data file
+Chapman.dat <- read.csv("Chapman.csv")
+datatable(Chapman.dat)
+```
+
+```{r}
+# create variable CORON2 as it is missing
+Chapman.dat$CORON2 <- ifelse(Chapman.dat$CORON == 0, "NO", "YES")
+datatable(Chapman.dat)
+```
+
+```{r}
+# generate a frequency table for CORON2
+Chapman.dat %>% select(CORON2) %>% frq()
+```
+
+### Part 2
+
+```{r}
+# import data
+dat02 <- read_table("ex3.9.dat")
+colnames(dat02) <- c("y", "x1", "x2")
+datatable(dat02)
+```
+
+```{r}
+# generate a model object 
+mod01 <- 'y ~ 1 + x1 + x2'
+```
+
+```{r}
+# running the model 
+fit01 <- sem(mod01, data=dat02)
+```
+
+```{r}
+# extract results 
+summary(fit01)
+```
+
+```{r}
+parameterEstimates(fit01)
+```
+
+```{r}
+standardizedSolution(fit01)
+```
+
+### Part 3
+
+```{r}
+# generate an Mplus syntax file
+sink("RegByMA00.inp")
+cat('
+DATA:       FILE IS ex3.9.dat;
+VARIABLE:   NAMES ARE y x1 x2;
+MODEL:      y on x1 x2;
+OUTPUT:     STDYX;
+')
+sink()
+```
+
+```{r}
+# use runModels() function in the MplusAutomation package to run the specified syntax file
+ 
+runModels("RegByMA00.inp")
+
+# note: we can take a look at the Mplus output file `regbyma00.out` to make sure that it ran without any issue
+```
+ 
+```{r}
+# use readModels() function in the MplusAutomation package to read the specified output file
+
+fitMA00 <- readModels("regbyma00.out")
+```
+
+```{r}
+# examine structure of fitMA00 output 
+
+fitMA00$parameters$unstandardized
+```
+
+```{r}
+fitMA00$parameters$stdyx.standardized
+```
+
+
+
+
+

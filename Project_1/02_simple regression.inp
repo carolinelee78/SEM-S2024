@@ -6,5 +6,4 @@ VARIABLE:   NAMES ARE y1 x1 x2;
 
 MODEL:      y1 on x1 x2;
 
-
 OUTPUT:     STDYX;
