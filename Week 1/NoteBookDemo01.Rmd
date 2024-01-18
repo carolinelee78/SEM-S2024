@@ -1,0 +1,97 @@
+---
+title: "Use R Notebook to run MplusAutomation and lavaan"
+output: html_notebook
+---
+
+### Preparation
+Load Required Package.
+```{r}
+library(tidyverse)
+library(MplusAutomation)
+library(lavaan)
+```
+
+### Our First `MplusAutomation` Attempt
+Let's try to run a regression, where [y] is the outcome and [x1] and [x2] are regressors.  
+
+#### Step 1: 
+Generate an Mplus syntax file.
+```{r}
+sink("RegByMA00.inp")
+cat('
+DATA:       FILE IS ex3.9.dat;
+VARIABLE:   NAMES ARE y x1 x2;
+MODEL:      y on x1 x2;
+OUTPUT:     STDYX;
+')
+sink()
+```
+
+#### Step 2: 
+Use `runModels()` function in the `MplusAutomation` package to run the specified syntax file.
+```{r}
+runModels("RegByMA00.inp")
+```
+We can take a look at the Mplus output file `regbyma00.out` to make sure that it ran without any issue.  
+
+#### Step 3: 
+Use `readModels()` function in the `MplusAutomation` package to read the specified output file.
+```{r}
+fitMA00 <- readModels("regbyma00.out")
+```
+
+This is it!  
+
+Let's take a look at the structure of `fitMA00`.
+
+#### Step 4:
+Various ways to see the key output on R.
+```{r}
+fitMA00$parameters$unstandardized
+```
+
+```{r}
+fitMA00$parameters$stdyx.standardized
+```
+Use `screenreg()` function in `texreg` package.
+```{r}
+texreg::screenreg(fitMA00, 
+                  summaries = c("Observations", "CFI", "SRMR"), 
+                  single.row=TRUE)
+```
+
+## Running lavaan package
+
+#### Step 0:
+Import data.
+```{r}
+dat02 <- read.table("ex3.9.dat")
+colnames(dat02) <- c("y", "x1", "x2")
+```
+
+#### Step 1:
+Generate a model object. This is created within R.
+```{r}
+mod01 <- 'y ~ 1 + x1 + x2'
+```
+
+#### Step 2:
+Running the model
+```{r}
+fit01 <- sem(mod01, data=dat02)
+```
+
+#### Step 3:
+Various ways to extract the results
+```{r}
+summary(fit01)
+```
+
+```{r}
+parameterEstimates(fit01)
+```
+
+```{r}
+standardizedSolution(fit01)
+```
+
