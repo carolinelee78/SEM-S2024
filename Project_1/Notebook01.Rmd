@@ -1,0 +1,40 @@
+---
+title: "Project 1 - SEM Spring 2024"
+author: "Caroline Lee"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float:
+      collapsed: true
+---
+
+### Loading Packages 
+
+```{r message=F}
+library(tidyverse)
+library(sjmisc)
+library(DT)
+```
+
+```{r message = F}
+# read the data file
+Chapman.dat <- read.csv("Chapman.csv")
+datatable(Chapman.dat)
+```
+
+```{r}
+Chapman.dat$CORON2 <- ifelse(Chapman.dat$CORON == 0, "NO", "YES")
+datatable(Chapman.dat)
+```
+
+```{r}
+Chapman.dat %>% select(CORON2) %>% frq()
+```
+
+
+
+
+
+

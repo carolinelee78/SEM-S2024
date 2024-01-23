@@ -1,0 +1,123 @@
+---
+title: "Class 2 - Mediation Analysis"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_float:
+      collapsed: true
+---
+
+```{r message=F, echo = FALSE, warning = FALSE, results='hide'}
+# detach all libraries
+
+detachAllPackages <- function() {
+  basic.packages <- c("package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "package:base")
+  package.list <- search()[ifelse(unlist(gregexpr("package:", search()))==1, TRUE, FALSE)]
+  package.list <- setdiff(package.list, basic.packages)
+  if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
+}
+detachAllPackages()
+
+# function to load libraries
+
+pkgTest <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg,  dependencies = TRUE)
+  sapply(pkg,  require,  character.only = TRUE)
+}
+
+# loading packages 
+
+
+lapply(c("gsubfn"),pkgTest)
+lapply(c("tidyverse"),pkgTest)
+lapply(c("sjmisc"),pkgTest)
+lapply(c("DT"),pkgTest)
+lapply(c("lavaan"),pkgTest)
+lapply(c("MplusAutomation"),pkgTest)
+lapply(c("psych"),pkgTest)
+library(gsubfn)
+library(tidyverse)
+library(sjmisc)
+library(DT)
+library(lavaan)
+library(MplusAutomation)
+library(psych)
+```
+
+### Mediation Analysis 
+
+- The difference $c-c^\prime$ is considered as the mediation effect, and $c-c^\prime = a \times b$ or $c = a \times b - c^\prime$
+- However, the equity holds only for a special case of mediation analysis 
+  * Continuous outcome and linear regression 
+- Therefore, it is not recommended to evaluate $c - c^\prime$
+
+**Basic Mediation Analysis**
+
+- Data from the discrimination study (Garcia et al., 2010) in Muthen et al. (2016; p.72), as well as Hayes (2013) 
+- Subjects (129 females) were presented a story of hoow female attorney lost a promotion to a less qualified male due to discriminatory action 
+- Subjects were randomly assigned to two different scenarios: 
+  * (1) the female attorney takes no action, and (2) the female attorney protests 
+- Variables 
+  * Intervention variable (0 = no protest, 1 = protest) (`protest`) predictor 
+  * How well the subject likes the female attorney outcome - 7-point likert (`liking`)
+  * Perceived appropriateness of the response of the female attorney (`respappr`) mediator 
+  * Beliefs in the pervasiveness of sex discrimination in society (`sexism`)
+  
+```{r}
+protest_df <- read.csv("protest.csv")
+
+psych::describe(protest_df$protest)
+```
+
+- By substituting the second equation below to the first equation below, we can get the combined equation:  
+
+Equation 1:
+$$ y_i = \beta_0 + \beta_1m_i + \beta_2x_i+\epsilon_{yi}$$
+Equation 2: 
+$$ m_i = \gamma_0 + \gamma_1x_i+\epsilon_{mi}$$
+Combined equation:
+$$ y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_i + \epsilon_{mi})+\beta_2x_i+\epsilon_{yi}$$
+
+- Example 1
+  * Note that by default, Mplus utilizes a method to estimate a standard error of nonlinearly transformed parameters called the "Delta method". 
+  * Delta method analytically approximates the target standard error by assuming the normality of the sampling distribution of the parameter(s). 
+    - The indirect effect is a multiplication of two parameters 
+  * Mplus syntax for the `model` section: `DV on IV1 IV2` and so on for however many IVs there are 
+  
+```
+sink("ex2.1.inp")
+cat('
+data:     file = protest.txt; 
+
+variable: names = sexism liking resappr protest; 
+          usev = liking respappr protest; 
+          
+analysis: estimator = mlr; 
+
+model:    liking on resappr protest; 
+          resappr on protest; 
+          
+Model indirect: 
+          liking ind protest; 
+          
+output:   cinterval;
+')
+sink()
+```
+
+```
+runModels("protest1.inp")
+```
+
+- Total indirect > total as there can be more than 1 indirect effect
+- Confidence interval is strictly based on bootstrapping 
+
+- Reject null hypothesis, indirect effect of `respappr` is significant as CI does not include 0
+
+**Another way to set up mediation analysis** 
+
+
