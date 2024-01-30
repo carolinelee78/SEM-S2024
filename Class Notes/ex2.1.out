@@ -1,0 +1,242 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+01/23/2024   4:22 PM
+
+INPUT INSTRUCTIONS
+
+
+  data:     file = protest.txt;
+
+  variable: names = sexism liking respappr protest;
+            usev = liking respappr protest;
+
+  analysis: estimator = mlr;
+
+  model:    liking on respappr protest;
+            respappr on protest;
+
+  Model indirect:
+            liking ind protest;
+
+  output:   cinterval;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         129
+
+Number of dependent variables                                    2
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   LIKING      RESPAPPR
+
+Observed independent variables
+   PROTEST
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  protest.txt
+
+Input data format  FREE
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     LIKING                5.637      -1.167       1.000    0.78%       4.830      5.500      5.830
+             129.000       1.093       2.569       7.000    9.30%       6.000      6.500
+     RESPAPPR              4.866      -0.761       1.500    1.55%       3.750      4.750      5.250
+             129.000       1.803      -0.137       7.000    2.33%       5.500      6.000
+     PROTEST               0.682      -0.782       0.000   31.78%       0.000      1.000      1.000
+             129.000       0.217      -1.388       1.000   68.22%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        7
+
+Loglikelihood
+
+          H0 Value                        -373.177
+          H0 Scaling Correction Factor      1.2801
+            for MLR
+          H1 Value                        -373.177
+          H1 Scaling Correction Factor      1.2801
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                     760.355
+          Bayesian (BIC)                   780.374
+          Sample-Size Adjusted BIC         758.235
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                             58.803
+          Degrees of Freedom                     3
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ LIKING   ON
+    RESPAPPR           0.402      0.077      5.247      0.000
+    PROTEST           -0.101      0.200     -0.503      0.615
+
+ RESPAPPR ON
+    PROTEST            1.440      0.249      5.778      0.000
+
+ Intercepts
+    LIKING             3.747      0.407      9.210      0.000
+    RESPAPPR           3.884      0.225     17.285      0.000
+
+ Residual Variances
+    LIKING             0.824      0.151      5.473      0.000
+    RESPAPPR           1.354      0.160      8.460      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.399E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from PROTEST to LIKING
+
+  Total                0.479      0.221      2.163      0.031
+  Total indirect       0.579      0.147      3.943      0.000
+
+  Specific indirect 1
+    LIKING
+    RESPAPPR
+    PROTEST            0.579      0.147      3.943      0.000
+
+  Direct
+    LIKING
+    PROTEST           -0.101      0.200     -0.503      0.615
+
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ LIKING   ON
+    RESPAPPR         0.205       0.252       0.276       0.402       0.529       0.553       0.600
+    PROTEST         -0.616      -0.493      -0.430      -0.101       0.228       0.291       0.415
+
+ RESPAPPR ON
+    PROTEST          0.798       0.951       1.030       1.440       1.850       1.928       2.082
+
+ Intercepts
+    LIKING           2.699       2.950       3.078       3.747       4.417       4.545       4.795
+    RESPAPPR         3.305       3.444       3.514       3.884       4.254       4.325       4.463
+
+ Residual Variances
+    LIKING           0.436       0.529       0.577       0.824       1.072       1.120       1.212
+    RESPAPPR         0.942       1.040       1.091       1.354       1.617       1.668       1.766
+
+
+CONFIDENCE INTERVALS OF TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from PROTEST to LIKING
+
+  Total             -0.091       0.045       0.115       0.479       0.843       0.912       1.048
+  Total indirect     0.201       0.291       0.338       0.579       0.821       0.867       0.958
+
+  Specific indirect 1
+    LIKING
+    RESPAPPR
+    PROTEST          0.201       0.291       0.338       0.579       0.821       0.867       0.958
+
+  Direct
+    LIKING
+    PROTEST         -0.616      -0.493      -0.430      -0.101       0.228       0.291       0.415
+
+
+
+     Beginning Time:  16:22:26
+        Ending Time:  16:22:26
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

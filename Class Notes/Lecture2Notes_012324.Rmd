@@ -2,7 +2,7 @@
 title: "Class 2 - Mediation Analysis"
 date: "`r Sys.Date()`"
 output: 
-  html_document:
+  html_notebook:
     theme: cosmo
     toc: yes
     toc_float:
@@ -68,9 +68,9 @@ library(psych)
   * Beliefs in the pervasiveness of sex discrimination in society (`sexism`)
   
 ```{r}
-protest_df <- read.csv("protest.csv")
-
-psych::describe(protest_df$protest)
+protest_df <- read.table("protest.txt", sep="")
+colnames(protest_df) <- c("sexism", "liking", "respappr", "protest")
+psych::describe(protest_df)
 ```
 
 - By substituting the second equation below to the first equation below, we can get the combined equation:  
@@ -88,18 +88,18 @@ $$ y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_i + \epsilon_{mi})+\beta_2x_i+\e
     - The indirect effect is a multiplication of two parameters 
   * Mplus syntax for the `model` section: `DV on IV1 IV2` and so on for however many IVs there are 
   
-```
+```{r}
 sink("ex2.1.inp")
 cat('
 data:     file = protest.txt; 
 
-variable: names = sexism liking resappr protest; 
+variable: names = sexism liking respappr protest; 
           usev = liking respappr protest; 
           
 analysis: estimator = mlr; 
 
-model:    liking on resappr protest; 
-          resappr on protest; 
+model:    liking on respappr protest; 
+          respappr on protest; 
           
 Model indirect: 
           liking ind protest; 
@@ -107,17 +107,116 @@ Model indirect:
 output:   cinterval;
 ')
 sink()
+
+runModels("ex2.1.inp")
+
+modelfit1 <- readModels("ex2.1.out")
+
+modelfit1$parameters$unstandardized
 ```
 
-```
-runModels("protest1.inp")
-```
+**Basic Mediation Analysis with Bootstrap**
 
-- Total indirect > total as there can be more than 1 indirect effect
-- Confidence interval is strictly based on bootstrapping 
+```{r}
+sink("ex2.1b.inp")
+cat('
+data:     file = protest.txt; 
 
-- Reject null hypothesis, indirect effect of `respappr` is significant as CI does not include 0
+variable: names = sexism liking respappr protest; 
+          usev = liking respappr protest; 
+          
+analysis: estimator = ml; 
+          bootstrap = 10000;
+
+model:    liking on respappr protest; 
+          respappr on protest; 
+          
+Model indirect: 
+          liking ind protest; 
+          
+output:   cinterval(bootstrap);
+')
+sink()
+
+runModels("ex2.1b.inp")
+
+modelfit2 <- readModels("ex2.1b.out")
+
+modelfit2$parameters$unstandardized
+```
 
 **Another way to set up mediation analysis** 
 
+```{r}
+sink("ex2.1c.inp")
+cat('
+data:     file = protest.txt; 
 
+variable: names = sexism liking respappr protest; 
+          usev = liking respappr protest; 
+          
+analysis: estimator = ml; 
+          bootstrap = 10000;
+
+model:    liking on respappr (b1)
+                     protest; 
+          respappr on protest (g1); 
+          
+Model constraint: 
+          new(prolik); 
+          prolik = g1 * b1;
+          
+output:   cinterval(bootstrap);
+')
+sink()
+
+runModels("ex2.1c.inp")
+
+modelfit3 <- readModels("ex2.1c.out")
+
+modelfit3$parameters$unstandardized
+```
+
+**Basic Mediation Analysis with** `lavaan`
+
+```{r}
+MA.mod01 <- '
+liking ~ b1*respappr + protest 
+respappr ~ g1*protest 
+prolik := b1*g1
+'
+```
+
+Run the model with bootstrap. 
+```{r}
+MA.fit01 <- sem(MA.mod01, data=protest_df, se="boot", bootstrap=10000)
+```
+
+```{r}
+parameterEstimates(MA.fit01, zstat=F, pvalue=F)
+```
+
+**Mediation Analysis with Covariates** 
+
+- Data from the Maternal Health Project (Day et al., 1994) is from a sample of mothers who drank at least three drinks a week duringn the first trimester of their pregnancy + mothers who drank alcohol less often ($n$ = 594). 
+- Variables
+  * Alcohol use (`momcig3`)
+  * Cigarette use (`momalc3`)
+  * Child's gender (`male`)
+  * Ethnicity (`black`)
+  * Head circumference at birth (`hcirc0`)
+  * Head circumference at 36 monoths (`hcirc36`)
+
+Equation 1: 
+$$
+y_i = \beta_0+\beta_1 m_i+\beta_2z_{1i}+\beta_3z_{2i}+\epsilon_{yi}
+$$
+$$
+m_i=\gamma_0+\gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi}
+$$
+
+**Mediation Analysis with multiple Mediators**
+
+Both direct effect annd mediation effect depends on the value of $z_i$ as a covariate (i.e., moderated by the covariate)
+
+If the moderation value is lower than .15, mediation effect is not significant as it's within the 95% band around 0. Within .15~+.85 would indicate significance, outside would be not significant. 

@@ -1,0 +1,18 @@
+
+data:     file = protest.txt; 
+
+variable: names = sexism liking respappr protest; 
+          usev = liking respappr protest; 
+          
+analysis: estimator = ml; 
+          bootstrap = 10000;
+
+model:    liking on respappr (b1)
+                     protest; 
+          respappr on protest (g1); 
+          
+Model constraint: 
+          new(prolik); 
+          prolik = g1 * b1;
+          
+output:   cinterval(bootstrap);

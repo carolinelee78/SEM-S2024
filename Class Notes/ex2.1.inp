@@ -1,0 +1,15 @@
+
+data:     file = protest.txt; 
+
+variable: names = sexism liking respappr protest; 
+          usev = liking respappr protest; 
+          
+analysis: estimator = mlr; 
+
+model:    liking on respappr protest; 
+          respappr on protest; 
+          
+Model indirect: 
+          liking ind protest; 
+          
+output:   cinterval;

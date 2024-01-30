@@ -9,10 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Caroline Lee" />
 
-<meta name="date" content="2024-01-23" />
+<meta name="date" content="2024-01-18" />
 
-<title>Class 2 - Mediation Analysis</title>
+<title>SEM Project 1</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1508,142 +1509,103 @@ border-radius: 0px;
 
 
 
-<h1 class="title toc-ignore">Class 2 - Mediation Analysis</h1>
-<h4 class="date">2024-01-23</h4>
+<h1 class="title toc-ignore">SEM Project 1</h1>
+<h4 class="author">Caroline Lee</h4>
+<h4 class="date">2024-01-18</h4>
 
 </div>
 
 
-<div id="mediation-analysis" class="section level3">
-<h3>Mediation Analysis</h3>
-<ul>
-<li>The difference <span class="math inline">\(c-c^\prime\)</span> is
-considered as the mediation effect, and <span class="math inline">\(c-c^\prime = a \times b\)</span> or <span class="math inline">\(c = a \times b - c^\prime\)</span></li>
-<li>However, the equity holds only for a special case of mediation
-analysis
-<ul>
-<li>Continuous outcome and linear regression</li>
-</ul></li>
-<li>Therefore, it is not recommended to evaluate <span class="math inline">\(c - c^\prime\)</span></li>
-</ul>
-<p><strong>Basic Mediation Analysis</strong></p>
-<ul>
-<li>Data from the discrimination study (Garcia et al., 2010) in Muthen
-et al. (2016; p.72), as well as Hayes (2013)</li>
-<li>Subjects (129 females) were presented a story of hoow female
-attorney lost a promotion to a less qualified male due to discriminatory
-action</li>
-<li>Subjects were randomly assigned to two different scenarios:
-<ul>
-<li><ol style="list-style-type: decimal">
-<li>the female attorney takes no action, and (2) the female attorney
-protests</li>
-</ol></li>
-</ul></li>
-<li>Variables
-<ul>
-<li>Intervention variable (0 = no protest, 1 = protest)
-(<code>protest</code>) predictor</li>
-<li>How well the subject likes the female attorney outcome - 7-point
-likert (<code>liking</code>)</li>
-<li>Perceived appropriateness of the response of the female attorney
-(<code>respappr</code>) mediator</li>
-<li>Beliefs in the pervasiveness of sex discrimination in society
-(<code>sexism</code>)</li>
-</ul></li>
-</ul>
-<pre class="r"><code>protest_df &lt;- read.table(&quot;protest.txt&quot;, sep=&quot;&quot;)
-colnames(protest_df) &lt;- c(&quot;sexism&quot;, &quot;liking&quot;, &quot;resappr&quot;, &quot;protest&quot;)
-psych::describe(protest_df)</code></pre>
-<pre><code>##         vars   n mean   sd median trimmed  mad  min max range  skew kurtosis
-## sexism     1 129 5.12 0.78   5.12    5.10 0.74 2.87   7  4.13  0.12    -0.32
-## liking     2 129 5.64 1.05   5.83    5.73 0.99 1.00   7  6.00 -1.15     2.48
-## resappr    3 129 4.87 1.35   5.25    4.98 1.11 1.50   7  5.50 -0.75    -0.18
-## protest    4 129 0.68 0.47   1.00    0.72 0.00 0.00   1  1.00 -0.77    -1.41
-##           se
-## sexism  0.07
-## liking  0.09
-## resappr 0.12
-## protest 0.04</code></pre>
-<ul>
-<li>By substituting the second equation below to the first equation
-below, we can get the combined equation:</li>
-</ul>
-<p>Equation 1: <span class="math display">\[ y_i = \beta_0 + \beta_1m_i
-+ \beta_2x_i+\epsilon_{yi}\]</span> Equation 2: <span class="math display">\[ m_i = \gamma_0 +
-\gamma_1x_i+\epsilon_{mi}\]</span> Combined equation: <span class="math display">\[ y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_i +
-\epsilon_{mi})+\beta_2x_i+\epsilon_{yi}\]</span></p>
-<ul>
-<li>Example 1
-<ul>
-<li>Note that by default, Mplus utilizes a method to estimate a standard
-error of nonlinearly transformed parameters called the “Delta
-method”.</li>
-<li>Delta method analytically approximates the target standard error by
-assuming the normality of the sampling distribution of the parameter(s).
-<ul>
-<li>The indirect effect is a multiplication of two parameters</li>
-</ul></li>
-<li>Mplus syntax for the <code>model</code> section:
-<code>DV on IV1 IV2</code> and so on for however many IVs there are</li>
-</ul></li>
-</ul>
-<pre class="r"><code>sink(&quot;ex2.1.inp&quot;)
+<div id="load-required-packages" class="section level3">
+<h3>Load Required Packages</h3>
+<pre class="r"><code>library(tidyverse)
+library(MplusAutomation)
+library(lavaan)</code></pre>
+</div>
+<div id="read-data" class="section level3">
+<h3>Read Data</h3>
+<pre class="r"><code>dat02 &lt;- read_table(&quot;ex3.9.dat&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   `2.130697` = col_double(),
+##   `0.573051` = col_double(),
+##   `-0.026403` = col_double()
+## )</code></pre>
+<pre class="r"><code>colnames(dat02) &lt;- c(&quot;y&quot;, &quot;x1&quot;, &quot;x2&quot;)</code></pre>
+</div>
+<div id="run-lavaan" class="section level3">
+<h3>Run <code>lavaan</code></h3>
+<pre class="r"><code>Mod01 &lt;- &#39;y ~ 1 + x1 + x2&#39;
+fitMod01 &lt;- sem(Mod01, data=dat02)
+summary(fitMod01)</code></pre>
+<pre><code>## lavaan 0.6.14 ended normally after 9 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         4
+## 
+##   Number of observations                           499
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   y ~                                                 
+##     x1                0.956    0.067   14.214    0.000
+##     x2                0.551    0.062    8.933    0.000
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .y                 0.552    0.062    8.839    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .y                 1.946    0.123   15.796    0.000</code></pre>
+</div>
+<div id="generate-mplus-syntax-file" class="section level3">
+<h3>Generate Mplus Syntax File</h3>
+<pre class="r"><code>sink(&quot;Mod01MA.inp&quot;)
 cat(&#39;
-data:     file = protest.txt; 
-
-variable: names = sexism liking respappr protest; 
-          usev = liking respappr protest; 
-          
-analysis: estimator = mlr; 
-
-model:    liking on respappr protest; 
-          respappr on protest; 
-          
-Model indirect: 
-          liking ind protest; 
-          
-output:   cinterval;
+DATA:       FILE IS ex3.9.dat;
+VARIABLE:   NAMES ARE y x1 x2;
+MODEL:      y on x1 x2;
+OUTPUT:     STDYX;
 &#39;)</code></pre>
 <pre><code>## 
-## data:     file = protest.txt; 
-## 
-## variable: names = sexism liking respappr protest; 
-##           usev = liking respappr protest; 
-##           
-## analysis: estimator = mlr; 
-## 
-## model:    liking on respappr protest; 
-##           respappr on protest; 
-##           
-## Model indirect: 
-##           liking ind protest; 
-##           
-## output:   cinterval;</code></pre>
-<pre class="r"><code>sink()</code></pre>
-<pre class="r"><code>runModels(&quot;ex2.1.inp&quot;)</code></pre>
+## DATA:       FILE IS ex3.9.dat;
+## VARIABLE:   NAMES ARE y x1 x2;
+## MODEL:      y on x1 x2;
+## OUTPUT:     STDYX;</code></pre>
+<pre class="r"><code>sink()
+
+runModels(&quot;Mod01MA.inp&quot;)</code></pre>
 <pre><code>## Warning in system(command, intern = TRUE, invisible = (!showOutput),
 ## wait = TRUE): running command &#39;C:\windows\system32\cmd.exe /c cd &quot;C:
-## \Users\48909138\OneDrive - Southern Methodist University\Desktop\SEM-S2024\Class
-## Notes&quot; &amp;&amp; &quot;Mplus&quot; &quot;ex2.1.inp&quot;&#39; had status 1</code></pre>
-<pre class="r"><code>modelfit1 &lt;- readModels(&quot;ex2.1.out&quot;)</code></pre>
-<pre><code>## Error parsing input section of output file: ex2.1.out</code></pre>
+## \Users\48909138\OneDrive - Southern Methodist University\Desktop\SEM-
+## S2024\Project_1&quot; &amp;&amp; &quot;Mplus&quot; &quot;Mod01MA.inp&quot;&#39; had status 1</code></pre>
+</div>
+<div id="read-mplus-output-file" class="section level3">
+<h3>Read Mplus Output File</h3>
+<pre class="r"><code>fitMod01MA &lt;- readModels(&quot;mod01ma.out&quot;)</code></pre>
+<pre><code>## Error parsing input section of output file: mod01ma.out</code></pre>
 <pre><code>## &lt;simpleError in extractInput_1file(rawtext, curfile): length(inputHeaders) &gt; 0L is not TRUE&gt;</code></pre>
 <pre><code>## Warning in extractWarningsErrors_1file(outfiletext, curfile, input = inp): Could
 ## not identify warnings and errors; input is not of class mplus.inp</code></pre>
-<pre class="r"><code>modelfit1$parameters$unstandardized</code></pre>
+</div>
+<div id="extract-mplus-results" class="section level3">
+<h3>Extract Mplus Results</h3>
+<pre class="r"><code>fitMod01MA$parameters$unstandardized</code></pre>
 <pre><code>## NULL</code></pre>
-<ul>
-<li><p>Total indirect &gt; total as there can be more than 1 indirect
-effect</p></li>
-<li><p>Confidence interval is strictly based on bootstrapping</p></li>
-<li><p>Reject null hypothesis, indirect effect of <code>respappr</code>
-is significant as CI does not include 0</p></li>
-</ul>
-<p><strong>Another way to set up mediation analysis</strong></p>
-<p>Equation 1: <span class="math display">\[
-y_i = \beta_0+\beta_0
-\]</span></p>
 </div>
 
 
