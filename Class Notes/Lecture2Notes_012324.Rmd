@@ -48,6 +48,7 @@ library(MplusAutomation)
 library(psych)
 ```
 
+- Input not case-sensitive, output has to be in uppercase 
 ### Mediation Analysis 
 
 - The difference $c-c^\prime$ is considered as the mediation effect, and $c-c^\prime = a \times b$ or $c = a \times b - c^\prime$
@@ -145,8 +146,20 @@ modelfit2 <- readModels("ex2.1b.out")
 modelfit2$parameters$unstandardized
 ```
 
+**Mediation Analysis with Covariates** 
+
+- Data from the Maternal Health Project 
+- Sample: Mothers who drank at least three drinks a week during the first trimester of their pregnancy + mothers who used alcohol less often ($n=594$)
+- Variables 
+  * Alcohol use (`momcig3`)
+  * Cigarette use (`momalc3`)
+  * Child's gender (`male`)
+  * Ethnicity (`black`)
+  * Head circumference at birth (`hcirc0`)
+  * Head circumference at birth 
 **Another way to set up mediation analysis** 
 
+<<<<<<< HEAD
 ```{r}
 sink("ex2.1c.inp")
 cat('
@@ -220,3 +233,23 @@ $$
 Both direct effect annd mediation effect depends on the value of $z_i$ as a covariate (i.e., moderated by the covariate)
 
 If the moderation value is lower than .15, mediation effect is not significant as it's within the 95% band around 0. Within .15~+.85 would indicate significance, outside would be not significant. 
+=======
+**Moderated Mediation (1)**
+
+```
+sink("ex2.23.inp")
+analysis: estimator = ml; 
+          bootstrap = 10000; 
+model:    remove on agg5 tx agg1 xx; 
+          agg5 on tx agg1 xz; 
+model indirect: 
+  remove MOD agg5 agg1(-1, 1, 0.1) xz tx; 
+output: 
+  sampstat patterns standardized 
+  cinterval(bootstrap);
+plot:     type = plot3;
+sink()
+```
+"model indirect" 
+- This simple approach works when 
+>>>>>>> 1b46d274d868357f95a04a93d0c4f65729d91c76
