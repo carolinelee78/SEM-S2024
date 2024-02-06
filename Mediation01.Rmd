@@ -1,0 +1,149 @@
+---
+title: "Mediation Analysis with Mplus via MplusAutomation"
+output: html_notebook
+---
+
+## Setups
+Load require packages. 
+```{r message = F}
+library(tidyverse)
+library(MplusAutomation)
+library(lavaan)
+```
+
+## ex2.1
+Set up the Mplus specifications with MplusAutomation. Note that this is not a recommended way to conduct a mediation analysis, because the SE and CI are estimated by normal approximation (Delta method).
+```{r}
+sink(file = "ex2.1.inp")
+cat('
+data:     file = protest.txt;
+variable: names = sexism liking respappr protest;
+          usev = liking respappr protest;
+analysis: estimator = mlr;
+model:    liking on respappr protest;
+          respappr on protest;
+Model indirect:
+          liking ind protest;
+output:   cinterval;
+  ', fill=T)
+  sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.1.inp")
+```
+
+```{r}
+ex2.1.fit <- readModels("ex2.1.out")
+```
+
+```{r}
+ex2.1.fit$parameters$unstandardized
+```
+
+```{r}
+ex2.1.fit$indirect
+```
+
+## ex2.1b
+This is the same model as ex2.1, but estimates bootstrap CIs. Set up the Mplus specifications with MplusAutomation. Then, run the model with MplusAutomation.
+```{r}
+sink(file = "ex2.1b.inp")
+cat('
+data:     file = protest.txt;
+variable: names = sexism liking respappr protest;
+          usev = liking respappr protest;
+analysis: estimator = ml; 
+          bootstrap = 10000;
+model:    liking on respappr protest;
+          respappr on protest;
+Model indirect:
+          liking ind protest;
+output:   cinterval(bootstrap);
+', fill=T)
+sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.1b.inp")
+```
+
+```{r}
+ex2.1b.fit <- readModels("ex2.1b.out")
+```
+
+```{r}
+ex2.1b.fit$parameters$unstandardized
+```
+
+```{r}
+ex2.1b.fit$indirect
+```
+### ex2.1c
+This is the same model as ex2.1b, and estimates bootstrap CIs, but manually create the mediation effect.
+```{r}
+sink(file = "ex2.1c.inp")
+cat('
+data:     file = protest.txt;
+variable: names = sexism liking respappr protest;
+          usev = liking respappr protest;
+analysis: estimator = ml;
+          bootstrap = 10000;
+model:    liking on respappr (b1)
+                    protest;
+          respappr on protest (g1)
+Model constraint: 
+          new(prolik);
+          prolik = g1 * b1;
+output:   cinterval(bootstrap);
+', fill=T)
+sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.1c.inp")
+```
+
+```{r}
+ex2.1c.fit <- readModels("ex2.1c.out")
+```
+
+```{r}
+ex2.1c.fit$parameters$unstandardized
+```
+
+
+## Running by lavaan
+Read Data. Data file `protest.txt` is read in. 
+```{r}
+protest.dat <- read.table("protest.txt")
+colnames(protest.dat) <- c("sexism", "liking", "respappr", "protest")
+```
+
+Build a model.
+```{r}
+MA.mod01 <- '
+liking ~ b1*respappr + protest
+respappr ~ g1*protest
+prolik := b1*g1
+'
+```
+
+Run the model with bootstrap.
+```{r}
+MA.fit01 <- sem(MA.mod01, data=protest.dat, se="boot", bootstrap=10000)
+```
+
+Results
+```{r}
+summary(MA.fit01)
+```
+
+```{r}
+parameterEstimates(MA.fit01, zstat=F, pvalue=F)
+```
+
+

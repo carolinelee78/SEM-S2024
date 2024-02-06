@@ -1,0 +1,11 @@
+
+analysis: estimator = ml; 
+          bootstrap = 10000; 
+model:    remove on agg5 tx agg1 xx; 
+          agg5 on tx agg1 xz; 
+model indirect: 
+  remove MOD agg5 agg1(-1, 1, 0.1) xz tx; 
+output: 
+  sampstat patterns standardized 
+  cinterval(bootstrap);
+plot:     type = plot3;

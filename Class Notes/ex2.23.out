@@ -1,0 +1,33 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+01/30/2024   2:28 PM
+
+INPUT INSTRUCTIONS
+
+
+  analysis: estimator = ml;
+            bootstrap = 10000;
+  model:    remove on agg5 tx agg1 xx;
+            agg5 on tx agg1 xz;
+  model indirect:
+    remove MOD agg5 agg1(-1, 1, 0.1) xz tx;
+  output:
+    sampstat patterns standardized
+    cinterval(bootstrap);
+  plot:     type = plot3;
+
+*** ERROR in DATA command
+  FILE option is required.  Specify the name of the data file using
+  the FILE option.
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

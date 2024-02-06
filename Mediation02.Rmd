@@ -1,0 +1,468 @@
+---
+title: "Moderated Mediation Analysis with MplusAutomation R Package"
+output:
+  html_notebook: default
+---
+
+## Setups
+Load require packages, as well as the file `mplus.R` written by an Mplus programmer. It contains hundreds of functions to plot Mplus results on R. It is particularly useful for those who are running Mplus on Mac, because the Mac version of Mplus does not come with graphing features. A tutorial for available functions in this file can be downloaded from [here](http://www.statmodel.com/mplus-R/Mplus%20R%20tutorial.pdf). Also, some functions in this file are useful to extract values that are not reported in Mplus output. One example will be given later in this document.
+
+First, install the `rhdf5` package, which is a requirement to functions in the `mplus.R` file. To install `rhdf5` package, we need another package `BiocManager`.
+```{r}
+if (!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+if (!require("rhdf5", quietly = TRUE)) BiocManager::install("rhdf5", force = TRUE)
+```
+
+Now, load required packages and functions in the `mplus.R` file.
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(MplusAutomation)
+source("mplus.R")
+```
+
+## ex2.25
+
+The model to be analyzed is as follows:  
+![ ](figures/ModelEx2.25.png){width=350}
+  
+Note:  
+  To insert above graphic file, I used the following command, indicating that I have a graphic file with file name `ModelEx2.25.png` in the subfolder `figures`. I controled the size of the figure by `{width=350}` by trying some values.
+```{}
+![ ](figures/ModelEx2.25.png){width=350}
+```
+  
+Set up the Mplus specifications. Then, run the model with MplusAutomation.
+```{r}
+sink(file = "ex2.25.inp")
+cat('
+data:     file = teams.txt;
+variable: names = dysfunc negtone negexp perform;
+          usev = dysfunc negtone negexp perform mz;
+define:   mz = negtone*negexp;
+analysis: estimator = ml;
+          bootstrap = 10000;
+model:    perform on negtone dysfunc negexp mz;
+          negtone on dysfunc;  
+model indirect:
+          perform MOD negtone negexp(-0.4,0.6,0.01) mz dysfunc (0.4038 0.035);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.25.inp")
+```
+
+Plot the moderated mediation effect by using a function available from `mplus.R`.
+```{r}
+mplus.plot.moderation("ex2.25.gh5")
+```
+
+By using a function available in `mplus.R`, read values of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable. Note that these values are also reported in the Mplus output file `ex2.25.out`. However, it is nice to see them on R too.
+```{r}
+tibble(
+  negexp = mplus.get.moderation.xvalues("ex2.25.gh5"),
+  ests = mplus.get.moderation.estimates("ex2.25.gh5"),
+  loci = mplus.get.moderation.lowerci("ex2.25.gh5"),
+  upci = mplus.get.moderation.upperci("ex2.25.gh5"))
+```
+
+## ex2.25b
+Now, run the same model by using a different approach by using "model constraint" command with "loop" to specify a series of evaluation points. 
+```{r}
+sink(file = "ex2.25b.inp")
+cat('
+data:     file = teams.txt;
+variable: names = dysfunc negtone negexp perform;
+          usev = dysfunc negtone negexp perform mz;
+define:   mz = negtone*negexp;
+analysis: estimator = ml;
+          bootstrap = 10000;
+MODEL:    perform on negtone (b1)
+          dysfunc (b2)
+          negexp (b3)
+          mz (b4);
+          negtone on dysfunc (g1);
+MODEL CONSTRAINT:
+          plot(ind);
+          loop(negexp, -.4, .6, .01);
+          ind = (b1*g1 + b4*g1*negexp) * (.4038 - .035);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.25b.inp")
+```
+
+Generate a plot of the moderated mediation effect by using a function available from `mplus.R`. Note that the function is different from the one for the other approach in ex2.25.
+```{r}
+mplus.plot.loop("ex2.25b.gh5", 1)
+```
+
+Similar to the previous example, generate a table of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable by using a function available in `mplus.R`. Note that this table is not available in the Mplus output file when the "model constraint" approach is used. However, the necessary values are stored in the `.gh5` file, so we can extract the values and summarize as a table on R.
+
+```{r}
+tibble(
+  negexp = mplus.get.loop.xvalues("ex2.25b.gh5"),
+  ests = mplus.get.loop.estimates("ex2.25b.gh5", 1),
+  loci = mplus.get.loop.lowerci("ex2.25b.gh5", 1),
+  upci = mplus.get.loop.upperci("ex2.25b.gh5", 1)) %>% print(n=101)
+```
+
+## ex2.26
+Read the data.
+```{r}
+ex2.26.dat <- read.table("xmVx4s1n200rep6.dat")
+colnames(ex2.26.dat) <- c("y", "m", "x")
+ex2.26.dat <-
+  ex2.26.dat %>% mutate(mx = m*x)
+psych::describe(ex2.26.dat, fast=T)
+```
+
+Set up the Mplus specifications with MplusAutomation. Then, run the model with MplusAutomation.
+```{r}
+sink(file = "ex2.26.inp")
+cat('
+data:     file = "xmVx4s1n200rep6.dat";
+variable: names = y m x;
+          usev = y m x mx;
+define:   mx = m*x;
+analysis: estimator = ml;
+          bootstrap = 10000;
+MODEL:    y on m x mx;
+          m on x;
+MODEL INDIRECT:
+          y MOD m mx x (7, 5);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+```{r}
+runModels("ex2.26.inp")
+```
+
+As mentioned in the slide set, this approach does not work well for this model, because we cannot specify the range of `x` values to evaluated the moderated mediation effect. Note that the mediation effect is mediated by the exposure variable `x` for this model.
+
+### Mplus output file:
+```{}
+Mplus VERSION 8.4
+MUTHEN & MUTHEN
+03/01/2021   2:11 PM
+
+INPUT INSTRUCTIONS
+
+
+  data:     file = "xmVx4s1n200rep6.dat";
+  variable: names = y m x;
+            usev = y m x mx;
+  define:   mx = m*x;
+  analysis: estimator = ml;
+            bootstrap = 10000;
+  MODEL:    y on m x mx;
+            m on x;
+  MODEL INDIRECT:
+            y MOD m mx x (7, 5);
+  output:   cinterval (bootstrap);
+  plot:     type = plot3;
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         200
+
+Number of dependent variables                                    2
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   Y           M
+
+Observed independent variables
+   X           MX
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Number of bootstrap draws
+    Requested                                                10000
+    Completed                                                10000
+
+Input data file(s)
+  xmVx4s1n200rep6.dat
+
+Input data format  FREE
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y                     5.409      -0.190      -6.783    0.50%       1.785      4.658      5.499
+             200.000      18.879      -0.096      15.070    0.50%       6.500      8.945
+     M                     5.606       0.071       1.156    0.50%       3.819      5.088      5.537
+             200.000       3.897      -0.558      10.817    0.50%       6.116      7.387
+     X                     5.053       0.028       0.509    0.50%       3.436      4.448      5.039
+             200.000       3.820      -0.300      10.234    0.50%       5.528      6.852
+     MX                   30.423       0.730       0.889    0.50%      13.517     23.359     27.533
+             200.000     344.303       0.358      98.308    0.50%      31.666     46.650
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        8
+
+Loglikelihood
+
+          H0 Value                        -924.528
+          H1 Value                        -765.986
+
+Information Criteria
+
+          Akaike (AIC)                    1865.056
+          Bayesian (BIC)                  1891.442
+          Sample-Size Adjusted BIC        1866.098
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            317.083
+          Degrees of Freedom                     1
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           1.257
+          90 Percent C.I.                    1.143  1.375
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.310
+          TLI                                0.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            462.853
+          Degrees of Freedom                     5
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.128
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ Y        ON
+    M                  0.276      0.348      0.793      0.428
+    X                  0.241      0.418      0.578      0.563
+    MX                 0.084      0.070      1.210      0.226
+
+ M        ON
+    X                  0.549      0.052     10.552      0.000
+
+ Intercepts
+    Y                  0.081      1.819      0.045      0.964
+    M                  2.832      0.297      9.539      0.000
+
+ Residual Variances
+    Y                 12.927      1.310      9.869      0.000
+    M                  2.746      0.281      9.770      0.000
+
+
+
+TOTAL, INDIRECT, AND DIRECT EFFECTS BASED ON COUNTERFACTUALS (CAUSALLY-DEFINED EFFECTS)
+
+
+Effects from X to Y
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+  Tot natural IE       0.950      0.255      3.721      0.000
+  Pure natural DE      1.421      0.322      4.419      0.000
+  Total effect         2.371      0.336      7.058      0.000
+
+ Other effects
+
+  Pure natural IE      0.765      0.175      4.373      0.000
+  Tot natural DE       1.606      0.357      4.497      0.000
+  Total effect         2.371      0.336      7.058      0.000
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ Y        ON
+    M               -0.600      -0.406      -0.302       0.276       0.844       0.959       1.208
+    X               -0.787      -0.564      -0.434       0.241       0.940       1.087       1.397
+    MX              -0.095      -0.052      -0.028       0.084       0.200       0.222       0.264
+
+ M        ON
+    X                0.412       0.444       0.462       0.549       0.633       0.650       0.675
+
+ Intercepts
+    Y               -5.160      -3.764      -3.060       0.081       2.932       3.426       4.468
+    M                2.108       2.269       2.358       2.832       3.334       3.431       3.621
+
+ Residual Variances
+    Y                9.538      10.209      10.566      12.927      14.905      15.363      16.315
+    M                2.055       2.198       2.273       2.746       3.198       3.300       3.514
+
+
+
+CONFIDENCE INTERVALS OF TOTAL, INDIRECT, AND DIRECT EFFECTS BASED ON COUNTERFACTUALS (CAUSALLY-DEFINED EFFECTS)
+
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from X to Y
+
+  Tot natural IE     0.346       0.481       0.560       0.950       1.399       1.485       1.659
+  Pure natural DE    0.594       0.805       0.903       1.421       1.973       2.075       2.274
+  Total effect       1.572       1.760       1.858       2.371       2.960       3.064       3.269
+
+ Other effects
+
+  Pure natural IE    0.350       0.449       0.496       0.765       1.070       1.131       1.256
+  Tot natural DE     0.727       0.933       1.043       1.606       2.215       2.331       2.570
+  Total effect       1.572       1.760       1.858       2.371       2.960       3.064       3.269
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated values, residuals)
+  Scatterplots (sample values, estimated values, residuals)
+  Bootstrap distributions
+
+     Beginning Time:  14:11:31
+        Ending Time:  14:11:33
+       Elapsed Time:  00:00:02
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
+```
+
+## ex2.30
+Read data
+```{r}
+protest.dat <- read.table("protest.txt")
+colnames(protest.dat) <- c("sexism", "liking", "respappr", "protest")
+protest.dat <- 
+  protest.dat %>% 
+  mutate(mx = respappr*protest,
+         mz = respappr*sexism,
+         xz = protest*sexism)
+```
+
+Set up the Mplus specifications with MplusAutomation. Then, run the model with MplusAutomation.
+```{r}
+sink(file = "ex2.30.inp")
+cat('
+data:     file = "protest.txt";
+variable: names = sexism liking respappr protest;
+          usev = sexism liking respappr protest mx mz xz;
+define:   mx = respappr*protest;
+          mz = respappr*sexism;
+          xz = protest*sexism;
+analysis: estimator = ml;
+          bootstrap = 10000;
+MODEL:    liking on respappr (b1)
+                    protest (b2)
+                    sexism (b3)
+                    mx (b4)
+                    mz (b5)
+                    xz (b6);
+          respappr on protest (g1)
+                      sexism (g2)
+                      xz (g3);
+          [respappr] (g0);
+MODEL CONSTRAINT:   loop(z,1,7,0.1);
+                   plot(indirect,direct);
+                   indirect=(b1+b4*1+b5*z)*(g1+g3*z);
+                   direct=b2+b6*z+b4*(g0+g1*0+g2*z+g3*0*z);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+```{r}
+runModels("ex2.30.inp")
+```
+
+Generate a plot of the moderated mediation effect by using a function available from `mplus.R`. Since we used `loop` approach, we use `mplus.plot.loop` function. Note `1` is for indirect effect and `2` for direct effect.
+
+Indirect effect:
+```{r}
+mplus.plot.loop("ex2.30.gh5", 1)
+```
+
+```{r}
+tibble(
+  negexp = mplus.get.loop.xvalues("ex2.30.gh5"),
+  ests = mplus.get.loop.estimates("ex2.30.gh5", 1),
+  loci = mplus.get.loop.lowerci("ex2.30.gh5", 1),
+  upci = mplus.get.loop.upperci("ex2.30.gh5", 1))
+```
+
+Direct effect:
+```{r}
+mplus.plot.loop("ex2.30.gh5", 2)
+```
+
+```{r}
+tibble(
+  negexp = mplus.get.loop.xvalues("ex2.30.gh5"),
+  ests = mplus.get.loop.estimates("ex2.30.gh5", 2),
+  loci = mplus.get.loop.lowerci("ex2.30.gh5", 2),
+  upci = mplus.get.loop.upperci("ex2.30.gh5", 2))
+```

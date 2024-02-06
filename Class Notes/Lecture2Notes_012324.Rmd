@@ -46,6 +46,15 @@ library(DT)
 library(lavaan)
 library(MplusAutomation)
 library(psych)
+
+if (!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+
+BiocManager::install("rhdf5")
+```
+
+```{r}
+setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024")
+source("mplus.R")
 ```
 
 - Input not case-sensitive, output has to be in uppercase 
@@ -159,7 +168,6 @@ modelfit2$parameters$unstandardized
   * Head circumference at birth 
 **Another way to set up mediation analysis** 
 
-<<<<<<< HEAD
 ```{r}
 sink("ex2.1c.inp")
 cat('
@@ -211,7 +219,7 @@ parameterEstimates(MA.fit01, zstat=F, pvalue=F)
 
 **Mediation Analysis with Covariates** 
 
-- Data from the Maternal Health Project (Day et al., 1994) is from a sample of mothers who drank at least three drinks a week duringn the first trimester of their pregnancy + mothers who drank alcohol less often ($n$ = 594). 
+- Data from the Maternal Health Project (Day et al., 1994) is from a sample of mothers who drank at least three drinks a week during the first trimester of their pregnancy + mothers who drank alcohol less often ($n$ = 594). 
 - Variables
   * Alcohol use (`momcig3`)
   * Cigarette use (`momalc3`)
@@ -219,25 +227,57 @@ parameterEstimates(MA.fit01, zstat=F, pvalue=F)
   * Ethnicity (`black`)
   * Head circumference at birth (`hcirc0`)
   * Head circumference at 36 monoths (`hcirc36`)
+- The hypothesis is that there are no direct effects of `momalc3` and `momcig3` on `hcirc36`. 
 
 Equation 1: 
 $$
 y_i = \beta_0+\beta_1 m_i+\beta_2z_{1i}+\beta_3z_{2i}+\epsilon_{yi}
 $$
+Equation 2: 
 $$
 m_i=\gamma_0+\gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi}
 $$
-
+- Substitute the second equation to the first equation: 
+$$
+y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi}) + \beta_2z_{1i}+\beta_3z_{2i}+\epsilon_{yi}
+$$
+  * No direct effect of $x$ to $y$ in this case. The indirect effect of $x_1$ to $y$ is $\beta_1 \gamma_1$; the indirect of $x_2$ to $y$ is $\beta_1 \gamma_2$. 
+  
+  
 **Mediation Analysis with multiple Mediators**
 
+- Data from a randomized study of media influence 
+- 43 male aned 80 females read a newspaper article and were randomly assigned to one of the two groups 
+  * One group was told that the story would appear on the front page of a major newspaper 
+  * The other group was told that it would appear in the middle of an economic supplement. 
+- Variables
+  * Group (0 = less visible; 1 = more visible) (`cond`)
+  * Intention to buy sugar and how much (`reaction`)
+  * Presumed media influence to others (`pmi`)
+  * Importance oof sugar shortage (`import`)
 Both direct effect annd mediation effect depends on the value of $z_i$ as a covariate (i.e., moderated by the covariate)
 
+Equation 1: 
+$$ 
+y_i = \beta_0 + \beta_1m_{1i} + \beta_2m_{2i} + \beta_3{x_i} + \epsilon_{yi}
+$$ 
+Equation 2: 
+$$ 
+m_{1i} = \gamma_{10} + \gamma_{11}x_i + \epsilon_{m1i}
+m_{2i} = \gamma_{20} + \gamma_{21}x_i + \epsilon_{m2i}
+
+$$
+- The direct effect of $x$ to $y$ is $\beta_3$; the indirect effect of $x$ too $y$ through $m_1$ is $\beta_1 \gamma_{11}$, and the indirect effect of $x$ to $y$ through $m_2$ is $\beta_2 \gamma_{21}$.
+
+
 If the moderation value is lower than .15, mediation effect is not significant as it's within the 95% band around 0. Within .15~+.85 would indicate significance, outside would be not significant. 
-=======
+- The outvome i
+
 **Moderated Mediation (1)**
 
-```
+```{r}
 sink("ex2.23.inp")
+cat('
 analysis: estimator = ml; 
           bootstrap = 10000; 
 model:    remove on agg5 tx agg1 xx; 
@@ -248,8 +288,141 @@ output:
   sampstat patterns standardized 
   cinterval(bootstrap);
 plot:     type = plot3;
+')
 sink()
+
+runModels("ex2.23.inp")
+
+modelfit4 <- readModels("ex2.23.out")
 ```
-"model indirect" 
+`model indirect`
 - This simple approach works when 
->>>>>>> 1b46d274d868357f95a04a93d0c4f65729d91c76
+- This approach creates indirect and direct effects "manually" at 
+
+`model constraint`
+- `PLOT` names the variables to be plotted on the 
+
+**Moderated Mediation (2)** 
+
+```{r}
+sink(file = "ex2.25.inp")
+cat('
+data:     file = teams.txt;
+variable: names = dysfunc negtone negexp perform;
+          usev = dysfunc negtone negexp perform mz;
+define:   mz = negtone*negexp;
+analysis: estimator = ml;
+          bootstrap = 10000;
+model:    perform on negtone dysfunc negexp mz;
+          negtone on dysfunc;  
+model indirect:
+          perform MOD negtone negexp(-0.4,0.6,0.01) mz dysfunc (0.4038 0.035);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.25.inp")
+```
+
+Plot the moderated mediation effect by using a function available from `mplus.R`.
+```{r}
+mplus.plot.moderation("ex2.25.gh5")
+```
+
+By using a function available in `mplus.R`, read values of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable. Note that these values are also reported in the Mplus output file `ex2.25.out`. However, it is nice to see them on R too.
+```{r}
+tibble(
+  negexp = mplus.get.moderation.xvalues("ex2.25.gh5"),
+  ests = mplus.get.moderation.estimates("ex2.25.gh5"),
+  loci = mplus.get.moderation.lowerci("ex2.25.gh5"),
+  upci = mplus.get.moderation.upperci("ex2.25.gh5"))
+```
+
+Now, run the same model by using a different approach by using "model constraint" command with "loop" to specify a series of evaluation points. 
+```{r}
+sink(file = "ex2.25b.inp")
+cat('
+data:     file = teams.txt;
+variable: names = dysfunc negtone negexp perform;
+          usev = dysfunc negtone negexp perform mz;
+define:   mz = negtone*negexp;
+analysis: estimator = ml;
+          bootstrap = 10000;
+MODEL:    perform on negtone (b1)
+          dysfunc (b2)
+          negexp (b3)
+          mz (b4);
+          negtone on dysfunc (g1);
+MODEL CONSTRAINT:
+          plot(ind);
+          loop(negexp, -.4, .6, .01);
+          ind = (b1*g1 + b4*g1*negexp) * (.4038 - .035);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+Run the model.
+```{r}
+runModels("ex2.25b.inp")
+```
+
+Generate a plot of the moderated mediation effect by using a function available from `mplus.R`. Note that the function is different from the one for the other approach in ex2.25.
+```{r}
+mplus.plot.loop("ex2.25b.gh5", 1)
+```
+
+Similar to the previous example, generate a table of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable by using a function available in `mplus.R`. Note that this table is not available in the Mplus output file when the "model constraint" approach is used. However, the necessary values are stored in the `.gh5` file, so we can extract the values and summarize as a table on R.
+
+```{r}
+tibble(
+  negexp = mplus.get.loop.xvalues("ex2.25b.gh5"),
+  ests = mplus.get.loop.estimates("ex2.25b.gh5", 1),
+  loci = mplus.get.loop.lowerci("ex2.25b.gh5", 1),
+  upci = mplus.get.loop.upperci("ex2.25b.gh5", 1)) %>% print(n=101)
+```
+
+Read the data.
+```{r}
+ex2.26.dat <- read.table("xmVx4s1n200rep6.dat")
+colnames(ex2.26.dat) <- c("y", "m", "x")
+ex2.26.dat <-
+  ex2.26.dat %>% mutate(mx = m*x)
+psych::describe(ex2.26.dat, fast=T)
+```
+
+Set up the Mplus specifications with MplusAutomation. Then, run the model with MplusAutomation.
+```{r}
+sink(file = "ex2.26.inp")
+cat('
+data:     file = "xmVx4s1n200rep6.dat";
+variable: names = y m x;
+          usev = y m x mx;
+define:   mx = m*x;
+analysis: estimator = ml;
+          bootstrap = 10000;
+MODEL:    y on m x mx;
+          m on x;
+MODEL INDIRECT:
+          y MOD m mx x (7, 5);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+  sink()
+```
+
+By using a function available in `mplus.R`, read values of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable. Note that these values are also reported in the Mplus output file `ex2.25.out`. However, it is nice to see them on R too.
+```{r}
+tibble(
+  negexp = mplus.get.moderation.xvalues("ex2.25.gh5"),
+  ests = mplus.get.moderation.estimates("ex2.25.gh5"),
+  loci = mplus.get.moderation.lowerci("ex2.25.gh5"),
+  upci = mplus.get.moderation.upperci("ex2.25.gh5"))
+```
+
+Interpretation by Aki: When the moderator negative expressiveness value is negative -.14 or larger, mediation effect is statistically significant. (range of value associated with statistically significant effect)
