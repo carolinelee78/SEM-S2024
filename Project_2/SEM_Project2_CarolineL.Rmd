@@ -1,0 +1,75 @@
+---
+title: "SEM Project 2"
+author: "Caroline Lee"
+date: "`r Sys.Date()`"
+---
+
+```{r message=F}
+# detach all libraries
+
+detachAllPackages <- function() {
+  basic.packages <- c("package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "package:base")
+  package.list <- search()[ifelse(unlist(gregexpr("package:", search()))==1, TRUE, FALSE)]
+  package.list <- setdiff(package.list, basic.packages)
+  if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
+}
+detachAllPackages()
+
+# function to load libraries
+
+pkgTest <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg,  dependencies = TRUE)
+  sapply(pkg,  require,  character.only = TRUE)
+}
+
+# loading packages 
+
+lapply(c("DT"),pkgTest)
+lapply(c("haven"),pkgTest)
+lapply(c("lavaan"),pkgTest)
+lapply(c("MplusAutomation"),pkgTest)
+lapply(c("readxl"),pkgTest)
+lapply(c("sjlabelled"),pkgTest)
+lapply(c("sjmisc"),pkgTest)
+lapply(c("texreg"),pkgTest)
+lapply(c("tidyverse"),pkgTest)
+
+library(DT)
+library(haven)
+library(lavaan)
+library(MplusAutomation)
+library(readxl)
+library(sjlabelled)
+library(sjmisc)
+library(texreg)
+library(tidyverse)
+```
+
+## Part I
+Suppose a researcher was interested in investigating the determinants of coping styles for college students. To evaluate this researcher's path model, Let's assume six variables were collected from 200 college students as follows:
+
+v1: stress  
+v2: efficacy  
+v3: resilience  
+v4: problem-solving coping  
+v5: social-support coping  
+v6: avoidance coping  
+
+The file `coping.csv` contains the data for these six variables. 
+
+1. Let's do initial model evaluations.
+    + (1-a) How many endogenous variables in this model?
+    + (1-b) How many parameters does this model have? Count each kind of parameters. Be sure to include the variance(s) of exogenous variable(s) and covariance(s) between exogenous variable(s), if any.
+    + (1-c) What is the number of unique elements of the data covariance matrix?
+    + (1-d) What is the $df$ for this model? Show how you derived the $df$.
+    + (1-e) List all possible indirect (mediation) effects of efficacy `v2` on avoidance coping `v4` in this model. Use a format of A→B→C, where the effect of variable A to variable C is mediated by variable B.
+  
+
+
+
+
+
+
+
