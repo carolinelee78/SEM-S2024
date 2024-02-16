@@ -1900,431 +1900,875 @@ sink()</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnVuTW9kZWxzKFwicHJvamVjdDJxMS5pbnBcIilcbmBgYCJ9 -->
 <pre class="r"><code>runModels(&quot;project2q1.inp&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZGV0ZWN0TXBsdXMoKSA6IFxuICBtcGx1cyBhbmQgbXBkZW1vIG5vdCBmb3VuZCBvbiB0aGUgc3lzdGVtIHBhdGggb3IgaW4gdGhlICd1c3VhbCcgL0FwcGxpY2F0aW9ucy9NcGx1cyBsb2NhdGlvbi4gRW5zdXJlIE1wbHVzIG9yIHRoZSBNcGx1cyBEZW1vIGFyZSBpbnN0YWxsZWQgYW5kIHRoYXQgdGhlIGxvY2F0aW9uIG9mIHRoZSBjb21tYW5kIGlzIG9uIHlvdXIgc3lzdGVtIHBhdGguXG4ifQ== -->
-<pre><code>Error in detectMplus() : 
-  mplus and mpdemo not found on the system path or in the &#39;usual&#39; /Applications/Mplus location. Ensure Mplus or the Mplus Demo are installed and that the location of the command is on your system path.</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubW9kZWwwMS5maXQgPC0gcmVhZE1vZGVscyhcXHByb2plY3QycTEub3V0XFwpXG5gYGBcbmBgYCJ9 -->
-<pre class="r"><code>```r
-model01.fit &lt;- readModels(\project2q1.out\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwwMS5maXQgPC0gcmVhZE1vZGVscyhcInByb2plY3QycTEub3V0XCIpXG5gYGAifQ== -->
+<pre class="r"><code>model01.fit &lt;- readModels(&quot;project2q1.out&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Mplus Output File:</p>
+<pre><code>Mplus VERSION 8.6
+MUTHEN &amp; MUTHEN
+02/15/2024   8:42 PM
 
-&lt;!-- rnb-chunk-end --&gt;
+INPUT INSTRUCTIONS
 
 
-&lt;!-- rnb-text-begin --&gt;
+  data:     file = coping.dat;
+
+  variable: names = stress efficacy resilien probsolv socisupp avoidanc;
+
+  analysis: estimator = ml;
+            bootstrap = 10000;
+
+  model:    probsolv on stress efficacy resilien;
+            socisupp on stress resilien;
+            avoidanc on stress efficacy resilien;
+            resilien on efficacy;
+            stress on resilien;
+            probsolv with socisupp@0;
+            probsolv with avoidanc@0;
+            socisupp with avoidanc@0;
+
+  model indirect:
+            avoidanc ind efficacy;
+
+  output: sampstat standardized
+          cinterval(bootstrap);
 
 
-Mplus Output File: 
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         200
+
+Number of dependent variables                                    5
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   STRESS      RESILIEN    PROBSOLV    SOCISUPP    AVOIDANC
+
+Observed independent variables
+   EFFICACY
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Number of bootstrap draws
+    Requested                                                10000
+    Completed                                                10000
+
+Input data file(s)
+  coping.dat
+
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
+              ________      ________      ________      ________      ________
+               30.060        29.790        29.435        28.705        29.755
+
+
+           Means
+              EFFICACY
+              ________
+               30.370
+
+
+           Covariances
+              STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
+              ________      ________      ________      ________      ________
+ STRESS        54.806
+ RESILIEN     -13.667        34.286
+ PROBSOLV      -5.486        14.461        36.186
+ SOCISUPP      15.078         2.078         6.903        55.928
+ AVOIDANC      26.750        -7.136        -3.528         2.978        74.275
+ EFFICACY     -12.637        27.298        14.944        -4.126        -3.699
+
+
+           Covariances
+              EFFICACY
+              ________
+ EFFICACY      49.443
+
+
+           Correlations
+              STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
+              ________      ________      ________      ________      ________
+ STRESS         1.000
+ RESILIEN      -0.315         1.000
+ PROBSOLV      -0.123         0.411         1.000
+ SOCISUPP       0.272         0.047         0.153         1.000
+ AVOIDANC       0.419        -0.141        -0.068         0.046         1.000
+ EFFICACY      -0.243         0.663         0.353        -0.078        -0.061
+
+
+           Correlations
+              EFFICACY
+              ________
+ EFFICACY       1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     STRESS               30.060      -0.075       9.000    0.50%      24.000     28.000     30.000
+             200.000      54.806      -0.156      51.000    0.50%      32.000     36.000
+     RESILIEN             29.790      -0.164       9.000    0.50%      25.000     28.000     30.000
+             200.000      34.286       0.120      45.000    0.50%      32.000     35.000
+     PROBSOLV             29.435       0.090      13.000    0.50%      24.000     28.000     29.000
+             200.000      36.186      -0.162      47.000    0.50%      31.000     35.000
+     SOCISUPP             28.705      -0.222       7.000    0.50%      23.000     27.000     29.000
+             200.000      55.928      -0.152      46.000    0.50%      31.000     35.000
+     AVOIDANC             29.755       0.056       9.000    0.50%      22.000     28.000     30.000
+             200.000      74.275       0.076      58.000    0.50%      32.000     37.000
+     EFFICACY             30.370       0.243       9.000    0.50%      24.000     28.000     30.000
+             200.000      49.443       0.478      55.000    0.50%      32.000     37.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       20
+
+Loglikelihood
+
+          H0 Value                       -3246.890
+          H1 Value                       -3241.234
+
+Information Criteria
+
+          Akaike (AIC)                    6533.779
+          Bayesian (BIC)                  6599.745
+          Sample-Size Adjusted BIC        6536.383
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             11.311
+          Degrees of Freedom                     5
+          P-Value                           0.0456
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.079
+          90 Percent C.I.                    0.010  0.142
+          Probability RMSEA &lt;= .05           0.178
+
+CFI/TLI
+
+          CFI                                0.973
+          TLI                                0.918
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            247.218
+          Degrees of Freedom                    15
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.038
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ PROBSOLV ON
+    STRESS             0.010      0.056      0.180      0.857
+    EFFICACY           0.124      0.066      1.886      0.059
+    RESILIEN           0.327      0.093      3.531      0.000
+
+ SOCISUPP ON
+    STRESS             0.322      0.075      4.314      0.000
+    RESILIEN           0.189      0.094      2.012      0.044
+
+ AVOIDANC ON
+    STRESS             0.488      0.087      5.592      0.000
+    EFFICACY           0.102      0.101      1.012      0.312
+    RESILIEN          -0.095      0.136     -0.702      0.483
+
+ RESILIEN ON
+    EFFICACY           0.552      0.043     12.796      0.000
+
+ STRESS   ON
+    RESILIEN          -0.399      0.091     -4.363      0.000
+
+ PROBSOLV WITH
+    SOCISUPP           0.000      0.000    999.000    999.000
+    AVOIDANC           0.000      0.000    999.000    999.000
+
+ SOCISUPP WITH
+    AVOIDANC           0.000      0.000    999.000    999.000
+
+ Intercepts
+    STRESS            41.935      2.770     15.140      0.000
+    RESILIEN          13.023      1.397      9.319      0.000
+    PROBSOLV          15.620      3.131      4.989      0.000
+    SOCISUPP          13.386      4.275      3.131      0.002
+    AVOIDANC          14.812      4.967      2.982      0.003
+
+ Residual Variances
+    STRESS            49.359      4.493     10.987      0.000
+    RESILIEN          19.215      1.881     10.217      0.000
+    PROBSOLV          29.658      2.469     12.011      0.000
+    SOCISUPP          50.677      4.631     10.942      0.000
+    AVOIDANC          60.920      5.717     10.656      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ PROBSOLV ON
+    STRESS             0.012      0.069      0.181      0.857
+    EFFICACY           0.145      0.077      1.893      0.058
+    RESILIEN           0.318      0.083      3.843      0.000
+
+ SOCISUPP ON
+    STRESS             0.319      0.070      4.589      0.000
+    RESILIEN           0.148      0.072      2.068      0.039
+
+ AVOIDANC ON
+    STRESS             0.419      0.066      6.331      0.000
+    EFFICACY           0.084      0.083      1.011      0.312
+    RESILIEN          -0.065      0.093     -0.697      0.486
+
+ RESILIEN ON
+    EFFICACY           0.663      0.042     15.834      0.000
+
+ STRESS   ON
+    RESILIEN          -0.315      0.069     -4.603      0.000
+
+ PROBSOLV WITH
+    SOCISUPP           0.000      0.000      0.000      1.000
+    AVOIDANC           0.000      0.000      0.000      1.000
+
+ SOCISUPP WITH
+    AVOIDANC           0.000      0.000      0.000      1.000
+
+ Intercepts
+    STRESS             5.664      0.345     16.433      0.000
+    RESILIEN           2.224      0.335      6.640      0.000
+    PROBSOLV           2.596      0.581      4.471      0.000
+    SOCISUPP           1.790      0.614      2.913      0.004
+    AVOIDANC           1.717      0.622      2.762      0.006
+
+ Residual Variances
+    STRESS             0.901      0.043     21.027      0.000
+    RESILIEN           0.560      0.055     10.208      0.000
+    PROBSOLV           0.819      0.048     17.176      0.000
+    SOCISUPP           0.906      0.040     22.800      0.000
+    AVOIDANC           0.818      0.048     17.222      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ PROBSOLV ON
+    STRESS             0.012      0.069      0.181      0.857
+    EFFICACY           0.021      0.011      1.899      0.058
+    RESILIEN           0.318      0.083      3.843      0.000
+
+ SOCISUPP ON
+    STRESS             0.319      0.070      4.589      0.000
+    RESILIEN           0.148      0.072      2.068      0.039
+
+ AVOIDANC ON
+    STRESS             0.419      0.066      6.331      0.000
+    EFFICACY           0.012      0.012      1.003      0.316
+    RESILIEN          -0.065      0.093     -0.697      0.486
+
+ RESILIEN ON
+    EFFICACY           0.094      0.005     17.989      0.000
+
+ STRESS   ON
+    RESILIEN          -0.315      0.069     -4.603      0.000
+
+ PROBSOLV WITH
+    SOCISUPP           0.000      0.000      0.000      1.000
+    AVOIDANC           0.000      0.000      0.000      1.000
+
+ SOCISUPP WITH
+    AVOIDANC           0.000      0.000      0.000      1.000
+
+ Intercepts
+    STRESS             5.664      0.345     16.433      0.000
+    RESILIEN           2.224      0.335      6.640      0.000
+    PROBSOLV           2.596      0.581      4.471      0.000
+    SOCISUPP           1.790      0.614      2.913      0.004
+    AVOIDANC           1.717      0.622      2.762      0.006
+
+ Residual Variances
+    STRESS             0.901      0.043     21.027      0.000
+    RESILIEN           0.560      0.055     10.208      0.000
+    PROBSOLV           0.819      0.048     17.176      0.000
+    SOCISUPP           0.906      0.040     22.800      0.000
+    AVOIDANC           0.818      0.048     17.222      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ PROBSOLV ON
+    STRESS             0.010      0.056      0.180      0.857
+    EFFICACY           0.124      0.066      1.886      0.059
+    RESILIEN           0.327      0.093      3.531      0.000
+
+ SOCISUPP ON
+    STRESS             0.322      0.075      4.314      0.000
+    RESILIEN           0.189      0.094      2.012      0.044
+
+ AVOIDANC ON
+    STRESS             0.488      0.087      5.592      0.000
+    EFFICACY           0.102      0.101      1.012      0.312
+    RESILIEN          -0.095      0.136     -0.702      0.483
+
+ RESILIEN ON
+    EFFICACY           0.552      0.043     12.796      0.000
+
+ STRESS   ON
+    RESILIEN          -0.399      0.091     -4.363      0.000
+
+ PROBSOLV WITH
+    SOCISUPP           0.000      0.000      0.000      1.000
+    AVOIDANC           0.000      0.000      0.000      1.000
+
+ SOCISUPP WITH
+    AVOIDANC           0.000      0.000      0.000      1.000
+
+ Intercepts
+    STRESS            41.935      2.770     15.140      0.000
+    RESILIEN          13.023      1.397      9.319      0.000
+    PROBSOLV          15.620      3.131      4.989      0.000
+    SOCISUPP          13.386      4.275      3.131      0.002
+    AVOIDANC          14.812      4.967      2.982      0.003
+
+ Residual Variances
+    STRESS            49.359      4.493     10.987      0.000
+    RESILIEN          19.215      1.881     10.217      0.000
+    PROBSOLV          29.658      2.469     12.011      0.000
+    SOCISUPP          50.677      4.631     10.942      0.000
+    AVOIDANC          60.920      5.717     10.656      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    STRESS             0.099      0.043      2.321      0.020
+    RESILIEN           0.440      0.055      8.006      0.000
+    PROBSOLV           0.181      0.048      3.784      0.000
+    SOCISUPP           0.094      0.040      2.363      0.018
+    AVOIDANC           0.182      0.048      3.825      0.000
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from EFFICACY to AVOIDANC
+
+  Total               -0.058      0.081     -0.709      0.479
+  Total indirect      -0.160      0.076     -2.098      0.036
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY          -0.053      0.075     -0.700      0.484
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY          -0.107      0.029     -3.650      0.000
+
+  Direct
+    AVOIDANC
+    EFFICACY           0.102      0.101      1.012      0.312
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from EFFICACY to AVOIDANC
+
+  Total               -0.047      0.066     -0.710      0.478
+  Total indirect      -0.130      0.064     -2.049      0.040
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY          -0.043      0.062     -0.693      0.488
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY          -0.088      0.024     -3.626      0.000
+
+  Direct
+    AVOIDANC
+    EFFICACY           0.084      0.083      1.011      0.312
+
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from EFFICACY to AVOIDANC
+
+  Total               -0.007      0.009     -0.707      0.480
+  Total indirect      -0.019      0.009     -2.071      0.038
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY          -0.006      0.009     -0.692      0.489
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY          -0.012      0.003     -3.828      0.000
+
+  Direct
+    AVOIDANC
+    EFFICACY           0.012      0.012      1.003      0.316
+
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from EFFICACY to AVOIDANC
+
+  Total               -0.058      0.081     -0.709      0.479
+  Total indirect      -0.160      0.076     -2.098      0.036
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY          -0.053      0.075     -0.700      0.484
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY          -0.107      0.029     -3.650      0.000
+
+  Direct
+    AVOIDANC
+    EFFICACY           0.102      0.101      1.012      0.312
+
+
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ PROBSOLV ON
+    STRESS          -0.136      -0.099      -0.082       0.010       0.101       0.120       0.157
+    EFFICACY        -0.044      -0.003       0.016       0.124       0.231       0.255       0.300
+    RESILIEN         0.092       0.149       0.178       0.327       0.481       0.512       0.575
+
+ SOCISUPP ON
+    STRESS           0.127       0.176       0.201       0.322       0.444       0.469       0.517
+    RESILIEN        -0.049       0.007       0.036       0.189       0.344       0.373       0.434
+
+ AVOIDANC ON
+    STRESS           0.265       0.315       0.344       0.488       0.632       0.658       0.722
+    EFFICACY        -0.156      -0.096      -0.068       0.102       0.268       0.298       0.357
+    RESILIEN        -0.439      -0.360      -0.317      -0.095       0.129       0.172       0.251
+
+ RESILIEN ON
+    EFFICACY         0.442       0.466       0.481       0.552       0.622       0.636       0.665
+
+ STRESS   ON
+    RESILIEN        -0.637      -0.580      -0.550      -0.399      -0.249      -0.217      -0.161
+
+ PROBSOLV WITH
+    SOCISUPP         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ SOCISUPP WITH
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ Intercepts
+    STRESS          34.650      36.344      37.466      41.935      46.537      47.359      49.034
+    RESILIEN         9.410      10.283      10.734      13.023      15.364      15.766      16.560
+    PROBSOLV         7.516       9.377      10.410      15.620      20.726      21.711      23.758
+    SOCISUPP         2.247       4.957       6.268      13.386      20.241      21.567      24.150
+    AVOIDANC         2.346       5.291       6.818      14.812      23.142      24.799      27.804
+
+ Residual Variances
+    STRESS          37.954      40.450      41.695      49.359      56.406      58.045      61.367
+    RESILIEN        14.413      15.445      16.009      19.215      22.197      22.814      24.151
+    PROBSOLV        22.911      24.408      25.070      29.658      33.241      34.072      35.504
+    SOCISUPP        38.873      41.148      42.403      50.677      57.586      59.091      62.387
+    AVOIDANC        45.480      48.655      50.533      60.920      69.281      71.241      75.110
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ PROBSOLV ON
+    STRESS          -0.168      -0.121      -0.100       0.012       0.124       0.147       0.193
+    EFFICACY        -0.050      -0.004       0.018       0.145       0.271       0.298       0.347
+    RESILIEN         0.095       0.151       0.180       0.318       0.450       0.475       0.528
+
+ SOCISUPP ON
+    STRESS           0.127       0.177       0.202       0.319       0.430       0.449       0.487
+    RESILIEN        -0.039       0.005       0.029       0.148       0.264       0.285       0.326
+
+ AVOIDANC ON
+    STRESS           0.234       0.279       0.304       0.419       0.521       0.540       0.577
+    EFFICACY        -0.128      -0.077      -0.055       0.084       0.217       0.246       0.288
+    RESILIEN        -0.309      -0.249      -0.218      -0.065       0.086       0.111       0.167
+
+ RESILIEN ON
+    EFFICACY         0.544       0.573       0.588       0.663       0.726       0.738       0.759
+
+ STRESS   ON
+    RESILIEN        -0.480      -0.443      -0.425      -0.315      -0.198      -0.174      -0.129
+
+ PROBSOLV WITH
+    SOCISUPP         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ SOCISUPP WITH
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ Intercepts
+    STRESS           4.740       5.007       5.113       5.664       6.251       6.349       6.577
+    RESILIEN         1.465       1.634       1.727       2.224       2.835       2.937       3.195
+    PROBSOLV         1.170       1.501       1.673       2.596       3.586       3.781       4.181
+    SOCISUPP         0.284       0.639       0.808       1.790       2.823       3.024       3.423
+    AVOIDANC         0.257       0.581       0.760       1.717       2.802       3.016       3.428
+
+ Residual Variances
+    STRESS           0.769       0.803       0.819       0.901       0.961       0.970       0.983
+    RESILIEN         0.424       0.455       0.473       0.560       0.654       0.672       0.704
+    PROBSOLV         0.678       0.710       0.728       0.819       0.885       0.896       0.918
+    SOCISUPP         0.781       0.811       0.828       0.906       0.958       0.965       0.981
+    AVOIDANC         0.675       0.709       0.726       0.818       0.882       0.895       0.917
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ PROBSOLV ON
+    STRESS          -0.168      -0.121      -0.100       0.012       0.124       0.147       0.193
+    EFFICACY        -0.007      -0.001       0.003       0.021       0.038       0.042       0.049
+    RESILIEN         0.095       0.151       0.180       0.318       0.450       0.475       0.528
+
+ SOCISUPP ON
+    STRESS           0.127       0.177       0.202       0.319       0.430       0.449       0.487
+    RESILIEN        -0.039       0.005       0.029       0.148       0.264       0.285       0.326
+
+ AVOIDANC ON
+    STRESS           0.234       0.279       0.304       0.419       0.521       0.540       0.577
+    EFFICACY        -0.018      -0.011      -0.008       0.012       0.031       0.035       0.042
+    RESILIEN        -0.309      -0.249      -0.218      -0.065       0.086       0.111       0.167
+
+ RESILIEN ON
+    EFFICACY         0.081       0.084       0.086       0.094       0.103       0.105       0.109
+
+ STRESS   ON
+    RESILIEN        -0.480      -0.443      -0.425      -0.315      -0.198      -0.174      -0.129
+
+ PROBSOLV WITH
+    SOCISUPP         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ SOCISUPP WITH
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ Intercepts
+    STRESS           4.740       5.007       5.113       5.664       6.251       6.349       6.577
+    RESILIEN         1.465       1.634       1.727       2.224       2.835       2.937       3.195
+    PROBSOLV         1.170       1.501       1.673       2.596       3.586       3.781       4.181
+    SOCISUPP         0.284       0.639       0.808       1.790       2.823       3.024       3.423
+    AVOIDANC         0.257       0.581       0.760       1.717       2.802       3.016       3.428
+
+ Residual Variances
+    STRESS           0.769       0.803       0.819       0.901       0.961       0.970       0.983
+    RESILIEN         0.424       0.455       0.473       0.560       0.654       0.672       0.704
+    PROBSOLV         0.678       0.710       0.728       0.819       0.885       0.896       0.918
+    SOCISUPP         0.781       0.811       0.828       0.906       0.958       0.965       0.981
+    AVOIDANC         0.675       0.709       0.726       0.818       0.882       0.895       0.917
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ PROBSOLV ON
+    STRESS          -0.136      -0.099      -0.082       0.010       0.101       0.120       0.157
+    EFFICACY        -0.044      -0.003       0.016       0.124       0.231       0.255       0.300
+    RESILIEN         0.092       0.149       0.178       0.327       0.481       0.512       0.575
+
+ SOCISUPP ON
+    STRESS           0.127       0.176       0.201       0.322       0.444       0.469       0.517
+    RESILIEN        -0.049       0.007       0.036       0.189       0.344       0.373       0.434
+
+ AVOIDANC ON
+    STRESS           0.265       0.315       0.344       0.488       0.632       0.658       0.722
+    EFFICACY        -0.156      -0.096      -0.068       0.102       0.268       0.298       0.357
+    RESILIEN        -0.439      -0.360      -0.317      -0.095       0.129       0.172       0.251
+
+ RESILIEN ON
+    EFFICACY         0.442       0.466       0.481       0.552       0.622       0.636       0.665
+
+ STRESS   ON
+    RESILIEN        -0.637      -0.580      -0.550      -0.399      -0.249      -0.217      -0.161
+
+ PROBSOLV WITH
+    SOCISUPP         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ SOCISUPP WITH
+    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
+
+ Intercepts
+    STRESS          34.650      36.344      37.466      41.935      46.537      47.359      49.034
+    RESILIEN         9.410      10.283      10.734      13.023      15.364      15.766      16.560
+    PROBSOLV         7.516       9.377      10.410      15.620      20.726      21.711      23.758
+    SOCISUPP         2.247       4.957       6.268      13.386      20.241      21.567      24.150
+    AVOIDANC         2.346       5.291       6.818      14.812      23.142      24.799      27.804
+
+ Residual Variances
+    STRESS          37.954      40.450      41.695      49.359      56.406      58.045      61.367
+    RESILIEN        14.413      15.445      16.009      19.215      22.197      22.814      24.151
+    PROBSOLV        22.911      24.408      25.070      29.658      33.241      34.072      35.504
+    SOCISUPP        38.873      41.148      42.403      50.677      57.586      59.091      62.387
+    AVOIDANC        45.480      48.655      50.533      60.920      69.281      71.241      75.110
+
+
+CONFIDENCE INTERVALS OF TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from EFFICACY to AVOIDANC
+
+  Total             -0.262      -0.214      -0.188      -0.058       0.080       0.106       0.153
+  Total indirect    -0.351      -0.310      -0.285      -0.160      -0.033      -0.012       0.037
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY        -0.250      -0.201      -0.175      -0.053       0.071       0.092       0.140
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY        -0.192      -0.168      -0.157      -0.107      -0.061      -0.054      -0.040
+
+  Direct
+    AVOIDANC
+    EFFICACY        -0.156      -0.096      -0.068       0.102       0.268       0.298       0.357
+
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from EFFICACY to AVOIDANC
+
+  Total             -0.214      -0.174      -0.154      -0.047       0.064       0.084       0.122
+  Total indirect    -0.298      -0.257      -0.237      -0.130      -0.027      -0.010       0.029
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY        -0.213      -0.167      -0.147      -0.043       0.056       0.074       0.113
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY        -0.156      -0.137      -0.129      -0.088      -0.049      -0.043      -0.032
+
+  Direct
+    AVOIDANC
+    EFFICACY        -0.128      -0.077      -0.055       0.084       0.217       0.246       0.288
+
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from EFFICACY to AVOIDANC
+
+  Total             -0.030      -0.025      -0.022      -0.007       0.009       0.012       0.018
+  Total indirect    -0.042      -0.036      -0.033      -0.019      -0.004      -0.001       0.004
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY        -0.030      -0.024      -0.021      -0.006       0.008       0.011       0.016
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY        -0.022      -0.019      -0.018      -0.012      -0.007      -0.006      -0.005
+
+  Direct
+    AVOIDANC
+    EFFICACY        -0.018      -0.011      -0.008       0.012       0.031       0.035       0.042
+
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from EFFICACY to AVOIDANC
+
+  Total             -0.262      -0.214      -0.188      -0.058       0.080       0.106       0.153
+  Total indirect    -0.351      -0.310      -0.285      -0.160      -0.033      -0.012       0.037
+
+  Specific indirect 1
+    AVOIDANC
+    RESILIEN
+    EFFICACY        -0.250      -0.201      -0.175      -0.053       0.071       0.092       0.140
+
+  Specific indirect 2
+    AVOIDANC
+    STRESS
+    RESILIEN
+    EFFICACY        -0.192      -0.168      -0.157      -0.107      -0.061      -0.054      -0.040
+
+  Direct
+    AVOIDANC
+    EFFICACY        -0.156      -0.096      -0.068       0.102       0.268       0.298       0.357
+
+
+
+
+     Beginning Time:  20:42:22
+        Ending Time:  20:42:34
+       Elapsed Time:  00:00:12
+
+
+
+MUTHEN &amp; MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen &amp; Muthen
 </code></pre>
-<p>Mplus VERSION 8.6 MUTHEN &amp; MUTHEN 02/15/2024 8:42 PM</p>
-<p>INPUT INSTRUCTIONS</p>
-<p>data: file = coping.dat;</p>
-<p>variable: names = stress efficacy resilien probsolv socisupp
-avoidanc;</p>
-<p>analysis: estimator = ml; bootstrap = 10000;</p>
-<p>model: probsolv on stress efficacy resilien; socisupp on stress
-resilien; avoidanc on stress efficacy resilien; resilien on efficacy;
-stress on resilien; probsolv with <a href="mailto:socisupp@0" class="email">socisupp@0</a>; probsolv with <a href="mailto:avoidanc@0" class="email">avoidanc@0</a>; socisupp with <a href="mailto:avoidanc@0" class="email">avoidanc@0</a>;</p>
-<p>model indirect: avoidanc ind efficacy;</p>
-<p>output: sampstat standardized cinterval(bootstrap);</p>
-<p>INPUT READING TERMINATED NORMALLY</p>
-<p>SUMMARY OF ANALYSIS</p>
-<p>Number of groups 1 Number of observations 200</p>
-<p>Number of dependent variables 5 Number of independent variables 1
-Number of continuous latent variables 0</p>
-<p>Observed dependent variables</p>
-<p>Continuous STRESS RESILIEN PROBSOLV SOCISUPP AVOIDANC</p>
-<p>Observed independent variables EFFICACY</p>
-<p>Estimator ML Information matrix OBSERVED Maximum number of iterations
-1000 Convergence criterion 0.500D-04 Maximum number of steepest descent
-iterations 20 Number of bootstrap draws Requested 10000 Completed
-10000</p>
-<p>Input data file(s) coping.dat</p>
-<p>Input data format FREE</p>
-<p>SAMPLE STATISTICS</p>
-<pre><code> SAMPLE STATISTICS
-
-
-       Means
-          STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
-          ________      ________      ________      ________      ________
-           30.060        29.790        29.435        28.705        29.755
-
-
-       Means
-          EFFICACY
-          ________
-           30.370
-
-
-       Covariances
-          STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
-          ________      ________      ________      ________      ________</code></pre>
-<p>STRESS 54.806 RESILIEN -13.667 34.286 PROBSOLV -5.486 14.461 36.186
-SOCISUPP 15.078 2.078 6.903 55.928 AVOIDANC 26.750 -7.136 -3.528 2.978
-74.275 EFFICACY -12.637 27.298 14.944 -4.126 -3.699</p>
-<pre><code>       Covariances
-          EFFICACY
-          ________</code></pre>
-<p>EFFICACY 49.443</p>
-<pre><code>       Correlations
-          STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
-          ________      ________      ________      ________      ________</code></pre>
-<p>STRESS 1.000 RESILIEN -0.315 1.000 PROBSOLV -0.123 0.411 1.000
-SOCISUPP 0.272 0.047 0.153 1.000 AVOIDANC 0.419 -0.141 -0.068 0.046
-1.000 EFFICACY -0.243 0.663 0.353 -0.078 -0.061</p>
-<pre><code>       Correlations
-          EFFICACY
-          ________</code></pre>
-<p>EFFICACY 1.000</p>
-<p>UNIVARIATE SAMPLE STATISTICS</p>
-<pre><code> UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
-
-     Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
-    Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
-
- STRESS               30.060      -0.075       9.000    0.50%      24.000     28.000     30.000
-         200.000      54.806      -0.156      51.000    0.50%      32.000     36.000
- RESILIEN             29.790      -0.164       9.000    0.50%      25.000     28.000     30.000
-         200.000      34.286       0.120      45.000    0.50%      32.000     35.000
- PROBSOLV             29.435       0.090      13.000    0.50%      24.000     28.000     29.000
-         200.000      36.186      -0.162      47.000    0.50%      31.000     35.000
- SOCISUPP             28.705      -0.222       7.000    0.50%      23.000     27.000     29.000
-         200.000      55.928      -0.152      46.000    0.50%      31.000     35.000
- AVOIDANC             29.755       0.056       9.000    0.50%      22.000     28.000     30.000
-         200.000      74.275       0.076      58.000    0.50%      32.000     37.000
- EFFICACY             30.370       0.243       9.000    0.50%      24.000     28.000     30.000
-         200.000      49.443       0.478      55.000    0.50%      32.000     37.000</code></pre>
-<p>THE MODEL ESTIMATION TERMINATED NORMALLY</p>
-<p>MODEL FIT INFORMATION</p>
-<p>Number of Free Parameters 20</p>
-<p>Loglikelihood</p>
-<pre><code>      H0 Value                       -3246.890
-      H1 Value                       -3241.234</code></pre>
-<p>Information Criteria</p>
-<pre><code>      Akaike (AIC)                    6533.779
-      Bayesian (BIC)                  6599.745
-      Sample-Size Adjusted BIC        6536.383
-        (n* = (n + 2) / 24)</code></pre>
-<p>Chi-Square Test of Model Fit</p>
-<pre><code>      Value                             11.311
-      Degrees of Freedom                     5
-      P-Value                           0.0456</code></pre>
-<p>RMSEA (Root Mean Square Error Of Approximation)</p>
-<pre><code>      Estimate                           0.079
-      90 Percent C.I.                    0.010  0.142
-      Probability RMSEA &lt;= .05           0.178</code></pre>
-<p>CFI/TLI</p>
-<pre><code>      CFI                                0.973
-      TLI                                0.918</code></pre>
-<p>Chi-Square Test of Model Fit for the Baseline Model</p>
-<pre><code>      Value                            247.218
-      Degrees of Freedom                    15
-      P-Value                           0.0000</code></pre>
-<p>SRMR (Standardized Root Mean Square Residual)</p>
-<pre><code>      Value                              0.038</code></pre>
-<p>MODEL RESULTS</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>PROBSOLV ON STRESS 0.010 0.056 0.180 0.857 EFFICACY 0.124 0.066 1.886
-0.059 RESILIEN 0.327 0.093 3.531 0.000</p>
-<p>SOCISUPP ON STRESS 0.322 0.075 4.314 0.000 RESILIEN 0.189 0.094 2.012
-0.044</p>
-<p>AVOIDANC ON STRESS 0.488 0.087 5.592 0.000 EFFICACY 0.102 0.101 1.012
-0.312 RESILIEN -0.095 0.136 -0.702 0.483</p>
-<p>RESILIEN ON EFFICACY 0.552 0.043 12.796 0.000</p>
-<p>STRESS ON RESILIEN -0.399 0.091 -4.363 0.000</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 999.000 999.000 AVOIDANC 0.000
-0.000 999.000 999.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 999.000 999.000</p>
-<p>Intercepts STRESS 41.935 2.770 15.140 0.000 RESILIEN 13.023 1.397
-9.319 0.000 PROBSOLV 15.620 3.131 4.989 0.000 SOCISUPP 13.386 4.275
-3.131 0.002 AVOIDANC 14.812 4.967 2.982 0.003</p>
-<p>Residual Variances STRESS 49.359 4.493 10.987 0.000 RESILIEN 19.215
-1.881 10.217 0.000 PROBSOLV 29.658 2.469 12.011 0.000 SOCISUPP 50.677
-4.631 10.942 0.000 AVOIDANC 60.920 5.717 10.656 0.000</p>
-<p>STANDARDIZED MODEL RESULTS</p>
-<p>STDYX Standardization</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>PROBSOLV ON STRESS 0.012 0.069 0.181 0.857 EFFICACY 0.145 0.077 1.893
-0.058 RESILIEN 0.318 0.083 3.843 0.000</p>
-<p>SOCISUPP ON STRESS 0.319 0.070 4.589 0.000 RESILIEN 0.148 0.072 2.068
-0.039</p>
-<p>AVOIDANC ON STRESS 0.419 0.066 6.331 0.000 EFFICACY 0.084 0.083 1.011
-0.312 RESILIEN -0.065 0.093 -0.697 0.486</p>
-<p>RESILIEN ON EFFICACY 0.663 0.042 15.834 0.000</p>
-<p>STRESS ON RESILIEN -0.315 0.069 -4.603 0.000</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 1.000 AVOIDANC 0.000 0.000
-0.000 1.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 1.000</p>
-<p>Intercepts STRESS 5.664 0.345 16.433 0.000 RESILIEN 2.224 0.335 6.640
-0.000 PROBSOLV 2.596 0.581 4.471 0.000 SOCISUPP 1.790 0.614 2.913 0.004
-AVOIDANC 1.717 0.622 2.762 0.006</p>
-<p>Residual Variances STRESS 0.901 0.043 21.027 0.000 RESILIEN 0.560
-0.055 10.208 0.000 PROBSOLV 0.819 0.048 17.176 0.000 SOCISUPP 0.906
-0.040 22.800 0.000 AVOIDANC 0.818 0.048 17.222 0.000</p>
-<p>STDY Standardization</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>PROBSOLV ON STRESS 0.012 0.069 0.181 0.857 EFFICACY 0.021 0.011 1.899
-0.058 RESILIEN 0.318 0.083 3.843 0.000</p>
-<p>SOCISUPP ON STRESS 0.319 0.070 4.589 0.000 RESILIEN 0.148 0.072 2.068
-0.039</p>
-<p>AVOIDANC ON STRESS 0.419 0.066 6.331 0.000 EFFICACY 0.012 0.012 1.003
-0.316 RESILIEN -0.065 0.093 -0.697 0.486</p>
-<p>RESILIEN ON EFFICACY 0.094 0.005 17.989 0.000</p>
-<p>STRESS ON RESILIEN -0.315 0.069 -4.603 0.000</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 1.000 AVOIDANC 0.000 0.000
-0.000 1.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 1.000</p>
-<p>Intercepts STRESS 5.664 0.345 16.433 0.000 RESILIEN 2.224 0.335 6.640
-0.000 PROBSOLV 2.596 0.581 4.471 0.000 SOCISUPP 1.790 0.614 2.913 0.004
-AVOIDANC 1.717 0.622 2.762 0.006</p>
-<p>Residual Variances STRESS 0.901 0.043 21.027 0.000 RESILIEN 0.560
-0.055 10.208 0.000 PROBSOLV 0.819 0.048 17.176 0.000 SOCISUPP 0.906
-0.040 22.800 0.000 AVOIDANC 0.818 0.048 17.222 0.000</p>
-<p>STD Standardization</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>PROBSOLV ON STRESS 0.010 0.056 0.180 0.857 EFFICACY 0.124 0.066 1.886
-0.059 RESILIEN 0.327 0.093 3.531 0.000</p>
-<p>SOCISUPP ON STRESS 0.322 0.075 4.314 0.000 RESILIEN 0.189 0.094 2.012
-0.044</p>
-<p>AVOIDANC ON STRESS 0.488 0.087 5.592 0.000 EFFICACY 0.102 0.101 1.012
-0.312 RESILIEN -0.095 0.136 -0.702 0.483</p>
-<p>RESILIEN ON EFFICACY 0.552 0.043 12.796 0.000</p>
-<p>STRESS ON RESILIEN -0.399 0.091 -4.363 0.000</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 1.000 AVOIDANC 0.000 0.000
-0.000 1.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 1.000</p>
-<p>Intercepts STRESS 41.935 2.770 15.140 0.000 RESILIEN 13.023 1.397
-9.319 0.000 PROBSOLV 15.620 3.131 4.989 0.000 SOCISUPP 13.386 4.275
-3.131 0.002 AVOIDANC 14.812 4.967 2.982 0.003</p>
-<p>Residual Variances STRESS 49.359 4.493 10.987 0.000 RESILIEN 19.215
-1.881 10.217 0.000 PROBSOLV 29.658 2.469 12.011 0.000 SOCISUPP 50.677
-4.631 10.942 0.000 AVOIDANC 60.920 5.717 10.656 0.000</p>
-<p>R-SQUARE</p>
-<pre><code>Observed                                        Two-Tailed
-Variable        Estimate       S.E.  Est./S.E.    P-Value
-
-STRESS             0.099      0.043      2.321      0.020
-RESILIEN           0.440      0.055      8.006      0.000
-PROBSOLV           0.181      0.048      3.784      0.000
-SOCISUPP           0.094      0.040      2.363      0.018
-AVOIDANC           0.182      0.048      3.825      0.000</code></pre>
-<p>TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.058 0.081 -0.709 0.479 Total indirect -0.160 0.076 -2.098
-0.036</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.053 0.075 -0.700
-0.484</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.107 0.029
--3.650 0.000</p>
-<p>Direct AVOIDANC EFFICACY 0.102 0.101 1.012 0.312</p>
-<p>STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT
-EFFECTS</p>
-<p>STDYX Standardization</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.047 0.066 -0.710 0.478 Total indirect -0.130 0.064 -2.049
-0.040</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.043 0.062 -0.693
-0.488</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.088 0.024
--3.626 0.000</p>
-<p>Direct AVOIDANC EFFICACY 0.084 0.083 1.011 0.312</p>
-<p>STDY Standardization</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.007 0.009 -0.707 0.480 Total indirect -0.019 0.009 -2.071
-0.038</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.006 0.009 -0.692
-0.489</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.012 0.003
--3.828 0.000</p>
-<p>Direct AVOIDANC EFFICACY 0.012 0.012 1.003 0.316</p>
-<p>STD Standardization</p>
-<pre><code>                                                Two-Tailed
-                Estimate       S.E.  Est./S.E.    P-Value</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.058 0.081 -0.709 0.479 Total indirect -0.160 0.076 -2.098
-0.036</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.053 0.075 -0.700
-0.484</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.107 0.029
--3.650 0.000</p>
-<p>Direct AVOIDANC EFFICACY 0.102 0.101 1.012 0.312</p>
-<p>CONFIDENCE INTERVALS OF MODEL RESULTS</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>PROBSOLV ON STRESS -0.136 -0.099 -0.082 0.010 0.101 0.120 0.157
-EFFICACY -0.044 -0.003 0.016 0.124 0.231 0.255 0.300 RESILIEN 0.092
-0.149 0.178 0.327 0.481 0.512 0.575</p>
-<p>SOCISUPP ON STRESS 0.127 0.176 0.201 0.322 0.444 0.469 0.517 RESILIEN
--0.049 0.007 0.036 0.189 0.344 0.373 0.434</p>
-<p>AVOIDANC ON STRESS 0.265 0.315 0.344 0.488 0.632 0.658 0.722 EFFICACY
--0.156 -0.096 -0.068 0.102 0.268 0.298 0.357 RESILIEN -0.439 -0.360
--0.317 -0.095 0.129 0.172 0.251</p>
-<p>RESILIEN ON EFFICACY 0.442 0.466 0.481 0.552 0.622 0.636 0.665</p>
-<p>STRESS ON RESILIEN -0.637 -0.580 -0.550 -0.399 -0.249 -0.217
--0.161</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 0.000 0.000 0.000 0.000
-AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>Intercepts STRESS 34.650 36.344 37.466 41.935 46.537 47.359 49.034
-RESILIEN 9.410 10.283 10.734 13.023 15.364 15.766 16.560 PROBSOLV 7.516
-9.377 10.410 15.620 20.726 21.711 23.758 SOCISUPP 2.247 4.957 6.268
-13.386 20.241 21.567 24.150 AVOIDANC 2.346 5.291 6.818 14.812 23.142
-24.799 27.804</p>
-<p>Residual Variances STRESS 37.954 40.450 41.695 49.359 56.406 58.045
-61.367 RESILIEN 14.413 15.445 16.009 19.215 22.197 22.814 24.151
-PROBSOLV 22.911 24.408 25.070 29.658 33.241 34.072 35.504 SOCISUPP
-38.873 41.148 42.403 50.677 57.586 59.091 62.387 AVOIDANC 45.480 48.655
-50.533 60.920 69.281 71.241 75.110</p>
-<p>CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS</p>
-<p>STDYX Standardization</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>PROBSOLV ON STRESS -0.168 -0.121 -0.100 0.012 0.124 0.147 0.193
-EFFICACY -0.050 -0.004 0.018 0.145 0.271 0.298 0.347 RESILIEN 0.095
-0.151 0.180 0.318 0.450 0.475 0.528</p>
-<p>SOCISUPP ON STRESS 0.127 0.177 0.202 0.319 0.430 0.449 0.487 RESILIEN
--0.039 0.005 0.029 0.148 0.264 0.285 0.326</p>
-<p>AVOIDANC ON STRESS 0.234 0.279 0.304 0.419 0.521 0.540 0.577 EFFICACY
--0.128 -0.077 -0.055 0.084 0.217 0.246 0.288 RESILIEN -0.309 -0.249
--0.218 -0.065 0.086 0.111 0.167</p>
-<p>RESILIEN ON EFFICACY 0.544 0.573 0.588 0.663 0.726 0.738 0.759</p>
-<p>STRESS ON RESILIEN -0.480 -0.443 -0.425 -0.315 -0.198 -0.174
--0.129</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 0.000 0.000 0.000 0.000
-AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>Intercepts STRESS 4.740 5.007 5.113 5.664 6.251 6.349 6.577 RESILIEN
-1.465 1.634 1.727 2.224 2.835 2.937 3.195 PROBSOLV 1.170 1.501 1.673
-2.596 3.586 3.781 4.181 SOCISUPP 0.284 0.639 0.808 1.790 2.823 3.024
-3.423 AVOIDANC 0.257 0.581 0.760 1.717 2.802 3.016 3.428</p>
-<p>Residual Variances STRESS 0.769 0.803 0.819 0.901 0.961 0.970 0.983
-RESILIEN 0.424 0.455 0.473 0.560 0.654 0.672 0.704 PROBSOLV 0.678 0.710
-0.728 0.819 0.885 0.896 0.918 SOCISUPP 0.781 0.811 0.828 0.906 0.958
-0.965 0.981 AVOIDANC 0.675 0.709 0.726 0.818 0.882 0.895 0.917</p>
-<p>STDY Standardization</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>PROBSOLV ON STRESS -0.168 -0.121 -0.100 0.012 0.124 0.147 0.193
-EFFICACY -0.007 -0.001 0.003 0.021 0.038 0.042 0.049 RESILIEN 0.095
-0.151 0.180 0.318 0.450 0.475 0.528</p>
-<p>SOCISUPP ON STRESS 0.127 0.177 0.202 0.319 0.430 0.449 0.487 RESILIEN
--0.039 0.005 0.029 0.148 0.264 0.285 0.326</p>
-<p>AVOIDANC ON STRESS 0.234 0.279 0.304 0.419 0.521 0.540 0.577 EFFICACY
--0.018 -0.011 -0.008 0.012 0.031 0.035 0.042 RESILIEN -0.309 -0.249
--0.218 -0.065 0.086 0.111 0.167</p>
-<p>RESILIEN ON EFFICACY 0.081 0.084 0.086 0.094 0.103 0.105 0.109</p>
-<p>STRESS ON RESILIEN -0.480 -0.443 -0.425 -0.315 -0.198 -0.174
--0.129</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 0.000 0.000 0.000 0.000
-AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>Intercepts STRESS 4.740 5.007 5.113 5.664 6.251 6.349 6.577 RESILIEN
-1.465 1.634 1.727 2.224 2.835 2.937 3.195 PROBSOLV 1.170 1.501 1.673
-2.596 3.586 3.781 4.181 SOCISUPP 0.284 0.639 0.808 1.790 2.823 3.024
-3.423 AVOIDANC 0.257 0.581 0.760 1.717 2.802 3.016 3.428</p>
-<p>Residual Variances STRESS 0.769 0.803 0.819 0.901 0.961 0.970 0.983
-RESILIEN 0.424 0.455 0.473 0.560 0.654 0.672 0.704 PROBSOLV 0.678 0.710
-0.728 0.819 0.885 0.896 0.918 SOCISUPP 0.781 0.811 0.828 0.906 0.958
-0.965 0.981 AVOIDANC 0.675 0.709 0.726 0.818 0.882 0.895 0.917</p>
-<p>STD Standardization</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>PROBSOLV ON STRESS -0.136 -0.099 -0.082 0.010 0.101 0.120 0.157
-EFFICACY -0.044 -0.003 0.016 0.124 0.231 0.255 0.300 RESILIEN 0.092
-0.149 0.178 0.327 0.481 0.512 0.575</p>
-<p>SOCISUPP ON STRESS 0.127 0.176 0.201 0.322 0.444 0.469 0.517 RESILIEN
--0.049 0.007 0.036 0.189 0.344 0.373 0.434</p>
-<p>AVOIDANC ON STRESS 0.265 0.315 0.344 0.488 0.632 0.658 0.722 EFFICACY
--0.156 -0.096 -0.068 0.102 0.268 0.298 0.357 RESILIEN -0.439 -0.360
--0.317 -0.095 0.129 0.172 0.251</p>
-<p>RESILIEN ON EFFICACY 0.442 0.466 0.481 0.552 0.622 0.636 0.665</p>
-<p>STRESS ON RESILIEN -0.637 -0.580 -0.550 -0.399 -0.249 -0.217
--0.161</p>
-<p>PROBSOLV WITH SOCISUPP 0.000 0.000 0.000 0.000 0.000 0.000 0.000
-AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>SOCISUPP WITH AVOIDANC 0.000 0.000 0.000 0.000 0.000 0.000 0.000</p>
-<p>Intercepts STRESS 34.650 36.344 37.466 41.935 46.537 47.359 49.034
-RESILIEN 9.410 10.283 10.734 13.023 15.364 15.766 16.560 PROBSOLV 7.516
-9.377 10.410 15.620 20.726 21.711 23.758 SOCISUPP 2.247 4.957 6.268
-13.386 20.241 21.567 24.150 AVOIDANC 2.346 5.291 6.818 14.812 23.142
-24.799 27.804</p>
-<p>Residual Variances STRESS 37.954 40.450 41.695 49.359 56.406 58.045
-61.367 RESILIEN 14.413 15.445 16.009 19.215 22.197 22.814 24.151
-PROBSOLV 22.911 24.408 25.070 29.658 33.241 34.072 35.504 SOCISUPP
-38.873 41.148 42.403 50.677 57.586 59.091 62.387 AVOIDANC 45.480 48.655
-50.533 60.920 69.281 71.241 75.110</p>
-<p>CONFIDENCE INTERVALS OF TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND
-DIRECT EFFECTS</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.262 -0.214 -0.188 -0.058 0.080 0.106 0.153 Total indirect
--0.351 -0.310 -0.285 -0.160 -0.033 -0.012 0.037</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.250 -0.201 -0.175
--0.053 0.071 0.092 0.140</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.192 -0.168
--0.157 -0.107 -0.061 -0.054 -0.040</p>
-<p>Direct AVOIDANC EFFICACY -0.156 -0.096 -0.068 0.102 0.268 0.298
-0.357</p>
-<p>CONFIDENCE INTERVALS OF STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC
-INDIRECT, AND DIRECT EFFECTS</p>
-<p>STDYX Standardization</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.214 -0.174 -0.154 -0.047 0.064 0.084 0.122 Total indirect
--0.298 -0.257 -0.237 -0.130 -0.027 -0.010 0.029</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.213 -0.167 -0.147
--0.043 0.056 0.074 0.113</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.156 -0.137
--0.129 -0.088 -0.049 -0.043 -0.032</p>
-<p>Direct AVOIDANC EFFICACY -0.128 -0.077 -0.055 0.084 0.217 0.246
-0.288</p>
-<p>STDY Standardization</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.030 -0.025 -0.022 -0.007 0.009 0.012 0.018 Total indirect
--0.042 -0.036 -0.033 -0.019 -0.004 -0.001 0.004</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.030 -0.024 -0.021
--0.006 0.008 0.011 0.016</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.022 -0.019
--0.018 -0.012 -0.007 -0.006 -0.005</p>
-<p>Direct AVOIDANC EFFICACY -0.018 -0.011 -0.008 0.012 0.031 0.035
-0.042</p>
-<p>STD Standardization</p>
-<pre><code>              Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%</code></pre>
-<p>Effects from EFFICACY to AVOIDANC</p>
-<p>Total -0.262 -0.214 -0.188 -0.058 0.080 0.106 0.153 Total indirect
--0.351 -0.310 -0.285 -0.160 -0.033 -0.012 0.037</p>
-<p>Specific indirect 1 AVOIDANC RESILIEN EFFICACY -0.250 -0.201 -0.175
--0.053 0.071 0.092 0.140</p>
-<p>Specific indirect 2 AVOIDANC STRESS RESILIEN EFFICACY -0.192 -0.168
--0.157 -0.107 -0.061 -0.054 -0.040</p>
-<p>Direct AVOIDANC EFFICACY -0.156 -0.096 -0.068 0.102 0.268 0.298
-0.357</p>
-<pre><code> Beginning Time:  20:42:22
-    Ending Time:  20:42:34
-   Elapsed Time:  00:00:12</code></pre>
-<p>MUTHEN &amp; MUTHEN 3463 Stoner Ave. Los Angeles, CA 90066</p>
-<p>Tel: (310) 391-9971 Fax: (310) 391-8971 Web: www.StatModel.com
-Support: <a href="mailto:Support@StatModel.com" class="email">Support@StatModel.com</a></p>
-<p>Copyright (c) 1998-2021 Muthen &amp; Muthen</p>
-<p>``<code>3. **Let&#39;s look at the fit indices**.     - (3-a) **Run a line of code</code>model01.fit$summaries
-%&gt;% unlist()<code>. Note that</code>model01.fit` is the object you
-created in the Step (e) of Question (2-a).**</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Let’s look at the fit indices</strong>.
+<ul>
+<li>(3-a) <strong>Run a line of code
+<code>model01.fit$summaries %&gt;% unlist()</code>. Note that
+<code>model01.fit</code> is the object you created in the Step (e) of
+Question (2-a).</strong></li>
+</ul></li>
+</ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwwMS5maXQkc3VtbWFyaWVzICU+JSB1bmxpc3QoKVxuYGBgIn0= -->
+<pre class="r"><code>model01.fit$summaries %&gt;% unlist()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICBNcGx1cy52ZXJzaW9uICAgICAgICAgICAgICAgICBUaXRsZSAgICAgICAgICBBbmFseXNpc1R5cGUgXG4gICAgICAgICAgICAgICAgXCI4LjZcIiAgICAgICAgICAgICAgICAgICAgXCJcIiAgICAgICAgICAgICBcIkdFTkVSQUxcIiBcbiAgICAgICAgICAgICBEYXRhVHlwZSAgICAgICAgICAgICBFc3RpbWF0b3IgICAgICAgICAgT2JzZXJ2YXRpb25zIFxuICAgICAgICAgXCJJTkRJVklEVUFMXCIgICAgICAgICAgICAgICAgICBcIk1MXCIgICAgICAgICAgICAgICAgIFwiMjAwXCIgXG4gICAgICAgICAgICAgIE5Hcm91cHMgICAgICAgIE5EZXBlbmRlbnRWYXJzICAgICAgTkluZGVwZW5kZW50VmFycyBcbiAgICAgICAgICAgICAgICAgIFwiMVwiICAgICAgICAgICAgICAgICAgIFwiNVwiICAgICAgICAgICAgICAgICAgIFwiMVwiIFxuTkNvbnRpbnVvdXNMYXRlbnRWYXJzICAgICAgICAgICAgUGFyYW1ldGVycyAgICAgICAgICBDaGlTcU1fVmFsdWUgXG4gICAgICAgICAgICAgICAgICBcIjBcIiAgICAgICAgICAgICAgICAgIFwiMjBcIiAgICAgICAgICAgICAgXCIxMS4zMTFcIiBcbiAgICAgICAgICAgIENoaVNxTV9ERiAgICAgICAgIENoaVNxTV9QVmFsdWUgICBDaGlTcUJhc2VsaW5lX1ZhbHVlIFxuICAgICAgICAgICAgICAgICAgXCI1XCIgICAgICAgICAgICAgIFwiMC4wNDU2XCIgICAgICAgICAgICAgXCIyNDcuMjE4XCIgXG4gICAgIENoaVNxQmFzZWxpbmVfREYgIENoaVNxQmFzZWxpbmVfUFZhbHVlICAgICAgICAgICAgICAgICAgICBMTCBcbiAgICAgICAgICAgICAgICAgXCIxNVwiICAgICAgICAgICAgICAgICAgIFwiMFwiICAgICAgICAgICAgXCItMzI0Ni44OVwiIFxuICAgICAgIFVucmVzdHJpY3RlZExMICAgICAgICAgICAgICAgICAgIENGSSAgICAgICAgICAgICAgICAgICBUTEkgXG4gICAgICAgICAgXCItMzI0MS4yMzRcIiAgICAgICAgICAgICAgIFwiMC45NzNcIiAgICAgICAgICAgICAgIFwiMC45MThcIiBcbiAgICAgICAgICAgICAgICAgIEFJQyAgICAgICAgICAgICAgICAgICBCSUMgICAgICAgICAgICAgICAgICBhQklDIFxuICAgICAgICAgICBcIjY1MzMuNzc5XCIgICAgICAgICAgICBcIjY1OTkuNzQ1XCIgICAgICAgICAgICBcIjY1MzYuMzgzXCIgXG4gICAgICAgUk1TRUFfRXN0aW1hdGUgICAgICAgICBSTVNFQV85MENJX0xCICAgICAgICAgUk1TRUFfOTBDSV9VQiBcbiAgICAgICAgICAgICAgXCIwLjA3OVwiICAgICAgICAgICAgICAgIFwiMC4wMVwiICAgICAgICAgICAgICAgXCIwLjE0MlwiIFxuICAgICAgICAgIFJNU0VBX3BMVDA1ICAgICAgICAgICAgICAgICAgU1JNUiAgICAgICAgICAgICAgICAgIEFJQ0MgXG4gICAgICAgICAgICAgIFwiMC4xNzhcIiAgICAgICAgICAgICAgIFwiMC4wMzhcIiAgICBcIjY1MzguNDcxNzM3NDMwMTdcIiBcbiAgICAgICAgICAgICBGaWxlbmFtZSBcbiAgICAgXCJwcm9qZWN0MnExLm91dFwiIFxuIn0= -->
+<pre><code>        Mplus.version                 Title          AnalysisType 
+                &quot;8.6&quot;                    &quot;&quot;             &quot;GENERAL&quot; 
+             DataType             Estimator          Observations 
+         &quot;INDIVIDUAL&quot;                  &quot;ML&quot;                 &quot;200&quot; 
+              NGroups        NDependentVars      NIndependentVars 
+                  &quot;1&quot;                   &quot;5&quot;                   &quot;1&quot; 
+NContinuousLatentVars            Parameters          ChiSqM_Value 
+                  &quot;0&quot;                  &quot;20&quot;              &quot;11.311&quot; 
+            ChiSqM_DF         ChiSqM_PValue   ChiSqBaseline_Value 
+                  &quot;5&quot;              &quot;0.0456&quot;             &quot;247.218&quot; 
+     ChiSqBaseline_DF  ChiSqBaseline_PValue                    LL 
+                 &quot;15&quot;                   &quot;0&quot;            &quot;-3246.89&quot; 
+       UnrestrictedLL                   CFI                   TLI 
+          &quot;-3241.234&quot;               &quot;0.973&quot;               &quot;0.918&quot; 
+                  AIC                   BIC                  aBIC 
+           &quot;6533.779&quot;            &quot;6599.745&quot;            &quot;6536.383&quot; 
+       RMSEA_Estimate         RMSEA_90CI_LB         RMSEA_90CI_UB 
+              &quot;0.079&quot;                &quot;0.01&quot;               &quot;0.142&quot; 
+          RMSEA_pLT05                  SRMR                  AICC 
+              &quot;0.178&quot;               &quot;0.038&quot;    &quot;6538.47173743017&quot; 
+             Filename 
+     &quot;project2q1.out&quot; </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ul>
@@ -2378,9 +2822,24 @@ the output object has been saved as</strong>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwwMS5maXQkcGFyYW1ldGVycyRzdGR5eC5zdGFuZGFyZGl6ZWRcbmBgYCJ9 -->
+<pre class="r"><code>model01.fit$parameters$stdyx.standardized</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbIm1wbHVzLnBhcmFtcyIsImRhdGEuZnJhbWUiXSwibnJvdyI6MjMsIm5jb2wiOjYsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsibXBscy5wcm0gWzIzIMOXIDZdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQmd0eWlURG1pdUJpWUdCZ1ptQmhZbVpnWmdVeUdWaERROXgwTFJpQUlrQU9Jd01MQXllSXJnQXFFZ1l5MklCWUFJakZvUkxjQVVIK1RzSCtQbUY2L242a0NRWDdPM3NHaHdZRTRCZHlEUFAzZEhIMGN5WlpLTWcxMk5QSDA5VVBJY1FaSEFJVURFWUk4TUpkRmU0WjRvRlhFTzR5SkVFdXo3eVMxS0xrMUlLU1lpcUxDQVdsRm1lbWxDYm02SVVsRm1VbTVpV24wazhHTlhyWklHRUc1WEc0dXJsNU9qczZSOEw0c0VER3JocS9MQUd6Q01yRG9nVEdoNlVCSEh6OGJ1T0F4VHFScGxQTE5BWUdQbEJvMjNkTUx0bVRWZmZML2xCL2pNYlhRLzMyVjZKazFuQVlxdHRmeWFyN2VWdnBvdjJoanl0L1A4L3B0cjkxNFdtQ1k2ZTUvZFpHTnBXNyt0TDdOeXkrem1WYnNNVCtxYm4zc2VYdjUrMi9BdElkbzhtQUF6aUlMWDgvZDVNdW53UGpxUVBOUW5rekhGaU96Rjc2T1BpSC9SK29PYjhycnZ6OXZNM04vZzJJY2wxay8vQjFxOXlPd0RmMnIwenRhOTVPekxCL0F4SmVlTnIrbFM1ZkdJdkVaTGo3TjRLZDUySy9HU2dMTk5wK0sxaDVzZjFHcVA1TmVkTjcvZTliMjI4QU85OEhMci85M0UyeGRtMG0rNlVRLzhETXdlVisrMnNpVlEvZDE0bllYeTBBT2JqUS9oSFkyQlQ3eDBCZmZEOTMwLzR4VUxmejFFYjdaVURIQVVQVWZnMGtQT3hYUU1OM0NWaDdOWXdQZC85eGJTWWV6MTF4OXYrQWhLbDlyUVBmdnJJVFd5d2pISVNpbFlBaDd1VEFBREtWVGRWQk1nZ1VFYm4ySHlEKzMvL005eEpJd0VGL05Wai9BYUZNY0FEaURIK0RQTEIvSGFRZzhld2crQWhrd0I4SGRxZzViR0JuMXp1WXNyMEVHdlRGUVFVUy93NkdFUHNjek02QXdGa0hRd3R3UE1IZC94cnNiVGI3dFp0QUNpVXh3bTN4ZDNCQXcvbVhJWHo3KzFMelFUN0ZVUDhCTzQwelhncVN3UDZ3cjRDSEs1RUFwWlpoelV2TWhSZEJiTENTdkNDeEtESFhJelV4SmJVSXBnNHNCT1V3cHhhWFFKbE14YW13L0FrVWpJZnpXQXJLRW5QUTdPSkl5OHhKQmRrSHRRNG16bGRRbEorVm1seGlWR2lvbDE5YWdxYUxzeWkvWEEvbVNsNlFsUTBRZjRpamV5VTVKN0c0R00xc3JwVEVra1M5dENLSXJmL1F0TERuRjVSazV1Y0JOVEdCYWxwV05NMk1SV2dDL0tWNUlKZWs2Q1pubE9abDY1cURMQUJMUXdBdmxDMk94R2FEV01uMEgyb1VLenk0OHRJejgyREJ4WnFUbUpTYUF3c1BvSS9CSHRZcktNck1nNFUwRjFDMFdLOGt2eVFScG80ck9UOEhKZ0wyRzhNL0FGS1pSbFJnQ0FBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["paramHeader"],"name":[1],"type":["chr"],"align":["left"]},{"label":["param"],"name":[2],"type":["chr"],"align":["left"]},{"label":["est"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["est_se"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["pval"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"PROBSOLV.ON","2":"STRESS","3":"0.012","4":"0.069","5":"0.181","6":"0.857"},{"1":"PROBSOLV.ON","2":"EFFICACY","3":"0.145","4":"0.077","5":"1.893","6":"0.058"},{"1":"PROBSOLV.ON","2":"RESILIEN","3":"0.318","4":"0.083","5":"3.843","6":"0.000"},{"1":"SOCISUPP.ON","2":"STRESS","3":"0.319","4":"0.070","5":"4.589","6":"0.000"},{"1":"SOCISUPP.ON","2":"RESILIEN","3":"0.148","4":"0.072","5":"2.068","6":"0.039"},{"1":"AVOIDANC.ON","2":"STRESS","3":"0.419","4":"0.066","5":"6.331","6":"0.000"},{"1":"AVOIDANC.ON","2":"EFFICACY","3":"0.084","4":"0.083","5":"1.011","6":"0.312"},{"1":"AVOIDANC.ON","2":"RESILIEN","3":"-0.065","4":"0.093","5":"-0.697","6":"0.486"},{"1":"RESILIEN.ON","2":"EFFICACY","3":"0.663","4":"0.042","5":"15.834","6":"0.000"},{"1":"STRESS.ON","2":"RESILIEN","3":"-0.315","4":"0.069","5":"-4.603","6":"0.000"},{"1":"PROBSOLV.WITH","2":"SOCISUPP","3":"0.000","4":"0.000","5":"0.000","6":"1.000"},{"1":"PROBSOLV.WITH","2":"AVOIDANC","3":"0.000","4":"0.000","5":"0.000","6":"1.000"},{"1":"SOCISUPP.WITH","2":"AVOIDANC","3":"0.000","4":"0.000","5":"0.000","6":"1.000"},{"1":"Intercepts","2":"STRESS","3":"5.664","4":"0.345","5":"16.433","6":"0.000"},{"1":"Intercepts","2":"RESILIEN","3":"2.224","4":"0.335","5":"6.640","6":"0.000"},{"1":"Intercepts","2":"PROBSOLV","3":"2.596","4":"0.581","5":"4.471","6":"0.000"},{"1":"Intercepts","2":"SOCISUPP","3":"1.790","4":"0.614","5":"2.913","6":"0.004"},{"1":"Intercepts","2":"AVOIDANC","3":"1.717","4":"0.622","5":"2.762","6":"0.006"},{"1":"Residual.Variances","2":"STRESS","3":"0.901","4":"0.043","5":"21.027","6":"0.000"},{"1":"Residual.Variances","2":"RESILIEN","3":"0.560","4":"0.055","5":"10.208","6":"0.000"},{"1":"Residual.Variances","2":"PROBSOLV","3":"0.819","4":"0.048","5":"17.176","6":"0.000"},{"1":"Residual.Variances","2":"SOCISUPP","3":"0.906","4":"0.040","5":"22.800","6":"0.000"},{"1":"Residual.Variances","2":"AVOIDANC","3":"0.818","4":"0.048","5":"17.222","6":"0.000"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[23]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <pre><code>* (4-b) **Interpret the standardized path coefficients of stress on avoidance coping.**</code></pre>
+<p>The standardized path coefficients of stress (X) on avoidance coping
+(Y) is 0.419 with a <em>p</em>-value of &lt;.001, which indicates that a
+one unit increase in stress would predict a 0.419 unit increase in
+avoidance coping when other variables in the model are held
+constant.</p>
 <ul>
 <li><ol start="5" style="list-style-type: decimal">
 <li><strong>Let’s look at the results of total indirect
@@ -2392,13 +2851,36 @@ analyses.</strong>
 <ul>
 <li><strong>Assuming the output object has been saved as</strong>
 <code>model01.fit</code><strong>, run</strong>
-<code>model01.fit$indirect$stdyx.standardized</code>.<br />
-</li>
+<code>model01.fit$indirect$stdyx.standardized</code></li>
 </ul></li>
-<li>(5-c) Briefly comment the interpretations of the direct, indirect,
-and total effects of efficacy on avoidance coping.</li>
 </ul></li>
 </ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwwMS5maXQkaW5kaXJlY3Qkc3RkeXguc3RhbmRhcmRpemVkXG5gYGAifQ== -->
+<pre class="r"><code>model01.fit$indirect$stdyx.standardized</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJG92ZXJhbGxcbiAgICAgIHByZWQgIG91dGNvbWUgICAgICAgIHN1bW1hcnkgICAgZXN0ICAgIHNlIGVzdF9zZSAgcHZhbFxuMSBFRkZJQ0FDWSBBVk9JREFOQyAgICAgICAgICBUb3RhbCAtMC4wNDcgMC4wNjYgLTAuNzEwIDAuNDc4XG4yIEVGRklDQUNZIEFWT0lEQU5DIFRvdGFsIGluZGlyZWN0IC0wLjEzMCAwLjA2NCAtMi4wNDkgMC4wNDBcbjMgRUZGSUNBQ1kgQVZPSURBTkMgICAgICAgICBEaXJlY3QgIDAuMDg0IDAuMDgzICAxLjAxMSAwLjMxMlxuXG4kc3BlY2lmaWNcbiAgICAgIHByZWQgICAgIGludGVydmVuaW5nICBvdXRjb21lICAgIGVzdCAgICBzZSBlc3Rfc2VcbjEgRUZGSUNBQ1kgICAgICAgIFJFU0lMSUVOIEFWT0lEQU5DIC0wLjA0MyAwLjA2MiAtMC42OTNcbjIgRUZGSUNBQ1kgU1RSRVNTLlJFU0lMSUVOIEFWT0lEQU5DIC0wLjA4OCAwLjAyNCAtMy42MjZcbiAgIHB2YWxcbjEgMC40ODhcbjIgMC4wMDBcblxuYXR0cigsXCJjbGFzc1wiKVxuWzFdIFwibXBsdXMuaW5kaXJlY3RcIlxuIn0= -->
+<pre><code>$overall
+      pred  outcome        summary    est    se est_se  pval
+1 EFFICACY AVOIDANC          Total -0.047 0.066 -0.710 0.478
+2 EFFICACY AVOIDANC Total indirect -0.130 0.064 -2.049 0.040
+3 EFFICACY AVOIDANC         Direct  0.084 0.083  1.011 0.312
+
+$specific
+      pred     intervening  outcome    est    se est_se
+1 EFFICACY        RESILIEN AVOIDANC -0.043 0.062 -0.693
+2 EFFICACY STRESS.RESILIEN AVOIDANC -0.088 0.024 -3.626
+   pval
+1 0.488
+2 0.000
+
+attr(,&quot;class&quot;)
+[1] &quot;mplus.indirect&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<pre><code>* (5-c) **Briefly comment the interpretations of the direct, indirect, and total effects of efficacy on avoidance coping.**</code></pre>
 </div>
 <div id="part-ii" class="section level2">
 <h2>Part II</h2>
@@ -2478,7 +2960,7 @@ associated with statistically significant mediation effect.</p></li>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU0VNIFByb2plY3QgMiIKYXV0aG9yOiAiQ2Fyb2xpbmUgTGVlIgpkYXRlOiAiYHIgU3lzLkRhdGUoKWAiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0UsIHJlc3VsdHM9J2hpZGUnfQojIGRldGFjaCBhbGwgbGlicmFyaWVzCgpkZXRhY2hBbGxQYWNrYWdlcyA8LSBmdW5jdGlvbigpIHsKICBiYXNpYy5wYWNrYWdlcyA8LSBjKCJwYWNrYWdlOnN0YXRzIiwgInBhY2thZ2U6Z3JhcGhpY3MiLCAicGFja2FnZTpnckRldmljZXMiLCAicGFja2FnZTp1dGlscyIsICJwYWNrYWdlOmRhdGFzZXRzIiwgInBhY2thZ2U6bWV0aG9kcyIsICJwYWNrYWdlOmJhc2UiKQogIHBhY2thZ2UubGlzdCA8LSBzZWFyY2goKVtpZmVsc2UodW5saXN0KGdyZWdleHByKCJwYWNrYWdlOiIsIHNlYXJjaCgpKSk9PTEsIFRSVUUsIEZBTFNFKV0KICBwYWNrYWdlLmxpc3QgPC0gc2V0ZGlmZihwYWNrYWdlLmxpc3QsIGJhc2ljLnBhY2thZ2VzKQogIGlmIChsZW5ndGgocGFja2FnZS5saXN0KT4wKSAgZm9yIChwYWNrYWdlIGluIHBhY2thZ2UubGlzdCkgZGV0YWNoKHBhY2thZ2UsICBjaGFyYWN0ZXIub25seT1UUlVFKQp9CmRldGFjaEFsbFBhY2thZ2VzKCkKCiMgZnVuY3Rpb24gdG8gbG9hZCBsaWJyYXJpZXMKCnBrZ1Rlc3QgPC0gZnVuY3Rpb24ocGtnKXsKICBuZXcucGtnIDwtIHBrZ1shKHBrZyAlaW4lIGluc3RhbGxlZC5wYWNrYWdlcygpWywgICJQYWNrYWdlIl0pXQogIGlmIChsZW5ndGgobmV3LnBrZykpIAogICAgaW5zdGFsbC5wYWNrYWdlcyhuZXcucGtnLCAgZGVwZW5kZW5jaWVzID0gVFJVRSkKICBzYXBwbHkocGtnLCAgcmVxdWlyZSwgIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkKfQoKIyBsb2FkaW5nIHBhY2thZ2VzIAoKbGFwcGx5KGMoIkRUIikscGtnVGVzdCkKbGFwcGx5KGMoImhhdmVuIikscGtnVGVzdCkKbGFwcGx5KGMoImxhdmFhbiIpLHBrZ1Rlc3QpCmxhcHBseShjKCJNcGx1c0F1dG9tYXRpb24iKSxwa2dUZXN0KQpsYXBwbHkoYygicmVhZHhsIikscGtnVGVzdCkKbGFwcGx5KGMoInNqbGFiZWxsZWQiKSxwa2dUZXN0KQpsYXBwbHkoYygic2ptaXNjIikscGtnVGVzdCkKbGFwcGx5KGMoInRleHJlZyIpLHBrZ1Rlc3QpCmxhcHBseShjKCJ0aWR5dmVyc2UiKSxwa2dUZXN0KQoKbGlicmFyeShEVCkKbGlicmFyeShoYXZlbikKbGlicmFyeShsYXZhYW4pCmxpYnJhcnkoTXBsdXNBdXRvbWF0aW9uKQpsaWJyYXJ5KHJlYWR4bCkKbGlicmFyeShzamxhYmVsbGVkKQpsaWJyYXJ5KHNqbWlzYykKbGlicmFyeSh0ZXhyZWcpCmxpYnJhcnkodGlkeXZlcnNlKQpgYGAKCiMjIFBhcnQgSQpTdXBwb3NlIGEgcmVzZWFyY2hlciB3YXMgaW50ZXJlc3RlZCBpbiBpbnZlc3RpZ2F0aW5nIHRoZSBkZXRlcm1pbmFudHMgb2YgY29waW5nIHN0eWxlcyBmb3IgY29sbGVnZSBzdHVkZW50cy4gVG8gZXZhbHVhdGUgdGhpcyByZXNlYXJjaGVyJ3MgcGF0aCBtb2RlbCwgTGV0J3MgYXNzdW1lIHNpeCB2YXJpYWJsZXMgd2VyZSBjb2xsZWN0ZWQgZnJvbSAyMDAgY29sbGVnZSBzdHVkZW50cyBhcyBmb2xsb3dzOgoKLSB2MTogc3RyZXNzICAKLSB2MjogZWZmaWNhY3kgIAotIHYzOiByZXNpbGllbmNlICAKLSB2NDogcHJvYmxlbS1zb2x2aW5nIGNvcGluZyAgCi0gdjU6IHNvY2lhbC1zdXBwb3J0IGNvcGluZyAgCi0gdjY6IGF2b2lkYW5jZSBjb3BpbmcgIAoKYGBge3IsIGVjaG8gPSBGQUxTRX0Ka25pdHI6OmluY2x1ZGVfZ3JhcGhpY3MoIkM6L1VzZXJzLzQ4OTA5MTM4L09uZURyaXZlIC0gU291dGhlcm4gTWV0aG9kaXN0IFVuaXZlcnNpdHkvRGVza3RvcC9TRU0tUzIwMjQvUHJvamVjdF8yL1BhdGhEaWFncmFtMV9Qcm9qZWN0Mi5wbmciKQpgYGAKIApUaGUgZmlsZSBgY29waW5nLmNzdmAgY29udGFpbnMgdGhlIGRhdGEgZm9yIHRoZXNlIHNpeCB2YXJpYWJsZXMuIFRoZSBmb2xsb3dpbmcgcGF0aCBkaWFncmFtIHByZXNlbnRzIHRoZSB0aGVvcnkgb2YgdGhlIGh5cG90aGV0aWNhbDoKCjEuICoqTGV0J3MgZG8gaW5pdGlhbCBtb2RlbCBldmFsdWF0aW9ucyoqLgogICAgLSAoMS1hKSAqKkhvdyBtYW55IGVuZG9nZW5vdXMgdmFyaWFibGVzIGluIHRoaXMgbW9kZWw/KioKICAgICAgKiBUaGVyZSBhcmUgNSBlbmRvZ2Vub3VzIHZhcmlhYmxlcyBpbiB0aGlzIG1vZGVsOiBzdHJlc3MgKHYxKSwgcmVzaWxpZW5jZSAodjMpLCBwcm9ibGVtIHNvbHZpbmcgKHY0KSwgc29jaWFsIHN1cHBvcnQgKHY1KSwgYW5kIGF2b2lkYW5jZSAodjYpLgogICAgLSAoMS1iKSAqKkhvdyBtYW55IHBhcmFtZXRlcnMgZG9lcyB0aGlzIG1vZGVsIGhhdmU/IENvdW50IGVhY2gga2luZCBvZiBwYXJhbWV0ZXJzLiBCZSBzdXJlIHRvIGluY2x1ZGUgdGhlIHZhcmlhbmNlKHMpIG9mIGV4b2dlbm91cyB2YXJpYWJsZShzKSBhbmQgY292YXJpYW5jZShzKSBiZXR3ZWVuIGV4b2dlbm91cyB2YXJpYWJsZShzKSwgaWYgYW55LioqIAogICAgLSAoMS1jKSAqKldoYXQgaXMgdGhlIG51bWJlciBvZiB1bmlxdWUgZWxlbWVudHMgb2YgdGhlIGRhdGEgY292YXJpYW5jZSBtYXRyaXg/KioKICAgICAgICogTnVtYmVyIG9mIHVuaXF1ZSBlbGVtZW50cyBpbiB0aGUgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeCA9ICRcZnJhY3txKHErMSl9ezJ9ID0gXGZyYWN7Nig2KzEpfXsyfSA9IDIxJCAKICAgIC0gKDEtZCkgKipXaGF0IGlzIHRoZSBkZWdyZWVzIG9mIGZyZWVkb20gKF9kZl8pIGZvciB0aGlzIG1vZGVsPyBTaG93IGhvdyB5b3UgZGVyaXZlZCB0aGUgX2RmXy4qKgogICAgICAgICogTnVtYmVyIG9mIG1vZGVsIHBhcmFtZXRlcnMgPSAxNgogICAgICAgICAgIC0gMTAgcmVncmVzc2lvbiBwYXRocyAKICAgICAgICAgICAtIDUgcmVzaWR1YWwgdmFyaWFuY2VzIAogICAgICAgICAgIC0gMSB2YXJpYW5jZSBmb3IgZXhvZ2Vub3VzIHZhcmlhYmxlIHYyCiAgICAgICAgKiBfZGZfID0gMjEgLSAxNiA9IDUKICAgIC0gKDEtZSkgKipMaXN0IGFsbCBwb3NzaWJsZSBpbmRpcmVjdCAobWVkaWF0aW9uKSBlZmZlY3RzIG9mIGVmZmljYWN5ICh2Mikgb24gYXZvaWRhbmNlIGNvcGluZyAodjYpIGluIHRoaXMgbW9kZWwuIFVzZSBhIGZvcm1hdCBvZiBB4oaSQuKGkkMsIHdoZXJlIHRoZSBlZmZlY3Qgb2YgdmFyaWFibGUgQSB0byB2YXJpYWJsZSBDIGlzIG1lZGlhdGVkIGJ5IHZhcmlhYmxlIEIuKioKICAgICAgICAqIEVmZmljYWN5ICh2MikgJFxyaWdodGFycm93JCBSZXNpbGllbmNlICh2MykgJFxyaWdodGFycm93JCBBdm9pZGFuY2UgKHY2KSBzdWNoIHRoYXQgdGhlIGVmZmVjdCBvZiB2MiBvbiB2NiBpcyBtZWRpYXRlZCBieSB2My4gCiAgCjIuICoqRXN0aW1hdGUgdGhpcyBtb2RlbCB1c2luZyB0aGUgYm9vdHN0cmFwIG1ldGhvZCB3aXRoIDEwMDAwIGJvb3RzdHJhcCBpdGVyYXRpb25zIHdpdGggTXBsdXMgdmlhKiogYE1wbHVzQXV0b21hdGlvbmAuICoqUmVxdWVzdCB0aGUgaW5kaXJlY3QgZWZmZWN0cyBvZiBlZmZpY2FjeSoqIGB2MmAgKipvbiBhdm9pZGFuY2UgY29waW5nKiogYHY2YC4gKipBbHNvLCByZXF1ZXN0IHN0YW5kYXJkaXplZCByZXN1bHRzLCBhcyB3ZWxsIGFzIGJvb3RzdHJhcCBjb25maWRlbmNlIGludGVydmFscy4qKgogICAgKiAoMi1hKSAgKipQcmVzZW50IHRoZSBSIGNvZGUgZm9yIChhKSBzZXR0aW5nIHVwIHRoZSBtb2RlbCBieSBhIGNvbWJpbmF0aW9uIG9mKiogYHNpbmsoKWAgKiphbmQqKiBgY2F0KClgICoqZnVuY3Rpb25zLCAoYikgcnVubmluZyB0aGUgbW9kZWwgYnkgdGhlKiogYHJ1bk1vZGVscygpYCAqKmZ1bmN0aW9uLCBhbmQgKGMpIHJlYWRpbmcgdGhlIG91dHB1dCBmaWxlIGJ5IHRoZSoqIGByZWFkTW9kZWxzKClgICoqZnVuY3Rpb24gYW5kIHNhdmUgYXMgYW4gb2JqZWN0IGNhbGxlZCoqIGBtb2RlbDAxLmZpdGAuCiAgICAKLSBOb3RlOiAKICAgICAgKiBCeSBkZWZhdWx0LCBpdCBhcHBlYXJzIHRoYXQgTXBsdXMgd2lsbCBpbmNsdWRlIGVycm9yIGNvdmFyaWFuY2VzIGJldHdlZW4gZW5kb2dlbm91cyB2YXJpYWJsZXMgd2l0aCBubyBkaXJlY3QgcGF0aCBpbi1iZXR3ZWVuLiBUaGVyZWZvcmUsIHlvdSBuZWVkIHRvIGNvbnN0cmFpbiB0aGVzZSBlcnJvciB0ZXJtcyB0byBiZSAwLiBTcGVjaWZpY2FsbHksIHlvdSBuZWVkIHRvIGNvbnN0cmFpbiB0aGF0IHRoZSBlcnJvciBjb3ZhcmlhbmNlcyBiZXR3ZWVuIGB2NGAgYW5kIGB2NWAsIGJldHdlZW4gYHY0YCBhbmQgYHY2YCwgYW5kIGJldHdlZW4gYHY1YCBhbmQgYHY2YCB0byBiZSAwLiAKICAgICAgICAgICAgLSBGb3IgZXhhbXBsZSwgdG8gY29uc3RyYWluIHRoZSBlcnJvciBjb3ZhcmlhbmNlIGJldHdlZW4gYHY0YCBhbmQgYHY1YCB0byAwLCBhZGQgYSBNcGx1cyBzeW50YXggbGluZTogYHY0IHdpdGggdjVAMDtgCiAgICAKYGBge3IsIGVjaG8gPSBGQUxTRSwgcmVzdWx0cyA9ICdoaWRlJ30KI2NvcGluZyA8LSByZWFkLmRlbGltKCJDOi9Vc2Vycy80ODkwOTEzOC9PbmVEcml2ZSAtIFNvdXRoZXJuIE1ldGhvZGlzdCBVbml2ZXJzaXR5L0Rlc2t0b3AvU0VNLVMyMDI0L1Byb2plY3RfMi9jb3BpbmcuZGF0IiwgaGVhZGVyPUZBTFNFKQoKI3NldHdkKCJDOi9Vc2Vycy80ODkwOTEzOC9PbmVEcml2ZSAtIFNvdXRoZXJuIE1ldGhvZGlzdCBVbml2ZXJzaXR5L0Rlc2t0b3AvU0VNLVMyMDI0L1Byb2plY3RfMiIpCgpzZXR3ZCgifi9EZXNrdG9wL1NFTS1TMjAyNC9Qcm9qZWN0XzIiKQpgYGAKCmBgYHtyfQpzaW5rKCJwcm9qZWN0MnExLmlucCIpCmNhdCgnCmRhdGE6ICAgICBmaWxlID0gY29waW5nLmRhdDsgCgp2YXJpYWJsZTogbmFtZXMgPSBzdHJlc3MgZWZmaWNhY3kgcmVzaWxpZW4gcHJvYnNvbHYgc29jaXN1cHAgYXZvaWRhbmM7IAogICAgICAgICAgCmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDsgCiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKCm1vZGVsOiAgICBwcm9ic29sdiBvbiBzdHJlc3MgZWZmaWNhY3kgcmVzaWxpZW47CiAgICAgICAgICBzb2Npc3VwcCBvbiBzdHJlc3MgcmVzaWxpZW47CiAgICAgICAgICBhdm9pZGFuYyBvbiBzdHJlc3MgZWZmaWNhY3kgcmVzaWxpZW47IAogICAgICAgICAgcmVzaWxpZW4gb24gZWZmaWNhY3k7IAogICAgICAgICAgc3RyZXNzIG9uIHJlc2lsaWVuOwogICAgICAgICAgcHJvYnNvbHYgd2l0aCBzb2Npc3VwcEAwOyAKICAgICAgICAgIHByb2Jzb2x2IHdpdGggYXZvaWRhbmNAMDsKICAgICAgICAgIHNvY2lzdXBwIHdpdGggYXZvaWRhbmNAMDsKICAgICAgICAgIAptb2RlbCBpbmRpcmVjdDogCiAgICAgICAgICBhdm9pZGFuYyBpbmQgZWZmaWNhY3k7IAoKb3V0cHV0OiBzYW1wc3RhdCBzdGFuZGFyZGl6ZWQKICAgICAgICBjaW50ZXJ2YWwoYm9vdHN0cmFwKTsKJykKc2luaygpCmBgYAoKYGBge3J9CnJ1bk1vZGVscygicHJvamVjdDJxMS5pbnAiKQpgYGAKCmBgYHtyfQptb2RlbDAxLmZpdCA8LSByZWFkTW9kZWxzKCJwcm9qZWN0MnExLm91dCIpCmBgYAoKTXBsdXMgT3V0cHV0IEZpbGU6IAoKYGBgCk1wbHVzIFZFUlNJT04gOC42Ck1VVEhFTiAmIE1VVEhFTgowMi8xNS8yMDI0ICAgODo0MiBQTQoKSU5QVVQgSU5TVFJVQ1RJT05TCgoKICBkYXRhOiAgICAgZmlsZSA9IGNvcGluZy5kYXQ7CgogIHZhcmlhYmxlOiBuYW1lcyA9IHN0cmVzcyBlZmZpY2FjeSByZXNpbGllbiBwcm9ic29sdiBzb2Npc3VwcCBhdm9pZGFuYzsKCiAgYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOwogICAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKCiAgbW9kZWw6ICAgIHByb2Jzb2x2IG9uIHN0cmVzcyBlZmZpY2FjeSByZXNpbGllbjsKICAgICAgICAgICAgc29jaXN1cHAgb24gc3RyZXNzIHJlc2lsaWVuOwogICAgICAgICAgICBhdm9pZGFuYyBvbiBzdHJlc3MgZWZmaWNhY3kgcmVzaWxpZW47CiAgICAgICAgICAgIHJlc2lsaWVuIG9uIGVmZmljYWN5OwogICAgICAgICAgICBzdHJlc3Mgb24gcmVzaWxpZW47CiAgICAgICAgICAgIHByb2Jzb2x2IHdpdGggc29jaXN1cHBAMDsKICAgICAgICAgICAgcHJvYnNvbHYgd2l0aCBhdm9pZGFuY0AwOwogICAgICAgICAgICBzb2Npc3VwcCB3aXRoIGF2b2lkYW5jQDA7CgogIG1vZGVsIGluZGlyZWN0OgogICAgICAgICAgICBhdm9pZGFuYyBpbmQgZWZmaWNhY3k7CgogIG91dHB1dDogc2FtcHN0YXQgc3RhbmRhcmRpemVkCiAgICAgICAgICBjaW50ZXJ2YWwoYm9vdHN0cmFwKTsKCgoKSU5QVVQgUkVBRElORyBURVJNSU5BVEVEIE5PUk1BTExZCgoKCgpTVU1NQVJZIE9GIEFOQUxZU0lTCgpOdW1iZXIgb2YgZ3JvdXBzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEKTnVtYmVyIG9mIG9ic2VydmF0aW9ucyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMjAwCgpOdW1iZXIgb2YgZGVwZW5kZW50IHZhcmlhYmxlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDUKTnVtYmVyIG9mIGluZGVwZW5kZW50IHZhcmlhYmxlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxCk51bWJlciBvZiBjb250aW51b3VzIGxhdGVudCB2YXJpYWJsZXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgMAoKT2JzZXJ2ZWQgZGVwZW5kZW50IHZhcmlhYmxlcwoKICBDb250aW51b3VzCiAgIFNUUkVTUyAgICAgIFJFU0lMSUVOICAgIFBST0JTT0xWICAgIFNPQ0lTVVBQICAgIEFWT0lEQU5DCgpPYnNlcnZlZCBpbmRlcGVuZGVudCB2YXJpYWJsZXMKICAgRUZGSUNBQ1kKCgpFc3RpbWF0b3IgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTUwKSW5mb3JtYXRpb24gbWF0cml4ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE9CU0VSVkVECk1heGltdW0gbnVtYmVyIG9mIGl0ZXJhdGlvbnMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTAwMApDb252ZXJnZW5jZSBjcml0ZXJpb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwLjUwMEQtMDQKTWF4aW11bSBudW1iZXIgb2Ygc3RlZXBlc3QgZGVzY2VudCBpdGVyYXRpb25zICAgICAgICAgICAgICAgICAgIDIwCk51bWJlciBvZiBib290c3RyYXAgZHJhd3MKICAgIFJlcXVlc3RlZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEwMDAwCiAgICBDb21wbGV0ZWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxMDAwMAoKSW5wdXQgZGF0YSBmaWxlKHMpCiAgY29waW5nLmRhdAoKSW5wdXQgZGF0YSBmb3JtYXQgIEZSRUUKCgpTQU1QTEUgU1RBVElTVElDUwoKCiAgICAgU0FNUExFIFNUQVRJU1RJQ1MKCgogICAgICAgICAgIE1lYW5zCiAgICAgICAgICAgICAgU1RSRVNTICAgICAgICBSRVNJTElFTiAgICAgIFBST0JTT0xWICAgICAgU09DSVNVUFAgICAgICBBVk9JREFOQwogICAgICAgICAgICAgIF9fX19fX19fICAgICAgX19fX19fX18gICAgICBfX19fX19fXyAgICAgIF9fX19fX19fICAgICAgX19fX19fX18KICAgICAgICAgICAgICAgMzAuMDYwICAgICAgICAyOS43OTAgICAgICAgIDI5LjQzNSAgICAgICAgMjguNzA1ICAgICAgICAyOS43NTUKCgogICAgICAgICAgIE1lYW5zCiAgICAgICAgICAgICAgRUZGSUNBQ1kKICAgICAgICAgICAgICBfX19fX19fXwogICAgICAgICAgICAgICAzMC4zNzAKCgogICAgICAgICAgIENvdmFyaWFuY2VzCiAgICAgICAgICAgICAgU1RSRVNTICAgICAgICBSRVNJTElFTiAgICAgIFBST0JTT0xWICAgICAgU09DSVNVUFAgICAgICBBVk9JREFOQwogICAgICAgICAgICAgIF9fX19fX19fICAgICAgX19fX19fX18gICAgICBfX19fX19fXyAgICAgIF9fX19fX19fICAgICAgX19fX19fX18KIFNUUkVTUyAgICAgICAgNTQuODA2CiBSRVNJTElFTiAgICAgLTEzLjY2NyAgICAgICAgMzQuMjg2CiBQUk9CU09MViAgICAgIC01LjQ4NiAgICAgICAgMTQuNDYxICAgICAgICAzNi4xODYKIFNPQ0lTVVBQICAgICAgMTUuMDc4ICAgICAgICAgMi4wNzggICAgICAgICA2LjkwMyAgICAgICAgNTUuOTI4CiBBVk9JREFOQyAgICAgIDI2Ljc1MCAgICAgICAgLTcuMTM2ICAgICAgICAtMy41MjggICAgICAgICAyLjk3OCAgICAgICAgNzQuMjc1CiBFRkZJQ0FDWSAgICAgLTEyLjYzNyAgICAgICAgMjcuMjk4ICAgICAgICAxNC45NDQgICAgICAgIC00LjEyNiAgICAgICAgLTMuNjk5CgoKICAgICAgICAgICBDb3ZhcmlhbmNlcwogICAgICAgICAgICAgIEVGRklDQUNZCiAgICAgICAgICAgICAgX19fX19fX18KIEVGRklDQUNZICAgICAgNDkuNDQzCgoKICAgICAgICAgICBDb3JyZWxhdGlvbnMKICAgICAgICAgICAgICBTVFJFU1MgICAgICAgIFJFU0lMSUVOICAgICAgUFJPQlNPTFYgICAgICBTT0NJU1VQUCAgICAgIEFWT0lEQU5DCiAgICAgICAgICAgICAgX19fX19fX18gICAgICBfX19fX19fXyAgICAgIF9fX19fX19fICAgICAgX19fX19fX18gICAgICBfX19fX19fXwogU1RSRVNTICAgICAgICAgMS4wMDAKIFJFU0lMSUVOICAgICAgLTAuMzE1ICAgICAgICAgMS4wMDAKIFBST0JTT0xWICAgICAgLTAuMTIzICAgICAgICAgMC40MTEgICAgICAgICAxLjAwMAogU09DSVNVUFAgICAgICAgMC4yNzIgICAgICAgICAwLjA0NyAgICAgICAgIDAuMTUzICAgICAgICAgMS4wMDAKIEFWT0lEQU5DICAgICAgIDAuNDE5ICAgICAgICAtMC4xNDEgICAgICAgIC0wLjA2OCAgICAgICAgIDAuMDQ2ICAgICAgICAgMS4wMDAKIEVGRklDQUNZICAgICAgLTAuMjQzICAgICAgICAgMC42NjMgICAgICAgICAwLjM1MyAgICAgICAgLTAuMDc4ICAgICAgICAtMC4wNjEKCgogICAgICAgICAgIENvcnJlbGF0aW9ucwogICAgICAgICAgICAgIEVGRklDQUNZCiAgICAgICAgICAgICAgX19fX19fX18KIEVGRklDQUNZICAgICAgIDEuMDAwCgoKVU5JVkFSSUFURSBTQU1QTEUgU1RBVElTVElDUwoKCiAgICAgVU5JVkFSSUFURSBISUdIRVItT1JERVIgTU9NRU5UIERFU0NSSVBUSVZFIFNUQVRJU1RJQ1MKCiAgICAgICAgIFZhcmlhYmxlLyAgICAgICAgIE1lYW4vICAgICBTa2V3bmVzcy8gICBNaW5pbXVtLyAlIHdpdGggICAgICAgICAgICAgICAgUGVyY2VudGlsZXMKICAgICAgICBTYW1wbGUgU2l6ZSAgICAgIFZhcmlhbmNlICAgIEt1cnRvc2lzICAgIE1heGltdW0gIE1pbi9NYXggICAgICAyMCUvNjAlICAgIDQwJS84MCUgICAgTWVkaWFuCgogICAgIFNUUkVTUyAgICAgICAgICAgICAgIDMwLjA2MCAgICAgIC0wLjA3NSAgICAgICA5LjAwMCAgICAwLjUwJSAgICAgIDI0LjAwMCAgICAgMjguMDAwICAgICAzMC4wMDAKICAgICAgICAgICAgIDIwMC4wMDAgICAgICA1NC44MDYgICAgICAtMC4xNTYgICAgICA1MS4wMDAgICAgMC41MCUgICAgICAzMi4wMDAgICAgIDM2LjAwMAogICAgIFJFU0lMSUVOICAgICAgICAgICAgIDI5Ljc5MCAgICAgIC0wLjE2NCAgICAgICA5LjAwMCAgICAwLjUwJSAgICAgIDI1LjAwMCAgICAgMjguMDAwICAgICAzMC4wMDAKICAgICAgICAgICAgIDIwMC4wMDAgICAgICAzNC4yODYgICAgICAgMC4xMjAgICAgICA0NS4wMDAgICAgMC41MCUgICAgICAzMi4wMDAgICAgIDM1LjAwMAogICAgIFBST0JTT0xWICAgICAgICAgICAgIDI5LjQzNSAgICAgICAwLjA5MCAgICAgIDEzLjAwMCAgICAwLjUwJSAgICAgIDI0LjAwMCAgICAgMjguMDAwICAgICAyOS4wMDAKICAgICAgICAgICAgIDIwMC4wMDAgICAgICAzNi4xODYgICAgICAtMC4xNjIgICAgICA0Ny4wMDAgICAgMC41MCUgICAgICAzMS4wMDAgICAgIDM1LjAwMAogICAgIFNPQ0lTVVBQICAgICAgICAgICAgIDI4LjcwNSAgICAgIC0wLjIyMiAgICAgICA3LjAwMCAgICAwLjUwJSAgICAgIDIzLjAwMCAgICAgMjcuMDAwICAgICAyOS4wMDAKICAgICAgICAgICAgIDIwMC4wMDAgICAgICA1NS45MjggICAgICAtMC4xNTIgICAgICA0Ni4wMDAgICAgMC41MCUgICAgICAzMS4wMDAgICAgIDM1LjAwMAogICAgIEFWT0lEQU5DICAgICAgICAgICAgIDI5Ljc1NSAgICAgICAwLjA1NiAgICAgICA5LjAwMCAgICAwLjUwJSAgICAgIDIyLjAwMCAgICAgMjguMDAwICAgICAzMC4wMDAKICAgICAgICAgICAgIDIwMC4wMDAgICAgICA3NC4yNzUgICAgICAgMC4wNzYgICAgICA1OC4wMDAgICAgMC41MCUgICAgICAzMi4wMDAgICAgIDM3LjAwMAogICAgIEVGRklDQUNZICAgICAgICAgICAgIDMwLjM3MCAgICAgICAwLjI0MyAgICAgICA5LjAwMCAgICAwLjUwJSAgICAgIDI0LjAwMCAgICAgMjguMDAwICAgICAzMC4wMDAKICAgICAgICAgICAgIDIwMC4wMDAgICAgICA0OS40NDMgICAgICAgMC40NzggICAgICA1NS4wMDAgICAgMC41MCUgICAgICAzMi4wMDAgICAgIDM3LjAwMAoKClRIRSBNT0RFTCBFU1RJTUFUSU9OIFRFUk1JTkFURUQgTk9STUFMTFkKCgoKTU9ERUwgRklUIElORk9STUFUSU9OCgpOdW1iZXIgb2YgRnJlZSBQYXJhbWV0ZXJzICAgICAgICAgICAgICAgICAgICAgICAyMAoKTG9nbGlrZWxpaG9vZAoKICAgICAgICAgIEgwIFZhbHVlICAgICAgICAgICAgICAgICAgICAgICAtMzI0Ni44OTAKICAgICAgICAgIEgxIFZhbHVlICAgICAgICAgICAgICAgICAgICAgICAtMzI0MS4yMzQKCkluZm9ybWF0aW9uIENyaXRlcmlhCgogICAgICAgICAgQWthaWtlIChBSUMpICAgICAgICAgICAgICAgICAgICA2NTMzLjc3OQogICAgICAgICAgQmF5ZXNpYW4gKEJJQykgICAgICAgICAgICAgICAgICA2NTk5Ljc0NQogICAgICAgICAgU2FtcGxlLVNpemUgQWRqdXN0ZWQgQklDICAgICAgICA2NTM2LjM4MwogICAgICAgICAgICAobiogPSAobiArIDIpIC8gMjQpCgpDaGktU3F1YXJlIFRlc3Qgb2YgTW9kZWwgRml0CgogICAgICAgICAgVmFsdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDExLjMxMQogICAgICAgICAgRGVncmVlcyBvZiBGcmVlZG9tICAgICAgICAgICAgICAgICAgICAgNQogICAgICAgICAgUC1WYWx1ZSAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDQ1NgoKUk1TRUEgKFJvb3QgTWVhbiBTcXVhcmUgRXJyb3IgT2YgQXBwcm94aW1hdGlvbikKCiAgICAgICAgICBFc3RpbWF0ZSAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDc5CiAgICAgICAgICA5MCBQZXJjZW50IEMuSS4gICAgICAgICAgICAgICAgICAgIDAuMDEwICAwLjE0MgogICAgICAgICAgUHJvYmFiaWxpdHkgUk1TRUEgPD0gLjA1ICAgICAgICAgICAwLjE3OAoKQ0ZJL1RMSQoKICAgICAgICAgIENGSSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMC45NzMKICAgICAgICAgIFRMSSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMC45MTgKCkNoaS1TcXVhcmUgVGVzdCBvZiBNb2RlbCBGaXQgZm9yIHRoZSBCYXNlbGluZSBNb2RlbAoKICAgICAgICAgIFZhbHVlICAgICAgICAgICAgICAgICAgICAgICAgICAgIDI0Ny4yMTgKICAgICAgICAgIERlZ3JlZXMgb2YgRnJlZWRvbSAgICAgICAgICAgICAgICAgICAgMTUKICAgICAgICAgIFAtVmFsdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAwLjAwMDAKClNSTVIgKFN0YW5kYXJkaXplZCBSb290IE1lYW4gU3F1YXJlIFJlc2lkdWFsKQoKICAgICAgICAgIFZhbHVlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMC4wMzgKCgoKTU9ERUwgUkVTVUxUUwoKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR3by1UYWlsZWQKICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQoKIFBST0JTT0xWIE9OCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4wMTAgICAgICAwLjA1NiAgICAgIDAuMTgwICAgICAgMC44NTcKICAgIEVGRklDQUNZICAgICAgICAgICAwLjEyNCAgICAgIDAuMDY2ICAgICAgMS44ODYgICAgICAwLjA1OQogICAgUkVTSUxJRU4gICAgICAgICAgIDAuMzI3ICAgICAgMC4wOTMgICAgICAzLjUzMSAgICAgIDAuMDAwCgogU09DSVNVUFAgT04KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjMyMiAgICAgIDAuMDc1ICAgICAgNC4zMTQgICAgICAwLjAwMAogICAgUkVTSUxJRU4gICAgICAgICAgIDAuMTg5ICAgICAgMC4wOTQgICAgICAyLjAxMiAgICAgIDAuMDQ0CgogQVZPSURBTkMgT04KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjQ4OCAgICAgIDAuMDg3ICAgICAgNS41OTIgICAgICAwLjAwMAogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuMTAyICAgICAgMC4xMDEgICAgICAxLjAxMiAgICAgIDAuMzEyCiAgICBSRVNJTElFTiAgICAgICAgICAtMC4wOTUgICAgICAwLjEzNiAgICAgLTAuNzAyICAgICAgMC40ODMKCiBSRVNJTElFTiBPTgogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuNTUyICAgICAgMC4wNDMgICAgIDEyLjc5NiAgICAgIDAuMDAwCgogU1RSRVNTICAgT04KICAgIFJFU0lMSUVOICAgICAgICAgIC0wLjM5OSAgICAgIDAuMDkxICAgICAtNC4zNjMgICAgICAwLjAwMAoKIFBST0JTT0xWIFdJVEgKICAgIFNPQ0lTVVBQICAgICAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgIDk5OS4wMDAgICAgOTk5LjAwMAogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgOTk5LjAwMCAgICA5OTkuMDAwCgogU09DSVNVUFAgV0lUSAogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgOTk5LjAwMCAgICA5OTkuMDAwCgogSW50ZXJjZXB0cwogICAgU1RSRVNTICAgICAgICAgICAgNDEuOTM1ICAgICAgMi43NzAgICAgIDE1LjE0MCAgICAgIDAuMDAwCiAgICBSRVNJTElFTiAgICAgICAgICAxMy4wMjMgICAgICAxLjM5NyAgICAgIDkuMzE5ICAgICAgMC4wMDAKICAgIFBST0JTT0xWICAgICAgICAgIDE1LjYyMCAgICAgIDMuMTMxICAgICAgNC45ODkgICAgICAwLjAwMAogICAgU09DSVNVUFAgICAgICAgICAgMTMuMzg2ICAgICAgNC4yNzUgICAgICAzLjEzMSAgICAgIDAuMDAyCiAgICBBVk9JREFOQyAgICAgICAgICAxNC44MTIgICAgICA0Ljk2NyAgICAgIDIuOTgyICAgICAgMC4wMDMKCiBSZXNpZHVhbCBWYXJpYW5jZXMKICAgIFNUUkVTUyAgICAgICAgICAgIDQ5LjM1OSAgICAgIDQuNDkzICAgICAxMC45ODcgICAgICAwLjAwMAogICAgUkVTSUxJRU4gICAgICAgICAgMTkuMjE1ICAgICAgMS44ODEgICAgIDEwLjIxNyAgICAgIDAuMDAwCiAgICBQUk9CU09MViAgICAgICAgICAyOS42NTggICAgICAyLjQ2OSAgICAgMTIuMDExICAgICAgMC4wMDAKICAgIFNPQ0lTVVBQICAgICAgICAgIDUwLjY3NyAgICAgIDQuNjMxICAgICAxMC45NDIgICAgICAwLjAwMAogICAgQVZPSURBTkMgICAgICAgICAgNjAuOTIwICAgICAgNS43MTcgICAgIDEwLjY1NiAgICAgIDAuMDAwCgoKU1RBTkRBUkRJWkVEIE1PREVMIFJFU1VMVFMKCgpTVERZWCBTdGFuZGFyZGl6YXRpb24KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBUd28tVGFpbGVkCiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICAgICAgUy5FLiAgRXN0Li9TLkUuICAgIFAtVmFsdWUKCiBQUk9CU09MViBPTgogICAgU1RSRVNTICAgICAgICAgICAgIDAuMDEyICAgICAgMC4wNjkgICAgICAwLjE4MSAgICAgIDAuODU3CiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4xNDUgICAgICAwLjA3NyAgICAgIDEuODkzICAgICAgMC4wNTgKICAgIFJFU0lMSUVOICAgICAgICAgICAwLjMxOCAgICAgIDAuMDgzICAgICAgMy44NDMgICAgICAwLjAwMAoKIFNPQ0lTVVBQIE9OCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4zMTkgICAgICAwLjA3MCAgICAgIDQuNTg5ICAgICAgMC4wMDAKICAgIFJFU0lMSUVOICAgICAgICAgICAwLjE0OCAgICAgIDAuMDcyICAgICAgMi4wNjggICAgICAwLjAzOQoKIEFWT0lEQU5DIE9OCiAgICBTVFJFU1MgICAgICAgICAgICAgMC40MTkgICAgICAwLjA2NiAgICAgIDYuMzMxICAgICAgMC4wMDAKICAgIEVGRklDQUNZICAgICAgICAgICAwLjA4NCAgICAgIDAuMDgzICAgICAgMS4wMTEgICAgICAwLjMxMgogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMDY1ICAgICAgMC4wOTMgICAgIC0wLjY5NyAgICAgIDAuNDg2CgogUkVTSUxJRU4gT04KICAgIEVGRklDQUNZICAgICAgICAgICAwLjY2MyAgICAgIDAuMDQyICAgICAxNS44MzQgICAgICAwLjAwMAoKIFNUUkVTUyAgIE9OCiAgICBSRVNJTElFTiAgICAgICAgICAtMC4zMTUgICAgICAwLjA2OSAgICAgLTQuNjAzICAgICAgMC4wMDAKCiBQUk9CU09MViBXSVRICiAgICBTT0NJU1VQUCAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDAKICAgIEFWT0lEQU5DICAgICAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAxLjAwMAoKIFNPQ0lTVVBQIFdJVEgKICAgIEFWT0lEQU5DICAgICAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAxLjAwMAoKIEludGVyY2VwdHMKICAgIFNUUkVTUyAgICAgICAgICAgICA1LjY2NCAgICAgIDAuMzQ1ICAgICAxNi40MzMgICAgICAwLjAwMAogICAgUkVTSUxJRU4gICAgICAgICAgIDIuMjI0ICAgICAgMC4zMzUgICAgICA2LjY0MCAgICAgIDAuMDAwCiAgICBQUk9CU09MViAgICAgICAgICAgMi41OTYgICAgICAwLjU4MSAgICAgIDQuNDcxICAgICAgMC4wMDAKICAgIFNPQ0lTVVBQICAgICAgICAgICAxLjc5MCAgICAgIDAuNjE0ICAgICAgMi45MTMgICAgICAwLjAwNAogICAgQVZPSURBTkMgICAgICAgICAgIDEuNzE3ICAgICAgMC42MjIgICAgICAyLjc2MiAgICAgIDAuMDA2CgogUmVzaWR1YWwgVmFyaWFuY2VzCiAgICBTVFJFU1MgICAgICAgICAgICAgMC45MDEgICAgICAwLjA0MyAgICAgMjEuMDI3ICAgICAgMC4wMDAKICAgIFJFU0lMSUVOICAgICAgICAgICAwLjU2MCAgICAgIDAuMDU1ICAgICAxMC4yMDggICAgICAwLjAwMAogICAgUFJPQlNPTFYgICAgICAgICAgIDAuODE5ICAgICAgMC4wNDggICAgIDE3LjE3NiAgICAgIDAuMDAwCiAgICBTT0NJU1VQUCAgICAgICAgICAgMC45MDYgICAgICAwLjA0MCAgICAgMjIuODAwICAgICAgMC4wMDAKICAgIEFWT0lEQU5DICAgICAgICAgICAwLjgxOCAgICAgIDAuMDQ4ICAgICAxNy4yMjIgICAgICAwLjAwMAoKClNURFkgU3RhbmRhcmRpemF0aW9uCgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZAogICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICAgICAgIFMuRS4gIEVzdC4vUy5FLiAgICBQLVZhbHVlCgogUFJPQlNPTFYgT04KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjAxMiAgICAgIDAuMDY5ICAgICAgMC4xODEgICAgICAwLjg1NwogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuMDIxICAgICAgMC4wMTEgICAgICAxLjg5OSAgICAgIDAuMDU4CiAgICBSRVNJTElFTiAgICAgICAgICAgMC4zMTggICAgICAwLjA4MyAgICAgIDMuODQzICAgICAgMC4wMDAKCiBTT0NJU1VQUCBPTgogICAgU1RSRVNTICAgICAgICAgICAgIDAuMzE5ICAgICAgMC4wNzAgICAgICA0LjU4OSAgICAgIDAuMDAwCiAgICBSRVNJTElFTiAgICAgICAgICAgMC4xNDggICAgICAwLjA3MiAgICAgIDIuMDY4ICAgICAgMC4wMzkKCiBBVk9JREFOQyBPTgogICAgU1RSRVNTICAgICAgICAgICAgIDAuNDE5ICAgICAgMC4wNjYgICAgICA2LjMzMSAgICAgIDAuMDAwCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4wMTIgICAgICAwLjAxMiAgICAgIDEuMDAzICAgICAgMC4zMTYKICAgIFJFU0lMSUVOICAgICAgICAgIC0wLjA2NSAgICAgIDAuMDkzICAgICAtMC42OTcgICAgICAwLjQ4NgoKIFJFU0lMSUVOIE9OCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4wOTQgICAgICAwLjAwNSAgICAgMTcuOTg5ICAgICAgMC4wMDAKCiBTVFJFU1MgICBPTgogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMzE1ICAgICAgMC4wNjkgICAgIC00LjYwMyAgICAgIDAuMDAwCgogUFJPQlNPTFYgV0lUSAogICAgU09DSVNVUFAgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwCiAgICBBVk9JREFOQyAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDAKCiBTT0NJU1VQUCBXSVRICiAgICBBVk9JREFOQyAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDAKCiBJbnRlcmNlcHRzCiAgICBTVFJFU1MgICAgICAgICAgICAgNS42NjQgICAgICAwLjM0NSAgICAgMTYuNDMzICAgICAgMC4wMDAKICAgIFJFU0lMSUVOICAgICAgICAgICAyLjIyNCAgICAgIDAuMzM1ICAgICAgNi42NDAgICAgICAwLjAwMAogICAgUFJPQlNPTFYgICAgICAgICAgIDIuNTk2ICAgICAgMC41ODEgICAgICA0LjQ3MSAgICAgIDAuMDAwCiAgICBTT0NJU1VQUCAgICAgICAgICAgMS43OTAgICAgICAwLjYxNCAgICAgIDIuOTEzICAgICAgMC4wMDQKICAgIEFWT0lEQU5DICAgICAgICAgICAxLjcxNyAgICAgIDAuNjIyICAgICAgMi43NjIgICAgICAwLjAwNgoKIFJlc2lkdWFsIFZhcmlhbmNlcwogICAgU1RSRVNTICAgICAgICAgICAgIDAuOTAxICAgICAgMC4wNDMgICAgIDIxLjAyNyAgICAgIDAuMDAwCiAgICBSRVNJTElFTiAgICAgICAgICAgMC41NjAgICAgICAwLjA1NSAgICAgMTAuMjA4ICAgICAgMC4wMDAKICAgIFBST0JTT0xWICAgICAgICAgICAwLjgxOSAgICAgIDAuMDQ4ICAgICAxNy4xNzYgICAgICAwLjAwMAogICAgU09DSVNVUFAgICAgICAgICAgIDAuOTA2ICAgICAgMC4wNDAgICAgIDIyLjgwMCAgICAgIDAuMDAwCiAgICBBVk9JREFOQyAgICAgICAgICAgMC44MTggICAgICAwLjA0OCAgICAgMTcuMjIyICAgICAgMC4wMDAKCgpTVEQgU3RhbmRhcmRpemF0aW9uCgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZAogICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICAgICAgIFMuRS4gIEVzdC4vUy5FLiAgICBQLVZhbHVlCgogUFJPQlNPTFYgT04KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjAxMCAgICAgIDAuMDU2ICAgICAgMC4xODAgICAgICAwLjg1NwogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuMTI0ICAgICAgMC4wNjYgICAgICAxLjg4NiAgICAgIDAuMDU5CiAgICBSRVNJTElFTiAgICAgICAgICAgMC4zMjcgICAgICAwLjA5MyAgICAgIDMuNTMxICAgICAgMC4wMDAKCiBTT0NJU1VQUCBPTgogICAgU1RSRVNTICAgICAgICAgICAgIDAuMzIyICAgICAgMC4wNzUgICAgICA0LjMxNCAgICAgIDAuMDAwCiAgICBSRVNJTElFTiAgICAgICAgICAgMC4xODkgICAgICAwLjA5NCAgICAgIDIuMDEyICAgICAgMC4wNDQKCiBBVk9JREFOQyBPTgogICAgU1RSRVNTICAgICAgICAgICAgIDAuNDg4ICAgICAgMC4wODcgICAgICA1LjU5MiAgICAgIDAuMDAwCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4xMDIgICAgICAwLjEwMSAgICAgIDEuMDEyICAgICAgMC4zMTIKICAgIFJFU0lMSUVOICAgICAgICAgIC0wLjA5NSAgICAgIDAuMTM2ICAgICAtMC43MDIgICAgICAwLjQ4MwoKIFJFU0lMSUVOIE9OCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC41NTIgICAgICAwLjA0MyAgICAgMTIuNzk2ICAgICAgMC4wMDAKCiBTVFJFU1MgICBPTgogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMzk5ICAgICAgMC4wOTEgICAgIC00LjM2MyAgICAgIDAuMDAwCgogUFJPQlNPTFYgV0lUSAogICAgU09DSVNVUFAgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwCiAgICBBVk9JREFOQyAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDAKCiBTT0NJU1VQUCBXSVRICiAgICBBVk9JREFOQyAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDAKCiBJbnRlcmNlcHRzCiAgICBTVFJFU1MgICAgICAgICAgICA0MS45MzUgICAgICAyLjc3MCAgICAgMTUuMTQwICAgICAgMC4wMDAKICAgIFJFU0lMSUVOICAgICAgICAgIDEzLjAyMyAgICAgIDEuMzk3ICAgICAgOS4zMTkgICAgICAwLjAwMAogICAgUFJPQlNPTFYgICAgICAgICAgMTUuNjIwICAgICAgMy4xMzEgICAgICA0Ljk4OSAgICAgIDAuMDAwCiAgICBTT0NJU1VQUCAgICAgICAgICAxMy4zODYgICAgICA0LjI3NSAgICAgIDMuMTMxICAgICAgMC4wMDIKICAgIEFWT0lEQU5DICAgICAgICAgIDE0LjgxMiAgICAgIDQuOTY3ICAgICAgMi45ODIgICAgICAwLjAwMwoKIFJlc2lkdWFsIFZhcmlhbmNlcwogICAgU1RSRVNTICAgICAgICAgICAgNDkuMzU5ICAgICAgNC40OTMgICAgIDEwLjk4NyAgICAgIDAuMDAwCiAgICBSRVNJTElFTiAgICAgICAgICAxOS4yMTUgICAgICAxLjg4MSAgICAgMTAuMjE3ICAgICAgMC4wMDAKICAgIFBST0JTT0xWICAgICAgICAgIDI5LjY1OCAgICAgIDIuNDY5ICAgICAxMi4wMTEgICAgICAwLjAwMAogICAgU09DSVNVUFAgICAgICAgICAgNTAuNjc3ICAgICAgNC42MzEgICAgIDEwLjk0MiAgICAgIDAuMDAwCiAgICBBVk9JREFOQyAgICAgICAgICA2MC45MjAgICAgICA1LjcxNyAgICAgMTAuNjU2ICAgICAgMC4wMDAKCgpSLVNRVUFSRQoKICAgIE9ic2VydmVkICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR3by1UYWlsZWQKICAgIFZhcmlhYmxlICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQoKICAgIFNUUkVTUyAgICAgICAgICAgICAwLjA5OSAgICAgIDAuMDQzICAgICAgMi4zMjEgICAgICAwLjAyMAogICAgUkVTSUxJRU4gICAgICAgICAgIDAuNDQwICAgICAgMC4wNTUgICAgICA4LjAwNiAgICAgIDAuMDAwCiAgICBQUk9CU09MViAgICAgICAgICAgMC4xODEgICAgICAwLjA0OCAgICAgIDMuNzg0ICAgICAgMC4wMDAKICAgIFNPQ0lTVVBQICAgICAgICAgICAwLjA5NCAgICAgIDAuMDQwICAgICAgMi4zNjMgICAgICAwLjAxOAogICAgQVZPSURBTkMgICAgICAgICAgIDAuMTgyICAgICAgMC4wNDggICAgICAzLjgyNSAgICAgIDAuMDAwCgoKVE9UQUwsIFRPVEFMIElORElSRUNULCBTUEVDSUZJQyBJTkRJUkVDVCwgQU5EIERJUkVDVCBFRkZFQ1RTCgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR3by1UYWlsZWQKICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQoKRWZmZWN0cyBmcm9tIEVGRklDQUNZIHRvIEFWT0lEQU5DCgogIFRvdGFsICAgICAgICAgICAgICAgLTAuMDU4ICAgICAgMC4wODEgICAgIC0wLjcwOSAgICAgIDAuNDc5CiAgVG90YWwgaW5kaXJlY3QgICAgICAtMC4xNjAgICAgICAwLjA3NiAgICAgLTIuMDk4ICAgICAgMC4wMzYKCiAgU3BlY2lmaWMgaW5kaXJlY3QgMQogICAgQVZPSURBTkMKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgICAtMC4wNTMgICAgICAwLjA3NSAgICAgLTAuNzAwICAgICAgMC40ODQKCiAgU3BlY2lmaWMgaW5kaXJlY3QgMgogICAgQVZPSURBTkMKICAgIFNUUkVTUwogICAgUkVTSUxJRU4KICAgIEVGRklDQUNZICAgICAgICAgIC0wLjEwNyAgICAgIDAuMDI5ICAgICAtMy42NTAgICAgICAwLjAwMAoKICBEaXJlY3QKICAgIEFWT0lEQU5DCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4xMDIgICAgICAwLjEwMSAgICAgIDEuMDEyICAgICAgMC4zMTIKCgoKU1RBTkRBUkRJWkVEIFRPVEFMLCBUT1RBTCBJTkRJUkVDVCwgU1BFQ0lGSUMgSU5ESVJFQ1QsIEFORCBESVJFQ1QgRUZGRUNUUwoKClNURFlYIFN0YW5kYXJkaXphdGlvbgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR3by1UYWlsZWQKICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQoKRWZmZWN0cyBmcm9tIEVGRklDQUNZIHRvIEFWT0lEQU5DCgogIFRvdGFsICAgICAgICAgICAgICAgLTAuMDQ3ICAgICAgMC4wNjYgICAgIC0wLjcxMCAgICAgIDAuNDc4CiAgVG90YWwgaW5kaXJlY3QgICAgICAtMC4xMzAgICAgICAwLjA2NCAgICAgLTIuMDQ5ICAgICAgMC4wNDAKCiAgU3BlY2lmaWMgaW5kaXJlY3QgMQogICAgQVZPSURBTkMKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgICAtMC4wNDMgICAgICAwLjA2MiAgICAgLTAuNjkzICAgICAgMC40ODgKCiAgU3BlY2lmaWMgaW5kaXJlY3QgMgogICAgQVZPSURBTkMKICAgIFNUUkVTUwogICAgUkVTSUxJRU4KICAgIEVGRklDQUNZICAgICAgICAgIC0wLjA4OCAgICAgIDAuMDI0ICAgICAtMy42MjYgICAgICAwLjAwMAoKICBEaXJlY3QKICAgIEFWT0lEQU5DCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4wODQgICAgICAwLjA4MyAgICAgIDEuMDExICAgICAgMC4zMTIKCgoKU1REWSBTdGFuZGFyZGl6YXRpb24KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBUd28tVGFpbGVkCiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICAgICAgUy5FLiAgRXN0Li9TLkUuICAgIFAtVmFsdWUKCkVmZmVjdHMgZnJvbSBFRkZJQ0FDWSB0byBBVk9JREFOQwoKICBUb3RhbCAgICAgICAgICAgICAgIC0wLjAwNyAgICAgIDAuMDA5ICAgICAtMC43MDcgICAgICAwLjQ4MAogIFRvdGFsIGluZGlyZWN0ICAgICAgLTAuMDE5ICAgICAgMC4wMDkgICAgIC0yLjA3MSAgICAgIDAuMDM4CgogIFNwZWNpZmljIGluZGlyZWN0IDEKICAgIEFWT0lEQU5DCiAgICBSRVNJTElFTgogICAgRUZGSUNBQ1kgICAgICAgICAgLTAuMDA2ICAgICAgMC4wMDkgICAgIC0wLjY5MiAgICAgIDAuNDg5CgogIFNwZWNpZmljIGluZGlyZWN0IDIKICAgIEFWT0lEQU5DCiAgICBTVFJFU1MKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgICAtMC4wMTIgICAgICAwLjAwMyAgICAgLTMuODI4ICAgICAgMC4wMDAKCiAgRGlyZWN0CiAgICBBVk9JREFOQwogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuMDEyICAgICAgMC4wMTIgICAgICAxLjAwMyAgICAgIDAuMzE2CgoKClNURCBTdGFuZGFyZGl6YXRpb24KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBUd28tVGFpbGVkCiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICAgICAgUy5FLiAgRXN0Li9TLkUuICAgIFAtVmFsdWUKCkVmZmVjdHMgZnJvbSBFRkZJQ0FDWSB0byBBVk9JREFOQwoKICBUb3RhbCAgICAgICAgICAgICAgIC0wLjA1OCAgICAgIDAuMDgxICAgICAtMC43MDkgICAgICAwLjQ3OQogIFRvdGFsIGluZGlyZWN0ICAgICAgLTAuMTYwICAgICAgMC4wNzYgICAgIC0yLjA5OCAgICAgIDAuMDM2CgogIFNwZWNpZmljIGluZGlyZWN0IDEKICAgIEFWT0lEQU5DCiAgICBSRVNJTElFTgogICAgRUZGSUNBQ1kgICAgICAgICAgLTAuMDUzICAgICAgMC4wNzUgICAgIC0wLjcwMCAgICAgIDAuNDg0CgogIFNwZWNpZmljIGluZGlyZWN0IDIKICAgIEFWT0lEQU5DCiAgICBTVFJFU1MKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgICAtMC4xMDcgICAgICAwLjAyOSAgICAgLTMuNjUwICAgICAgMC4wMDAKCiAgRGlyZWN0CiAgICBBVk9JREFOQwogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuMTAyICAgICAgMC4xMDEgICAgICAxLjAxMiAgICAgIDAuMzEyCgoKCgpDT05GSURFTkNFIElOVEVSVkFMUyBPRiBNT0RFTCBSRVNVTFRTCgogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUKCiBQUk9CU09MViBPTgogICAgU1RSRVNTICAgICAgICAgIC0wLjEzNiAgICAgIC0wLjA5OSAgICAgIC0wLjA4MiAgICAgICAwLjAxMCAgICAgICAwLjEwMSAgICAgICAwLjEyMCAgICAgICAwLjE1NwogICAgRUZGSUNBQ1kgICAgICAgIC0wLjA0NCAgICAgIC0wLjAwMyAgICAgICAwLjAxNiAgICAgICAwLjEyNCAgICAgICAwLjIzMSAgICAgICAwLjI1NSAgICAgICAwLjMwMAogICAgUkVTSUxJRU4gICAgICAgICAwLjA5MiAgICAgICAwLjE0OSAgICAgICAwLjE3OCAgICAgICAwLjMyNyAgICAgICAwLjQ4MSAgICAgICAwLjUxMiAgICAgICAwLjU3NQoKIFNPQ0lTVVBQIE9OCiAgICBTVFJFU1MgICAgICAgICAgIDAuMTI3ICAgICAgIDAuMTc2ICAgICAgIDAuMjAxICAgICAgIDAuMzIyICAgICAgIDAuNDQ0ICAgICAgIDAuNDY5ICAgICAgIDAuNTE3CiAgICBSRVNJTElFTiAgICAgICAgLTAuMDQ5ICAgICAgIDAuMDA3ICAgICAgIDAuMDM2ICAgICAgIDAuMTg5ICAgICAgIDAuMzQ0ICAgICAgIDAuMzczICAgICAgIDAuNDM0CgogQVZPSURBTkMgT04KICAgIFNUUkVTUyAgICAgICAgICAgMC4yNjUgICAgICAgMC4zMTUgICAgICAgMC4zNDQgICAgICAgMC40ODggICAgICAgMC42MzIgICAgICAgMC42NTggICAgICAgMC43MjIKICAgIEVGRklDQUNZICAgICAgICAtMC4xNTYgICAgICAtMC4wOTYgICAgICAtMC4wNjggICAgICAgMC4xMDIgICAgICAgMC4yNjggICAgICAgMC4yOTggICAgICAgMC4zNTcKICAgIFJFU0lMSUVOICAgICAgICAtMC40MzkgICAgICAtMC4zNjAgICAgICAtMC4zMTcgICAgICAtMC4wOTUgICAgICAgMC4xMjkgICAgICAgMC4xNzIgICAgICAgMC4yNTEKCiBSRVNJTElFTiBPTgogICAgRUZGSUNBQ1kgICAgICAgICAwLjQ0MiAgICAgICAwLjQ2NiAgICAgICAwLjQ4MSAgICAgICAwLjU1MiAgICAgICAwLjYyMiAgICAgICAwLjYzNiAgICAgICAwLjY2NQoKIFNUUkVTUyAgIE9OCiAgICBSRVNJTElFTiAgICAgICAgLTAuNjM3ICAgICAgLTAuNTgwICAgICAgLTAuNTUwICAgICAgLTAuMzk5ICAgICAgLTAuMjQ5ICAgICAgLTAuMjE3ICAgICAgLTAuMTYxCgogUFJPQlNPTFYgV0lUSAogICAgU09DSVNVUFAgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMAogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMAoKIFNPQ0lTVVBQIFdJVEgKICAgIEFWT0lEQU5DICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAKCiBJbnRlcmNlcHRzCiAgICBTVFJFU1MgICAgICAgICAgMzQuNjUwICAgICAgMzYuMzQ0ICAgICAgMzcuNDY2ICAgICAgNDEuOTM1ICAgICAgNDYuNTM3ICAgICAgNDcuMzU5ICAgICAgNDkuMDM0CiAgICBSRVNJTElFTiAgICAgICAgIDkuNDEwICAgICAgMTAuMjgzICAgICAgMTAuNzM0ICAgICAgMTMuMDIzICAgICAgMTUuMzY0ICAgICAgMTUuNzY2ICAgICAgMTYuNTYwCiAgICBQUk9CU09MViAgICAgICAgIDcuNTE2ICAgICAgIDkuMzc3ICAgICAgMTAuNDEwICAgICAgMTUuNjIwICAgICAgMjAuNzI2ICAgICAgMjEuNzExICAgICAgMjMuNzU4CiAgICBTT0NJU1VQUCAgICAgICAgIDIuMjQ3ICAgICAgIDQuOTU3ICAgICAgIDYuMjY4ICAgICAgMTMuMzg2ICAgICAgMjAuMjQxICAgICAgMjEuNTY3ICAgICAgMjQuMTUwCiAgICBBVk9JREFOQyAgICAgICAgIDIuMzQ2ICAgICAgIDUuMjkxICAgICAgIDYuODE4ICAgICAgMTQuODEyICAgICAgMjMuMTQyICAgICAgMjQuNzk5ICAgICAgMjcuODA0CgogUmVzaWR1YWwgVmFyaWFuY2VzCiAgICBTVFJFU1MgICAgICAgICAgMzcuOTU0ICAgICAgNDAuNDUwICAgICAgNDEuNjk1ICAgICAgNDkuMzU5ICAgICAgNTYuNDA2ICAgICAgNTguMDQ1ICAgICAgNjEuMzY3CiAgICBSRVNJTElFTiAgICAgICAgMTQuNDEzICAgICAgMTUuNDQ1ICAgICAgMTYuMDA5ICAgICAgMTkuMjE1ICAgICAgMjIuMTk3ICAgICAgMjIuODE0ICAgICAgMjQuMTUxCiAgICBQUk9CU09MViAgICAgICAgMjIuOTExICAgICAgMjQuNDA4ICAgICAgMjUuMDcwICAgICAgMjkuNjU4ICAgICAgMzMuMjQxICAgICAgMzQuMDcyICAgICAgMzUuNTA0CiAgICBTT0NJU1VQUCAgICAgICAgMzguODczICAgICAgNDEuMTQ4ICAgICAgNDIuNDAzICAgICAgNTAuNjc3ICAgICAgNTcuNTg2ICAgICAgNTkuMDkxICAgICAgNjIuMzg3CiAgICBBVk9JREFOQyAgICAgICAgNDUuNDgwICAgICAgNDguNjU1ICAgICAgNTAuNTMzICAgICAgNjAuOTIwICAgICAgNjkuMjgxICAgICAgNzEuMjQxICAgICAgNzUuMTEwCgoKQ09ORklERU5DRSBJTlRFUlZBTFMgT0YgU1RBTkRBUkRJWkVEIE1PREVMIFJFU1VMVFMKCgpTVERZWCBTdGFuZGFyZGl6YXRpb24KCiAgICAgICAgICAgICAgICAgIExvd2VyIC41JSAgTG93ZXIgMi41JSAgICBMb3dlciA1JSAgICBFc3RpbWF0ZSAgICBVcHBlciA1JSAgVXBwZXIgMi41JSAgIFVwcGVyIC41JQoKIFBST0JTT0xWIE9OCiAgICBTVFJFU1MgICAgICAgICAgLTAuMTY4ICAgICAgLTAuMTIxICAgICAgLTAuMTAwICAgICAgIDAuMDEyICAgICAgIDAuMTI0ICAgICAgIDAuMTQ3ICAgICAgIDAuMTkzCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMDUwICAgICAgLTAuMDA0ICAgICAgIDAuMDE4ICAgICAgIDAuMTQ1ICAgICAgIDAuMjcxICAgICAgIDAuMjk4ICAgICAgIDAuMzQ3CiAgICBSRVNJTElFTiAgICAgICAgIDAuMDk1ICAgICAgIDAuMTUxICAgICAgIDAuMTgwICAgICAgIDAuMzE4ICAgICAgIDAuNDUwICAgICAgIDAuNDc1ICAgICAgIDAuNTI4CgogU09DSVNVUFAgT04KICAgIFNUUkVTUyAgICAgICAgICAgMC4xMjcgICAgICAgMC4xNzcgICAgICAgMC4yMDIgICAgICAgMC4zMTkgICAgICAgMC40MzAgICAgICAgMC40NDkgICAgICAgMC40ODcKICAgIFJFU0lMSUVOICAgICAgICAtMC4wMzkgICAgICAgMC4wMDUgICAgICAgMC4wMjkgICAgICAgMC4xNDggICAgICAgMC4yNjQgICAgICAgMC4yODUgICAgICAgMC4zMjYKCiBBVk9JREFOQyBPTgogICAgU1RSRVNTICAgICAgICAgICAwLjIzNCAgICAgICAwLjI3OSAgICAgICAwLjMwNCAgICAgICAwLjQxOSAgICAgICAwLjUyMSAgICAgICAwLjU0MCAgICAgICAwLjU3NwogICAgRUZGSUNBQ1kgICAgICAgIC0wLjEyOCAgICAgIC0wLjA3NyAgICAgIC0wLjA1NSAgICAgICAwLjA4NCAgICAgICAwLjIxNyAgICAgICAwLjI0NiAgICAgICAwLjI4OAogICAgUkVTSUxJRU4gICAgICAgIC0wLjMwOSAgICAgIC0wLjI0OSAgICAgIC0wLjIxOCAgICAgIC0wLjA2NSAgICAgICAwLjA4NiAgICAgICAwLjExMSAgICAgICAwLjE2NwoKIFJFU0lMSUVOIE9OCiAgICBFRkZJQ0FDWSAgICAgICAgIDAuNTQ0ICAgICAgIDAuNTczICAgICAgIDAuNTg4ICAgICAgIDAuNjYzICAgICAgIDAuNzI2ICAgICAgIDAuNzM4ICAgICAgIDAuNzU5CgogU1RSRVNTICAgT04KICAgIFJFU0lMSUVOICAgICAgICAtMC40ODAgICAgICAtMC40NDMgICAgICAtMC40MjUgICAgICAtMC4zMTUgICAgICAtMC4xOTggICAgICAtMC4xNzQgICAgICAtMC4xMjkKCiBQUk9CU09MViBXSVRICiAgICBTT0NJU1VQUCAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwCiAgICBBVk9JREFOQyAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwCgogU09DSVNVUFAgV0lUSAogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMAoKIEludGVyY2VwdHMKICAgIFNUUkVTUyAgICAgICAgICAgNC43NDAgICAgICAgNS4wMDcgICAgICAgNS4xMTMgICAgICAgNS42NjQgICAgICAgNi4yNTEgICAgICAgNi4zNDkgICAgICAgNi41NzcKICAgIFJFU0lMSUVOICAgICAgICAgMS40NjUgICAgICAgMS42MzQgICAgICAgMS43MjcgICAgICAgMi4yMjQgICAgICAgMi44MzUgICAgICAgMi45MzcgICAgICAgMy4xOTUKICAgIFBST0JTT0xWICAgICAgICAgMS4xNzAgICAgICAgMS41MDEgICAgICAgMS42NzMgICAgICAgMi41OTYgICAgICAgMy41ODYgICAgICAgMy43ODEgICAgICAgNC4xODEKICAgIFNPQ0lTVVBQICAgICAgICAgMC4yODQgICAgICAgMC42MzkgICAgICAgMC44MDggICAgICAgMS43OTAgICAgICAgMi44MjMgICAgICAgMy4wMjQgICAgICAgMy40MjMKICAgIEFWT0lEQU5DICAgICAgICAgMC4yNTcgICAgICAgMC41ODEgICAgICAgMC43NjAgICAgICAgMS43MTcgICAgICAgMi44MDIgICAgICAgMy4wMTYgICAgICAgMy40MjgKCiBSZXNpZHVhbCBWYXJpYW5jZXMKICAgIFNUUkVTUyAgICAgICAgICAgMC43NjkgICAgICAgMC44MDMgICAgICAgMC44MTkgICAgICAgMC45MDEgICAgICAgMC45NjEgICAgICAgMC45NzAgICAgICAgMC45ODMKICAgIFJFU0lMSUVOICAgICAgICAgMC40MjQgICAgICAgMC40NTUgICAgICAgMC40NzMgICAgICAgMC41NjAgICAgICAgMC42NTQgICAgICAgMC42NzIgICAgICAgMC43MDQKICAgIFBST0JTT0xWICAgICAgICAgMC42NzggICAgICAgMC43MTAgICAgICAgMC43MjggICAgICAgMC44MTkgICAgICAgMC44ODUgICAgICAgMC44OTYgICAgICAgMC45MTgKICAgIFNPQ0lTVVBQICAgICAgICAgMC43ODEgICAgICAgMC44MTEgICAgICAgMC44MjggICAgICAgMC45MDYgICAgICAgMC45NTggICAgICAgMC45NjUgICAgICAgMC45ODEKICAgIEFWT0lEQU5DICAgICAgICAgMC42NzUgICAgICAgMC43MDkgICAgICAgMC43MjYgICAgICAgMC44MTggICAgICAgMC44ODIgICAgICAgMC44OTUgICAgICAgMC45MTcKCgpTVERZIFN0YW5kYXJkaXphdGlvbgoKICAgICAgICAgICAgICAgICAgTG93ZXIgLjUlICBMb3dlciAyLjUlICAgIExvd2VyIDUlICAgIEVzdGltYXRlICAgIFVwcGVyIDUlICBVcHBlciAyLjUlICAgVXBwZXIgLjUlCgogUFJPQlNPTFYgT04KICAgIFNUUkVTUyAgICAgICAgICAtMC4xNjggICAgICAtMC4xMjEgICAgICAtMC4xMDAgICAgICAgMC4wMTIgICAgICAgMC4xMjQgICAgICAgMC4xNDcgICAgICAgMC4xOTMKICAgIEVGRklDQUNZICAgICAgICAtMC4wMDcgICAgICAtMC4wMDEgICAgICAgMC4wMDMgICAgICAgMC4wMjEgICAgICAgMC4wMzggICAgICAgMC4wNDIgICAgICAgMC4wNDkKICAgIFJFU0lMSUVOICAgICAgICAgMC4wOTUgICAgICAgMC4xNTEgICAgICAgMC4xODAgICAgICAgMC4zMTggICAgICAgMC40NTAgICAgICAgMC40NzUgICAgICAgMC41MjgKCiBTT0NJU1VQUCBPTgogICAgU1RSRVNTICAgICAgICAgICAwLjEyNyAgICAgICAwLjE3NyAgICAgICAwLjIwMiAgICAgICAwLjMxOSAgICAgICAwLjQzMCAgICAgICAwLjQ0OSAgICAgICAwLjQ4NwogICAgUkVTSUxJRU4gICAgICAgIC0wLjAzOSAgICAgICAwLjAwNSAgICAgICAwLjAyOSAgICAgICAwLjE0OCAgICAgICAwLjI2NCAgICAgICAwLjI4NSAgICAgICAwLjMyNgoKIEFWT0lEQU5DIE9OCiAgICBTVFJFU1MgICAgICAgICAgIDAuMjM0ICAgICAgIDAuMjc5ICAgICAgIDAuMzA0ICAgICAgIDAuNDE5ICAgICAgIDAuNTIxICAgICAgIDAuNTQwICAgICAgIDAuNTc3CiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMDE4ICAgICAgLTAuMDExICAgICAgLTAuMDA4ICAgICAgIDAuMDEyICAgICAgIDAuMDMxICAgICAgIDAuMDM1ICAgICAgIDAuMDQyCiAgICBSRVNJTElFTiAgICAgICAgLTAuMzA5ICAgICAgLTAuMjQ5ICAgICAgLTAuMjE4ICAgICAgLTAuMDY1ICAgICAgIDAuMDg2ICAgICAgIDAuMTExICAgICAgIDAuMTY3CgogUkVTSUxJRU4gT04KICAgIEVGRklDQUNZICAgICAgICAgMC4wODEgICAgICAgMC4wODQgICAgICAgMC4wODYgICAgICAgMC4wOTQgICAgICAgMC4xMDMgICAgICAgMC4xMDUgICAgICAgMC4xMDkKCiBTVFJFU1MgICBPTgogICAgUkVTSUxJRU4gICAgICAgIC0wLjQ4MCAgICAgIC0wLjQ0MyAgICAgIC0wLjQyNSAgICAgIC0wLjMxNSAgICAgIC0wLjE5OCAgICAgIC0wLjE3NCAgICAgIC0wLjEyOQoKIFBST0JTT0xWIFdJVEgKICAgIFNPQ0lTVVBQICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAKICAgIEFWT0lEQU5DICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAKCiBTT0NJU1VQUCBXSVRICiAgICBBVk9JREFOQyAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwCgogSW50ZXJjZXB0cwogICAgU1RSRVNTICAgICAgICAgICA0Ljc0MCAgICAgICA1LjAwNyAgICAgICA1LjExMyAgICAgICA1LjY2NCAgICAgICA2LjI1MSAgICAgICA2LjM0OSAgICAgICA2LjU3NwogICAgUkVTSUxJRU4gICAgICAgICAxLjQ2NSAgICAgICAxLjYzNCAgICAgICAxLjcyNyAgICAgICAyLjIyNCAgICAgICAyLjgzNSAgICAgICAyLjkzNyAgICAgICAzLjE5NQogICAgUFJPQlNPTFYgICAgICAgICAxLjE3MCAgICAgICAxLjUwMSAgICAgICAxLjY3MyAgICAgICAyLjU5NiAgICAgICAzLjU4NiAgICAgICAzLjc4MSAgICAgICA0LjE4MQogICAgU09DSVNVUFAgICAgICAgICAwLjI4NCAgICAgICAwLjYzOSAgICAgICAwLjgwOCAgICAgICAxLjc5MCAgICAgICAyLjgyMyAgICAgICAzLjAyNCAgICAgICAzLjQyMwogICAgQVZPSURBTkMgICAgICAgICAwLjI1NyAgICAgICAwLjU4MSAgICAgICAwLjc2MCAgICAgICAxLjcxNyAgICAgICAyLjgwMiAgICAgICAzLjAxNiAgICAgICAzLjQyOAoKIFJlc2lkdWFsIFZhcmlhbmNlcwogICAgU1RSRVNTICAgICAgICAgICAwLjc2OSAgICAgICAwLjgwMyAgICAgICAwLjgxOSAgICAgICAwLjkwMSAgICAgICAwLjk2MSAgICAgICAwLjk3MCAgICAgICAwLjk4MwogICAgUkVTSUxJRU4gICAgICAgICAwLjQyNCAgICAgICAwLjQ1NSAgICAgICAwLjQ3MyAgICAgICAwLjU2MCAgICAgICAwLjY1NCAgICAgICAwLjY3MiAgICAgICAwLjcwNAogICAgUFJPQlNPTFYgICAgICAgICAwLjY3OCAgICAgICAwLjcxMCAgICAgICAwLjcyOCAgICAgICAwLjgxOSAgICAgICAwLjg4NSAgICAgICAwLjg5NiAgICAgICAwLjkxOAogICAgU09DSVNVUFAgICAgICAgICAwLjc4MSAgICAgICAwLjgxMSAgICAgICAwLjgyOCAgICAgICAwLjkwNiAgICAgICAwLjk1OCAgICAgICAwLjk2NSAgICAgICAwLjk4MQogICAgQVZPSURBTkMgICAgICAgICAwLjY3NSAgICAgICAwLjcwOSAgICAgICAwLjcyNiAgICAgICAwLjgxOCAgICAgICAwLjg4MiAgICAgICAwLjg5NSAgICAgICAwLjkxNwoKClNURCBTdGFuZGFyZGl6YXRpb24KCiAgICAgICAgICAgICAgICAgIExvd2VyIC41JSAgTG93ZXIgMi41JSAgICBMb3dlciA1JSAgICBFc3RpbWF0ZSAgICBVcHBlciA1JSAgVXBwZXIgMi41JSAgIFVwcGVyIC41JQoKIFBST0JTT0xWIE9OCiAgICBTVFJFU1MgICAgICAgICAgLTAuMTM2ICAgICAgLTAuMDk5ICAgICAgLTAuMDgyICAgICAgIDAuMDEwICAgICAgIDAuMTAxICAgICAgIDAuMTIwICAgICAgIDAuMTU3CiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMDQ0ICAgICAgLTAuMDAzICAgICAgIDAuMDE2ICAgICAgIDAuMTI0ICAgICAgIDAuMjMxICAgICAgIDAuMjU1ICAgICAgIDAuMzAwCiAgICBSRVNJTElFTiAgICAgICAgIDAuMDkyICAgICAgIDAuMTQ5ICAgICAgIDAuMTc4ICAgICAgIDAuMzI3ICAgICAgIDAuNDgxICAgICAgIDAuNTEyICAgICAgIDAuNTc1CgogU09DSVNVUFAgT04KICAgIFNUUkVTUyAgICAgICAgICAgMC4xMjcgICAgICAgMC4xNzYgICAgICAgMC4yMDEgICAgICAgMC4zMjIgICAgICAgMC40NDQgICAgICAgMC40NjkgICAgICAgMC41MTcKICAgIFJFU0lMSUVOICAgICAgICAtMC4wNDkgICAgICAgMC4wMDcgICAgICAgMC4wMzYgICAgICAgMC4xODkgICAgICAgMC4zNDQgICAgICAgMC4zNzMgICAgICAgMC40MzQKCiBBVk9JREFOQyBPTgogICAgU1RSRVNTICAgICAgICAgICAwLjI2NSAgICAgICAwLjMxNSAgICAgICAwLjM0NCAgICAgICAwLjQ4OCAgICAgICAwLjYzMiAgICAgICAwLjY1OCAgICAgICAwLjcyMgogICAgRUZGSUNBQ1kgICAgICAgIC0wLjE1NiAgICAgIC0wLjA5NiAgICAgIC0wLjA2OCAgICAgICAwLjEwMiAgICAgICAwLjI2OCAgICAgICAwLjI5OCAgICAgICAwLjM1NwogICAgUkVTSUxJRU4gICAgICAgIC0wLjQzOSAgICAgIC0wLjM2MCAgICAgIC0wLjMxNyAgICAgIC0wLjA5NSAgICAgICAwLjEyOSAgICAgICAwLjE3MiAgICAgICAwLjI1MQoKIFJFU0lMSUVOIE9OCiAgICBFRkZJQ0FDWSAgICAgICAgIDAuNDQyICAgICAgIDAuNDY2ICAgICAgIDAuNDgxICAgICAgIDAuNTUyICAgICAgIDAuNjIyICAgICAgIDAuNjM2ICAgICAgIDAuNjY1CgogU1RSRVNTICAgT04KICAgIFJFU0lMSUVOICAgICAgICAtMC42MzcgICAgICAtMC41ODAgICAgICAtMC41NTAgICAgICAtMC4zOTkgICAgICAtMC4yNDkgICAgICAtMC4yMTcgICAgICAtMC4xNjEKCiBQUk9CU09MViBXSVRICiAgICBTT0NJU1VQUCAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwCiAgICBBVk9JREFOQyAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwCgogU09DSVNVUFAgV0lUSAogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMAoKIEludGVyY2VwdHMKICAgIFNUUkVTUyAgICAgICAgICAzNC42NTAgICAgICAzNi4zNDQgICAgICAzNy40NjYgICAgICA0MS45MzUgICAgICA0Ni41MzcgICAgICA0Ny4zNTkgICAgICA0OS4wMzQKICAgIFJFU0lMSUVOICAgICAgICAgOS40MTAgICAgICAxMC4yODMgICAgICAxMC43MzQgICAgICAxMy4wMjMgICAgICAxNS4zNjQgICAgICAxNS43NjYgICAgICAxNi41NjAKICAgIFBST0JTT0xWICAgICAgICAgNy41MTYgICAgICAgOS4zNzcgICAgICAxMC40MTAgICAgICAxNS42MjAgICAgICAyMC43MjYgICAgICAyMS43MTEgICAgICAyMy43NTgKICAgIFNPQ0lTVVBQICAgICAgICAgMi4yNDcgICAgICAgNC45NTcgICAgICAgNi4yNjggICAgICAxMy4zODYgICAgICAyMC4yNDEgICAgICAyMS41NjcgICAgICAyNC4xNTAKICAgIEFWT0lEQU5DICAgICAgICAgMi4zNDYgICAgICAgNS4yOTEgICAgICAgNi44MTggICAgICAxNC44MTIgICAgICAyMy4xNDIgICAgICAyNC43OTkgICAgICAyNy44MDQKCiBSZXNpZHVhbCBWYXJpYW5jZXMKICAgIFNUUkVTUyAgICAgICAgICAzNy45NTQgICAgICA0MC40NTAgICAgICA0MS42OTUgICAgICA0OS4zNTkgICAgICA1Ni40MDYgICAgICA1OC4wNDUgICAgICA2MS4zNjcKICAgIFJFU0lMSUVOICAgICAgICAxNC40MTMgICAgICAxNS40NDUgICAgICAxNi4wMDkgICAgICAxOS4yMTUgICAgICAyMi4xOTcgICAgICAyMi44MTQgICAgICAyNC4xNTEKICAgIFBST0JTT0xWICAgICAgICAyMi45MTEgICAgICAyNC40MDggICAgICAyNS4wNzAgICAgICAyOS42NTggICAgICAzMy4yNDEgICAgICAzNC4wNzIgICAgICAzNS41MDQKICAgIFNPQ0lTVVBQICAgICAgICAzOC44NzMgICAgICA0MS4xNDggICAgICA0Mi40MDMgICAgICA1MC42NzcgICAgICA1Ny41ODYgICAgICA1OS4wOTEgICAgICA2Mi4zODcKICAgIEFWT0lEQU5DICAgICAgICA0NS40ODAgICAgICA0OC42NTUgICAgICA1MC41MzMgICAgICA2MC45MjAgICAgICA2OS4yODEgICAgICA3MS4yNDEgICAgICA3NS4xMTAKCgpDT05GSURFTkNFIElOVEVSVkFMUyBPRiBUT1RBTCwgVE9UQUwgSU5ESVJFQ1QsIFNQRUNJRklDIElORElSRUNULCBBTkQgRElSRUNUIEVGRkVDVFMKCgogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUKCkVmZmVjdHMgZnJvbSBFRkZJQ0FDWSB0byBBVk9JREFOQwoKICBUb3RhbCAgICAgICAgICAgICAtMC4yNjIgICAgICAtMC4yMTQgICAgICAtMC4xODggICAgICAtMC4wNTggICAgICAgMC4wODAgICAgICAgMC4xMDYgICAgICAgMC4xNTMKICBUb3RhbCBpbmRpcmVjdCAgICAtMC4zNTEgICAgICAtMC4zMTAgICAgICAtMC4yODUgICAgICAtMC4xNjAgICAgICAtMC4wMzMgICAgICAtMC4wMTIgICAgICAgMC4wMzcKCiAgU3BlY2lmaWMgaW5kaXJlY3QgMQogICAgQVZPSURBTkMKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMjUwICAgICAgLTAuMjAxICAgICAgLTAuMTc1ICAgICAgLTAuMDUzICAgICAgIDAuMDcxICAgICAgIDAuMDkyICAgICAgIDAuMTQwCgogIFNwZWNpZmljIGluZGlyZWN0IDIKICAgIEFWT0lEQU5DCiAgICBTVFJFU1MKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTkyICAgICAgLTAuMTY4ICAgICAgLTAuMTU3ICAgICAgLTAuMTA3ICAgICAgLTAuMDYxICAgICAgLTAuMDU0ICAgICAgLTAuMDQwCgogIERpcmVjdAogICAgQVZPSURBTkMKICAgIEVGRklDQUNZICAgICAgICAtMC4xNTYgICAgICAtMC4wOTYgICAgICAtMC4wNjggICAgICAgMC4xMDIgICAgICAgMC4yNjggICAgICAgMC4yOTggICAgICAgMC4zNTcKCgoKQ09ORklERU5DRSBJTlRFUlZBTFMgT0YgU1RBTkRBUkRJWkVEIFRPVEFMLCBUT1RBTCBJTkRJUkVDVCwgU1BFQ0lGSUMgSU5ESVJFQ1QsIEFORCBESVJFQ1QgRUZGRUNUUwoKClNURFlYIFN0YW5kYXJkaXphdGlvbgoKICAgICAgICAgICAgICAgICAgTG93ZXIgLjUlICBMb3dlciAyLjUlICAgIExvd2VyIDUlICAgIEVzdGltYXRlICAgIFVwcGVyIDUlICBVcHBlciAyLjUlICAgVXBwZXIgLjUlCgpFZmZlY3RzIGZyb20gRUZGSUNBQ1kgdG8gQVZPSURBTkMKCiAgVG90YWwgICAgICAgICAgICAgLTAuMjE0ICAgICAgLTAuMTc0ICAgICAgLTAuMTU0ICAgICAgLTAuMDQ3ICAgICAgIDAuMDY0ICAgICAgIDAuMDg0ICAgICAgIDAuMTIyCiAgVG90YWwgaW5kaXJlY3QgICAgLTAuMjk4ICAgICAgLTAuMjU3ICAgICAgLTAuMjM3ICAgICAgLTAuMTMwICAgICAgLTAuMDI3ICAgICAgLTAuMDEwICAgICAgIDAuMDI5CgogIFNwZWNpZmljIGluZGlyZWN0IDEKICAgIEFWT0lEQU5DCiAgICBSRVNJTElFTgogICAgRUZGSUNBQ1kgICAgICAgIC0wLjIxMyAgICAgIC0wLjE2NyAgICAgIC0wLjE0NyAgICAgIC0wLjA0MyAgICAgICAwLjA1NiAgICAgICAwLjA3NCAgICAgICAwLjExMwoKICBTcGVjaWZpYyBpbmRpcmVjdCAyCiAgICBBVk9JREFOQwogICAgU1RSRVNTCiAgICBSRVNJTElFTgogICAgRUZGSUNBQ1kgICAgICAgIC0wLjE1NiAgICAgIC0wLjEzNyAgICAgIC0wLjEyOSAgICAgIC0wLjA4OCAgICAgIC0wLjA0OSAgICAgIC0wLjA0MyAgICAgIC0wLjAzMgoKICBEaXJlY3QKICAgIEFWT0lEQU5DCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTI4ICAgICAgLTAuMDc3ICAgICAgLTAuMDU1ICAgICAgIDAuMDg0ICAgICAgIDAuMjE3ICAgICAgIDAuMjQ2ICAgICAgIDAuMjg4CgoKClNURFkgU3RhbmRhcmRpemF0aW9uCgogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUKCkVmZmVjdHMgZnJvbSBFRkZJQ0FDWSB0byBBVk9JREFOQwoKICBUb3RhbCAgICAgICAgICAgICAtMC4wMzAgICAgICAtMC4wMjUgICAgICAtMC4wMjIgICAgICAtMC4wMDcgICAgICAgMC4wMDkgICAgICAgMC4wMTIgICAgICAgMC4wMTgKICBUb3RhbCBpbmRpcmVjdCAgICAtMC4wNDIgICAgICAtMC4wMzYgICAgICAtMC4wMzMgICAgICAtMC4wMTkgICAgICAtMC4wMDQgICAgICAtMC4wMDEgICAgICAgMC4wMDQKCiAgU3BlY2lmaWMgaW5kaXJlY3QgMQogICAgQVZPSURBTkMKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMDMwICAgICAgLTAuMDI0ICAgICAgLTAuMDIxICAgICAgLTAuMDA2ICAgICAgIDAuMDA4ICAgICAgIDAuMDExICAgICAgIDAuMDE2CgogIFNwZWNpZmljIGluZGlyZWN0IDIKICAgIEFWT0lEQU5DCiAgICBTVFJFU1MKICAgIFJFU0lMSUVOCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMDIyICAgICAgLTAuMDE5ICAgICAgLTAuMDE4ICAgICAgLTAuMDEyICAgICAgLTAuMDA3ICAgICAgLTAuMDA2ICAgICAgLTAuMDA1CgogIERpcmVjdAogICAgQVZPSURBTkMKICAgIEVGRklDQUNZICAgICAgICAtMC4wMTggICAgICAtMC4wMTEgICAgICAtMC4wMDggICAgICAgMC4wMTIgICAgICAgMC4wMzEgICAgICAgMC4wMzUgICAgICAgMC4wNDIKCgoKU1REIFN0YW5kYXJkaXphdGlvbgoKICAgICAgICAgICAgICAgICAgTG93ZXIgLjUlICBMb3dlciAyLjUlICAgIExvd2VyIDUlICAgIEVzdGltYXRlICAgIFVwcGVyIDUlICBVcHBlciAyLjUlICAgVXBwZXIgLjUlCgpFZmZlY3RzIGZyb20gRUZGSUNBQ1kgdG8gQVZPSURBTkMKCiAgVG90YWwgICAgICAgICAgICAgLTAuMjYyICAgICAgLTAuMjE0ICAgICAgLTAuMTg4ICAgICAgLTAuMDU4ICAgICAgIDAuMDgwICAgICAgIDAuMTA2ICAgICAgIDAuMTUzCiAgVG90YWwgaW5kaXJlY3QgICAgLTAuMzUxICAgICAgLTAuMzEwICAgICAgLTAuMjg1ICAgICAgLTAuMTYwICAgICAgLTAuMDMzICAgICAgLTAuMDEyICAgICAgIDAuMDM3CgogIFNwZWNpZmljIGluZGlyZWN0IDEKICAgIEFWT0lEQU5DCiAgICBSRVNJTElFTgogICAgRUZGSUNBQ1kgICAgICAgIC0wLjI1MCAgICAgIC0wLjIwMSAgICAgIC0wLjE3NSAgICAgIC0wLjA1MyAgICAgICAwLjA3MSAgICAgICAwLjA5MiAgICAgICAwLjE0MAoKICBTcGVjaWZpYyBpbmRpcmVjdCAyCiAgICBBVk9JREFOQwogICAgU1RSRVNTCiAgICBSRVNJTElFTgogICAgRUZGSUNBQ1kgICAgICAgIC0wLjE5MiAgICAgIC0wLjE2OCAgICAgIC0wLjE1NyAgICAgIC0wLjEwNyAgICAgIC0wLjA2MSAgICAgIC0wLjA1NCAgICAgIC0wLjA0MAoKICBEaXJlY3QKICAgIEFWT0lEQU5DCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTU2ICAgICAgLTAuMDk2ICAgICAgLTAuMDY4ICAgICAgIDAuMTAyICAgICAgIDAuMjY4ICAgICAgIDAuMjk4ICAgICAgIDAuMzU3CgoKCgogICAgIEJlZ2lubmluZyBUaW1lOiAgMjA6NDI6MjIKICAgICAgICBFbmRpbmcgVGltZTogIDIwOjQyOjM0CiAgICAgICBFbGFwc2VkIFRpbWU6ICAwMDowMDoxMgoKCgpNVVRIRU4gJiBNVVRIRU4KMzQ2MyBTdG9uZXIgQXZlLgpMb3MgQW5nZWxlcywgQ0EgIDkwMDY2CgpUZWw6ICgzMTApIDM5MS05OTcxCkZheDogKDMxMCkgMzkxLTg5NzEKV2ViOiB3d3cuU3RhdE1vZGVsLmNvbQpTdXBwb3J0OiBTdXBwb3J0QFN0YXRNb2RlbC5jb20KCkNvcHlyaWdodCAoYykgMTk5OC0yMDIxIE11dGhlbiAmIE11dGhlbgoKYGBgCjMuICoqTGV0J3MgbG9vayBhdCB0aGUgZml0IGluZGljZXMqKi4KICAgIC0gKDMtYSkgKipSdW4gYSBsaW5lIG9mIGNvZGUgYG1vZGVsMDEuZml0JHN1bW1hcmllcyAlPiUgdW5saXN0KClgLiBOb3RlIHRoYXQgYG1vZGVsMDEuZml0YCBpcyB0aGUgb2JqZWN0IHlvdSBjcmVhdGVkIGluIHRoZSBTdGVwIChlKSBvZiBRdWVzdGlvbiAoMi1hKS4qKgogICAgCmBgYHtyfQptb2RlbDAxLmZpdCRzdW1tYXJpZXMgJT4lIHVubGlzdCgpCmBgYAoKICAtICgzLWIpICoqQnJpZWZseSBjb21tZW50IG9uIENoaS1zcXVhcmUtcmVsYXRlZCB2YWx1ZXMgKCoqJFxjaGleMiQsICRkZiQsICoqYW5kKiogJHAkKiotdmFsdWUpLCBDRkksIFRMSSwgUk1TRUEsIDkwJSBDSSBvZiBSTVNFQSwgYW5kIFNSTVIuKioKICAKICAgICAgKiBDRkkgaXMgMC45NzMgYW5kID4uOTUsIGluZGljYXRpbmcgZ29vZCBmaXQgYWNjb3JkaW5nIHRvIEh1ICYgQmVudGxlciAoMTk5OSkuCiAgICAgICogVExJIGlzIDAuOTE4IGFuZCA+LjkwIGJ1dCA8Ljk1LCBpbmRpY2F0aW5nIHJlYXNvbmFibHkgZ29vZCBmaXQgYWNjb3JkaW5nIHRvIEh1ICYgQmVudGxlciAoMTk5OSkuIAogICAgICAqIFJNU0VBIGlzIDAuMDc5IGFuZCAuMDUgPCBSTVNFQSAkXGxlcSQgLjA4LCBpbmRpY2F0aW5nIHJlYXNvbmFibGUgZml0IGFjY29yZGluZyB0byBCcm93bmUgJiBDdWRlY2sgKDE5OTMpLgogICAgICAqIExvd2VyIGJvdW5kIG9mIDkwJSBDSSBmb3IgUk1TRUEgaXMgMC4wMSBhbmQgJFxsZXEkIDAuMDUsIGluZGljYXRpbmcgZ29vZCBmaXQuICAKICAgICAgKiBVcHBlciBib3VuZCBvZiA5MCUgQ0kgZm9yIFJNU0VBIGlzIDAuMTQyIGFuZCAkXGdlcSQgMC4xMCwgaW5kaWNhdGluZyBiYWQgZml0LiAgCiAgICAgICogU1JNUiBpcyAwLjAzOCBhbmQgJFxsZXEkIDAuMDgsIGluZGljYXRpbmcgYWNjZXB0YWJsZSBmaXQgYWNjb3JkaW5nIHRvIEh1ICYgQmVudGxlciAoMTk5OSkuIAoKICAtICgzLWMpICoqSGFuZCBjb21wdXRlIFJNU0VBIGZvciB0aGUgYmFzZWxpbmUgbW9kZWwgYnkgaGFuZC4gQmFzZWQgb24gS2VubnkncyByZWNvbW1lbmRhdGlvbiwgV291bGQgeW91IHN1cHBvcnQgdGhlIHVzZSBvZiBDRkkgYW5kIFRMST8gV2h5PyBXaHkgbm90PyoqCiAgICAgICogJFJNU0VBX3tCYXNlbGluZX0gPSBcc3FydHtcZnJhY3tcY2hpXjJfe0Jhc2VsaW5lfS1kZl97QmFzZWxpbmV9fXtkZl97QmFzZWxpbmV9KE4tMSl9fSA9IFxzcXJ0e1xmcmFje0NoaVwsU3F1YXJlXCxWYWx1ZVwsLVwsRGVncmVlc1wsb2ZcLEZyZWVkb219e0RlZ3JlZXNcLG9mXCxGcmVlZG9tXCwgXHRpbWVzXCwoU2FtcGxlXCxTaXplXCwtXCwxKX19PVxzcXJ0e1xmcmFjezExLjMxMS01fXs1XHRpbWVzKDIwMC0xKX19ID0gMC4wNzk2NDExNSBcYXBwcm94IDAuMDgkCiAgICAgICogWWVzLCBJIHdvdWxkIHN1cHBvcnQgdGhlIHVzZSBvZiBDRkkgYW5kIFRMSSBhY2NvcmRpbmcgdG8gS2VubnkncyByZWNvbW1lbmRhdGlvbiwgYXMgdGhlIG1vZGVsJ3MgUk1TRUEgb2YgMC4wOCBpcyA8IDAuMTU4LgogICAgICAKICAtICgzLWQpICoqV291bGQgeW91IGJlIHNhdGlzZmllZCB3aXRoIHRoZSBmaXQgb2YgdGhpcyBtb2RlbD8gV2h5PyBXaHkgbm90PyBXaGF0IHdvdWxkIHlvdSBkbyBuZXh0LCBpZiB5b3UgYXJlIG5vdCBzYXRpc2ZpZWQ/KioKICAgICAgKiBZZXMsIEkgd291bGQgYmUgc2F0aXNmaWVkIHdpdGggdGhlIGZpdCBvZiB0aGUgbW9kZWwsIGFzIFJNU0VBIGluZGljYXRlcyBhY2NlcHRhYmxlIHVzZSBvZiBDRkkgYW5kIFRMSSBmb3IgZXN0aW1hdGluZyBnb29kbmVzcyBvZiBmaXQgYWNjb3JkaW5nIHRvIEtlbm55J3MgKDIwMTQpIGd1aWRlbGluZXMuIAoKLSAoNCkgKipMZXQncyBsb29rIGF0IHRoZSBlc3RpbWF0ZWQgbW9kZWwgcGFyYW1ldGVycy4qKgogICAgKiAoNC1hKSAqKkV4dHJhY3QgZXN0aW1hdGVkIHN0YW5kYXJkaXplZCBtb2RlbCBwYXJhbWV0ZXJzIChpLmUuLCBwYXRoIGNvZWZmaWNpZW50cywgaW50ZXJjZXB0cywgYW5kIHJlc2lkdWFsIHZhcmlhbmNlcykuIFVzZSoqIGBtb2RlbDAxLmZpdCRwYXJhbWV0ZXJzJHN0ZHl4LnN0YW5kYXJkaXplZGAqKiwgYXNzdW1pbmcgdGhlIG91dHB1dCBvYmplY3QgaGFzIGJlZW4gc2F2ZWQgYXMqKiBgbW9kZWwwMS5maXRgLgpgYGB7cn0KbW9kZWwwMS5maXQkcGFyYW1ldGVycyRzdGR5eC5zdGFuZGFyZGl6ZWQKYGBgCiAgICAqICg0LWIpICoqSW50ZXJwcmV0IHRoZSBzdGFuZGFyZGl6ZWQgcGF0aCBjb2VmZmljaWVudHMgb2Ygc3RyZXNzIG9uIGF2b2lkYW5jZSBjb3BpbmcuKioKCi0gKDUpICoqTGV0J3MgbG9vayBhdCB0aGUgcmVzdWx0cyBvZiB0b3RhbCBpbmRpcmVjdCBlZmZlY3RzLioqCiAgICAqICg1LWEpICoqRXh0cmFjdCB0aGUgc3RhbmRhcmRpemVkIHJlc3VsdHMgb2YgaW5kaXJlY3QgZWZmZWN0IGFuYWx5c2VzLioqCiAgICAgICAgKyAqKkFzc3VtaW5nIHRoZSBvdXRwdXQgb2JqZWN0IGhhcyBiZWVuIHNhdmVkIGFzKiogYG1vZGVsMDEuZml0YCoqLCBydW4qKiBgbW9kZWwwMS5maXQkaW5kaXJlY3Qkc3RkeXguc3RhbmRhcmRpemVkYC4gICAKICAgICogKDUtYykJQnJpZWZseSBjb21tZW50IHRoZSBpbnRlcnByZXRhdGlvbnMgb2YgdGhlIGRpcmVjdCwgaW5kaXJlY3QsIGFuZCB0b3RhbCBlZmZlY3RzIG9mIGVmZmljYWN5IG9uIGF2b2lkYW5jZSBjb3BpbmcuCgojIyBQYXJ0IElJClRoaXMgcGFydCBvZiB0aGUgUHJvamVjdCBhc2tzIHlvdSB0byByZXBsaWNhdGUgdGhlIGBleDIuMjlgIG9uIHNsaWRlcyAzNi0zNyBpbiBgMDNfTWVkaWF0aW9uIEFuYWx5c2lzLnBkZmAuICAKCk5vdGUgdGhhdCB0aGlzIGlzIHRoZSAiQ2FzZSAzIiBpbiB0aGUgY291cnNlIHNsaWRlIHNldCwgd2hlcmUgdGhlIG1lZGlhdGlvbiBlZmZlY3QgYW5kIHRoZSBkaXJlY3QgZWZmZWN0IHdvdWxkIGJlIG1vZGVyYXRlZCBieSB0aGUgZXhwb3N1cmUgdmFyaWFibGUgJHgkLgoKMC4gTG9hZCBhbGwgZnVuY3Rpb25zIGluIHRoZSBgbXBsdXMuUmAgZmlsZSBieSB1c2luZyB0aGUgYHNvdXJjZSgpYCBmdW5jdGlvbi4KCjEuIFJlcGxpY2F0ZSB0aGUgYW5hbHlzaXMgd2l0aCBNcGx1cyBieSB1c2luZyBgTXBsdXNBdXRvbWF0aW9uYCBwYWNrYWdlLiBQcm92aWRlIHRoZSBSIGNvZGUgZm9yIChhKSBnZW5lcmF0aW5nIGV4dGVybmFsIHN5bnRheCBmaWxlIGZvciBNcGx1cyBieSB0aGUgY29tYmluYXRpb24gb2YgYHNpbmsoKWAgYW5kIGBjYXQoKWAgZnVuY3Rpb25zLCBhbmQgKGIpIHJ1bm5pbmcgdGhlIG1vZGVsIGJ5IHRoZSBgcnVuTW9kZWxzKClgIGZ1bmN0aW9uLgoKMi4gRHJhdyB0aGUgc2FtZSB0d28gcGxvdHMgb24gc2xpZGVzIDM3IGJ5IHVzaW5nIGBtcGx1cy5wbG90Lmxvb3AoKWAgZnVuY3Rpb24gYXZhaWxhYmxlIGluIGBtcGx1cy5SYC4gUHJvdmlkZSB0aGUgUiBjb2RlIGFuZCBwbG90IGZvciBlYWNoIG9mIChhKSBpbmRpcmVjdCBlZmZlY3RzIGFuZCAoYikgdG90YWwgZWZmZWN0cy4KCjMuIEV4dHJhY3QgcmVzdWx0cyBvciBSIGZvciBlYWNoIG9mIHRoZSBldmFsdWF0aW9uIHBvaW50cyBieSB1c2luZyBmdW5jdGlvbnMgYXZhaWxhYmxlIGluIGBtcGx1cy5SYCAoYG1wbHVzLmdldC5sb29wLnh2YWx1ZXNgLCBgbXBsdXMuZ2V0Lmxvb3AuZXN0aW1hdGVzYCwgYG1wbHVzLmdldC5sb29wLmxvd2VyY2lgLCBhbmQgYG1wbHVzLmdldC5sb29wLnVwcGVyY2lgKS4gUHJvdmlkZSB0aGUgUiBjb2RlIGFuZCBvdXRwdXQgdGFibGUgZm9yIGVhY2ggb2YgKGEpIGluZGlyZWN0IGVmZmVjdHMgYW5kIChiKSB0b3RhbCBlZmZlY3RzLgoKIyMgUGFydCBJSUkKQnkgdXNpbmcgdGhlIGNvcGluZyBkYXRhIGluIFBhcnQgSSwgZXhhbWluZSB0aGUgbWVkaWF0aW9uIGVmZmVjdCBvZiBlZmZpY2FjeSBgdjJgIC0+IHJlc2lsaWVuY2UgYHYzYCAtPiBwcm9ibGVtIHNvbHZpbmcgYHY0YCwgd2hldGhlciBpdCBpcyBtb2RlcmF0ZWQgYnkgc3RyZXNzIGB2MWAgaWYgYHYxYCBpbnRlcmFjdHMgd2l0aCByZXNpbGllbmNlIGB2M2AuIEluIG90aGVyIHdvcmRzLCB0ZXN0IHRoZSBtb2RlcmF0ZWQgbWVkaWF0aW9uIGVmZmVjdCBkZXBpY3RlZCBpbiB0aGUgZm9sbG93aW5nIGRpYWdyYW0uICAKCk5vdGUgdGhhdCB0aGlzIGFuYWx5c2lzIGZhbGxzIGludG8gdGhlICJDYXNlIDIiIGluIHRoZSBjb3Vyc2Ugc2xpZGUgc2V0LCB3aGVyZSBib3RoIG1lZGlhdGlvbiBlZmZlY3QgYW5kIGRpcmVjdCBlZmZlY3Qgd291bGQgYmUgbW9kZXJhdGVkIGJ5IHRoZSBjb3ZhcmlhdGUgKHYxIGluIHRoaXMgY2FzZSkuICAKCkNvbmR1Y3QgdGhlIGFuYWx5c2lzIHdpdGggTXBsdXMgYnkgdXNpbmcgYE1wbHVzQXV0b21hdGlvbmAgcGFja2FnZS4gU3BlY2lmaWNhdGlvbnMgc2hvdWxkIGluY2x1ZGU6ICAKCi0gVXNlIHRoZSBgTU9EYCBrZXl3b3JkIHVuZGVyIHRoZSBgbW9kZWwgaW5kaXJlY3Q6YCBjb21tYW5kIGxpbmUgaW4gdGhlIE1wbHVzIHN5bnRheC4gIAotIENvbXB1dGUgdGhlIG1lZGlhdGlvbiBlZmZlY3RzIGZvciB0aGUgcmFuZ2Ugb2YgKDcsIDUwKSB3aXRoIGFuIGluY3JlbWVudCBvZiAwLjEgZm9yIHRoZSBtb2RlcmF0b3Igc3RyZXNzIGB2MWAuCi0gRXZhbHVhdGUgdGhlIG1lZGlhdGlvbiBlZmZlY3RzIGZvciBhbiBpbmNyZW1lbnQgb2YgMSBTRCBpbmNyZWFzZSBpbiB0aGUgZXhwb3N1cmUgdmFyaWFibGUgZWZmaWNhY3kgYHYyYC4gSW4gb3RoZXIgd29yZHMsIHVzZSAkKHhfMSwgeF8wKT0oMzcuNDgsIDMwLjA2KSQuIAotIFVzZSBgYm9vdHN0cmFwID0gNTAwMGAuIAotIFJlcXVlc3QgYFBMT1Q6IHR5cGUgPSBwbG90MztgIHRvIHByb2R1Y2UgYSBncmFwaGljYWwgZGF0YSBmaWxlLiAgCgoxLiBQcm92aWRlIHRoZSBSIGNvZGUgZm9yIChhKSBnZW5lcmF0aW5nIGV4dGVybmFsIHN5bnRheCBmaWxlIGZvciBNcGx1cyBieSB0aGUgY29tYmluYXRpb24gb2YgYHNpbmsoKWAgYW5kIGBjYXQoKWAgZnVuY3Rpb25zLCBhbmQgKGIpIHJ1bm5pbmcgdGhlIG1vZGVsIGJ5IHRoZSBgcnVuTW9kZWxzKClgIGZ1bmN0aW9uLgoKMi4gRHJhdyBhIHBsb3QgdG8gc2hvdyB0aGUgZXN0aW1hdGVkIG1vZGVyYXRlZCBtZWRpYXRpb24gZWZmZWN0IGFuZCB0aGUgOTUlIENJIGJhbmQgdXNpbmcgYG1wbHVzLnBsb3QubW9kZXJhdGlvbigpYCBmdW5jdGlvbiBhdmFpbGFibGUgaW4gYG1wbHVzLlJgLiBQcm92aWRlIHRoZSBSIGNvZGUgYW5kIHBsb3QuIENvbW1lbnQgKGEpIGhvdyB0aGUgbWVkaWF0aW9uIGVmZmVjdCBjaGFuZ2VzIGJhc2VkIG9uIHRoZSB2YWx1ZSBvZiB0aGUgbW9kZXJhdG9yLCBhbmQgKGIpIGFwcHJveGltYXRlbHkgd2hhdCByYW5nZSBvZiB0aGUgbW9kZXJhdG9yIHZhbHVlcyBpcyBhc3NvY2lhdGVkIHdpdGggc3RhdGlzdGljYWxseSBzaWduaWZpY2FudCBtZWRpYXRpb24gZWZmZWN0LgoKMy4gRXh0cmFjdCBlc3RpbWF0ZWQgbWVkaWF0aW9uIGVmZmVjdCBhbmQgOTUlIENJIGZvciBlYWNoIG9mIHRoZSBldmFsdWF0aW9uIHBvaW50cyBieSB1c2luZyBmdW5jdGlvbnMgYXZhaWxhYmxlIGluIGBtcGx1cy5SYCAoYG1wbHVzLmdldC5tb2RlcmF0aW9uLnh2YWx1ZXNgLCBgbXBsdXMuZ2V0Lm1vZGVyYXRpb24uZXN0aW1hdGVzYCwgYG1wbHVzLmdldC5tb2RlcmF0aW9uLmxvd2VyY2lgLCBhbmQgYG1wbHVzLmdldC5tb2RlcmF0aW9uLnVwcGVyY2lgKS4gUHJvdmlkZSB0aGUgUiBjb2RlIGFuZCBvdXRwdXQgdGFibGUuIENvbW1lbnQgKGEpIHdoYXQgcmFuZ2Ugb2YgdGhlIG1vZGVyYXRvciB2YWx1ZXMgaXMgYXNzb2NpYXRlZCB3aXRoIHN0YXRpc3RpY2FsbHkgc2lnbmlmaWNhbnQgbWVkaWF0aW9uIGVmZmVjdC4KCgoKCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNFTSBQcm9qZWN0IDIiDQphdXRob3I6ICJDYXJvbGluZSBMZWUiDQpkYXRlOiAiYHIgU3lzLkRhdGUoKWAiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFLCByZXN1bHRzPSdoaWRlJ30NCiMgZGV0YWNoIGFsbCBsaWJyYXJpZXMNCg0KZGV0YWNoQWxsUGFja2FnZXMgPC0gZnVuY3Rpb24oKSB7DQogIGJhc2ljLnBhY2thZ2VzIDwtIGMoInBhY2thZ2U6c3RhdHMiLCAicGFja2FnZTpncmFwaGljcyIsICJwYWNrYWdlOmdyRGV2aWNlcyIsICJwYWNrYWdlOnV0aWxzIiwgInBhY2thZ2U6ZGF0YXNldHMiLCAicGFja2FnZTptZXRob2RzIiwgInBhY2thZ2U6YmFzZSIpDQogIHBhY2thZ2UubGlzdCA8LSBzZWFyY2goKVtpZmVsc2UodW5saXN0KGdyZWdleHByKCJwYWNrYWdlOiIsIHNlYXJjaCgpKSk9PTEsIFRSVUUsIEZBTFNFKV0NCiAgcGFja2FnZS5saXN0IDwtIHNldGRpZmYocGFja2FnZS5saXN0LCBiYXNpYy5wYWNrYWdlcykNCiAgaWYgKGxlbmd0aChwYWNrYWdlLmxpc3QpPjApICBmb3IgKHBhY2thZ2UgaW4gcGFja2FnZS5saXN0KSBkZXRhY2gocGFja2FnZSwgIGNoYXJhY3Rlci5vbmx5PVRSVUUpDQp9DQpkZXRhY2hBbGxQYWNrYWdlcygpDQoNCiMgZnVuY3Rpb24gdG8gbG9hZCBsaWJyYXJpZXMNCg0KcGtnVGVzdCA8LSBmdW5jdGlvbihwa2cpew0KICBuZXcucGtnIDwtIHBrZ1shKHBrZyAlaW4lIGluc3RhbGxlZC5wYWNrYWdlcygpWywgICJQYWNrYWdlIl0pXQ0KICBpZiAobGVuZ3RoKG5ldy5wa2cpKSANCiAgICBpbnN0YWxsLnBhY2thZ2VzKG5ldy5wa2csICBkZXBlbmRlbmNpZXMgPSBUUlVFKQ0KICBzYXBwbHkocGtnLCAgcmVxdWlyZSwgIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkNCn0NCg0KIyBsb2FkaW5nIHBhY2thZ2VzIA0KDQpsYXBwbHkoYygiRFQiKSxwa2dUZXN0KQ0KbGFwcGx5KGMoImhhdmVuIikscGtnVGVzdCkNCmxhcHBseShjKCJsYXZhYW4iKSxwa2dUZXN0KQ0KbGFwcGx5KGMoIk1wbHVzQXV0b21hdGlvbiIpLHBrZ1Rlc3QpDQpsYXBwbHkoYygicmVhZHhsIikscGtnVGVzdCkNCmxhcHBseShjKCJzamxhYmVsbGVkIikscGtnVGVzdCkNCmxhcHBseShjKCJzam1pc2MiKSxwa2dUZXN0KQ0KbGFwcGx5KGMoInRleHJlZyIpLHBrZ1Rlc3QpDQpsYXBwbHkoYygidGlkeXZlcnNlIikscGtnVGVzdCkNCg0KbGlicmFyeShEVCkNCmxpYnJhcnkoaGF2ZW4pDQpsaWJyYXJ5KGxhdmFhbikNCmxpYnJhcnkoTXBsdXNBdXRvbWF0aW9uKQ0KbGlicmFyeShyZWFkeGwpDQpsaWJyYXJ5KHNqbGFiZWxsZWQpDQpsaWJyYXJ5KHNqbWlzYykNCmxpYnJhcnkodGV4cmVnKQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpgYGANCg0KIyMgUGFydCBJDQpTdXBwb3NlIGEgcmVzZWFyY2hlciB3YXMgaW50ZXJlc3RlZCBpbiBpbnZlc3RpZ2F0aW5nIHRoZSBkZXRlcm1pbmFudHMgb2YgY29waW5nIHN0eWxlcyBmb3IgY29sbGVnZSBzdHVkZW50cy4gVG8gZXZhbHVhdGUgdGhpcyByZXNlYXJjaGVyJ3MgcGF0aCBtb2RlbCwgTGV0J3MgYXNzdW1lIHNpeCB2YXJpYWJsZXMgd2VyZSBjb2xsZWN0ZWQgZnJvbSAyMDAgY29sbGVnZSBzdHVkZW50cyBhcyBmb2xsb3dzOg0KDQotIHYxOiBzdHJlc3MgIA0KLSB2MjogZWZmaWNhY3kgIA0KLSB2MzogcmVzaWxpZW5jZSAgDQotIHY0OiBwcm9ibGVtLXNvbHZpbmcgY29waW5nICANCi0gdjU6IHNvY2lhbC1zdXBwb3J0IGNvcGluZyAgDQotIHY2OiBhdm9pZGFuY2UgY29waW5nICANCg0KYGBge3IsIGVjaG8gPSBGQUxTRX0NCmtuaXRyOjppbmNsdWRlX2dyYXBoaWNzKCJDOi9Vc2Vycy80ODkwOTEzOC9PbmVEcml2ZSAtIFNvdXRoZXJuIE1ldGhvZGlzdCBVbml2ZXJzaXR5L0Rlc2t0b3AvU0VNLVMyMDI0L1Byb2plY3RfMi9QYXRoRGlhZ3JhbTFfUHJvamVjdDIucG5nIikNCmBgYA0KIA0KVGhlIGZpbGUgYGNvcGluZy5jc3ZgIGNvbnRhaW5zIHRoZSBkYXRhIGZvciB0aGVzZSBzaXggdmFyaWFibGVzLiBUaGUgZm9sbG93aW5nIHBhdGggZGlhZ3JhbSBwcmVzZW50cyB0aGUgdGhlb3J5IG9mIHRoZSBoeXBvdGhldGljYWw6DQoNCjEuICoqTGV0J3MgZG8gaW5pdGlhbCBtb2RlbCBldmFsdWF0aW9ucyoqLg0KICAgIC0gKDEtYSkgKipIb3cgbWFueSBlbmRvZ2Vub3VzIHZhcmlhYmxlcyBpbiB0aGlzIG1vZGVsPyoqDQogICAgICAqIFRoZXJlIGFyZSA1IGVuZG9nZW5vdXMgdmFyaWFibGVzIGluIHRoaXMgbW9kZWw6IHN0cmVzcyAodjEpLCByZXNpbGllbmNlICh2MyksIHByb2JsZW0gc29sdmluZyAodjQpLCBzb2NpYWwgc3VwcG9ydCAodjUpLCBhbmQgYXZvaWRhbmNlICh2NikuDQogICAgLSAoMS1iKSAqKkhvdyBtYW55IHBhcmFtZXRlcnMgZG9lcyB0aGlzIG1vZGVsIGhhdmU/IENvdW50IGVhY2gga2luZCBvZiBwYXJhbWV0ZXJzLiBCZSBzdXJlIHRvIGluY2x1ZGUgdGhlIHZhcmlhbmNlKHMpIG9mIGV4b2dlbm91cyB2YXJpYWJsZShzKSBhbmQgY292YXJpYW5jZShzKSBiZXR3ZWVuIGV4b2dlbm91cyB2YXJpYWJsZShzKSwgaWYgYW55LioqIA0KICAgIC0gKDEtYykgKipXaGF0IGlzIHRoZSBudW1iZXIgb2YgdW5pcXVlIGVsZW1lbnRzIG9mIHRoZSBkYXRhIGNvdmFyaWFuY2UgbWF0cml4PyoqDQogICAgICAgKiBOdW1iZXIgb2YgdW5pcXVlIGVsZW1lbnRzIGluIHRoZSBkYXRhIGNvdmFyaWFuY2UgbWF0cml4ID0gJFxmcmFje3EocSsxKX17Mn0gPSBcZnJhY3s2KDYrMSl9ezJ9ID0gMjEkIA0KICAgIC0gKDEtZCkgKipXaGF0IGlzIHRoZSBkZWdyZWVzIG9mIGZyZWVkb20gKF9kZl8pIGZvciB0aGlzIG1vZGVsPyBTaG93IGhvdyB5b3UgZGVyaXZlZCB0aGUgX2RmXy4qKg0KICAgICAgICAqIE51bWJlciBvZiBtb2RlbCBwYXJhbWV0ZXJzID0gMTYNCiAgICAgICAgICAgLSAxMCByZWdyZXNzaW9uIHBhdGhzIA0KICAgICAgICAgICAtIDUgcmVzaWR1YWwgdmFyaWFuY2VzIA0KICAgICAgICAgICAtIDEgdmFyaWFuY2UgZm9yIGV4b2dlbm91cyB2YXJpYWJsZSB2Mg0KICAgICAgICAqIF9kZl8gPSAyMSAtIDE2ID0gNQ0KICAgIC0gKDEtZSkgKipMaXN0IGFsbCBwb3NzaWJsZSBpbmRpcmVjdCAobWVkaWF0aW9uKSBlZmZlY3RzIG9mIGVmZmljYWN5ICh2Mikgb24gYXZvaWRhbmNlIGNvcGluZyAodjYpIGluIHRoaXMgbW9kZWwuIFVzZSBhIGZvcm1hdCBvZiBB4oaSQuKGkkMsIHdoZXJlIHRoZSBlZmZlY3Qgb2YgdmFyaWFibGUgQSB0byB2YXJpYWJsZSBDIGlzIG1lZGlhdGVkIGJ5IHZhcmlhYmxlIEIuKioNCiAgICAgICAgKiBFZmZpY2FjeSAodjIpICRccmlnaHRhcnJvdyQgUmVzaWxpZW5jZSAodjMpICRccmlnaHRhcnJvdyQgQXZvaWRhbmNlICh2Nikgc3VjaCB0aGF0IHRoZSBlZmZlY3Qgb2YgdjIgb24gdjYgaXMgbWVkaWF0ZWQgYnkgdjMuIA0KICANCjIuICoqRXN0aW1hdGUgdGhpcyBtb2RlbCB1c2luZyB0aGUgYm9vdHN0cmFwIG1ldGhvZCB3aXRoIDEwMDAwIGJvb3RzdHJhcCBpdGVyYXRpb25zIHdpdGggTXBsdXMgdmlhKiogYE1wbHVzQXV0b21hdGlvbmAuICoqUmVxdWVzdCB0aGUgaW5kaXJlY3QgZWZmZWN0cyBvZiBlZmZpY2FjeSoqIGB2MmAgKipvbiBhdm9pZGFuY2UgY29waW5nKiogYHY2YC4gKipBbHNvLCByZXF1ZXN0IHN0YW5kYXJkaXplZCByZXN1bHRzLCBhcyB3ZWxsIGFzIGJvb3RzdHJhcCBjb25maWRlbmNlIGludGVydmFscy4qKg0KICAgICogKDItYSkgICoqUHJlc2VudCB0aGUgUiBjb2RlIGZvciAoYSkgc2V0dGluZyB1cCB0aGUgbW9kZWwgYnkgYSBjb21iaW5hdGlvbiBvZioqIGBzaW5rKClgICoqYW5kKiogYGNhdCgpYCAqKmZ1bmN0aW9ucywgKGIpIHJ1bm5pbmcgdGhlIG1vZGVsIGJ5IHRoZSoqIGBydW5Nb2RlbHMoKWAgKipmdW5jdGlvbiwgYW5kIChjKSByZWFkaW5nIHRoZSBvdXRwdXQgZmlsZSBieSB0aGUqKiBgcmVhZE1vZGVscygpYCAqKmZ1bmN0aW9uIGFuZCBzYXZlIGFzIGFuIG9iamVjdCBjYWxsZWQqKiBgbW9kZWwwMS5maXRgLg0KICAgIA0KLSBOb3RlOiANCiAgICAgICogQnkgZGVmYXVsdCwgaXQgYXBwZWFycyB0aGF0IE1wbHVzIHdpbGwgaW5jbHVkZSBlcnJvciBjb3ZhcmlhbmNlcyBiZXR3ZWVuIGVuZG9nZW5vdXMgdmFyaWFibGVzIHdpdGggbm8gZGlyZWN0IHBhdGggaW4tYmV0d2Vlbi4gVGhlcmVmb3JlLCB5b3UgbmVlZCB0byBjb25zdHJhaW4gdGhlc2UgZXJyb3IgdGVybXMgdG8gYmUgMC4gU3BlY2lmaWNhbGx5LCB5b3UgbmVlZCB0byBjb25zdHJhaW4gdGhhdCB0aGUgZXJyb3IgY292YXJpYW5jZXMgYmV0d2VlbiBgdjRgIGFuZCBgdjVgLCBiZXR3ZWVuIGB2NGAgYW5kIGB2NmAsIGFuZCBiZXR3ZWVuIGB2NWAgYW5kIGB2NmAgdG8gYmUgMC4gDQogICAgICAgICAgICAtIEZvciBleGFtcGxlLCB0byBjb25zdHJhaW4gdGhlIGVycm9yIGNvdmFyaWFuY2UgYmV0d2VlbiBgdjRgIGFuZCBgdjVgIHRvIDAsIGFkZCBhIE1wbHVzIHN5bnRheCBsaW5lOiBgdjQgd2l0aCB2NUAwO2ANCiAgICANCmBgYHtyLCBlY2hvID0gRkFMU0UsIHJlc3VsdHMgPSAnaGlkZSd9DQojY29waW5nIDwtIHJlYWQuZGVsaW0oIkM6L1VzZXJzLzQ4OTA5MTM4L09uZURyaXZlIC0gU291dGhlcm4gTWV0aG9kaXN0IFVuaXZlcnNpdHkvRGVza3RvcC9TRU0tUzIwMjQvUHJvamVjdF8yL2NvcGluZy5kYXQiLCBoZWFkZXI9RkFMU0UpDQoNCnNldHdkKCJDOi9Vc2Vycy80ODkwOTEzOC9PbmVEcml2ZSAtIFNvdXRoZXJuIE1ldGhvZGlzdCBVbml2ZXJzaXR5L0Rlc2t0b3AvU0VNLVMyMDI0L1Byb2plY3RfMiIpDQoNCiNzZXR3ZCgifi9EZXNrdG9wL1NFTS1TMjAyNC9Qcm9qZWN0XzIiKQ0KYGBgDQoNCmBgYHtyfQ0Kc2luaygicHJvamVjdDJxMS5pbnAiKQ0KY2F0KCcNCmRhdGE6ICAgICBmaWxlID0gY29waW5nLmRhdDsgDQoNCnZhcmlhYmxlOiBuYW1lcyA9IHN0cmVzcyBlZmZpY2FjeSByZXNpbGllbiBwcm9ic29sdiBzb2Npc3VwcCBhdm9pZGFuYzsgDQogICAgICAgICAgDQphbmFseXNpczogZXN0aW1hdG9yID0gbWw7IA0KICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOw0KDQptb2RlbDogICAgcHJvYnNvbHYgb24gc3RyZXNzIGVmZmljYWN5IHJlc2lsaWVuOw0KICAgICAgICAgIHNvY2lzdXBwIG9uIHN0cmVzcyByZXNpbGllbjsNCiAgICAgICAgICBhdm9pZGFuYyBvbiBzdHJlc3MgZWZmaWNhY3kgcmVzaWxpZW47IA0KICAgICAgICAgIHJlc2lsaWVuIG9uIGVmZmljYWN5OyANCiAgICAgICAgICBzdHJlc3Mgb24gcmVzaWxpZW47DQogICAgICAgICAgcHJvYnNvbHYgd2l0aCBzb2Npc3VwcEAwOyANCiAgICAgICAgICBwcm9ic29sdiB3aXRoIGF2b2lkYW5jQDA7DQogICAgICAgICAgc29jaXN1cHAgd2l0aCBhdm9pZGFuY0AwOw0KICAgICAgICAgIA0KbW9kZWwgaW5kaXJlY3Q6IA0KICAgICAgICAgIGF2b2lkYW5jIGluZCBlZmZpY2FjeTsgDQoNCm91dHB1dDogc2FtcHN0YXQgc3RhbmRhcmRpemVkDQogICAgICAgIGNpbnRlcnZhbChib290c3RyYXApOw0KJykNCnNpbmsoKQ0KYGBgDQoNCmBgYHtyfQ0KcnVuTW9kZWxzKCJwcm9qZWN0MnExLmlucCIpDQpgYGANCg0KYGBge3J9DQptb2RlbDAxLmZpdCA8LSByZWFkTW9kZWxzKCJwcm9qZWN0MnExLm91dCIpDQpgYGANCg0KTXBsdXMgT3V0cHV0IEZpbGU6IA0KDQpgYGANCk1wbHVzIFZFUlNJT04gOC42DQpNVVRIRU4gJiBNVVRIRU4NCjAyLzE1LzIwMjQgICA4OjQyIFBNDQoNCklOUFVUIElOU1RSVUNUSU9OUw0KDQoNCiAgZGF0YTogICAgIGZpbGUgPSBjb3BpbmcuZGF0Ow0KDQogIHZhcmlhYmxlOiBuYW1lcyA9IHN0cmVzcyBlZmZpY2FjeSByZXNpbGllbiBwcm9ic29sdiBzb2Npc3VwcCBhdm9pZGFuYzsNCg0KICBhbmFseXNpczogZXN0aW1hdG9yID0gbWw7DQogICAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsNCg0KICBtb2RlbDogICAgcHJvYnNvbHYgb24gc3RyZXNzIGVmZmljYWN5IHJlc2lsaWVuOw0KICAgICAgICAgICAgc29jaXN1cHAgb24gc3RyZXNzIHJlc2lsaWVuOw0KICAgICAgICAgICAgYXZvaWRhbmMgb24gc3RyZXNzIGVmZmljYWN5IHJlc2lsaWVuOw0KICAgICAgICAgICAgcmVzaWxpZW4gb24gZWZmaWNhY3k7DQogICAgICAgICAgICBzdHJlc3Mgb24gcmVzaWxpZW47DQogICAgICAgICAgICBwcm9ic29sdiB3aXRoIHNvY2lzdXBwQDA7DQogICAgICAgICAgICBwcm9ic29sdiB3aXRoIGF2b2lkYW5jQDA7DQogICAgICAgICAgICBzb2Npc3VwcCB3aXRoIGF2b2lkYW5jQDA7DQoNCiAgbW9kZWwgaW5kaXJlY3Q6DQogICAgICAgICAgICBhdm9pZGFuYyBpbmQgZWZmaWNhY3k7DQoNCiAgb3V0cHV0OiBzYW1wc3RhdCBzdGFuZGFyZGl6ZWQNCiAgICAgICAgICBjaW50ZXJ2YWwoYm9vdHN0cmFwKTsNCg0KDQoNCklOUFVUIFJFQURJTkcgVEVSTUlOQVRFRCBOT1JNQUxMWQ0KDQoNCg0KDQpTVU1NQVJZIE9GIEFOQUxZU0lTDQoNCk51bWJlciBvZiBncm91cHMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMQ0KTnVtYmVyIG9mIG9ic2VydmF0aW9ucyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMjAwDQoNCk51bWJlciBvZiBkZXBlbmRlbnQgdmFyaWFibGVzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNQ0KTnVtYmVyIG9mIGluZGVwZW5kZW50IHZhcmlhYmxlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQpOdW1iZXIgb2YgY29udGludW91cyBsYXRlbnQgdmFyaWFibGVzICAgICAgICAgICAgICAgICAgICAgICAgICAgIDANCg0KT2JzZXJ2ZWQgZGVwZW5kZW50IHZhcmlhYmxlcw0KDQogIENvbnRpbnVvdXMNCiAgIFNUUkVTUyAgICAgIFJFU0lMSUVOICAgIFBST0JTT0xWICAgIFNPQ0lTVVBQICAgIEFWT0lEQU5DDQoNCk9ic2VydmVkIGluZGVwZW5kZW50IHZhcmlhYmxlcw0KICAgRUZGSUNBQ1kNCg0KDQpFc3RpbWF0b3IgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTUwNCkluZm9ybWF0aW9uIG1hdHJpeCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBPQlNFUlZFRA0KTWF4aW11bSBudW1iZXIgb2YgaXRlcmF0aW9ucyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxMDAwDQpDb252ZXJnZW5jZSBjcml0ZXJpb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwLjUwMEQtMDQNCk1heGltdW0gbnVtYmVyIG9mIHN0ZWVwZXN0IGRlc2NlbnQgaXRlcmF0aW9ucyAgICAgICAgICAgICAgICAgICAyMA0KTnVtYmVyIG9mIGJvb3RzdHJhcCBkcmF3cw0KICAgIFJlcXVlc3RlZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEwMDAwDQogICAgQ29tcGxldGVkICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTAwMDANCg0KSW5wdXQgZGF0YSBmaWxlKHMpDQogIGNvcGluZy5kYXQNCg0KSW5wdXQgZGF0YSBmb3JtYXQgIEZSRUUNCg0KDQpTQU1QTEUgU1RBVElTVElDUw0KDQoNCiAgICAgU0FNUExFIFNUQVRJU1RJQ1MNCg0KDQogICAgICAgICAgIE1lYW5zDQogICAgICAgICAgICAgIFNUUkVTUyAgICAgICAgUkVTSUxJRU4gICAgICBQUk9CU09MViAgICAgIFNPQ0lTVVBQICAgICAgQVZPSURBTkMNCiAgICAgICAgICAgICAgX19fX19fX18gICAgICBfX19fX19fXyAgICAgIF9fX19fX19fICAgICAgX19fX19fX18gICAgICBfX19fX19fXw0KICAgICAgICAgICAgICAgMzAuMDYwICAgICAgICAyOS43OTAgICAgICAgIDI5LjQzNSAgICAgICAgMjguNzA1ICAgICAgICAyOS43NTUNCg0KDQogICAgICAgICAgIE1lYW5zDQogICAgICAgICAgICAgIEVGRklDQUNZDQogICAgICAgICAgICAgIF9fX19fX19fDQogICAgICAgICAgICAgICAzMC4zNzANCg0KDQogICAgICAgICAgIENvdmFyaWFuY2VzDQogICAgICAgICAgICAgIFNUUkVTUyAgICAgICAgUkVTSUxJRU4gICAgICBQUk9CU09MViAgICAgIFNPQ0lTVVBQICAgICAgQVZPSURBTkMNCiAgICAgICAgICAgICAgX19fX19fX18gICAgICBfX19fX19fXyAgICAgIF9fX19fX19fICAgICAgX19fX19fX18gICAgICBfX19fX19fXw0KIFNUUkVTUyAgICAgICAgNTQuODA2DQogUkVTSUxJRU4gICAgIC0xMy42NjcgICAgICAgIDM0LjI4Ng0KIFBST0JTT0xWICAgICAgLTUuNDg2ICAgICAgICAxNC40NjEgICAgICAgIDM2LjE4Ng0KIFNPQ0lTVVBQICAgICAgMTUuMDc4ICAgICAgICAgMi4wNzggICAgICAgICA2LjkwMyAgICAgICAgNTUuOTI4DQogQVZPSURBTkMgICAgICAyNi43NTAgICAgICAgIC03LjEzNiAgICAgICAgLTMuNTI4ICAgICAgICAgMi45NzggICAgICAgIDc0LjI3NQ0KIEVGRklDQUNZICAgICAtMTIuNjM3ICAgICAgICAyNy4yOTggICAgICAgIDE0Ljk0NCAgICAgICAgLTQuMTI2ICAgICAgICAtMy42OTkNCg0KDQogICAgICAgICAgIENvdmFyaWFuY2VzDQogICAgICAgICAgICAgIEVGRklDQUNZDQogICAgICAgICAgICAgIF9fX19fX19fDQogRUZGSUNBQ1kgICAgICA0OS40NDMNCg0KDQogICAgICAgICAgIENvcnJlbGF0aW9ucw0KICAgICAgICAgICAgICBTVFJFU1MgICAgICAgIFJFU0lMSUVOICAgICAgUFJPQlNPTFYgICAgICBTT0NJU1VQUCAgICAgIEFWT0lEQU5DDQogICAgICAgICAgICAgIF9fX19fX19fICAgICAgX19fX19fX18gICAgICBfX19fX19fXyAgICAgIF9fX19fX19fICAgICAgX19fX19fX18NCiBTVFJFU1MgICAgICAgICAxLjAwMA0KIFJFU0lMSUVOICAgICAgLTAuMzE1ICAgICAgICAgMS4wMDANCiBQUk9CU09MViAgICAgIC0wLjEyMyAgICAgICAgIDAuNDExICAgICAgICAgMS4wMDANCiBTT0NJU1VQUCAgICAgICAwLjI3MiAgICAgICAgIDAuMDQ3ICAgICAgICAgMC4xNTMgICAgICAgICAxLjAwMA0KIEFWT0lEQU5DICAgICAgIDAuNDE5ICAgICAgICAtMC4xNDEgICAgICAgIC0wLjA2OCAgICAgICAgIDAuMDQ2ICAgICAgICAgMS4wMDANCiBFRkZJQ0FDWSAgICAgIC0wLjI0MyAgICAgICAgIDAuNjYzICAgICAgICAgMC4zNTMgICAgICAgIC0wLjA3OCAgICAgICAgLTAuMDYxDQoNCg0KICAgICAgICAgICBDb3JyZWxhdGlvbnMNCiAgICAgICAgICAgICAgRUZGSUNBQ1kNCiAgICAgICAgICAgICAgX19fX19fX18NCiBFRkZJQ0FDWSAgICAgICAxLjAwMA0KDQoNClVOSVZBUklBVEUgU0FNUExFIFNUQVRJU1RJQ1MNCg0KDQogICAgIFVOSVZBUklBVEUgSElHSEVSLU9SREVSIE1PTUVOVCBERVNDUklQVElWRSBTVEFUSVNUSUNTDQoNCiAgICAgICAgIFZhcmlhYmxlLyAgICAgICAgIE1lYW4vICAgICBTa2V3bmVzcy8gICBNaW5pbXVtLyAlIHdpdGggICAgICAgICAgICAgICAgUGVyY2VudGlsZXMNCiAgICAgICAgU2FtcGxlIFNpemUgICAgICBWYXJpYW5jZSAgICBLdXJ0b3NpcyAgICBNYXhpbXVtICBNaW4vTWF4ICAgICAgMjAlLzYwJSAgICA0MCUvODAlICAgIE1lZGlhbg0KDQogICAgIFNUUkVTUyAgICAgICAgICAgICAgIDMwLjA2MCAgICAgIC0wLjA3NSAgICAgICA5LjAwMCAgICAwLjUwJSAgICAgIDI0LjAwMCAgICAgMjguMDAwICAgICAzMC4wMDANCiAgICAgICAgICAgICAyMDAuMDAwICAgICAgNTQuODA2ICAgICAgLTAuMTU2ICAgICAgNTEuMDAwICAgIDAuNTAlICAgICAgMzIuMDAwICAgICAzNi4wMDANCiAgICAgUkVTSUxJRU4gICAgICAgICAgICAgMjkuNzkwICAgICAgLTAuMTY0ICAgICAgIDkuMDAwICAgIDAuNTAlICAgICAgMjUuMDAwICAgICAyOC4wMDAgICAgIDMwLjAwMA0KICAgICAgICAgICAgIDIwMC4wMDAgICAgICAzNC4yODYgICAgICAgMC4xMjAgICAgICA0NS4wMDAgICAgMC41MCUgICAgICAzMi4wMDAgICAgIDM1LjAwMA0KICAgICBQUk9CU09MViAgICAgICAgICAgICAyOS40MzUgICAgICAgMC4wOTAgICAgICAxMy4wMDAgICAgMC41MCUgICAgICAyNC4wMDAgICAgIDI4LjAwMCAgICAgMjkuMDAwDQogICAgICAgICAgICAgMjAwLjAwMCAgICAgIDM2LjE4NiAgICAgIC0wLjE2MiAgICAgIDQ3LjAwMCAgICAwLjUwJSAgICAgIDMxLjAwMCAgICAgMzUuMDAwDQogICAgIFNPQ0lTVVBQICAgICAgICAgICAgIDI4LjcwNSAgICAgIC0wLjIyMiAgICAgICA3LjAwMCAgICAwLjUwJSAgICAgIDIzLjAwMCAgICAgMjcuMDAwICAgICAyOS4wMDANCiAgICAgICAgICAgICAyMDAuMDAwICAgICAgNTUuOTI4ICAgICAgLTAuMTUyICAgICAgNDYuMDAwICAgIDAuNTAlICAgICAgMzEuMDAwICAgICAzNS4wMDANCiAgICAgQVZPSURBTkMgICAgICAgICAgICAgMjkuNzU1ICAgICAgIDAuMDU2ICAgICAgIDkuMDAwICAgIDAuNTAlICAgICAgMjIuMDAwICAgICAyOC4wMDAgICAgIDMwLjAwMA0KICAgICAgICAgICAgIDIwMC4wMDAgICAgICA3NC4yNzUgICAgICAgMC4wNzYgICAgICA1OC4wMDAgICAgMC41MCUgICAgICAzMi4wMDAgICAgIDM3LjAwMA0KICAgICBFRkZJQ0FDWSAgICAgICAgICAgICAzMC4zNzAgICAgICAgMC4yNDMgICAgICAgOS4wMDAgICAgMC41MCUgICAgICAyNC4wMDAgICAgIDI4LjAwMCAgICAgMzAuMDAwDQogICAgICAgICAgICAgMjAwLjAwMCAgICAgIDQ5LjQ0MyAgICAgICAwLjQ3OCAgICAgIDU1LjAwMCAgICAwLjUwJSAgICAgIDMyLjAwMCAgICAgMzcuMDAwDQoNCg0KVEhFIE1PREVMIEVTVElNQVRJT04gVEVSTUlOQVRFRCBOT1JNQUxMWQ0KDQoNCg0KTU9ERUwgRklUIElORk9STUFUSU9ODQoNCk51bWJlciBvZiBGcmVlIFBhcmFtZXRlcnMgICAgICAgICAgICAgICAgICAgICAgIDIwDQoNCkxvZ2xpa2VsaWhvb2QNCg0KICAgICAgICAgIEgwIFZhbHVlICAgICAgICAgICAgICAgICAgICAgICAtMzI0Ni44OTANCiAgICAgICAgICBIMSBWYWx1ZSAgICAgICAgICAgICAgICAgICAgICAgLTMyNDEuMjM0DQoNCkluZm9ybWF0aW9uIENyaXRlcmlhDQoNCiAgICAgICAgICBBa2Fpa2UgKEFJQykgICAgICAgICAgICAgICAgICAgIDY1MzMuNzc5DQogICAgICAgICAgQmF5ZXNpYW4gKEJJQykgICAgICAgICAgICAgICAgICA2NTk5Ljc0NQ0KICAgICAgICAgIFNhbXBsZS1TaXplIEFkanVzdGVkIEJJQyAgICAgICAgNjUzNi4zODMNCiAgICAgICAgICAgIChuKiA9IChuICsgMikgLyAyNCkNCg0KQ2hpLVNxdWFyZSBUZXN0IG9mIE1vZGVsIEZpdA0KDQogICAgICAgICAgVmFsdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDExLjMxMQ0KICAgICAgICAgIERlZ3JlZXMgb2YgRnJlZWRvbSAgICAgICAgICAgICAgICAgICAgIDUNCiAgICAgICAgICBQLVZhbHVlICAgICAgICAgICAgICAgICAgICAgICAgICAgMC4wNDU2DQoNClJNU0VBIChSb290IE1lYW4gU3F1YXJlIEVycm9yIE9mIEFwcHJveGltYXRpb24pDQoNCiAgICAgICAgICBFc3RpbWF0ZSAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDc5DQogICAgICAgICAgOTAgUGVyY2VudCBDLkkuICAgICAgICAgICAgICAgICAgICAwLjAxMCAgMC4xNDINCiAgICAgICAgICBQcm9iYWJpbGl0eSBSTVNFQSA8PSAuMDUgICAgICAgICAgIDAuMTc4DQoNCkNGSS9UTEkNCg0KICAgICAgICAgIENGSSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMC45NzMNCiAgICAgICAgICBUTEkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuOTE4DQoNCkNoaS1TcXVhcmUgVGVzdCBvZiBNb2RlbCBGaXQgZm9yIHRoZSBCYXNlbGluZSBNb2RlbA0KDQogICAgICAgICAgVmFsdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgMjQ3LjIxOA0KICAgICAgICAgIERlZ3JlZXMgb2YgRnJlZWRvbSAgICAgICAgICAgICAgICAgICAgMTUNCiAgICAgICAgICBQLVZhbHVlICAgICAgICAgICAgICAgICAgICAgICAgICAgMC4wMDAwDQoNClNSTVIgKFN0YW5kYXJkaXplZCBSb290IE1lYW4gU3F1YXJlIFJlc2lkdWFsKQ0KDQogICAgICAgICAgVmFsdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwLjAzOA0KDQoNCg0KTU9ERUwgUkVTVUxUUw0KDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZA0KICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQ0KDQogUFJPQlNPTFYgT04NCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4wMTAgICAgICAwLjA1NiAgICAgIDAuMTgwICAgICAgMC44NTcNCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4xMjQgICAgICAwLjA2NiAgICAgIDEuODg2ICAgICAgMC4wNTkNCiAgICBSRVNJTElFTiAgICAgICAgICAgMC4zMjcgICAgICAwLjA5MyAgICAgIDMuNTMxICAgICAgMC4wMDANCg0KIFNPQ0lTVVBQIE9ODQogICAgU1RSRVNTICAgICAgICAgICAgIDAuMzIyICAgICAgMC4wNzUgICAgICA0LjMxNCAgICAgIDAuMDAwDQogICAgUkVTSUxJRU4gICAgICAgICAgIDAuMTg5ICAgICAgMC4wOTQgICAgICAyLjAxMiAgICAgIDAuMDQ0DQoNCiBBVk9JREFOQyBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjQ4OCAgICAgIDAuMDg3ICAgICAgNS41OTIgICAgICAwLjAwMA0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjEwMiAgICAgIDAuMTAxICAgICAgMS4wMTIgICAgICAwLjMxMg0KICAgIFJFU0lMSUVOICAgICAgICAgIC0wLjA5NSAgICAgIDAuMTM2ICAgICAtMC43MDIgICAgICAwLjQ4Mw0KDQogUkVTSUxJRU4gT04NCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC41NTIgICAgICAwLjA0MyAgICAgMTIuNzk2ICAgICAgMC4wMDANCg0KIFNUUkVTUyAgIE9ODQogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMzk5ICAgICAgMC4wOTEgICAgIC00LjM2MyAgICAgIDAuMDAwDQoNCiBQUk9CU09MViBXSVRIDQogICAgU09DSVNVUFAgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgOTk5LjAwMCAgICA5OTkuMDAwDQogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgOTk5LjAwMCAgICA5OTkuMDAwDQoNCiBTT0NJU1VQUCBXSVRIDQogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgOTk5LjAwMCAgICA5OTkuMDAwDQoNCiBJbnRlcmNlcHRzDQogICAgU1RSRVNTICAgICAgICAgICAgNDEuOTM1ICAgICAgMi43NzAgICAgIDE1LjE0MCAgICAgIDAuMDAwDQogICAgUkVTSUxJRU4gICAgICAgICAgMTMuMDIzICAgICAgMS4zOTcgICAgICA5LjMxOSAgICAgIDAuMDAwDQogICAgUFJPQlNPTFYgICAgICAgICAgMTUuNjIwICAgICAgMy4xMzEgICAgICA0Ljk4OSAgICAgIDAuMDAwDQogICAgU09DSVNVUFAgICAgICAgICAgMTMuMzg2ICAgICAgNC4yNzUgICAgICAzLjEzMSAgICAgIDAuMDAyDQogICAgQVZPSURBTkMgICAgICAgICAgMTQuODEyICAgICAgNC45NjcgICAgICAyLjk4MiAgICAgIDAuMDAzDQoNCiBSZXNpZHVhbCBWYXJpYW5jZXMNCiAgICBTVFJFU1MgICAgICAgICAgICA0OS4zNTkgICAgICA0LjQ5MyAgICAgMTAuOTg3ICAgICAgMC4wMDANCiAgICBSRVNJTElFTiAgICAgICAgICAxOS4yMTUgICAgICAxLjg4MSAgICAgMTAuMjE3ICAgICAgMC4wMDANCiAgICBQUk9CU09MViAgICAgICAgICAyOS42NTggICAgICAyLjQ2OSAgICAgMTIuMDExICAgICAgMC4wMDANCiAgICBTT0NJU1VQUCAgICAgICAgICA1MC42NzcgICAgICA0LjYzMSAgICAgMTAuOTQyICAgICAgMC4wMDANCiAgICBBVk9JREFOQyAgICAgICAgICA2MC45MjAgICAgICA1LjcxNyAgICAgMTAuNjU2ICAgICAgMC4wMDANCg0KDQpTVEFOREFSRElaRUQgTU9ERUwgUkVTVUxUUw0KDQoNClNURFlYIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZA0KICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQ0KDQogUFJPQlNPTFYgT04NCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4wMTIgICAgICAwLjA2OSAgICAgIDAuMTgxICAgICAgMC44NTcNCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4xNDUgICAgICAwLjA3NyAgICAgIDEuODkzICAgICAgMC4wNTgNCiAgICBSRVNJTElFTiAgICAgICAgICAgMC4zMTggICAgICAwLjA4MyAgICAgIDMuODQzICAgICAgMC4wMDANCg0KIFNPQ0lTVVBQIE9ODQogICAgU1RSRVNTICAgICAgICAgICAgIDAuMzE5ICAgICAgMC4wNzAgICAgICA0LjU4OSAgICAgIDAuMDAwDQogICAgUkVTSUxJRU4gICAgICAgICAgIDAuMTQ4ICAgICAgMC4wNzIgICAgICAyLjA2OCAgICAgIDAuMDM5DQoNCiBBVk9JREFOQyBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjQxOSAgICAgIDAuMDY2ICAgICAgNi4zMzEgICAgICAwLjAwMA0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjA4NCAgICAgIDAuMDgzICAgICAgMS4wMTEgICAgICAwLjMxMg0KICAgIFJFU0lMSUVOICAgICAgICAgIC0wLjA2NSAgICAgIDAuMDkzICAgICAtMC42OTcgICAgICAwLjQ4Ng0KDQogUkVTSUxJRU4gT04NCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC42NjMgICAgICAwLjA0MiAgICAgMTUuODM0ICAgICAgMC4wMDANCg0KIFNUUkVTUyAgIE9ODQogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMzE1ICAgICAgMC4wNjkgICAgIC00LjYwMyAgICAgIDAuMDAwDQoNCiBQUk9CU09MViBXSVRIDQogICAgU09DSVNVUFAgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwDQogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwDQoNCiBTT0NJU1VQUCBXSVRIDQogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwDQoNCiBJbnRlcmNlcHRzDQogICAgU1RSRVNTICAgICAgICAgICAgIDUuNjY0ICAgICAgMC4zNDUgICAgIDE2LjQzMyAgICAgIDAuMDAwDQogICAgUkVTSUxJRU4gICAgICAgICAgIDIuMjI0ICAgICAgMC4zMzUgICAgICA2LjY0MCAgICAgIDAuMDAwDQogICAgUFJPQlNPTFYgICAgICAgICAgIDIuNTk2ICAgICAgMC41ODEgICAgICA0LjQ3MSAgICAgIDAuMDAwDQogICAgU09DSVNVUFAgICAgICAgICAgIDEuNzkwICAgICAgMC42MTQgICAgICAyLjkxMyAgICAgIDAuMDA0DQogICAgQVZPSURBTkMgICAgICAgICAgIDEuNzE3ICAgICAgMC42MjIgICAgICAyLjc2MiAgICAgIDAuMDA2DQoNCiBSZXNpZHVhbCBWYXJpYW5jZXMNCiAgICBTVFJFU1MgICAgICAgICAgICAgMC45MDEgICAgICAwLjA0MyAgICAgMjEuMDI3ICAgICAgMC4wMDANCiAgICBSRVNJTElFTiAgICAgICAgICAgMC41NjAgICAgICAwLjA1NSAgICAgMTAuMjA4ICAgICAgMC4wMDANCiAgICBQUk9CU09MViAgICAgICAgICAgMC44MTkgICAgICAwLjA0OCAgICAgMTcuMTc2ICAgICAgMC4wMDANCiAgICBTT0NJU1VQUCAgICAgICAgICAgMC45MDYgICAgICAwLjA0MCAgICAgMjIuODAwICAgICAgMC4wMDANCiAgICBBVk9JREFOQyAgICAgICAgICAgMC44MTggICAgICAwLjA0OCAgICAgMTcuMjIyICAgICAgMC4wMDANCg0KDQpTVERZIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZA0KICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQ0KDQogUFJPQlNPTFYgT04NCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4wMTIgICAgICAwLjA2OSAgICAgIDAuMTgxICAgICAgMC44NTcNCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4wMjEgICAgICAwLjAxMSAgICAgIDEuODk5ICAgICAgMC4wNTgNCiAgICBSRVNJTElFTiAgICAgICAgICAgMC4zMTggICAgICAwLjA4MyAgICAgIDMuODQzICAgICAgMC4wMDANCg0KIFNPQ0lTVVBQIE9ODQogICAgU1RSRVNTICAgICAgICAgICAgIDAuMzE5ICAgICAgMC4wNzAgICAgICA0LjU4OSAgICAgIDAuMDAwDQogICAgUkVTSUxJRU4gICAgICAgICAgIDAuMTQ4ICAgICAgMC4wNzIgICAgICAyLjA2OCAgICAgIDAuMDM5DQoNCiBBVk9JREFOQyBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjQxOSAgICAgIDAuMDY2ICAgICAgNi4zMzEgICAgICAwLjAwMA0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjAxMiAgICAgIDAuMDEyICAgICAgMS4wMDMgICAgICAwLjMxNg0KICAgIFJFU0lMSUVOICAgICAgICAgIC0wLjA2NSAgICAgIDAuMDkzICAgICAtMC42OTcgICAgICAwLjQ4Ng0KDQogUkVTSUxJRU4gT04NCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4wOTQgICAgICAwLjAwNSAgICAgMTcuOTg5ICAgICAgMC4wMDANCg0KIFNUUkVTUyAgIE9ODQogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMzE1ICAgICAgMC4wNjkgICAgIC00LjYwMyAgICAgIDAuMDAwDQoNCiBQUk9CU09MViBXSVRIDQogICAgU09DSVNVUFAgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwDQogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwDQoNCiBTT0NJU1VQUCBXSVRIDQogICAgQVZPSURBTkMgICAgICAgICAgIDAuMDAwICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDEuMDAwDQoNCiBJbnRlcmNlcHRzDQogICAgU1RSRVNTICAgICAgICAgICAgIDUuNjY0ICAgICAgMC4zNDUgICAgIDE2LjQzMyAgICAgIDAuMDAwDQogICAgUkVTSUxJRU4gICAgICAgICAgIDIuMjI0ICAgICAgMC4zMzUgICAgICA2LjY0MCAgICAgIDAuMDAwDQogICAgUFJPQlNPTFYgICAgICAgICAgIDIuNTk2ICAgICAgMC41ODEgICAgICA0LjQ3MSAgICAgIDAuMDAwDQogICAgU09DSVNVUFAgICAgICAgICAgIDEuNzkwICAgICAgMC42MTQgICAgICAyLjkxMyAgICAgIDAuMDA0DQogICAgQVZPSURBTkMgICAgICAgICAgIDEuNzE3ICAgICAgMC42MjIgICAgICAyLjc2MiAgICAgIDAuMDA2DQoNCiBSZXNpZHVhbCBWYXJpYW5jZXMNCiAgICBTVFJFU1MgICAgICAgICAgICAgMC45MDEgICAgICAwLjA0MyAgICAgMjEuMDI3ICAgICAgMC4wMDANCiAgICBSRVNJTElFTiAgICAgICAgICAgMC41NjAgICAgICAwLjA1NSAgICAgMTAuMjA4ICAgICAgMC4wMDANCiAgICBQUk9CU09MViAgICAgICAgICAgMC44MTkgICAgICAwLjA0OCAgICAgMTcuMTc2ICAgICAgMC4wMDANCiAgICBTT0NJU1VQUCAgICAgICAgICAgMC45MDYgICAgICAwLjA0MCAgICAgMjIuODAwICAgICAgMC4wMDANCiAgICBBVk9JREFOQyAgICAgICAgICAgMC44MTggICAgICAwLjA0OCAgICAgMTcuMjIyICAgICAgMC4wMDANCg0KDQpTVEQgU3RhbmRhcmRpemF0aW9uDQoNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBUd28tVGFpbGVkDQogICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICAgICAgIFMuRS4gIEVzdC4vUy5FLiAgICBQLVZhbHVlDQoNCiBQUk9CU09MViBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgICAwLjAxMCAgICAgIDAuMDU2ICAgICAgMC4xODAgICAgICAwLjg1Nw0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjEyNCAgICAgIDAuMDY2ICAgICAgMS44ODYgICAgICAwLjA1OQ0KICAgIFJFU0lMSUVOICAgICAgICAgICAwLjMyNyAgICAgIDAuMDkzICAgICAgMy41MzEgICAgICAwLjAwMA0KDQogU09DSVNVUFAgT04NCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4zMjIgICAgICAwLjA3NSAgICAgIDQuMzE0ICAgICAgMC4wMDANCiAgICBSRVNJTElFTiAgICAgICAgICAgMC4xODkgICAgICAwLjA5NCAgICAgIDIuMDEyICAgICAgMC4wNDQNCg0KIEFWT0lEQU5DIE9ODQogICAgU1RSRVNTICAgICAgICAgICAgIDAuNDg4ICAgICAgMC4wODcgICAgICA1LjU5MiAgICAgIDAuMDAwDQogICAgRUZGSUNBQ1kgICAgICAgICAgIDAuMTAyICAgICAgMC4xMDEgICAgICAxLjAxMiAgICAgIDAuMzEyDQogICAgUkVTSUxJRU4gICAgICAgICAgLTAuMDk1ICAgICAgMC4xMzYgICAgIC0wLjcwMiAgICAgIDAuNDgzDQoNCiBSRVNJTElFTiBPTg0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjU1MiAgICAgIDAuMDQzICAgICAxMi43OTYgICAgICAwLjAwMA0KDQogU1RSRVNTICAgT04NCiAgICBSRVNJTElFTiAgICAgICAgICAtMC4zOTkgICAgICAwLjA5MSAgICAgLTQuMzYzICAgICAgMC4wMDANCg0KIFBST0JTT0xWIFdJVEgNCiAgICBTT0NJU1VQUCAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDANCiAgICBBVk9JREFOQyAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDANCg0KIFNPQ0lTVVBQIFdJVEgNCiAgICBBVk9JREFOQyAgICAgICAgICAgMC4wMDAgICAgICAwLjAwMCAgICAgIDAuMDAwICAgICAgMS4wMDANCg0KIEludGVyY2VwdHMNCiAgICBTVFJFU1MgICAgICAgICAgICA0MS45MzUgICAgICAyLjc3MCAgICAgMTUuMTQwICAgICAgMC4wMDANCiAgICBSRVNJTElFTiAgICAgICAgICAxMy4wMjMgICAgICAxLjM5NyAgICAgIDkuMzE5ICAgICAgMC4wMDANCiAgICBQUk9CU09MViAgICAgICAgICAxNS42MjAgICAgICAzLjEzMSAgICAgIDQuOTg5ICAgICAgMC4wMDANCiAgICBTT0NJU1VQUCAgICAgICAgICAxMy4zODYgICAgICA0LjI3NSAgICAgIDMuMTMxICAgICAgMC4wMDINCiAgICBBVk9JREFOQyAgICAgICAgICAxNC44MTIgICAgICA0Ljk2NyAgICAgIDIuOTgyICAgICAgMC4wMDMNCg0KIFJlc2lkdWFsIFZhcmlhbmNlcw0KICAgIFNUUkVTUyAgICAgICAgICAgIDQ5LjM1OSAgICAgIDQuNDkzICAgICAxMC45ODcgICAgICAwLjAwMA0KICAgIFJFU0lMSUVOICAgICAgICAgIDE5LjIxNSAgICAgIDEuODgxICAgICAxMC4yMTcgICAgICAwLjAwMA0KICAgIFBST0JTT0xWICAgICAgICAgIDI5LjY1OCAgICAgIDIuNDY5ICAgICAxMi4wMTEgICAgICAwLjAwMA0KICAgIFNPQ0lTVVBQICAgICAgICAgIDUwLjY3NyAgICAgIDQuNjMxICAgICAxMC45NDIgICAgICAwLjAwMA0KICAgIEFWT0lEQU5DICAgICAgICAgIDYwLjkyMCAgICAgIDUuNzE3ICAgICAxMC42NTYgICAgICAwLjAwMA0KDQoNClItU1FVQVJFDQoNCiAgICBPYnNlcnZlZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBUd28tVGFpbGVkDQogICAgVmFyaWFibGUgICAgICAgIEVzdGltYXRlICAgICAgIFMuRS4gIEVzdC4vUy5FLiAgICBQLVZhbHVlDQoNCiAgICBTVFJFU1MgICAgICAgICAgICAgMC4wOTkgICAgICAwLjA0MyAgICAgIDIuMzIxICAgICAgMC4wMjANCiAgICBSRVNJTElFTiAgICAgICAgICAgMC40NDAgICAgICAwLjA1NSAgICAgIDguMDA2ICAgICAgMC4wMDANCiAgICBQUk9CU09MViAgICAgICAgICAgMC4xODEgICAgICAwLjA0OCAgICAgIDMuNzg0ICAgICAgMC4wMDANCiAgICBTT0NJU1VQUCAgICAgICAgICAgMC4wOTQgICAgICAwLjA0MCAgICAgIDIuMzYzICAgICAgMC4wMTgNCiAgICBBVk9JREFOQyAgICAgICAgICAgMC4xODIgICAgICAwLjA0OCAgICAgIDMuODI1ICAgICAgMC4wMDANCg0KDQpUT1RBTCwgVE9UQUwgSU5ESVJFQ1QsIFNQRUNJRklDIElORElSRUNULCBBTkQgRElSRUNUIEVGRkVDVFMNCg0KDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZA0KICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQ0KDQpFZmZlY3RzIGZyb20gRUZGSUNBQ1kgdG8gQVZPSURBTkMNCg0KICBUb3RhbCAgICAgICAgICAgICAgIC0wLjA1OCAgICAgIDAuMDgxICAgICAtMC43MDkgICAgICAwLjQ3OQ0KICBUb3RhbCBpbmRpcmVjdCAgICAgIC0wLjE2MCAgICAgIDAuMDc2ICAgICAtMi4wOTggICAgICAwLjAzNg0KDQogIFNwZWNpZmljIGluZGlyZWN0IDENCiAgICBBVk9JREFOQw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgICAgLTAuMDUzICAgICAgMC4wNzUgICAgIC0wLjcwMCAgICAgIDAuNDg0DQoNCiAgU3BlY2lmaWMgaW5kaXJlY3QgMg0KICAgIEFWT0lEQU5DDQogICAgU1RSRVNTDQogICAgUkVTSUxJRU4NCiAgICBFRkZJQ0FDWSAgICAgICAgICAtMC4xMDcgICAgICAwLjAyOSAgICAgLTMuNjUwICAgICAgMC4wMDANCg0KICBEaXJlY3QNCiAgICBBVk9JREFOQw0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjEwMiAgICAgIDAuMTAxICAgICAgMS4wMTIgICAgICAwLjMxMg0KDQoNCg0KU1RBTkRBUkRJWkVEIFRPVEFMLCBUT1RBTCBJTkRJUkVDVCwgU1BFQ0lGSUMgSU5ESVJFQ1QsIEFORCBESVJFQ1QgRUZGRUNUUw0KDQoNClNURFlYIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHdvLVRhaWxlZA0KICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgICAgICBTLkUuICBFc3QuL1MuRS4gICAgUC1WYWx1ZQ0KDQpFZmZlY3RzIGZyb20gRUZGSUNBQ1kgdG8gQVZPSURBTkMNCg0KICBUb3RhbCAgICAgICAgICAgICAgIC0wLjA0NyAgICAgIDAuMDY2ICAgICAtMC43MTAgICAgICAwLjQ3OA0KICBUb3RhbCBpbmRpcmVjdCAgICAgIC0wLjEzMCAgICAgIDAuMDY0ICAgICAtMi4wNDkgICAgICAwLjA0MA0KDQogIFNwZWNpZmljIGluZGlyZWN0IDENCiAgICBBVk9JREFOQw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgICAgLTAuMDQzICAgICAgMC4wNjIgICAgIC0wLjY5MyAgICAgIDAuNDg4DQoNCiAgU3BlY2lmaWMgaW5kaXJlY3QgMg0KICAgIEFWT0lEQU5DDQogICAgU1RSRVNTDQogICAgUkVTSUxJRU4NCiAgICBFRkZJQ0FDWSAgICAgICAgICAtMC4wODggICAgICAwLjAyNCAgICAgLTMuNjI2ICAgICAgMC4wMDANCg0KICBEaXJlY3QNCiAgICBBVk9JREFOQw0KICAgIEVGRklDQUNZICAgICAgICAgICAwLjA4NCAgICAgIDAuMDgzICAgICAgMS4wMTEgICAgICAwLjMxMg0KDQoNCg0KU1REWSBTdGFuZGFyZGl6YXRpb24NCg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR3by1UYWlsZWQNCiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICAgICAgUy5FLiAgRXN0Li9TLkUuICAgIFAtVmFsdWUNCg0KRWZmZWN0cyBmcm9tIEVGRklDQUNZIHRvIEFWT0lEQU5DDQoNCiAgVG90YWwgICAgICAgICAgICAgICAtMC4wMDcgICAgICAwLjAwOSAgICAgLTAuNzA3ICAgICAgMC40ODANCiAgVG90YWwgaW5kaXJlY3QgICAgICAtMC4wMTkgICAgICAwLjAwOSAgICAgLTIuMDcxICAgICAgMC4wMzgNCg0KICBTcGVjaWZpYyBpbmRpcmVjdCAxDQogICAgQVZPSURBTkMNCiAgICBSRVNJTElFTg0KICAgIEVGRklDQUNZICAgICAgICAgIC0wLjAwNiAgICAgIDAuMDA5ICAgICAtMC42OTIgICAgICAwLjQ4OQ0KDQogIFNwZWNpZmljIGluZGlyZWN0IDINCiAgICBBVk9JREFOQw0KICAgIFNUUkVTUw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgICAgLTAuMDEyICAgICAgMC4wMDMgICAgIC0zLjgyOCAgICAgIDAuMDAwDQoNCiAgRGlyZWN0DQogICAgQVZPSURBTkMNCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4wMTIgICAgICAwLjAxMiAgICAgIDEuMDAzICAgICAgMC4zMTYNCg0KDQoNClNURCBTdGFuZGFyZGl6YXRpb24NCg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR3by1UYWlsZWQNCiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICAgICAgUy5FLiAgRXN0Li9TLkUuICAgIFAtVmFsdWUNCg0KRWZmZWN0cyBmcm9tIEVGRklDQUNZIHRvIEFWT0lEQU5DDQoNCiAgVG90YWwgICAgICAgICAgICAgICAtMC4wNTggICAgICAwLjA4MSAgICAgLTAuNzA5ICAgICAgMC40NzkNCiAgVG90YWwgaW5kaXJlY3QgICAgICAtMC4xNjAgICAgICAwLjA3NiAgICAgLTIuMDk4ICAgICAgMC4wMzYNCg0KICBTcGVjaWZpYyBpbmRpcmVjdCAxDQogICAgQVZPSURBTkMNCiAgICBSRVNJTElFTg0KICAgIEVGRklDQUNZICAgICAgICAgIC0wLjA1MyAgICAgIDAuMDc1ICAgICAtMC43MDAgICAgICAwLjQ4NA0KDQogIFNwZWNpZmljIGluZGlyZWN0IDINCiAgICBBVk9JREFOQw0KICAgIFNUUkVTUw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgICAgLTAuMTA3ICAgICAgMC4wMjkgICAgIC0zLjY1MCAgICAgIDAuMDAwDQoNCiAgRGlyZWN0DQogICAgQVZPSURBTkMNCiAgICBFRkZJQ0FDWSAgICAgICAgICAgMC4xMDIgICAgICAwLjEwMSAgICAgIDEuMDEyICAgICAgMC4zMTINCg0KDQoNCg0KQ09ORklERU5DRSBJTlRFUlZBTFMgT0YgTU9ERUwgUkVTVUxUUw0KDQogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUNCg0KIFBST0JTT0xWIE9ODQogICAgU1RSRVNTICAgICAgICAgIC0wLjEzNiAgICAgIC0wLjA5OSAgICAgIC0wLjA4MiAgICAgICAwLjAxMCAgICAgICAwLjEwMSAgICAgICAwLjEyMCAgICAgICAwLjE1Nw0KICAgIEVGRklDQUNZICAgICAgICAtMC4wNDQgICAgICAtMC4wMDMgICAgICAgMC4wMTYgICAgICAgMC4xMjQgICAgICAgMC4yMzEgICAgICAgMC4yNTUgICAgICAgMC4zMDANCiAgICBSRVNJTElFTiAgICAgICAgIDAuMDkyICAgICAgIDAuMTQ5ICAgICAgIDAuMTc4ICAgICAgIDAuMzI3ICAgICAgIDAuNDgxICAgICAgIDAuNTEyICAgICAgIDAuNTc1DQoNCiBTT0NJU1VQUCBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgMC4xMjcgICAgICAgMC4xNzYgICAgICAgMC4yMDEgICAgICAgMC4zMjIgICAgICAgMC40NDQgICAgICAgMC40NjkgICAgICAgMC41MTcNCiAgICBSRVNJTElFTiAgICAgICAgLTAuMDQ5ICAgICAgIDAuMDA3ICAgICAgIDAuMDM2ICAgICAgIDAuMTg5ICAgICAgIDAuMzQ0ICAgICAgIDAuMzczICAgICAgIDAuNDM0DQoNCiBBVk9JREFOQyBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgMC4yNjUgICAgICAgMC4zMTUgICAgICAgMC4zNDQgICAgICAgMC40ODggICAgICAgMC42MzIgICAgICAgMC42NTggICAgICAgMC43MjINCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTU2ICAgICAgLTAuMDk2ICAgICAgLTAuMDY4ICAgICAgIDAuMTAyICAgICAgIDAuMjY4ICAgICAgIDAuMjk4ICAgICAgIDAuMzU3DQogICAgUkVTSUxJRU4gICAgICAgIC0wLjQzOSAgICAgIC0wLjM2MCAgICAgIC0wLjMxNyAgICAgIC0wLjA5NSAgICAgICAwLjEyOSAgICAgICAwLjE3MiAgICAgICAwLjI1MQ0KDQogUkVTSUxJRU4gT04NCiAgICBFRkZJQ0FDWSAgICAgICAgIDAuNDQyICAgICAgIDAuNDY2ICAgICAgIDAuNDgxICAgICAgIDAuNTUyICAgICAgIDAuNjIyICAgICAgIDAuNjM2ICAgICAgIDAuNjY1DQoNCiBTVFJFU1MgICBPTg0KICAgIFJFU0lMSUVOICAgICAgICAtMC42MzcgICAgICAtMC41ODAgICAgICAtMC41NTAgICAgICAtMC4zOTkgICAgICAtMC4yNDkgICAgICAtMC4yMTcgICAgICAtMC4xNjENCg0KIFBST0JTT0xWIFdJVEgNCiAgICBTT0NJU1VQUCAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwDQogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMA0KDQogU09DSVNVUFAgV0lUSA0KICAgIEFWT0lEQU5DICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDANCg0KIEludGVyY2VwdHMNCiAgICBTVFJFU1MgICAgICAgICAgMzQuNjUwICAgICAgMzYuMzQ0ICAgICAgMzcuNDY2ICAgICAgNDEuOTM1ICAgICAgNDYuNTM3ICAgICAgNDcuMzU5ICAgICAgNDkuMDM0DQogICAgUkVTSUxJRU4gICAgICAgICA5LjQxMCAgICAgIDEwLjI4MyAgICAgIDEwLjczNCAgICAgIDEzLjAyMyAgICAgIDE1LjM2NCAgICAgIDE1Ljc2NiAgICAgIDE2LjU2MA0KICAgIFBST0JTT0xWICAgICAgICAgNy41MTYgICAgICAgOS4zNzcgICAgICAxMC40MTAgICAgICAxNS42MjAgICAgICAyMC43MjYgICAgICAyMS43MTEgICAgICAyMy43NTgNCiAgICBTT0NJU1VQUCAgICAgICAgIDIuMjQ3ICAgICAgIDQuOTU3ICAgICAgIDYuMjY4ICAgICAgMTMuMzg2ICAgICAgMjAuMjQxICAgICAgMjEuNTY3ICAgICAgMjQuMTUwDQogICAgQVZPSURBTkMgICAgICAgICAyLjM0NiAgICAgICA1LjI5MSAgICAgICA2LjgxOCAgICAgIDE0LjgxMiAgICAgIDIzLjE0MiAgICAgIDI0Ljc5OSAgICAgIDI3LjgwNA0KDQogUmVzaWR1YWwgVmFyaWFuY2VzDQogICAgU1RSRVNTICAgICAgICAgIDM3Ljk1NCAgICAgIDQwLjQ1MCAgICAgIDQxLjY5NSAgICAgIDQ5LjM1OSAgICAgIDU2LjQwNiAgICAgIDU4LjA0NSAgICAgIDYxLjM2Nw0KICAgIFJFU0lMSUVOICAgICAgICAxNC40MTMgICAgICAxNS40NDUgICAgICAxNi4wMDkgICAgICAxOS4yMTUgICAgICAyMi4xOTcgICAgICAyMi44MTQgICAgICAyNC4xNTENCiAgICBQUk9CU09MViAgICAgICAgMjIuOTExICAgICAgMjQuNDA4ICAgICAgMjUuMDcwICAgICAgMjkuNjU4ICAgICAgMzMuMjQxICAgICAgMzQuMDcyICAgICAgMzUuNTA0DQogICAgU09DSVNVUFAgICAgICAgIDM4Ljg3MyAgICAgIDQxLjE0OCAgICAgIDQyLjQwMyAgICAgIDUwLjY3NyAgICAgIDU3LjU4NiAgICAgIDU5LjA5MSAgICAgIDYyLjM4Nw0KICAgIEFWT0lEQU5DICAgICAgICA0NS40ODAgICAgICA0OC42NTUgICAgICA1MC41MzMgICAgICA2MC45MjAgICAgICA2OS4yODEgICAgICA3MS4yNDEgICAgICA3NS4xMTANCg0KDQpDT05GSURFTkNFIElOVEVSVkFMUyBPRiBTVEFOREFSRElaRUQgTU9ERUwgUkVTVUxUUw0KDQoNClNURFlYIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUNCg0KIFBST0JTT0xWIE9ODQogICAgU1RSRVNTICAgICAgICAgIC0wLjE2OCAgICAgIC0wLjEyMSAgICAgIC0wLjEwMCAgICAgICAwLjAxMiAgICAgICAwLjEyNCAgICAgICAwLjE0NyAgICAgICAwLjE5Mw0KICAgIEVGRklDQUNZICAgICAgICAtMC4wNTAgICAgICAtMC4wMDQgICAgICAgMC4wMTggICAgICAgMC4xNDUgICAgICAgMC4yNzEgICAgICAgMC4yOTggICAgICAgMC4zNDcNCiAgICBSRVNJTElFTiAgICAgICAgIDAuMDk1ICAgICAgIDAuMTUxICAgICAgIDAuMTgwICAgICAgIDAuMzE4ICAgICAgIDAuNDUwICAgICAgIDAuNDc1ICAgICAgIDAuNTI4DQoNCiBTT0NJU1VQUCBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgMC4xMjcgICAgICAgMC4xNzcgICAgICAgMC4yMDIgICAgICAgMC4zMTkgICAgICAgMC40MzAgICAgICAgMC40NDkgICAgICAgMC40ODcNCiAgICBSRVNJTElFTiAgICAgICAgLTAuMDM5ICAgICAgIDAuMDA1ICAgICAgIDAuMDI5ICAgICAgIDAuMTQ4ICAgICAgIDAuMjY0ICAgICAgIDAuMjg1ICAgICAgIDAuMzI2DQoNCiBBVk9JREFOQyBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgMC4yMzQgICAgICAgMC4yNzkgICAgICAgMC4zMDQgICAgICAgMC40MTkgICAgICAgMC41MjEgICAgICAgMC41NDAgICAgICAgMC41NzcNCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTI4ICAgICAgLTAuMDc3ICAgICAgLTAuMDU1ICAgICAgIDAuMDg0ICAgICAgIDAuMjE3ICAgICAgIDAuMjQ2ICAgICAgIDAuMjg4DQogICAgUkVTSUxJRU4gICAgICAgIC0wLjMwOSAgICAgIC0wLjI0OSAgICAgIC0wLjIxOCAgICAgIC0wLjA2NSAgICAgICAwLjA4NiAgICAgICAwLjExMSAgICAgICAwLjE2Nw0KDQogUkVTSUxJRU4gT04NCiAgICBFRkZJQ0FDWSAgICAgICAgIDAuNTQ0ICAgICAgIDAuNTczICAgICAgIDAuNTg4ICAgICAgIDAuNjYzICAgICAgIDAuNzI2ICAgICAgIDAuNzM4ICAgICAgIDAuNzU5DQoNCiBTVFJFU1MgICBPTg0KICAgIFJFU0lMSUVOICAgICAgICAtMC40ODAgICAgICAtMC40NDMgICAgICAtMC40MjUgICAgICAtMC4zMTUgICAgICAtMC4xOTggICAgICAtMC4xNzQgICAgICAtMC4xMjkNCg0KIFBST0JTT0xWIFdJVEgNCiAgICBTT0NJU1VQUCAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwDQogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMA0KDQogU09DSVNVUFAgV0lUSA0KICAgIEFWT0lEQU5DICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDANCg0KIEludGVyY2VwdHMNCiAgICBTVFJFU1MgICAgICAgICAgIDQuNzQwICAgICAgIDUuMDA3ICAgICAgIDUuMTEzICAgICAgIDUuNjY0ICAgICAgIDYuMjUxICAgICAgIDYuMzQ5ICAgICAgIDYuNTc3DQogICAgUkVTSUxJRU4gICAgICAgICAxLjQ2NSAgICAgICAxLjYzNCAgICAgICAxLjcyNyAgICAgICAyLjIyNCAgICAgICAyLjgzNSAgICAgICAyLjkzNyAgICAgICAzLjE5NQ0KICAgIFBST0JTT0xWICAgICAgICAgMS4xNzAgICAgICAgMS41MDEgICAgICAgMS42NzMgICAgICAgMi41OTYgICAgICAgMy41ODYgICAgICAgMy43ODEgICAgICAgNC4xODENCiAgICBTT0NJU1VQUCAgICAgICAgIDAuMjg0ICAgICAgIDAuNjM5ICAgICAgIDAuODA4ICAgICAgIDEuNzkwICAgICAgIDIuODIzICAgICAgIDMuMDI0ICAgICAgIDMuNDIzDQogICAgQVZPSURBTkMgICAgICAgICAwLjI1NyAgICAgICAwLjU4MSAgICAgICAwLjc2MCAgICAgICAxLjcxNyAgICAgICAyLjgwMiAgICAgICAzLjAxNiAgICAgICAzLjQyOA0KDQogUmVzaWR1YWwgVmFyaWFuY2VzDQogICAgU1RSRVNTICAgICAgICAgICAwLjc2OSAgICAgICAwLjgwMyAgICAgICAwLjgxOSAgICAgICAwLjkwMSAgICAgICAwLjk2MSAgICAgICAwLjk3MCAgICAgICAwLjk4Mw0KICAgIFJFU0lMSUVOICAgICAgICAgMC40MjQgICAgICAgMC40NTUgICAgICAgMC40NzMgICAgICAgMC41NjAgICAgICAgMC42NTQgICAgICAgMC42NzIgICAgICAgMC43MDQNCiAgICBQUk9CU09MViAgICAgICAgIDAuNjc4ICAgICAgIDAuNzEwICAgICAgIDAuNzI4ICAgICAgIDAuODE5ICAgICAgIDAuODg1ICAgICAgIDAuODk2ICAgICAgIDAuOTE4DQogICAgU09DSVNVUFAgICAgICAgICAwLjc4MSAgICAgICAwLjgxMSAgICAgICAwLjgyOCAgICAgICAwLjkwNiAgICAgICAwLjk1OCAgICAgICAwLjk2NSAgICAgICAwLjk4MQ0KICAgIEFWT0lEQU5DICAgICAgICAgMC42NzUgICAgICAgMC43MDkgICAgICAgMC43MjYgICAgICAgMC44MTggICAgICAgMC44ODIgICAgICAgMC44OTUgICAgICAgMC45MTcNCg0KDQpTVERZIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUNCg0KIFBST0JTT0xWIE9ODQogICAgU1RSRVNTICAgICAgICAgIC0wLjE2OCAgICAgIC0wLjEyMSAgICAgIC0wLjEwMCAgICAgICAwLjAxMiAgICAgICAwLjEyNCAgICAgICAwLjE0NyAgICAgICAwLjE5Mw0KICAgIEVGRklDQUNZICAgICAgICAtMC4wMDcgICAgICAtMC4wMDEgICAgICAgMC4wMDMgICAgICAgMC4wMjEgICAgICAgMC4wMzggICAgICAgMC4wNDIgICAgICAgMC4wNDkNCiAgICBSRVNJTElFTiAgICAgICAgIDAuMDk1ICAgICAgIDAuMTUxICAgICAgIDAuMTgwICAgICAgIDAuMzE4ICAgICAgIDAuNDUwICAgICAgIDAuNDc1ICAgICAgIDAuNTI4DQoNCiBTT0NJU1VQUCBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgMC4xMjcgICAgICAgMC4xNzcgICAgICAgMC4yMDIgICAgICAgMC4zMTkgICAgICAgMC40MzAgICAgICAgMC40NDkgICAgICAgMC40ODcNCiAgICBSRVNJTElFTiAgICAgICAgLTAuMDM5ICAgICAgIDAuMDA1ICAgICAgIDAuMDI5ICAgICAgIDAuMTQ4ICAgICAgIDAuMjY0ICAgICAgIDAuMjg1ICAgICAgIDAuMzI2DQoNCiBBVk9JREFOQyBPTg0KICAgIFNUUkVTUyAgICAgICAgICAgMC4yMzQgICAgICAgMC4yNzkgICAgICAgMC4zMDQgICAgICAgMC40MTkgICAgICAgMC41MjEgICAgICAgMC41NDAgICAgICAgMC41NzcNCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMDE4ICAgICAgLTAuMDExICAgICAgLTAuMDA4ICAgICAgIDAuMDEyICAgICAgIDAuMDMxICAgICAgIDAuMDM1ICAgICAgIDAuMDQyDQogICAgUkVTSUxJRU4gICAgICAgIC0wLjMwOSAgICAgIC0wLjI0OSAgICAgIC0wLjIxOCAgICAgIC0wLjA2NSAgICAgICAwLjA4NiAgICAgICAwLjExMSAgICAgICAwLjE2Nw0KDQogUkVTSUxJRU4gT04NCiAgICBFRkZJQ0FDWSAgICAgICAgIDAuMDgxICAgICAgIDAuMDg0ICAgICAgIDAuMDg2ICAgICAgIDAuMDk0ICAgICAgIDAuMTAzICAgICAgIDAuMTA1ICAgICAgIDAuMTA5DQoNCiBTVFJFU1MgICBPTg0KICAgIFJFU0lMSUVOICAgICAgICAtMC40ODAgICAgICAtMC40NDMgICAgICAtMC40MjUgICAgICAtMC4zMTUgICAgICAtMC4xOTggICAgICAtMC4xNzQgICAgICAtMC4xMjkNCg0KIFBST0JTT0xWIFdJVEgNCiAgICBTT0NJU1VQUCAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwDQogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMA0KDQogU09DSVNVUFAgV0lUSA0KICAgIEFWT0lEQU5DICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDANCg0KIEludGVyY2VwdHMNCiAgICBTVFJFU1MgICAgICAgICAgIDQuNzQwICAgICAgIDUuMDA3ICAgICAgIDUuMTEzICAgICAgIDUuNjY0ICAgICAgIDYuMjUxICAgICAgIDYuMzQ5ICAgICAgIDYuNTc3DQogICAgUkVTSUxJRU4gICAgICAgICAxLjQ2NSAgICAgICAxLjYzNCAgICAgICAxLjcyNyAgICAgICAyLjIyNCAgICAgICAyLjgzNSAgICAgICAyLjkzNyAgICAgICAzLjE5NQ0KICAgIFBST0JTT0xWICAgICAgICAgMS4xNzAgICAgICAgMS41MDEgICAgICAgMS42NzMgICAgICAgMi41OTYgICAgICAgMy41ODYgICAgICAgMy43ODEgICAgICAgNC4xODENCiAgICBTT0NJU1VQUCAgICAgICAgIDAuMjg0ICAgICAgIDAuNjM5ICAgICAgIDAuODA4ICAgICAgIDEuNzkwICAgICAgIDIuODIzICAgICAgIDMuMDI0ICAgICAgIDMuNDIzDQogICAgQVZPSURBTkMgICAgICAgICAwLjI1NyAgICAgICAwLjU4MSAgICAgICAwLjc2MCAgICAgICAxLjcxNyAgICAgICAyLjgwMiAgICAgICAzLjAxNiAgICAgICAzLjQyOA0KDQogUmVzaWR1YWwgVmFyaWFuY2VzDQogICAgU1RSRVNTICAgICAgICAgICAwLjc2OSAgICAgICAwLjgwMyAgICAgICAwLjgxOSAgICAgICAwLjkwMSAgICAgICAwLjk2MSAgICAgICAwLjk3MCAgICAgICAwLjk4Mw0KICAgIFJFU0lMSUVOICAgICAgICAgMC40MjQgICAgICAgMC40NTUgICAgICAgMC40NzMgICAgICAgMC41NjAgICAgICAgMC42NTQgICAgICAgMC42NzIgICAgICAgMC43MDQNCiAgICBQUk9CU09MViAgICAgICAgIDAuNjc4ICAgICAgIDAuNzEwICAgICAgIDAuNzI4ICAgICAgIDAuODE5ICAgICAgIDAuODg1ICAgICAgIDAuODk2ICAgICAgIDAuOTE4DQogICAgU09DSVNVUFAgICAgICAgICAwLjc4MSAgICAgICAwLjgxMSAgICAgICAwLjgyOCAgICAgICAwLjkwNiAgICAgICAwLjk1OCAgICAgICAwLjk2NSAgICAgICAwLjk4MQ0KICAgIEFWT0lEQU5DICAgICAgICAgMC42NzUgICAgICAgMC43MDkgICAgICAgMC43MjYgICAgICAgMC44MTggICAgICAgMC44ODIgICAgICAgMC44OTUgICAgICAgMC45MTcNCg0KDQpTVEQgU3RhbmRhcmRpemF0aW9uDQoNCiAgICAgICAgICAgICAgICAgIExvd2VyIC41JSAgTG93ZXIgMi41JSAgICBMb3dlciA1JSAgICBFc3RpbWF0ZSAgICBVcHBlciA1JSAgVXBwZXIgMi41JSAgIFVwcGVyIC41JQ0KDQogUFJPQlNPTFYgT04NCiAgICBTVFJFU1MgICAgICAgICAgLTAuMTM2ICAgICAgLTAuMDk5ICAgICAgLTAuMDgyICAgICAgIDAuMDEwICAgICAgIDAuMTAxICAgICAgIDAuMTIwICAgICAgIDAuMTU3DQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjA0NCAgICAgIC0wLjAwMyAgICAgICAwLjAxNiAgICAgICAwLjEyNCAgICAgICAwLjIzMSAgICAgICAwLjI1NSAgICAgICAwLjMwMA0KICAgIFJFU0lMSUVOICAgICAgICAgMC4wOTIgICAgICAgMC4xNDkgICAgICAgMC4xNzggICAgICAgMC4zMjcgICAgICAgMC40ODEgICAgICAgMC41MTIgICAgICAgMC41NzUNCg0KIFNPQ0lTVVBQIE9ODQogICAgU1RSRVNTICAgICAgICAgICAwLjEyNyAgICAgICAwLjE3NiAgICAgICAwLjIwMSAgICAgICAwLjMyMiAgICAgICAwLjQ0NCAgICAgICAwLjQ2OSAgICAgICAwLjUxNw0KICAgIFJFU0lMSUVOICAgICAgICAtMC4wNDkgICAgICAgMC4wMDcgICAgICAgMC4wMzYgICAgICAgMC4xODkgICAgICAgMC4zNDQgICAgICAgMC4zNzMgICAgICAgMC40MzQNCg0KIEFWT0lEQU5DIE9ODQogICAgU1RSRVNTICAgICAgICAgICAwLjI2NSAgICAgICAwLjMxNSAgICAgICAwLjM0NCAgICAgICAwLjQ4OCAgICAgICAwLjYzMiAgICAgICAwLjY1OCAgICAgICAwLjcyMg0KICAgIEVGRklDQUNZICAgICAgICAtMC4xNTYgICAgICAtMC4wOTYgICAgICAtMC4wNjggICAgICAgMC4xMDIgICAgICAgMC4yNjggICAgICAgMC4yOTggICAgICAgMC4zNTcNCiAgICBSRVNJTElFTiAgICAgICAgLTAuNDM5ICAgICAgLTAuMzYwICAgICAgLTAuMzE3ICAgICAgLTAuMDk1ICAgICAgIDAuMTI5ICAgICAgIDAuMTcyICAgICAgIDAuMjUxDQoNCiBSRVNJTElFTiBPTg0KICAgIEVGRklDQUNZICAgICAgICAgMC40NDIgICAgICAgMC40NjYgICAgICAgMC40ODEgICAgICAgMC41NTIgICAgICAgMC42MjIgICAgICAgMC42MzYgICAgICAgMC42NjUNCg0KIFNUUkVTUyAgIE9ODQogICAgUkVTSUxJRU4gICAgICAgIC0wLjYzNyAgICAgIC0wLjU4MCAgICAgIC0wLjU1MCAgICAgIC0wLjM5OSAgICAgIC0wLjI0OSAgICAgIC0wLjIxNyAgICAgIC0wLjE2MQ0KDQogUFJPQlNPTFYgV0lUSA0KICAgIFNPQ0lTVVBQICAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDAgICAgICAgMC4wMDANCiAgICBBVk9JREFOQyAgICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwICAgICAgIDAuMDAwDQoNCiBTT0NJU1VQUCBXSVRIDQogICAgQVZPSURBTkMgICAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMCAgICAgICAwLjAwMA0KDQogSW50ZXJjZXB0cw0KICAgIFNUUkVTUyAgICAgICAgICAzNC42NTAgICAgICAzNi4zNDQgICAgICAzNy40NjYgICAgICA0MS45MzUgICAgICA0Ni41MzcgICAgICA0Ny4zNTkgICAgICA0OS4wMzQNCiAgICBSRVNJTElFTiAgICAgICAgIDkuNDEwICAgICAgMTAuMjgzICAgICAgMTAuNzM0ICAgICAgMTMuMDIzICAgICAgMTUuMzY0ICAgICAgMTUuNzY2ICAgICAgMTYuNTYwDQogICAgUFJPQlNPTFYgICAgICAgICA3LjUxNiAgICAgICA5LjM3NyAgICAgIDEwLjQxMCAgICAgIDE1LjYyMCAgICAgIDIwLjcyNiAgICAgIDIxLjcxMSAgICAgIDIzLjc1OA0KICAgIFNPQ0lTVVBQICAgICAgICAgMi4yNDcgICAgICAgNC45NTcgICAgICAgNi4yNjggICAgICAxMy4zODYgICAgICAyMC4yNDEgICAgICAyMS41NjcgICAgICAyNC4xNTANCiAgICBBVk9JREFOQyAgICAgICAgIDIuMzQ2ICAgICAgIDUuMjkxICAgICAgIDYuODE4ICAgICAgMTQuODEyICAgICAgMjMuMTQyICAgICAgMjQuNzk5ICAgICAgMjcuODA0DQoNCiBSZXNpZHVhbCBWYXJpYW5jZXMNCiAgICBTVFJFU1MgICAgICAgICAgMzcuOTU0ICAgICAgNDAuNDUwICAgICAgNDEuNjk1ICAgICAgNDkuMzU5ICAgICAgNTYuNDA2ICAgICAgNTguMDQ1ICAgICAgNjEuMzY3DQogICAgUkVTSUxJRU4gICAgICAgIDE0LjQxMyAgICAgIDE1LjQ0NSAgICAgIDE2LjAwOSAgICAgIDE5LjIxNSAgICAgIDIyLjE5NyAgICAgIDIyLjgxNCAgICAgIDI0LjE1MQ0KICAgIFBST0JTT0xWICAgICAgICAyMi45MTEgICAgICAyNC40MDggICAgICAyNS4wNzAgICAgICAyOS42NTggICAgICAzMy4yNDEgICAgICAzNC4wNzIgICAgICAzNS41MDQNCiAgICBTT0NJU1VQUCAgICAgICAgMzguODczICAgICAgNDEuMTQ4ICAgICAgNDIuNDAzICAgICAgNTAuNjc3ICAgICAgNTcuNTg2ICAgICAgNTkuMDkxICAgICAgNjIuMzg3DQogICAgQVZPSURBTkMgICAgICAgIDQ1LjQ4MCAgICAgIDQ4LjY1NSAgICAgIDUwLjUzMyAgICAgIDYwLjkyMCAgICAgIDY5LjI4MSAgICAgIDcxLjI0MSAgICAgIDc1LjExMA0KDQoNCkNPTkZJREVOQ0UgSU5URVJWQUxTIE9GIFRPVEFMLCBUT1RBTCBJTkRJUkVDVCwgU1BFQ0lGSUMgSU5ESVJFQ1QsIEFORCBESVJFQ1QgRUZGRUNUUw0KDQoNCiAgICAgICAgICAgICAgICAgIExvd2VyIC41JSAgTG93ZXIgMi41JSAgICBMb3dlciA1JSAgICBFc3RpbWF0ZSAgICBVcHBlciA1JSAgVXBwZXIgMi41JSAgIFVwcGVyIC41JQ0KDQpFZmZlY3RzIGZyb20gRUZGSUNBQ1kgdG8gQVZPSURBTkMNCg0KICBUb3RhbCAgICAgICAgICAgICAtMC4yNjIgICAgICAtMC4yMTQgICAgICAtMC4xODggICAgICAtMC4wNTggICAgICAgMC4wODAgICAgICAgMC4xMDYgICAgICAgMC4xNTMNCiAgVG90YWwgaW5kaXJlY3QgICAgLTAuMzUxICAgICAgLTAuMzEwICAgICAgLTAuMjg1ICAgICAgLTAuMTYwICAgICAgLTAuMDMzICAgICAgLTAuMDEyICAgICAgIDAuMDM3DQoNCiAgU3BlY2lmaWMgaW5kaXJlY3QgMQ0KICAgIEFWT0lEQU5DDQogICAgUkVTSUxJRU4NCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMjUwICAgICAgLTAuMjAxICAgICAgLTAuMTc1ICAgICAgLTAuMDUzICAgICAgIDAuMDcxICAgICAgIDAuMDkyICAgICAgIDAuMTQwDQoNCiAgU3BlY2lmaWMgaW5kaXJlY3QgMg0KICAgIEFWT0lEQU5DDQogICAgU1RSRVNTDQogICAgUkVTSUxJRU4NCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTkyICAgICAgLTAuMTY4ICAgICAgLTAuMTU3ICAgICAgLTAuMTA3ICAgICAgLTAuMDYxICAgICAgLTAuMDU0ICAgICAgLTAuMDQwDQoNCiAgRGlyZWN0DQogICAgQVZPSURBTkMNCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTU2ICAgICAgLTAuMDk2ICAgICAgLTAuMDY4ICAgICAgIDAuMTAyICAgICAgIDAuMjY4ICAgICAgIDAuMjk4ICAgICAgIDAuMzU3DQoNCg0KDQpDT05GSURFTkNFIElOVEVSVkFMUyBPRiBTVEFOREFSRElaRUQgVE9UQUwsIFRPVEFMIElORElSRUNULCBTUEVDSUZJQyBJTkRJUkVDVCwgQU5EIERJUkVDVCBFRkZFQ1RTDQoNCg0KU1REWVggU3RhbmRhcmRpemF0aW9uDQoNCiAgICAgICAgICAgICAgICAgIExvd2VyIC41JSAgTG93ZXIgMi41JSAgICBMb3dlciA1JSAgICBFc3RpbWF0ZSAgICBVcHBlciA1JSAgVXBwZXIgMi41JSAgIFVwcGVyIC41JQ0KDQpFZmZlY3RzIGZyb20gRUZGSUNBQ1kgdG8gQVZPSURBTkMNCg0KICBUb3RhbCAgICAgICAgICAgICAtMC4yMTQgICAgICAtMC4xNzQgICAgICAtMC4xNTQgICAgICAtMC4wNDcgICAgICAgMC4wNjQgICAgICAgMC4wODQgICAgICAgMC4xMjINCiAgVG90YWwgaW5kaXJlY3QgICAgLTAuMjk4ICAgICAgLTAuMjU3ICAgICAgLTAuMjM3ICAgICAgLTAuMTMwICAgICAgLTAuMDI3ICAgICAgLTAuMDEwICAgICAgIDAuMDI5DQoNCiAgU3BlY2lmaWMgaW5kaXJlY3QgMQ0KICAgIEFWT0lEQU5DDQogICAgUkVTSUxJRU4NCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMjEzICAgICAgLTAuMTY3ICAgICAgLTAuMTQ3ICAgICAgLTAuMDQzICAgICAgIDAuMDU2ICAgICAgIDAuMDc0ICAgICAgIDAuMTEzDQoNCiAgU3BlY2lmaWMgaW5kaXJlY3QgMg0KICAgIEFWT0lEQU5DDQogICAgU1RSRVNTDQogICAgUkVTSUxJRU4NCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTU2ICAgICAgLTAuMTM3ICAgICAgLTAuMTI5ICAgICAgLTAuMDg4ICAgICAgLTAuMDQ5ICAgICAgLTAuMDQzICAgICAgLTAuMDMyDQoNCiAgRGlyZWN0DQogICAgQVZPSURBTkMNCiAgICBFRkZJQ0FDWSAgICAgICAgLTAuMTI4ICAgICAgLTAuMDc3ICAgICAgLTAuMDU1ICAgICAgIDAuMDg0ICAgICAgIDAuMjE3ICAgICAgIDAuMjQ2ICAgICAgIDAuMjg4DQoNCg0KDQpTVERZIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUNCg0KRWZmZWN0cyBmcm9tIEVGRklDQUNZIHRvIEFWT0lEQU5DDQoNCiAgVG90YWwgICAgICAgICAgICAgLTAuMDMwICAgICAgLTAuMDI1ICAgICAgLTAuMDIyICAgICAgLTAuMDA3ICAgICAgIDAuMDA5ICAgICAgIDAuMDEyICAgICAgIDAuMDE4DQogIFRvdGFsIGluZGlyZWN0ICAgIC0wLjA0MiAgICAgIC0wLjAzNiAgICAgIC0wLjAzMyAgICAgIC0wLjAxOSAgICAgIC0wLjAwNCAgICAgIC0wLjAwMSAgICAgICAwLjAwNA0KDQogIFNwZWNpZmljIGluZGlyZWN0IDENCiAgICBBVk9JREFOQw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjAzMCAgICAgIC0wLjAyNCAgICAgIC0wLjAyMSAgICAgIC0wLjAwNiAgICAgICAwLjAwOCAgICAgICAwLjAxMSAgICAgICAwLjAxNg0KDQogIFNwZWNpZmljIGluZGlyZWN0IDINCiAgICBBVk9JREFOQw0KICAgIFNUUkVTUw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjAyMiAgICAgIC0wLjAxOSAgICAgIC0wLjAxOCAgICAgIC0wLjAxMiAgICAgIC0wLjAwNyAgICAgIC0wLjAwNiAgICAgIC0wLjAwNQ0KDQogIERpcmVjdA0KICAgIEFWT0lEQU5DDQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjAxOCAgICAgIC0wLjAxMSAgICAgIC0wLjAwOCAgICAgICAwLjAxMiAgICAgICAwLjAzMSAgICAgICAwLjAzNSAgICAgICAwLjA0Mg0KDQoNCg0KU1REIFN0YW5kYXJkaXphdGlvbg0KDQogICAgICAgICAgICAgICAgICBMb3dlciAuNSUgIExvd2VyIDIuNSUgICAgTG93ZXIgNSUgICAgRXN0aW1hdGUgICAgVXBwZXIgNSUgIFVwcGVyIDIuNSUgICBVcHBlciAuNSUNCg0KRWZmZWN0cyBmcm9tIEVGRklDQUNZIHRvIEFWT0lEQU5DDQoNCiAgVG90YWwgICAgICAgICAgICAgLTAuMjYyICAgICAgLTAuMjE0ICAgICAgLTAuMTg4ICAgICAgLTAuMDU4ICAgICAgIDAuMDgwICAgICAgIDAuMTA2ICAgICAgIDAuMTUzDQogIFRvdGFsIGluZGlyZWN0ICAgIC0wLjM1MSAgICAgIC0wLjMxMCAgICAgIC0wLjI4NSAgICAgIC0wLjE2MCAgICAgIC0wLjAzMyAgICAgIC0wLjAxMiAgICAgICAwLjAzNw0KDQogIFNwZWNpZmljIGluZGlyZWN0IDENCiAgICBBVk9JREFOQw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjI1MCAgICAgIC0wLjIwMSAgICAgIC0wLjE3NSAgICAgIC0wLjA1MyAgICAgICAwLjA3MSAgICAgICAwLjA5MiAgICAgICAwLjE0MA0KDQogIFNwZWNpZmljIGluZGlyZWN0IDINCiAgICBBVk9JREFOQw0KICAgIFNUUkVTUw0KICAgIFJFU0lMSUVODQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjE5MiAgICAgIC0wLjE2OCAgICAgIC0wLjE1NyAgICAgIC0wLjEwNyAgICAgIC0wLjA2MSAgICAgIC0wLjA1NCAgICAgIC0wLjA0MA0KDQogIERpcmVjdA0KICAgIEFWT0lEQU5DDQogICAgRUZGSUNBQ1kgICAgICAgIC0wLjE1NiAgICAgIC0wLjA5NiAgICAgIC0wLjA2OCAgICAgICAwLjEwMiAgICAgICAwLjI2OCAgICAgICAwLjI5OCAgICAgICAwLjM1Nw0KDQoNCg0KDQogICAgIEJlZ2lubmluZyBUaW1lOiAgMjA6NDI6MjINCiAgICAgICAgRW5kaW5nIFRpbWU6ICAyMDo0MjozNA0KICAgICAgIEVsYXBzZWQgVGltZTogIDAwOjAwOjEyDQoNCg0KDQpNVVRIRU4gJiBNVVRIRU4NCjM0NjMgU3RvbmVyIEF2ZS4NCkxvcyBBbmdlbGVzLCBDQSAgOTAwNjYNCg0KVGVsOiAoMzEwKSAzOTEtOTk3MQ0KRmF4OiAoMzEwKSAzOTEtODk3MQ0KV2ViOiB3d3cuU3RhdE1vZGVsLmNvbQ0KU3VwcG9ydDogU3VwcG9ydEBTdGF0TW9kZWwuY29tDQoNCkNvcHlyaWdodCAoYykgMTk5OC0yMDIxIE11dGhlbiAmIE11dGhlbg0KDQpgYGANCjMuICoqTGV0J3MgbG9vayBhdCB0aGUgZml0IGluZGljZXMqKi4NCiAgICAtICgzLWEpICoqUnVuIGEgbGluZSBvZiBjb2RlIGBtb2RlbDAxLmZpdCRzdW1tYXJpZXMgJT4lIHVubGlzdCgpYC4gTm90ZSB0aGF0IGBtb2RlbDAxLmZpdGAgaXMgdGhlIG9iamVjdCB5b3UgY3JlYXRlZCBpbiB0aGUgU3RlcCAoZSkgb2YgUXVlc3Rpb24gKDItYSkuKioNCiAgICANCmBgYHtyfQ0KbW9kZWwwMS5maXQkc3VtbWFyaWVzICU+JSB1bmxpc3QoKQ0KYGBgDQoNCiAgLSAoMy1iKSAqKkJyaWVmbHkgY29tbWVudCBvbiBDaGktc3F1YXJlLXJlbGF0ZWQgdmFsdWVzICgqKiRcY2hpXjIkLCAkZGYkLCAqKmFuZCoqICRwJCoqLXZhbHVlKSwgQ0ZJLCBUTEksIFJNU0VBLCA5MCUgQ0kgb2YgUk1TRUEsIGFuZCBTUk1SLioqDQogIA0KICAgICAgKiBDRkkgaXMgMC45NzMgYW5kID4uOTUsIGluZGljYXRpbmcgZ29vZCBmaXQgYWNjb3JkaW5nIHRvIEh1ICYgQmVudGxlciAoMTk5OSkuDQogICAgICAqIFRMSSBpcyAwLjkxOCBhbmQgPi45MCBidXQgPC45NSwgaW5kaWNhdGluZyByZWFzb25hYmx5IGdvb2QgZml0IGFjY29yZGluZyB0byBIdSAmIEJlbnRsZXIgKDE5OTkpLiANCiAgICAgICogUk1TRUEgaXMgMC4wNzkgYW5kIC4wNSA8IFJNU0VBICRcbGVxJCAuMDgsIGluZGljYXRpbmcgcmVhc29uYWJsZSBmaXQgYWNjb3JkaW5nIHRvIEJyb3duZSAmIEN1ZGVjayAoMTk5MykuDQogICAgICAqIExvd2VyIGJvdW5kIG9mIDkwJSBDSSBmb3IgUk1TRUEgaXMgMC4wMSBhbmQgJFxsZXEkIDAuMDUsIGluZGljYXRpbmcgZ29vZCBmaXQuICANCiAgICAgICogVXBwZXIgYm91bmQgb2YgOTAlIENJIGZvciBSTVNFQSBpcyAwLjE0MiBhbmQgJFxnZXEkIDAuMTAsIGluZGljYXRpbmcgYmFkIGZpdC4gIA0KICAgICAgKiBTUk1SIGlzIDAuMDM4IGFuZCAkXGxlcSQgMC4wOCwgaW5kaWNhdGluZyBhY2NlcHRhYmxlIGZpdCBhY2NvcmRpbmcgdG8gSHUgJiBCZW50bGVyICgxOTk5KS4gDQoNCiAgLSAoMy1jKSAqKkhhbmQgY29tcHV0ZSBSTVNFQSBmb3IgdGhlIGJhc2VsaW5lIG1vZGVsIGJ5IGhhbmQuIEJhc2VkIG9uIEtlbm55J3MgcmVjb21tZW5kYXRpb24sIFdvdWxkIHlvdSBzdXBwb3J0IHRoZSB1c2Ugb2YgQ0ZJIGFuZCBUTEk/IFdoeT8gV2h5IG5vdD8qKg0KICAgICAgKiAkUk1TRUFfe0Jhc2VsaW5lfSA9IFxzcXJ0e1xmcmFje1xjaGleMl97QmFzZWxpbmV9LWRmX3tCYXNlbGluZX19e2RmX3tCYXNlbGluZX0oTi0xKX19ID0gXHNxcnR7XGZyYWN7Q2hpXCxTcXVhcmVcLFZhbHVlXCwtXCxEZWdyZWVzXCxvZlwsRnJlZWRvbX17RGVncmVlc1wsb2ZcLEZyZWVkb21cLCBcdGltZXNcLChTYW1wbGVcLFNpemVcLC1cLDEpfX09XHNxcnR7XGZyYWN7MTEuMzExLTV9ezVcdGltZXMoMjAwLTEpfX0gPSAwLjA3OTY0MTE1IFxhcHByb3ggMC4wOCQNCiAgICAgICogWWVzLCBJIHdvdWxkIHN1cHBvcnQgdGhlIHVzZSBvZiBDRkkgYW5kIFRMSSBhY2NvcmRpbmcgdG8gS2VubnkncyByZWNvbW1lbmRhdGlvbiwgYXMgdGhlIG1vZGVsJ3MgUk1TRUEgb2YgMC4wOCBpcyA8IDAuMTU4Lg0KICAgICAgDQogIC0gKDMtZCkgKipXb3VsZCB5b3UgYmUgc2F0aXNmaWVkIHdpdGggdGhlIGZpdCBvZiB0aGlzIG1vZGVsPyBXaHk/IFdoeSBub3Q/IFdoYXQgd291bGQgeW91IGRvIG5leHQsIGlmIHlvdSBhcmUgbm90IHNhdGlzZmllZD8qKg0KICAgICAgKiBZZXMsIEkgd291bGQgYmUgc2F0aXNmaWVkIHdpdGggdGhlIGZpdCBvZiB0aGUgbW9kZWwsIGFzIFJNU0VBIGluZGljYXRlcyBhY2NlcHRhYmxlIHVzZSBvZiBDRkkgYW5kIFRMSSBmb3IgZXN0aW1hdGluZyBnb29kbmVzcyBvZiBmaXQgYWNjb3JkaW5nIHRvIEtlbm55J3MgKDIwMTQpIGd1aWRlbGluZXMuIA0KDQotICg0KSAqKkxldCdzIGxvb2sgYXQgdGhlIGVzdGltYXRlZCBtb2RlbCBwYXJhbWV0ZXJzLioqDQogICAgKiAoNC1hKSAqKkV4dHJhY3QgZXN0aW1hdGVkIHN0YW5kYXJkaXplZCBtb2RlbCBwYXJhbWV0ZXJzIChpLmUuLCBwYXRoIGNvZWZmaWNpZW50cywgaW50ZXJjZXB0cywgYW5kIHJlc2lkdWFsIHZhcmlhbmNlcykuIFVzZSoqIGBtb2RlbDAxLmZpdCRwYXJhbWV0ZXJzJHN0ZHl4LnN0YW5kYXJkaXplZGAqKiwgYXNzdW1pbmcgdGhlIG91dHB1dCBvYmplY3QgaGFzIGJlZW4gc2F2ZWQgYXMqKiBgbW9kZWwwMS5maXRgLg0KYGBge3J9DQptb2RlbDAxLmZpdCRwYXJhbWV0ZXJzJHN0ZHl4LnN0YW5kYXJkaXplZA0KYGBgDQogICAgKiAoNC1iKSAqKkludGVycHJldCB0aGUgc3RhbmRhcmRpemVkIHBhdGggY29lZmZpY2llbnRzIG9mIHN0cmVzcyBvbiBhdm9pZGFuY2UgY29waW5nLioqDQoNClRoZSBzdGFuZGFyZGl6ZWQgcGF0aCBjb2VmZmljaWVudHMgb2Ygc3RyZXNzIChYKSBvbiBhdm9pZGFuY2UgY29waW5nIChZKSBpcyAwLjQxOSB3aXRoIGEgKnAqLXZhbHVlIG9mIDwuMDAxLCB3aGljaCBpbmRpY2F0ZXMgdGhhdCBhIG9uZSB1bml0IGluY3JlYXNlIGluIHN0cmVzcyB3b3VsZCBwcmVkaWN0IGEgMC40MTkgdW5pdCBpbmNyZWFzZSBpbiBhdm9pZGFuY2UgY29waW5nIHdoZW4gb3RoZXIgdmFyaWFibGVzIGluIHRoZSBtb2RlbCBhcmUgaGVsZCBjb25zdGFudC4NCg0KLSAoNSkgKipMZXQncyBsb29rIGF0IHRoZSByZXN1bHRzIG9mIHRvdGFsIGluZGlyZWN0IGVmZmVjdHMuKioNCiAgICAqICg1LWEpICoqRXh0cmFjdCB0aGUgc3RhbmRhcmRpemVkIHJlc3VsdHMgb2YgaW5kaXJlY3QgZWZmZWN0IGFuYWx5c2VzLioqDQogICAgICAgICsgKipBc3N1bWluZyB0aGUgb3V0cHV0IG9iamVjdCBoYXMgYmVlbiBzYXZlZCBhcyoqIGBtb2RlbDAxLmZpdGAqKiwgcnVuKiogYG1vZGVsMDEuZml0JGluZGlyZWN0JHN0ZHl4LnN0YW5kYXJkaXplZGAgDQpgYGB7cn0NCm1vZGVsMDEuZml0JGluZGlyZWN0JHN0ZHl4LnN0YW5kYXJkaXplZA0KYGBgDQogICAgKiAoNS1jKQkqKkJyaWVmbHkgY29tbWVudCB0aGUgaW50ZXJwcmV0YXRpb25zIG9mIHRoZSBkaXJlY3QsIGluZGlyZWN0LCBhbmQgdG90YWwgZWZmZWN0cyBvZiBlZmZpY2FjeSBvbiBhdm9pZGFuY2UgY29waW5nLioqDQoNCg0KIyMgUGFydCBJSQ0KVGhpcyBwYXJ0IG9mIHRoZSBQcm9qZWN0IGFza3MgeW91IHRvIHJlcGxpY2F0ZSB0aGUgYGV4Mi4yOWAgb24gc2xpZGVzIDM2LTM3IGluIGAwM19NZWRpYXRpb24gQW5hbHlzaXMucGRmYC4gIA0KDQpOb3RlIHRoYXQgdGhpcyBpcyB0aGUgIkNhc2UgMyIgaW4gdGhlIGNvdXJzZSBzbGlkZSBzZXQsIHdoZXJlIHRoZSBtZWRpYXRpb24gZWZmZWN0IGFuZCB0aGUgZGlyZWN0IGVmZmVjdCB3b3VsZCBiZSBtb2RlcmF0ZWQgYnkgdGhlIGV4cG9zdXJlIHZhcmlhYmxlICR4JC4NCg0KMC4gTG9hZCBhbGwgZnVuY3Rpb25zIGluIHRoZSBgbXBsdXMuUmAgZmlsZSBieSB1c2luZyB0aGUgYHNvdXJjZSgpYCBmdW5jdGlvbi4NCg0KMS4gUmVwbGljYXRlIHRoZSBhbmFseXNpcyB3aXRoIE1wbHVzIGJ5IHVzaW5nIGBNcGx1c0F1dG9tYXRpb25gIHBhY2thZ2UuIFByb3ZpZGUgdGhlIFIgY29kZSBmb3IgKGEpIGdlbmVyYXRpbmcgZXh0ZXJuYWwgc3ludGF4IGZpbGUgZm9yIE1wbHVzIGJ5IHRoZSBjb21iaW5hdGlvbiBvZiBgc2luaygpYCBhbmQgYGNhdCgpYCBmdW5jdGlvbnMsIGFuZCAoYikgcnVubmluZyB0aGUgbW9kZWwgYnkgdGhlIGBydW5Nb2RlbHMoKWAgZnVuY3Rpb24uDQoNCjIuIERyYXcgdGhlIHNhbWUgdHdvIHBsb3RzIG9uIHNsaWRlcyAzNyBieSB1c2luZyBgbXBsdXMucGxvdC5sb29wKClgIGZ1bmN0aW9uIGF2YWlsYWJsZSBpbiBgbXBsdXMuUmAuIFByb3ZpZGUgdGhlIFIgY29kZSBhbmQgcGxvdCBmb3IgZWFjaCBvZiAoYSkgaW5kaXJlY3QgZWZmZWN0cyBhbmQgKGIpIHRvdGFsIGVmZmVjdHMuDQoNCjMuIEV4dHJhY3QgcmVzdWx0cyBvciBSIGZvciBlYWNoIG9mIHRoZSBldmFsdWF0aW9uIHBvaW50cyBieSB1c2luZyBmdW5jdGlvbnMgYXZhaWxhYmxlIGluIGBtcGx1cy5SYCAoYG1wbHVzLmdldC5sb29wLnh2YWx1ZXNgLCBgbXBsdXMuZ2V0Lmxvb3AuZXN0aW1hdGVzYCwgYG1wbHVzLmdldC5sb29wLmxvd2VyY2lgLCBhbmQgYG1wbHVzLmdldC5sb29wLnVwcGVyY2lgKS4gUHJvdmlkZSB0aGUgUiBjb2RlIGFuZCBvdXRwdXQgdGFibGUgZm9yIGVhY2ggb2YgKGEpIGluZGlyZWN0IGVmZmVjdHMgYW5kIChiKSB0b3RhbCBlZmZlY3RzLg0KDQojIyBQYXJ0IElJSQ0KQnkgdXNpbmcgdGhlIGNvcGluZyBkYXRhIGluIFBhcnQgSSwgZXhhbWluZSB0aGUgbWVkaWF0aW9uIGVmZmVjdCBvZiBlZmZpY2FjeSBgdjJgIC0+IHJlc2lsaWVuY2UgYHYzYCAtPiBwcm9ibGVtIHNvbHZpbmcgYHY0YCwgd2hldGhlciBpdCBpcyBtb2RlcmF0ZWQgYnkgc3RyZXNzIGB2MWAgaWYgYHYxYCBpbnRlcmFjdHMgd2l0aCByZXNpbGllbmNlIGB2M2AuIEluIG90aGVyIHdvcmRzLCB0ZXN0IHRoZSBtb2RlcmF0ZWQgbWVkaWF0aW9uIGVmZmVjdCBkZXBpY3RlZCBpbiB0aGUgZm9sbG93aW5nIGRpYWdyYW0uICANCg0KTm90ZSB0aGF0IHRoaXMgYW5hbHlzaXMgZmFsbHMgaW50byB0aGUgIkNhc2UgMiIgaW4gdGhlIGNvdXJzZSBzbGlkZSBzZXQsIHdoZXJlIGJvdGggbWVkaWF0aW9uIGVmZmVjdCBhbmQgZGlyZWN0IGVmZmVjdCB3b3VsZCBiZSBtb2RlcmF0ZWQgYnkgdGhlIGNvdmFyaWF0ZSAodjEgaW4gdGhpcyBjYXNlKS4gIA0KDQpDb25kdWN0IHRoZSBhbmFseXNpcyB3aXRoIE1wbHVzIGJ5IHVzaW5nIGBNcGx1c0F1dG9tYXRpb25gIHBhY2thZ2UuIFNwZWNpZmljYXRpb25zIHNob3VsZCBpbmNsdWRlOiAgDQoNCi0gVXNlIHRoZSBgTU9EYCBrZXl3b3JkIHVuZGVyIHRoZSBgbW9kZWwgaW5kaXJlY3Q6YCBjb21tYW5kIGxpbmUgaW4gdGhlIE1wbHVzIHN5bnRheC4gIA0KLSBDb21wdXRlIHRoZSBtZWRpYXRpb24gZWZmZWN0cyBmb3IgdGhlIHJhbmdlIG9mICg3LCA1MCkgd2l0aCBhbiBpbmNyZW1lbnQgb2YgMC4xIGZvciB0aGUgbW9kZXJhdG9yIHN0cmVzcyBgdjFgLg0KLSBFdmFsdWF0ZSB0aGUgbWVkaWF0aW9uIGVmZmVjdHMgZm9yIGFuIGluY3JlbWVudCBvZiAxIFNEIGluY3JlYXNlIGluIHRoZSBleHBvc3VyZSB2YXJpYWJsZSBlZmZpY2FjeSBgdjJgLiBJbiBvdGhlciB3b3JkcywgdXNlICQoeF8xLCB4XzApPSgzNy40OCwgMzAuMDYpJC4gDQotIFVzZSBgYm9vdHN0cmFwID0gNTAwMGAuIA0KLSBSZXF1ZXN0IGBQTE9UOiB0eXBlID0gcGxvdDM7YCB0byBwcm9kdWNlIGEgZ3JhcGhpY2FsIGRhdGEgZmlsZS4gIA0KDQoxLiBQcm92aWRlIHRoZSBSIGNvZGUgZm9yIChhKSBnZW5lcmF0aW5nIGV4dGVybmFsIHN5bnRheCBmaWxlIGZvciBNcGx1cyBieSB0aGUgY29tYmluYXRpb24gb2YgYHNpbmsoKWAgYW5kIGBjYXQoKWAgZnVuY3Rpb25zLCBhbmQgKGIpIHJ1bm5pbmcgdGhlIG1vZGVsIGJ5IHRoZSBgcnVuTW9kZWxzKClgIGZ1bmN0aW9uLg0KDQoyLiBEcmF3IGEgcGxvdCB0byBzaG93IHRoZSBlc3RpbWF0ZWQgbW9kZXJhdGVkIG1lZGlhdGlvbiBlZmZlY3QgYW5kIHRoZSA5NSUgQ0kgYmFuZCB1c2luZyBgbXBsdXMucGxvdC5tb2RlcmF0aW9uKClgIGZ1bmN0aW9uIGF2YWlsYWJsZSBpbiBgbXBsdXMuUmAuIFByb3ZpZGUgdGhlIFIgY29kZSBhbmQgcGxvdC4gQ29tbWVudCAoYSkgaG93IHRoZSBtZWRpYXRpb24gZWZmZWN0IGNoYW5nZXMgYmFzZWQgb24gdGhlIHZhbHVlIG9mIHRoZSBtb2RlcmF0b3IsIGFuZCAoYikgYXBwcm94aW1hdGVseSB3aGF0IHJhbmdlIG9mIHRoZSBtb2RlcmF0b3IgdmFsdWVzIGlzIGFzc29jaWF0ZWQgd2l0aCBzdGF0aXN0aWNhbGx5IHNpZ25pZmljYW50IG1lZGlhdGlvbiBlZmZlY3QuDQoNCjMuIEV4dHJhY3QgZXN0aW1hdGVkIG1lZGlhdGlvbiBlZmZlY3QgYW5kIDk1JSBDSSBmb3IgZWFjaCBvZiB0aGUgZXZhbHVhdGlvbiBwb2ludHMgYnkgdXNpbmcgZnVuY3Rpb25zIGF2YWlsYWJsZSBpbiBgbXBsdXMuUmAgKGBtcGx1cy5nZXQubW9kZXJhdGlvbi54dmFsdWVzYCwgYG1wbHVzLmdldC5tb2RlcmF0aW9uLmVzdGltYXRlc2AsIGBtcGx1cy5nZXQubW9kZXJhdGlvbi5sb3dlcmNpYCwgYW5kIGBtcGx1cy5nZXQubW9kZXJhdGlvbi51cHBlcmNpYCkuIFByb3ZpZGUgdGhlIFIgY29kZSBhbmQgb3V0cHV0IHRhYmxlLiBDb21tZW50IChhKSB3aGF0IHJhbmdlIG9mIHRoZSBtb2RlcmF0b3IgdmFsdWVzIGlzIGFzc29jaWF0ZWQgd2l0aCBzdGF0aXN0aWNhbGx5IHNpZ25pZmljYW50IG1lZGlhdGlvbiBlZmZlY3QuDQoNCg0KDQoNCg==</div>
 
 
 

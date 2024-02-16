@@ -89,9 +89,9 @@ The file `coping.csv` contains the data for these six variables. The following p
 ```{r, echo = FALSE, results = 'hide'}
 #coping <- read.delim("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2/coping.dat", header=FALSE)
 
-#setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2")
+setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2")
 
-setwd("~/Desktop/SEM-S2024/Project_2")
+#setwd("~/Desktop/SEM-S2024/Project_2")
 ```
 
 ```{r}
@@ -985,10 +985,16 @@ model01.fit$parameters$stdyx.standardized
 ```
     * (4-b) **Interpret the standardized path coefficients of stress on avoidance coping.**
 
+The standardized path coefficients of stress (X) on avoidance coping (Y) is 0.419 with a *p*-value of <.001, which indicates that a one unit increase in stress would predict a 0.419 unit increase in avoidance coping when other variables in the model are held constant.
+
 - (5) **Let's look at the results of total indirect effects.**
     * (5-a) **Extract the standardized results of indirect effect analyses.**
-        + **Assuming the output object has been saved as** `model01.fit`**, run** `model01.fit$indirect$stdyx.standardized`.   
-    * (5-c)	Briefly comment the interpretations of the direct, indirect, and total effects of efficacy on avoidance coping.
+        + **Assuming the output object has been saved as** `model01.fit`**, run** `model01.fit$indirect$stdyx.standardized` 
+```{r}
+model01.fit$indirect$stdyx.standardized
+```
+    * (5-c)	**Briefly comment the interpretations of the direct, indirect, and total effects of efficacy on avoidance coping.**
+
 
 ## Part II
 This part of the Project asks you to replicate the `ex2.29` on slides 36-37 in `03_Mediation Analysis.pdf`.  
