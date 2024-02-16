@@ -995,6 +995,7 @@ model01.fit$indirect$stdyx.standardized
 ```
     * (5-c)	**Briefly comment the interpretations of the direct, indirect, and total effects of efficacy on avoidance coping.**
 
+The estimated path for the direct effect of efficacy (X) on avoidance coping (Y) is 0.084 and was not statistically significant. However, the indirect effect of efficacy (X) on avoidance coping (Y) through the mediator resilience (M) is -0.130 and statistically significant with a *p*-value of 0.04. The total effect of efficacy (X) on avoidance coping (Y) is -0.047 and not statistically significant. 
 
 ## Part II
 This part of the Project asks you to replicate the `ex2.29` on slides 36-37 in `03_Mediation Analysis.pdf`.  
