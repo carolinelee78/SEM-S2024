@@ -87,9 +87,11 @@ The file `coping.csv` contains the data for these six variables. The following p
             - For example, to constrain the error covariance between `v4` and `v5` to 0, add a Mplus syntax line: `v4 with v5@0;`
     
 ```{r, echo = FALSE, results = 'hide'}
-coping <- read.delim("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2/coping.dat", header=FALSE)
+#coping <- read.delim("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2/coping.dat", header=FALSE)
 
-setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2")
+#setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2")
+
+setwd("~/Desktop/SEM-S2024/Project_2")
 ```
 
 ```{r}
@@ -975,16 +977,17 @@ model01.fit$summaries %>% unlist()
       
   - (3-d) **Would you be satisfied with the fit of this model? Why? Why not? What would you do next, if you are not satisfied?**
       * Yes, I would be satisfied with the fit of the model, as RMSEA indicates acceptable use of CFI and TLI for estimating goodness of fit according to Kenny's (2014) guidelines. 
-      
- 
 
-- (4) Let's look at the estimated model parameters.
-    * (4-a) Extract estimated standardized model parameters (i.e., path coefficients, intercepts, and residual variances). Use `model01.fit$parameters$stdyx.standardized`, assuming the output object has been saved as `model01.fit`.
-    * (4-b) Interpret the standardized path coefficients of stress on avoidance coping.
+- (4) **Let's look at the estimated model parameters.**
+    * (4-a) **Extract estimated standardized model parameters (i.e., path coefficients, intercepts, and residual variances). Use** `model01.fit$parameters$stdyx.standardized`**, assuming the output object has been saved as** `model01.fit`.
+```{r}
+model01.fit$parameters$stdyx.standardized
+```
+    * (4-b) **Interpret the standardized path coefficients of stress on avoidance coping.**
 
-- (5) Let's look at the results of total indirect effects.
-    * (5-a) Extract the standardized results of indirect effect analyses.  
-        + Assuming the output object has been saved as `model01.fit`, run `model01.fit$indirect$stdyx.standardized`.   
+- (5) **Let's look at the results of total indirect effects.**
+    * (5-a) **Extract the standardized results of indirect effect analyses.**
+        + **Assuming the output object has been saved as** `model01.fit`**, run** `model01.fit$indirect$stdyx.standardized`.   
     * (5-c)	Briefly comment the interpretations of the direct, indirect, and total effects of efficacy on avoidance coping.
 
 ## Part II
