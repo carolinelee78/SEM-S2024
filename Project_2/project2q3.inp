@@ -1,0 +1,14 @@
+
+data:     file = coping.dat;
+variable: names = v1 v2 v3 v4;
+          usev = v1 v2 v3 v4 v1v3int;
+define:   v1v3int = v1*v3;
+analysis: estimator = ml;
+          bootstrap = 5000;
+model:    v4 on v1 v2 v3 v1v3int;
+          v3 on v2;
+model indirect:
+          v4 MOD v3 v1(7, 50, 0.1) v1v3int v2 (37.48, 30.06)
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  
