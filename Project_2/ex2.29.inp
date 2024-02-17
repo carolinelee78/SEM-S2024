@@ -1,0 +1,21 @@
+
+data: file = xmVx4s1n200rep6.dat;
+variable: names = y m x;
+          usev = y m x mx;
+define:   mx = m*x;
+analysis: estimator = ml;
+          bootstrap = 10000;
+model:    y on m (b1) 
+               x (b2)
+               mx (b3);
+          m on x (g1);
+         [m] (g0);
+model constraint:
+    loop(x, 1, 9, .1);
+    plot(indirect direct);
+    indirect = (b1+b3*(x+2))*g1 * (7-5);
+    direct = (b2+b3*(g0+g1*x)) * (7-5);
+output:
+    cinterval(bootstrap);
+plot:     type = plot3;
+  

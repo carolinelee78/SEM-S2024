@@ -1,0 +1,204 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+02/16/2024   4:57 PM
+
+INPUT INSTRUCTIONS
+
+
+  data: file = xmVx4s1n200rep6.dat;
+  variable: names = y m x;
+            usev = y m x mx;
+  define:   mx = m*x;
+  analysis: estimator = ml;
+            bootstrap = 10000;
+  model:    y on m (b1)
+                 x (b2)
+                 mx (b3);
+            m on x (g1);
+           [m] (g0);
+  model constraint:
+      loop(x, 1, 9, .1);
+      plot(indirect direct);
+      indirect = (b1+b3*(x+2))*g1 * (7-5);
+      direct = (b2+b3*(g0+g1*x)) * (7-5);
+  output:
+      cinterval(bootstrap);
+  plot:     type = plot3;
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         200
+
+Number of dependent variables                                    2
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   Y           M
+
+Observed independent variables
+   X           MX
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Number of bootstrap draws
+    Requested                                                10000
+    Completed                                                10000
+
+Input data file(s)
+  xmVx4s1n200rep6.dat
+
+Input data format  FREE
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y                     5.409      -0.190      -6.783    0.50%       1.785      4.658      5.499
+             200.000      18.879      -0.096      15.070    0.50%       6.500      8.945
+     M                     5.606       0.071       1.156    0.50%       3.819      5.088      5.537
+             200.000       3.897      -0.558      10.817    0.50%       6.116      7.387
+     X                     5.053       0.028       0.509    0.50%       3.436      4.448      5.039
+             200.000       3.820      -0.300      10.234    0.50%       5.528      6.852
+     MX                   30.423       0.730       0.889    0.50%      13.517     23.359     27.533
+             200.000     344.303       0.358      98.308    0.50%      31.666     46.650
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        8
+
+Loglikelihood
+
+          H0 Value                        -924.528
+          H1 Value                        -765.986
+
+Information Criteria
+
+          Akaike (AIC)                    1865.056
+          Bayesian (BIC)                  1891.442
+          Sample-Size Adjusted BIC        1866.098
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            317.083
+          Degrees of Freedom                     1
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           1.257
+          90 Percent C.I.                    1.143  1.375
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.310
+          TLI                                0.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            462.853
+          Degrees of Freedom                     5
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.128
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ Y        ON
+    M                  0.276      0.348      0.794      0.427
+    X                  0.242      0.418      0.579      0.563
+    MX                 0.084      0.070      1.210      0.226
+
+ M        ON
+    X                  0.549      0.052     10.551      0.000
+
+ Intercepts
+    Y                  0.081      1.819      0.044      0.965
+    M                  2.832      0.297      9.539      0.000
+
+ Residual Variances
+    Y                 12.927      1.310      9.869      0.000
+    M                  2.746      0.281      9.770      0.000
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ Y        ON
+    M               -0.600      -0.406      -0.302       0.276       0.844       0.959       1.208
+    X               -0.787      -0.564      -0.434       0.242       0.940       1.087       1.397
+    MX              -0.095      -0.052      -0.028       0.084       0.200       0.222       0.264
+
+ M        ON
+    X                0.412       0.444       0.462       0.549       0.633       0.650       0.675
+
+ Intercepts
+    Y               -5.160      -3.764      -3.060       0.081       2.931       3.426       4.468
+    M                2.108       2.269       2.358       2.832       3.334       3.431       3.621
+
+ Residual Variances
+    Y                9.538      10.209      10.566      12.927      14.904      15.363      16.315
+    M                2.055       2.198       2.273       2.746       3.198       3.300       3.514
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated values, residuals)
+  Scatterplots (sample values, estimated values, residuals)
+  Loop plots
+  Bootstrap distributions
+
+     Beginning Time:  16:57:54
+        Ending Time:  16:58:06
+       Elapsed Time:  00:00:12
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

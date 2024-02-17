@@ -978,7 +978,7 @@ model01.fit$summaries %>% unlist()
   - (3-d) **Would you be satisfied with the fit of this model? Why? Why not? What would you do next, if you are not satisfied?**
       * Yes, I would be satisfied with the fit of the model, as RMSEA indicates acceptable use of CFI and TLI for estimating goodness of fit according to Kenny's (2014) guidelines. 
 
-- (4) **Let's look at the estimated model parameters.**
+4. **Let's look at the estimated model parameters.**
     * (4-a) **Extract estimated standardized model parameters (i.e., path coefficients, intercepts, and residual variances). Use** `model01.fit$parameters$stdyx.standardized`**, assuming the output object has been saved as** `model01.fit`.
 ```{r}
 model01.fit$parameters$stdyx.standardized
@@ -987,7 +987,7 @@ model01.fit$parameters$stdyx.standardized
 
 The standardized path coefficients of stress (X) on avoidance coping (Y) is 0.419 with a *p*-value of <.001, which indicates that a one unit increase in stress would predict a 0.419 unit increase in avoidance coping when other variables in the model are held constant.
 
-- (5) **Let's look at the results of total indirect effects.**
+5. **Let's look at the results of total indirect effects.**
     * (5-a) **Extract the standardized results of indirect effect analyses.**
         + **Assuming the output object has been saved as** `model01.fit`**, run** `model01.fit$indirect$stdyx.standardized` 
 ```{r}
@@ -1004,14 +1004,78 @@ Note that this is the "Case 3" in the course slide set, where the mediation effe
 
 0. Load all functions in the `mplus.R` file by using the `source()` function.
 
+```{r}
+source("mplus.R")
+```
+
 1. Replicate the analysis with Mplus by using `MplusAutomation` package. Provide the R code for (a) generating external syntax file for Mplus by the combination of `sink()` and `cat()` functions, and (b) running the model by the `runModels()` function.
+
+```{r}
+sink(file = "ex2.29.inp")
+cat('
+data: file = xmVx4s1n200rep6.dat;
+variable: names = y m x;
+          usev = y m x mx;
+define:   mx = m*x;
+analysis: estimator = ml;
+          bootstrap = 10000;
+model:    y on m (b1) 
+               x (b2)
+               mx (b3);
+          m on x (g1);
+         [m] (g0);
+model constraint:
+    loop(x, 1, 9, .1);
+    plot(indirect direct);
+    indirect = (b1+b3*(x+2))*g1 * (7-5);
+    direct = (b2+b3*(g0+g1*x)) * (7-5);
+output:
+    cinterval(bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+sink()
+```
+
+```{r}
+runModels("ex2.29.inp")
+```
 
 2. Draw the same two plots on slides 37 by using `mplus.plot.loop()` function available in `mplus.R`. Provide the R code and plot for each of (a) indirect effects and (b) total effects.
 
-3. Extract results or R for each of the evaluation points by using functions available in `mplus.R` (`mplus.get.loop.xvalues`, `mplus.get.loop.estimates`, `mplus.get.loop.lowerci`, and `mplus.get.loop.upperci`). Provide the R code and output table for each of (a) indirect effects and (b) total effects.
+```{r}
+mplus.plot.loop("ex2.29.gh5", 1)
+```
+
+```{r}
+mplus.plot.loop("ex2.29.gh5", 2)
+```
+
+3. Extract results on R for each of the evaluation points by using functions available in `mplus.R` (`mplus.get.loop.xvalues`, `mplus.get.loop.estimates`, `mplus.get.loop.lowerci`, and `mplus.get.loop.upperci`). Provide the R code and output table for each of (a) indirect effects and (b) total effects.
+
+Mediation Effects:
+```{r}
+tibble(
+  negexp = mplus.get.loop.xvalues("ex2.29.gh5"),
+  ests = mplus.get.loop.estimates("ex2.29.gh5", 1),
+  loci = mplus.get.loop.lowerci("ex2.29.gh5", 1),
+  upci = mplus.get.loop.upperci("ex2.29.gh5", 1))
+```
+
+Direct Effects:
+```{r}
+tibble(
+  negexp = mplus.get.loop.xvalues("ex2.29.gh5"),
+  ests = mplus.get.loop.estimates("ex2.29.gh5", 2),
+  loci = mplus.get.loop.lowerci("ex2.29.gh5", 2),
+  upci = mplus.get.loop.upperci("ex2.29.gh5", 2))
+```
 
 ## Part III
 By using the coping data in Part I, examine the mediation effect of efficacy `v2` -> resilience `v3` -> problem solving `v4`, whether it is moderated by stress `v1` if `v1` interacts with resilience `v3`. In other words, test the moderated mediation effect depicted in the following diagram.  
+
+```{r, echo = FALSE}
+knitr::include_graphics("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_2/PathDiagram2_Project2.png")
+```
 
 Note that this analysis falls into the "Case 2" in the course slide set, where both mediation effect and direct effect would be moderated by the covariate (v1 in this case).  
 
@@ -1024,6 +1088,25 @@ Conduct the analysis with Mplus by using `MplusAutomation` package. Specificatio
 - Request `PLOT: type = plot3;` to produce a graphical data file.  
 
 1. Provide the R code for (a) generating external syntax file for Mplus by the combination of `sink()` and `cat()` functions, and (b) running the model by the `runModels()` function.
+
+```{r}
+sink(file = "project2q3.inp")
+cat('
+data:     file = coping.dat;
+variable: names = v1 v2 v3;
+          usev = v1 v2 v3 v1v3int;
+define:   v1v3int = v1*v3;
+analysis: estimator = ml;
+          bootstrap = 5000;
+model:    v4 on v1 v2 v3 v1v3int;
+          v3 on v2;
+model indirect:
+          perform MOD negtone negexp(-0.4,0.6,0.01) mz dysfunc (0.4038, 0.035);
+output:   cinterval (bootstrap);
+plot:     type = plot3;
+  ', fill=T)
+sink()
+```
 
 2. Draw a plot to show the estimated moderated mediation effect and the 95% CI band using `mplus.plot.moderation()` function available in `mplus.R`. Provide the R code and plot. Comment (a) how the mediation effect changes based on the value of the moderator, and (b) approximately what range of the moderator values is associated with statistically significant mediation effect.
 

@@ -1,9 +1,9 @@
-------Begin Mplus Model Run: 16Feb2024 15:50:29------
+------Begin Mplus Model Run: 16Feb2024 16:57:53------
 Run options:
 	Recursive (run models in subdirectories): FALSE
 	Show output on console: FALSE
 	Replace existing outfile: always
 ------
-Currently running model: project2q1.inp
+Currently running model: ex2.29.inp
 
-------End Mplus Model Run: 16Feb2024 15:50:42------
+------End Mplus Model Run: 16Feb2024 16:58:06------
