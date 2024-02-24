@@ -220,3 +220,87 @@ $$
 Both direct effect annd mediation effect depends on the value of $z_i$ as a covariate (i.e., moderated by the covariate)
 
 If the moderation value is lower than .15, mediation effect is not significant as it's within the 95% band around 0. Within .15~+.85 would indicate significance, outside would be not significant. 
+
+
+**One factor FA Model**
+
+$$x_{ij}=\mu_i+\lambda_{i}\xi_{j}+\delta_{ij}$$
+- This model is a set of more than one regression equation 
+  * We have aas many regression equations as the number of items 
+  * For example, let's say we have 3 items. Then, 
+    - $x_{1j} = \mu_1 + \lambda_1\xi_j+\delta_{1j}$
+    - $x_{2j} = \mu_2 + \lambda_2\xi_j+\delta_{2j}$
+    - $x_{3j} = \mu_3 + \lambda_3\xi_j+\delta_{3j}$
+    
+- We can graphically represent this model (a set of three regression equations) as follows. 
+  * It is typical to indicate observed variables by rectangles 
+- The predictor $\xi$ is a latent factor and does not have any fixed scale 
+- Traditionally, it has been typical to scale the means of $\xi$ and $x$ to be 0. 
+
+**CFA model** 
+
+- Model specification is needed for CFA 
+  * A specific model needs to be specified, including: 
+     - The number of observed indicators and latent factors 
+
+$$ x_{1j} = \lambda_{11}\xi_1+0\xi_2+\delta_{1j}$$
+$$ x_{2j} = \lambda_{21}\xi_1+0\xi_2+\delta_{2j}$$
+- For ESEM, the 0 constraints would be removed 
+  * Factor loadings for $\xi$ would be small but included 
+- Requirements for identification of CFA model 
+  * Just like a path analysis model, the number of parameters in the model has to be the same or fewere than the unique variances and covariances ini the data covariance matrix 
+  * Also, the scale of the parameters has to be addressed 
+
+**Scale Issues for Identification** 
+
+- First, let's consider a simple regression model: 
+$$Y_j = B_0 + B_1X_j+\epsilon_J$$
+- Recall that the scale of a regression slope ($B_1$) is affected by the scale of both predictor (X) and outcome variable (Y) as follows: 
+$$ B_1=r_{XY}(\frac{SD_Y}{SD_X}) $$
+- Now, let's consider a one-factor model: 
+- Similar to a simple regression model, thescale of a factor loading $\lambda$ is affected by the scale of both predictor ($\xi$) and outcome variable ($x$) as follows:
+  * $\lambda = r_{\xi x} (\frac{SD_X}{SD_Y})$
+
+1) If a scale is given to $\xi$, the scale of $\lambda$ will follow 
+2) If a scale is given to $\lambda$, the scale of $x$ will follow 
+  * Typically, Mplus will assign $\lambda_1 = 1$ to the first indicator 
+  
+- For a CFA model with 2 or more factors, each factor needs to predict 2 or more observed indicators to fully estimate model parameters 
+  * Only applies to simplex models (if it has cross-loadings and correlations, not obvious immediately whether model is identifiable or not)
+  
+- ESEM for differential item functioning? 
+  
+**CFA Model with Error Correlations**
+
+- Also, it might be our interest to let some error variances to be correlated 
+
+**Hypothesized 1-factor model** 
+
+- If only 6, then would be enough df but would not be the case by including variances 
+- stdyx indicates that both standard deviation and something else are assessed 
+- 
+
+`sjlabelled` package has refined version of `read_sav` called `read_spss`
+
+**Mplus output** 
+
+- The number ofparameters include mean-structure parameters 
+
+- It is possible to compute $R^2$
+
+### Higher-order and Bi-factor CFA Models
+
+**Higher-order Factor Models** 
+- In some context,we may be interested in developing a model with additional factor 
+
+- Error variances correlated - covariate(s) commonly correlated to the outcome variables not included in the analysis as predictor(s)
+
+
+
+
+
+
+
+
+
+
