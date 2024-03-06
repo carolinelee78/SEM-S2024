@@ -278,29 +278,66 @@ $$ B_1=r_{XY}(\frac{SD_Y}{SD_X}) $$
 
 - If only 6, then would be enough df but would not be the case by including variances 
 - stdyx indicates that both standard deviation and something else are assessed 
-- 
-
 `sjlabelled` package has refined version of `read_sav` called `read_spss`
 
 **Mplus output** 
 
 - The number ofparameters include mean-structure parameters 
-
 - It is possible to compute $R^2$
 
 ### Higher-order and Bi-factor CFA Models
 
 **Higher-order Factor Models** 
 - In some context,we may be interested in developing a model with additional factor 
-
 - Error variances correlated - covariate(s) commonly correlated to the outcome variables not included in the analysis as predictor(s)
+- Bifactor model fit indices will be inflated 
+  * Likely to see better model fit than we are supposed to 
+  * However, doesn't make it useless 
+- By giving the asterisk, we are saying that we are overriding the default and instead fix the variance of each latent factor to be 1.0
+- Will try to estimate all possible correlations between factors 
+- Have to be manually constrained to 0 
 
+### Measurement Invariance 
 
+**Multiple Group CFA**
 
+**Measurement Invariance with Multiple-Group CFA**
 
+- Configural Invariance 
+  * Only factor structure is the same 
+- Metric Invariance (i.e., weak invariance)
+  * Factor loadings are the same 
+- Scalar Invariance (i.e., strong invariance)
+  * Factor loadings & intercepts are the same 
+- Strict Invariance 
+  * Factor loadings, intercepts, & residual variances are the same 
 
+- If configural invariance model fits better than weak invariance, we do not have evidence for weak ivnariance 
+- configural invariance model will always have lower chisq
 
+- Partial invariance is invariance only for a subset of items 
+  * We may be interested in identifying specific items that are different in factor loadings and/or intercepts between groups 
+  * This idea is closely realted to DIF
+- Latent factor means between groups 
+- Latent factor correlations between groups 
 
+- Metric against configural nonsignificant - metric invariance supported, more complex model (configural) is not a better fit
 
+_Configural_
+`visual by x1 x2 x3;` factor loadings for the visual factor 
+`x1-x9` error variances (not factor loadings!)
+`visual; textual; speed` variance between these three latent factors. 
+`[x1-x9]` represent intercepts 
+`[visual@0 textual@0 speed@0]` represent factor means - fixing to known values, arbitrarily to 0
 
+_Metric_
+for metric, factor loadings are assumed to be the same so it is not included in model specification 
 
+_Scalar_
+`[x1-x9] (1-9)` indicate items 1-9 same between two groups 
+
+- in the scalar invariance model, where we assume intercept is different between two grouups, if we assume X3 is different between two groups, chisq improves by 19.193, if we assume X7 is different between two groups, chisq improves by 15.022
+  * Can conclude that intercepts for items 3 and 7 are not invariant 
+
+_Partial Scalar_
+`[x1 x2 x4 x5 x6 x8 x9] (1-7);` 
