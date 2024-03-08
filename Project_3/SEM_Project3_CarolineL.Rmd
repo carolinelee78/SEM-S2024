@@ -1,0 +1,67 @@
+---
+title: "SEM Project 3"
+author: "Caroline Lee"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+```{r setup, include = FALSE, results='hide'}
+# detach all libraries
+
+detachAllPackages <- function() {
+  basic.packages <- c("package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "package:base")
+  package.list <- search()[ifelse(unlist(gregexpr("package:", search()))==1, TRUE, FALSE)]
+  package.list <- setdiff(package.list, basic.packages)
+  if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
+}
+detachAllPackages()
+
+# function to load libraries
+
+pkgTest <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg,  dependencies = TRUE)
+  sapply(pkg,  require,  character.only = TRUE)
+}
+
+# loading packages 
+
+lapply(c("DT"),pkgTest)
+lapply(c("haven"),pkgTest)
+lapply(c("lavaan"),pkgTest)
+lapply(c("MplusAutomation"),pkgTest)
+lapply(c("readxl"),pkgTest)
+lapply(c("sjlabelled"),pkgTest)
+lapply(c("sjmisc"),pkgTest)
+lapply(c("texreg"),pkgTest)
+lapply(c("tidyverse"),pkgTest)
+
+library(DT)
+library(haven)
+library(lavaan)
+library(MplusAutomation)
+library(readxl)
+library(sjlabelled)
+library(sjmisc)
+library(texreg)
+library(tidyverse)
+```
+
+## Introduction
+
+Parental Self-Care Scale (PSCS) (Abell, Ryan, & Kamata, 2006) is a 30-item scale that measures ill HIV-positive parents' capacities to manage their own emotional, instrumental, and nursing needs while maintaining family responsibilities. Respondents are asked to rate their belief on their own capacity on each of the 30 items with a 11-point scale (0 = Cannot do at all, 5 =  Probably can do, 10 = Sure I can do). The list of items is in the table at the end of this document.
+
+The data set `PSCS_combined.sav` consists of item responses from 500 HIV-positive parents on items 1-30. Column 1-30 are item responses for the 30 items (`x1-x30`) and Column 31 is the language group (`lang`) variable. There were two groups of parents based on the language form they took (variable `lang`; 1 = Spanish, 2 = English). In this project, you will conduct a series of invariance study analyses for Spanish and English versions of the PSCS scale.  
+
+## Questions
+
+### Q.1
+Preparation.
+
+(a) Load required packages and read data file in. Use `read_spss()` function in the `sjlabelled` package to read the data file into R. Be sure to include `convert.factors=FALSE` option to prevent the variables to be converted to categorical variables. Show R code.  
+(b) Generate descriptive statistics for the 30 items using `descr()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+(c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+(d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
+
+
