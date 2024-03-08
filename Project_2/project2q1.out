@@ -1,6 +1,6 @@
 Mplus VERSION 8.6
 MUTHEN & MUTHEN
-02/16/2024  11:41 PM
+02/24/2024   4:02 PM
 
 INPUT INSTRUCTIONS
 
@@ -8,6 +8,7 @@ INPUT INSTRUCTIONS
   data:     file = coping.dat;
 
   variable: names = stress efficacy resilien probsolv socisupp avoidanc;
+            missing = .;
 
   analysis: estimator = ml;
             bootstrap = 10000;
@@ -24,8 +25,7 @@ INPUT INSTRUCTIONS
   model indirect:
             avoidanc ind efficacy;
 
-  output: sampstat standardized
-          cinterval(bootstrap);
+  output: STDYX cinterval(bootstrap);
 
 
 
@@ -57,6 +57,8 @@ Information matrix                                        OBSERVED
 Maximum number of iterations                                  1000
 Convergence criterion                                    0.500D-04
 Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
 Number of bootstrap draws
     Requested                                                10000
     Completed                                                10000
@@ -67,56 +69,35 @@ Input data file(s)
 Input data format  FREE
 
 
-SAMPLE STATISTICS
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
 
 
-     SAMPLE STATISTICS
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
 
 
-           Means
-              STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
-              ________      ________      ________      ________      ________
-               30.060        29.790        29.435        28.705        29.755
+     PROPORTION OF DATA PRESENT
 
 
-           Means
-              EFFICACY
-              ________
-               30.370
-
-
-           Covariances
-              STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
-              ________      ________      ________      ________      ________
- STRESS        54.806
- RESILIEN     -13.667        34.286
- PROBSOLV      -5.486        14.461        36.186
- SOCISUPP      15.078         2.078         6.903        55.928
- AVOIDANC      26.750        -7.136        -3.528         2.978        74.275
- EFFICACY     -12.637        27.298        14.944        -4.126        -3.699
-
-
-           Covariances
-              EFFICACY
-              ________
- EFFICACY      49.443
-
-
-           Correlations
+           Covariance Coverage
               STRESS        RESILIEN      PROBSOLV      SOCISUPP      AVOIDANC
               ________      ________      ________      ________      ________
  STRESS         1.000
- RESILIEN      -0.315         1.000
- PROBSOLV      -0.123         0.411         1.000
- SOCISUPP       0.272         0.047         0.153         1.000
- AVOIDANC       0.419        -0.141        -0.068         0.046         1.000
- EFFICACY      -0.243         0.663         0.353        -0.078        -0.061
+ RESILIEN       1.000         1.000
+ PROBSOLV       1.000         1.000         1.000
+ SOCISUPP       1.000         1.000         1.000         1.000
+ AVOIDANC       1.000         1.000         1.000         1.000         1.000
+ EFFICACY       1.000         1.000         1.000         1.000         1.000
 
 
-           Correlations
+           Covariance Coverage
               EFFICACY
               ________
  EFFICACY       1.000
+
 
 
 UNIVARIATE SAMPLE STATISTICS
@@ -287,100 +268,6 @@ STDYX Standardization
     AVOIDANC           0.818      0.048     17.222      0.000
 
 
-STDY Standardization
-
-                                                    Two-Tailed
-                    Estimate       S.E.  Est./S.E.    P-Value
-
- PROBSOLV ON
-    STRESS             0.012      0.069      0.181      0.857
-    EFFICACY           0.021      0.011      1.899      0.058
-    RESILIEN           0.318      0.083      3.843      0.000
-
- SOCISUPP ON
-    STRESS             0.319      0.070      4.589      0.000
-    RESILIEN           0.148      0.072      2.068      0.039
-
- AVOIDANC ON
-    STRESS             0.419      0.066      6.331      0.000
-    EFFICACY           0.012      0.012      1.003      0.316
-    RESILIEN          -0.065      0.093     -0.697      0.486
-
- RESILIEN ON
-    EFFICACY           0.094      0.005     17.989      0.000
-
- STRESS   ON
-    RESILIEN          -0.315      0.069     -4.603      0.000
-
- PROBSOLV WITH
-    SOCISUPP           0.000      0.000      0.000      1.000
-    AVOIDANC           0.000      0.000      0.000      1.000
-
- SOCISUPP WITH
-    AVOIDANC           0.000      0.000      0.000      1.000
-
- Intercepts
-    STRESS             5.664      0.345     16.433      0.000
-    RESILIEN           2.224      0.335      6.640      0.000
-    PROBSOLV           2.596      0.581      4.471      0.000
-    SOCISUPP           1.790      0.614      2.913      0.004
-    AVOIDANC           1.717      0.622      2.762      0.006
-
- Residual Variances
-    STRESS             0.901      0.043     21.027      0.000
-    RESILIEN           0.560      0.055     10.208      0.000
-    PROBSOLV           0.819      0.048     17.176      0.000
-    SOCISUPP           0.906      0.040     22.800      0.000
-    AVOIDANC           0.818      0.048     17.222      0.000
-
-
-STD Standardization
-
-                                                    Two-Tailed
-                    Estimate       S.E.  Est./S.E.    P-Value
-
- PROBSOLV ON
-    STRESS             0.010      0.056      0.180      0.857
-    EFFICACY           0.124      0.066      1.886      0.059
-    RESILIEN           0.327      0.093      3.531      0.000
-
- SOCISUPP ON
-    STRESS             0.322      0.075      4.314      0.000
-    RESILIEN           0.189      0.094      2.012      0.044
-
- AVOIDANC ON
-    STRESS             0.488      0.087      5.592      0.000
-    EFFICACY           0.102      0.101      1.012      0.312
-    RESILIEN          -0.095      0.136     -0.702      0.483
-
- RESILIEN ON
-    EFFICACY           0.552      0.043     12.796      0.000
-
- STRESS   ON
-    RESILIEN          -0.399      0.091     -4.363      0.000
-
- PROBSOLV WITH
-    SOCISUPP           0.000      0.000      0.000      1.000
-    AVOIDANC           0.000      0.000      0.000      1.000
-
- SOCISUPP WITH
-    AVOIDANC           0.000      0.000      0.000      1.000
-
- Intercepts
-    STRESS            41.935      2.770     15.140      0.000
-    RESILIEN          13.023      1.397      9.319      0.000
-    PROBSOLV          15.620      3.131      4.989      0.000
-    SOCISUPP          13.386      4.275      3.131      0.002
-    AVOIDANC          14.812      4.967      2.982      0.003
-
- Residual Variances
-    STRESS            49.359      4.493     10.987      0.000
-    RESILIEN          19.215      1.881     10.217      0.000
-    PROBSOLV          29.658      2.469     12.011      0.000
-    SOCISUPP          50.677      4.631     10.942      0.000
-    AVOIDANC          60.920      5.717     10.656      0.000
-
-
 R-SQUARE
 
     Observed                                        Two-Tailed
@@ -448,60 +335,6 @@ Effects from EFFICACY to AVOIDANC
   Direct
     AVOIDANC
     EFFICACY           0.084      0.083      1.011      0.312
-
-
-
-STDY Standardization
-
-                                                    Two-Tailed
-                    Estimate       S.E.  Est./S.E.    P-Value
-
-Effects from EFFICACY to AVOIDANC
-
-  Total               -0.007      0.009     -0.707      0.480
-  Total indirect      -0.019      0.009     -2.071      0.038
-
-  Specific indirect 1
-    AVOIDANC
-    RESILIEN
-    EFFICACY          -0.006      0.009     -0.692      0.489
-
-  Specific indirect 2
-    AVOIDANC
-    STRESS
-    RESILIEN
-    EFFICACY          -0.012      0.003     -3.828      0.000
-
-  Direct
-    AVOIDANC
-    EFFICACY           0.012      0.012      1.003      0.316
-
-
-
-STD Standardization
-
-                                                    Two-Tailed
-                    Estimate       S.E.  Est./S.E.    P-Value
-
-Effects from EFFICACY to AVOIDANC
-
-  Total               -0.058      0.081     -0.709      0.479
-  Total indirect      -0.160      0.076     -2.098      0.036
-
-  Specific indirect 1
-    AVOIDANC
-    RESILIEN
-    EFFICACY          -0.053      0.075     -0.700      0.484
-
-  Specific indirect 2
-    AVOIDANC
-    STRESS
-    RESILIEN
-    EFFICACY          -0.107      0.029     -3.650      0.000
-
-  Direct
-    AVOIDANC
-    EFFICACY           0.102      0.101      1.012      0.312
 
 
 
@@ -601,98 +434,6 @@ STDYX Standardization
     AVOIDANC         0.675       0.709       0.726       0.818       0.882       0.895       0.917
 
 
-STDY Standardization
-
-                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
-
- PROBSOLV ON
-    STRESS          -0.168      -0.121      -0.100       0.012       0.124       0.147       0.193
-    EFFICACY        -0.007      -0.001       0.003       0.021       0.038       0.042       0.049
-    RESILIEN         0.095       0.151       0.180       0.318       0.450       0.475       0.528
-
- SOCISUPP ON
-    STRESS           0.127       0.177       0.202       0.319       0.430       0.449       0.487
-    RESILIEN        -0.039       0.005       0.029       0.148       0.264       0.285       0.326
-
- AVOIDANC ON
-    STRESS           0.234       0.279       0.304       0.419       0.521       0.540       0.577
-    EFFICACY        -0.018      -0.011      -0.008       0.012       0.031       0.035       0.042
-    RESILIEN        -0.309      -0.249      -0.218      -0.065       0.086       0.111       0.167
-
- RESILIEN ON
-    EFFICACY         0.081       0.084       0.086       0.094       0.103       0.105       0.109
-
- STRESS   ON
-    RESILIEN        -0.480      -0.443      -0.425      -0.315      -0.198      -0.174      -0.129
-
- PROBSOLV WITH
-    SOCISUPP         0.000       0.000       0.000       0.000       0.000       0.000       0.000
-    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
-
- SOCISUPP WITH
-    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
-
- Intercepts
-    STRESS           4.740       5.007       5.113       5.664       6.251       6.349       6.577
-    RESILIEN         1.465       1.634       1.727       2.224       2.835       2.937       3.195
-    PROBSOLV         1.170       1.501       1.673       2.596       3.586       3.781       4.181
-    SOCISUPP         0.284       0.639       0.808       1.790       2.823       3.024       3.423
-    AVOIDANC         0.257       0.581       0.760       1.717       2.802       3.016       3.428
-
- Residual Variances
-    STRESS           0.769       0.803       0.819       0.901       0.961       0.970       0.983
-    RESILIEN         0.424       0.455       0.473       0.560       0.654       0.672       0.704
-    PROBSOLV         0.678       0.710       0.728       0.819       0.885       0.896       0.918
-    SOCISUPP         0.781       0.811       0.828       0.906       0.958       0.965       0.981
-    AVOIDANC         0.675       0.709       0.726       0.818       0.882       0.895       0.917
-
-
-STD Standardization
-
-                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
-
- PROBSOLV ON
-    STRESS          -0.136      -0.099      -0.082       0.010       0.101       0.120       0.157
-    EFFICACY        -0.044      -0.003       0.016       0.124       0.231       0.255       0.300
-    RESILIEN         0.092       0.149       0.178       0.327       0.481       0.512       0.575
-
- SOCISUPP ON
-    STRESS           0.127       0.176       0.201       0.322       0.444       0.469       0.517
-    RESILIEN        -0.049       0.007       0.036       0.189       0.344       0.373       0.434
-
- AVOIDANC ON
-    STRESS           0.265       0.315       0.344       0.488       0.632       0.658       0.722
-    EFFICACY        -0.156      -0.096      -0.068       0.102       0.268       0.298       0.357
-    RESILIEN        -0.439      -0.360      -0.317      -0.095       0.129       0.172       0.251
-
- RESILIEN ON
-    EFFICACY         0.442       0.466       0.481       0.552       0.622       0.636       0.665
-
- STRESS   ON
-    RESILIEN        -0.637      -0.580      -0.550      -0.399      -0.249      -0.217      -0.161
-
- PROBSOLV WITH
-    SOCISUPP         0.000       0.000       0.000       0.000       0.000       0.000       0.000
-    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
-
- SOCISUPP WITH
-    AVOIDANC         0.000       0.000       0.000       0.000       0.000       0.000       0.000
-
- Intercepts
-    STRESS          34.650      36.344      37.466      41.935      46.537      47.359      49.034
-    RESILIEN         9.410      10.283      10.734      13.023      15.364      15.766      16.560
-    PROBSOLV         7.516       9.377      10.410      15.620      20.726      21.711      23.758
-    SOCISUPP         2.247       4.957       6.268      13.386      20.241      21.567      24.150
-    AVOIDANC         2.346       5.291       6.818      14.812      23.142      24.799      27.804
-
- Residual Variances
-    STRESS          37.954      40.450      41.695      49.359      56.406      58.045      61.367
-    RESILIEN        14.413      15.445      16.009      19.215      22.197      22.814      24.151
-    PROBSOLV        22.911      24.408      25.070      29.658      33.241      34.072      35.504
-    SOCISUPP        38.873      41.148      42.403      50.677      57.586      59.091      62.387
-    AVOIDANC        45.480      48.655      50.533      60.920      69.281      71.241      75.110
-
-
 CONFIDENCE INTERVALS OF TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
 
 
@@ -749,61 +490,9 @@ Effects from EFFICACY to AVOIDANC
 
 
 
-STDY Standardization
 
-                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
-
-Effects from EFFICACY to AVOIDANC
-
-  Total             -0.030      -0.025      -0.022      -0.007       0.009       0.012       0.018
-  Total indirect    -0.042      -0.036      -0.033      -0.019      -0.004      -0.001       0.004
-
-  Specific indirect 1
-    AVOIDANC
-    RESILIEN
-    EFFICACY        -0.030      -0.024      -0.021      -0.006       0.008       0.011       0.016
-
-  Specific indirect 2
-    AVOIDANC
-    STRESS
-    RESILIEN
-    EFFICACY        -0.022      -0.019      -0.018      -0.012      -0.007      -0.006      -0.005
-
-  Direct
-    AVOIDANC
-    EFFICACY        -0.018      -0.011      -0.008       0.012       0.031       0.035       0.042
-
-
-
-STD Standardization
-
-                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
-
-Effects from EFFICACY to AVOIDANC
-
-  Total             -0.262      -0.214      -0.188      -0.058       0.080       0.106       0.153
-  Total indirect    -0.351      -0.310      -0.285      -0.160      -0.033      -0.012       0.037
-
-  Specific indirect 1
-    AVOIDANC
-    RESILIEN
-    EFFICACY        -0.250      -0.201      -0.175      -0.053       0.071       0.092       0.140
-
-  Specific indirect 2
-    AVOIDANC
-    STRESS
-    RESILIEN
-    EFFICACY        -0.192      -0.168      -0.157      -0.107      -0.061      -0.054      -0.040
-
-  Direct
-    AVOIDANC
-    EFFICACY        -0.156      -0.096      -0.068       0.102       0.268       0.298       0.357
-
-
-
-
-     Beginning Time:  23:41:21
-        Ending Time:  23:41:33
+     Beginning Time:  16:02:59
+        Ending Time:  16:03:11
        Elapsed Time:  00:00:12
 
 
