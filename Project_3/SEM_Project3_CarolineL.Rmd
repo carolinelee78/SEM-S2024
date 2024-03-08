@@ -60,8 +60,38 @@ The data set `PSCS_combined.sav` consists of item responses from 500 HIV-positiv
 Preparation.
 
 (a) Load required packages and read data file in. Use `read_spss()` function in the `sjlabelled` package to read the data file into R. Be sure to include `convert.factors=FALSE` option to prevent the variables to be converted to categorical variables. Show R code.  
+
+```{r}
+setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_3")
+
+df <- read_spss("pscs_combined.sav")
+```
+
 (b) Generate descriptive statistics for the 30 items using `descr()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+
+```{r}
+descr(df[,1:30])
+```
+
 (c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+
+```{r}
+frq(df[,1:30])
+```
+
 (d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
+
+```{r}
+dfmplus <- prepareMplusData(df, "dfmplus.dat", dropCols = c("lang"))
+```
+
+
+
+
+
+
+
+
+
 
 

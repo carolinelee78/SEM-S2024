@@ -1,0 +1,106 @@
+---
+title: "Project 3"
+author: "PSY6323"
+date: "Due on March 8, 2024"
+output: html_notebook
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+## Introduction
+Parental Self-Care Scale (PSCS) (Abell, Ryan, & Kamata, 2006) is a 30-item scale that measures ill HIV-positive parents' capacities to manage their own emotional, instrumental, and nursing needs while maintaining family responsibilities. Respondents are asked to rate their belief on their own capacity on each of the 30 items with a 11-point scale (0 = Cannot do at all, 5 =  Probably can do, 10 = Sure I can do). The list of items is in the table at the end of this document.
+
+The data set `PSCS_combined.sav` consists of item responses from 500 HIV-positive parents on items 1-30. Column 1-30 are item responses for the 30 items (`x1-x30`) and Column 31 is the language group (`lang`) variable. There were two groups of parents based on the language form they took (variable `lang`; 1 = Spanish, 2 = English). In this project, you will conduct a series of invariance study analyses for Spanish and English versions of the PSCS scale.  
+
+## Questions
+#### Q.1
+Preparation.
+
+(a) Load required packages and read data file in. Use `read_spss()` function in the `sjlabelled` package to read the data file into R. Be sure to include `convert.factors=FALSE` option to prevent the variables to be converted to categorical variables. Show R code.  
+(b) Generate descriptive statistics for the 30 items using `descr()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+(c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+(d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
+
+#### Q.2
+Using Mplus, fit a single-group 3-factor CFA model with ULI scaling strategy. Show all R code.   
+
+(a) Generate an external Mplus input file for a 3-factor CFA model with all 30 items.  
+(b) Run the input file by the `runModels()` function in the `MplusAutomation` package.  
+(c) By using `readModels()` function in the `MplusAutomation`, read the output file. Then, extract CFI, TLI, RMSEA, and 90% CI of RMSEA. Comment on the model fit based on these values.  
+(d) Extract standardized factor loadings.   
+
+#### Q.3
+Now, use Mplus to conduct one Mplus run of overall invariance tests between Spanish and English groups. Show all R code. 
+
+(a) Show R code to generate an external Mplus input file for the analysis. Use ULI scaling strategy.  
+(b) By using `readModels()` function in the `MplusAutomation`, read the output file. Then extract the Mplus results that show model comparisons between configural, metric, and scalar invariance models. 
+(c) Briefly define what metric (weak) invariance means. Then, state whether weak invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
+(d) Briefly define what scalar (strong) invariance means. Then, state whether strong invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
+
+#### Q.4
+Now, fit various invariance models with multiple group analysis by Mplus. The goal here is to match the results for all models from the one-step approach in Q.2. For each of the model below, attach the R code to generate the Mplus syntax. Then, run the model by using the `runModels()` function, and read the results by using the `readModels()` function. Then, extract  df, chi-squre statistic, CFI, TLI, AIC, BIC, and aBIC. Verify these values match the results from Q.2.   
+
+(a) Configural invariance model.  
+(b) Metric (weak) invariance model.  
+(c) Scalar (strong) invariance model.  
+
+#### Q.5
+It is suspected that the fit of the scalar (strong) invariance model would improve by varying their intercepts between groups for items 2 and 5. Therefore, we will test partial-strong invariance models targeting the intercepts of the two items in this question. Show all R code.  
+
+(a) Specify a partial scalar-invariance model, where intercepts for both items 2 & 5 are not invariant between the two groups. Show R code to generate Mplus syntax file.  
+(b) Read the results by using `readModels()` function. Then, extract df, chi-squre statistic, CFI, TLI, AIC, BIC, and aBIC to compare the results to the weak invariance model. In the table, include the model labels, as well as the Chi-square difference test to test whether this partial scalar-invariance model is supported.  
+(c) Conduct the Chi-square difference test by manually entering the values to the `pchisq()` function to verify the p-value in the table. 
+(d) Comment whether this partial-scalar invariance model is supported by Chi-square difference test, information criteria and other fit indices.  
+(e) Repeat (a)-(d) for another partial-scalar invariance model with only item 2 intercept is variant. 
+(f) Repeat (a)-(d) for another partial-scalar invariance model with only item 5 intercept is variant.
+
+## Appendix: PSCS Sub-domains and Items
+#### Emotional Self-Care Sub-domain
+```{r echo=FALSE}
+data.frame(Item = 1:10,
+           Descriptions = c("Find someone to talk to when I'm sad.",
+                            "Get some comfort when I'm upset.",
+                            "Calm my anxiety about the future.",
+                            "Get through the times I'm afraid.",
+                            "Find a way to deal with feeling hopeless.",
+                            "Get support for my concerns about dying.",
+                            "Keep my spirits up.",
+                            "Connect with others when I feel like crying.",
+                            "Handle the times when I'm angry.",
+                            "Get a grip on things when I can't remember well or am confused.")) %>% 
+  kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+#### Instrumental Self-Care Sub-domain
+```{r echo=FALSE}
+data.frame(Item = 11:20,
+           Descriptions = c("Get to my medical appointments.",
+                            "Get groceries I need.",
+                            "Pay for my medicine.",
+                            "Be sure my meals are made.",
+                            "Get my house clean.",
+                            "Wash the dishes.",
+                            "Do the laundry.",
+                            "Pay for my food and housing.",
+                            "Get someone to stay with me when I need help.",
+                            "Work with my doctor to plan for my medical care.")) %>% 
+  kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+#### Nursing Self-Care Sub-domain
+```{r echo=FALSE}
+data.frame(Item = 21:30,
+           Descriptions = c("Take my medicine the right way.",
+                            "Make sure my bed is changed when it needs it.",
+                            "Take a bath or shower.",
+                            "Clean up if I lose control of my bowels or bladder.",
+                            "Make sure I can eat my meals.",
+                            "Clean up if I throw up.",
+                            "Move around to stay comfortable in bed.",
+                            "Make sure my dressings are changed if I have sores.",
+                            "Get in and out of the bathroom.",
+                            "Get in and out of bed as I need to.")) %>% 
+  kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
