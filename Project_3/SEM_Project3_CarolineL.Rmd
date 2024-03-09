@@ -55,7 +55,6 @@ Parental Self-Care Scale (PSCS) (Abell, Ryan, & Kamata, 2006) is a 30-item scale
 The data set `PSCS_combined.sav` consists of item responses from 500 HIV-positive parents on items 1-30. Column 1-30 are item responses for the 30 items (`x1-x30`) and Column 31 is the language group (`lang`) variable. There were two groups of parents based on the language form they took (variable `lang`; 1 = Spanish, 2 = English). In this project, you will conduct a series of invariance study analyses for Spanish and English versions of the PSCS scale.  
 
 ## Questions
-
 ### Q.1
 Preparation.
 
@@ -64,33 +63,78 @@ Preparation.
 ```{r}
 setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_3")
 
-df <- read_spss("pscs_combined.sav")
+PSCS <- read_spss("pscs_combined.sav")
 ```
 
 (b) Generate descriptive statistics for the 30 items using `descr()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
 
 ```{r}
-descr(df[,1:30])
+descr(PSCS[,1:30])
 ```
 
 (c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
 
 ```{r}
-frq(df[,1:30])
+frq(PSCS[,1:30])
 ```
 
 (d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
 
 ```{r}
-dfmplus <- prepareMplusData(df, "dfmplus.dat", dropCols = c("lang"))
+PSCS_dat <- prepareMplusData(PSCS, "PSCS.dat")
 ```
 
+### Q.2
+Using Mplus, fit a single-group 3-factor CFA model with ULI scaling strategy. Show all R code.   
 
+(a) Generate an external Mplus input file for a 3-factor CFA model with all 30 items.  
 
+```{r}
+sink(file = "PSCS.inp")
+cat('
+data:     file = PSCS.dat;
+variable: names = e1 e2 e3 e4 e5 e6 e7 e8 e9 e10
+                  i1 i2 i3 i4 i5 i6 i7 i8 i9 i10
+                  n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 lang;
+          usev = e1 e2 e3 e4 e5 e6 e7 e8 e9 e10
+                 i1 i2 i3 i4 i5 i6 i7 i8 i9 i10
+                 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10;
+          missing = .;
+model:    emotion by e1 e2 e3 e4 e5 e6 e7 e8 e9 e10;
+          instrum by i1 i2 i3 i4 i5 i6 i7 i8 i9 i10;
+          nursing by n1 n2 n3 n4 n5 n6 n7 n8 n9 n10;
+output:   stdyx modindices residual;
+  ', fill=T)
+sink()
+```
 
+(b) Run the input file by the `runModels()` function in the `MplusAutomation` package.  
 
+```{r}
+runModels("PSCS.inp")
+```
 
+(c) By using `readModels()` function in the `MplusAutomation`, read the output file. Then, extract CFI, TLI, RMSEA, and 90% CI of RMSEA. Comment on the model fit based on these values.  
 
+```{r}
+PSCS_fit <- readModels("pscs.out")
+```
+
+```{r}
+PSCS_fit$summaries %>% unlist()
+```
+- We can conclude that the model fit is good based on the following paramters. 
+  * CFI is 0.987 and >.95, indicating good fit.
+  * TLI is 0.986 and >.95, indicating good fit.
+  * RMSEA is 0.021 and $\leq$.06, indicating good fit.
+  * Lower bound of 90% CI for RMSEA is 0.014 and $\leq$.05, indicating good fit.
+  * Upper bound of 90% CI for RMSEA is 0.027 and <.07, indicating good fit. 
+
+(d) Extract standardized factor loadings.   
+
+```{r}
+PSCS_fit$parameters$stdyx.standardized
+```
 
 
 
