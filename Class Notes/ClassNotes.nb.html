@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
 <title>Class 2 - Mediation Analysis</title>
 
@@ -2895,7 +2895,7 @@ border-radius: 0px;
 
 
 <h1 class="title toc-ignore">Class 2 - Mediation Analysis</h1>
-<h4 class="date">2024-02-06</h4>
+<h4 class="date">2024-03-20</h4>
 
 </div>
 
@@ -2907,83 +2907,35 @@ border-radius: 0px;
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCJDOi9Vc2Vycy80ODkwOTEzOC9PbmVEcml2ZSAtIFNvdXRoZXJuIE1ldGhvZGlzdCBVbml2ZXJzaXR5L0Rlc2t0b3AvU0VNLVMyMDI0XCIpXG5gYGAifQ== -->
-<pre class="r"><code>setwd(&quot;C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKFwibXBsdXMuUlwiKVxuYGBgIn0= -->
+<pre class="r"><code>source(&quot;mplus.R&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gc2V0d2QoXCJDOi9Vc2Vycy80ODkwOTEzOC9PbmVEcml2ZSAtIFNvdXRoZXJuIE1ldGhvZGlzdCBVbml2ZXJzaXR5L0Rlc2t0b3AvU0VNLVMyMDI0XCIpIDogXG4gIGNhbm5vdCBjaGFuZ2Ugd29ya2luZyBkaXJlY3RvcnlcbiJ9 -->
-<pre><code>Error in setwd(&quot;C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024&quot;) : 
-  cannot change working directory</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ul>
-<li><p>Input not case-sensitive, output has to be in uppercase ###
-Mediation Analysis</p></li>
-<li><p>The difference <span class="math inline">\(c-c^\prime\)</span> is
-considered as the mediation effect, and <span class="math inline">\(c-c^\prime = a \times b\)</span> or <span class="math inline">\(c = a \times b - c^\prime\)</span></p></li>
-<li><p>However, the equity holds only for a special case of mediation
-analysis</p>
-<ul>
-<li>Continuous outcome and linear regression</li>
-</ul></li>
-<li><p>Therefore, it is not recommended to evaluate <span class="math inline">\(c - c^\prime\)</span></p></li>
+<li><h1 id="input-not-case-sensitive-output-has-to-be-in-uppercase">Input not
+case-sensitive, output has to be in uppercase</h1></li>
 </ul>
-<p><strong>Basic Mediation Analysis</strong></p>
-<ul>
-<li>Data from the discrimination study (Garcia et al., 2010) in Muthen
-et al. (2016; p.72), as well as Hayes (2013)</li>
-<li>Subjects (129 females) were presented a story of hoow female
-attorney lost a promotion to a less qualified male due to discriminatory
-action</li>
-<li>Subjects were randomly assigned to two different scenarios:
-<ul>
-<li><ol style="list-style-type: decimal">
-<li>the female attorney takes no action, and (2) the female attorney
-protests</li>
-</ol></li>
-</ul></li>
-<li>Variables
-<ul>
-<li>Intervention variable (0 = no protest, 1 = protest)
-(<code>protest</code>) predictor</li>
-<li>How well the subject likes the female attorney outcome - 7-point
-likert (<code>liking</code>)</li>
-<li>Perceived appropriateness of the response of the female attorney
-(<code>respappr</code>) mediator</li>
-<li>Beliefs in the pervasiveness of sex discrimination in society
-(<code>sexism</code>)</li>
-</ul></li>
-</ul>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJvdGVzdF9kZiA8LSByZWFkLnRhYmxlKFxccHJvdGVzdC50eHRcXCwgc2VwPVxcXFwpXG5jb2xuYW1lcyhwcm90ZXN0X2RmKSA8LSBjKFxcc2V4aXNtXFwsIFxcbGlraW5nXFwsIFxccmVzcGFwcHJcXCwgXFxwcm90ZXN0XFwpXG5wc3ljaDo6ZGVzY3JpYmUocHJvdGVzdF9kZilcbmBgYFxuYGBgIn0= -->
-<pre class="r"><code>```r
-protest_df &lt;- read.table(\protest.txt\, sep=\\)
-colnames(protest_df) &lt;- c(\sexism\, \liking\, \respappr\, \protest\)
-psych::describe(protest_df)</code></pre>
 <pre><code>
-&lt;!-- rnb-source-end --&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 88c00571ba57887efb4ff06c5af433f486cab0a9
+### Mediation Analysis 
 
-&lt;!-- rnb-chunk-end --&gt;
+- The difference $c-c^\prime$ is considered as the mediation effect, and $c-c^\prime = a \times b$ or $c = a \times b - c^\prime$
+- However, the equity holds only for a special case of mediation analysis 
+  * Continuous outcome and linear regression 
+- Therefore, it is not recommended to evaluate $c - c^\prime$
 
+**Basic Mediation Analysis**
 
-&lt;!-- rnb-text-begin --&gt;
-
-
-- By substituting the second equation below to the first equation below, we can get the combined equation:  
-
-Equation 1:
-$$ y_i = \beta_0 + \beta_1m_i + \beta_2x_i+\epsilon_{yi}$$
-Equation 2: 
-$$ m_i = \gamma_0 + \gamma_1x_i+\epsilon_{mi}$$
-Combined equation:
-$$ y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_i + \epsilon_{mi})+\beta_2x_i+\epsilon_{yi}$$
-
-- Example 1
-  * Note that by default, Mplus utilizes a method to estimate a standard error of nonlinearly transformed parameters called the &quot;Delta method&quot;. 
-  * Delta method analytically approximates the target standard error by assuming the normality of the sampling distribution of the parameter(s). 
-    - The indirect effect is a multiplication of two parameters 
-  * Mplus syntax for the `model` section: `DV on IV1 IV2` and so on for however many IVs there are 
+- Data from the discrimination study (Garcia et al., 2010) in Muthen et al. (2016; p.72), as well as Hayes (2013) 
+- Subjects (129 females) were presented a story of hoow female attorney lost a promotion to a less qualified male due to discriminatory action 
+- Subjects were randomly assigned to two different scenarios: 
+  * (1) the female attorney takes no action, and (2) the female attorney protests 
+- Variables 
+  * Intervention variable (0 = no protest, 1 = protest) (`protest`) predictor 
+  * How well the subject likes the female attorney outcome - 7-point likert (`liking`)
+  * Perceived appropriateness of the response of the female attorney (`respappr`) mediator 
+  * Beliefs in the pervasiveness of sex discrimination in society (`sexism`)
   
 
 &lt;!-- rnb-text-end --&gt;
@@ -2992,11 +2944,42 @@ $$ y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_i + \epsilon_{mi})+\beta_2x_i+\e
 &lt;!-- rnb-chunk-begin --&gt;
 
 
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhcXGV4Mi4xLmlucFxcKVxuY2F0KCdcbmRhdGE6ICAgICBmaWxlID0gcHJvdGVzdC50eHQ7IFxuXG52YXJpYWJsZTogbmFtZXMgPSBzZXhpc20gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IFxuICAgICAgICAgIHVzZXYgPSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgXG4gICAgICAgICAgXG5hbmFseXNpczogZXN0aW1hdG9yID0gbWxyOyBcblxubW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0OyBcbiAgICAgICAgICBcbk1vZGVsIGluZGlyZWN0OiBcbiAgICAgICAgICBsaWtpbmcgaW5kIHByb3Rlc3Q7IFxuICAgICAgICAgIFxub3V0cHV0OiAgIGNpbnRlcnZhbDtcbicpXG5zaW5rKClcblxucnVuTW9kZWxzKFxcZXgyLjEuaW5wXFwpXG5cbm1vZGVsZml0MSA8LSByZWFkTW9kZWxzKFxcZXgyLjEub3V0XFwpXG5cbm1vZGVsZml0MSRwYXJhbWV0ZXJzJHVuc3RhbmRhcmRpemVkXG5gYGBcbmBgYCJ9 --&gt;
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvdGVzdF9kZiA8LSByZWFkLnRhYmxlKFwicHJvdGVzdC50eHRcIiwgc2VwPVwiXCIpXG5jb2xuYW1lcyhwcm90ZXN0X2RmKSA8LSBjKFwic2V4aXNtXCIsIFwibGlraW5nXCIsIFwicmVzcGFwcHJcIiwgXCJwcm90ZXN0XCIpXG5wc3ljaDo6ZGVzY3JpYmUocHJvdGVzdF9kZilcbmBgYCJ9 --&gt;
 
 ```r
-```r
-sink(\ex2.1.inp\)
+protest_df &lt;- read.table(&quot;protest.txt&quot;, sep=&quot;&quot;)
+colnames(protest_df) &lt;- c(&quot;sexism&quot;, &quot;liking&quot;, &quot;respappr&quot;, &quot;protest&quot;)
+psych::describe(protest_df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>By substituting the second equation below to the first equation
+below, we can get the combined equation:</li>
+</ul>
+<p>Equation 1: <span class="math display">\[ y_i = \beta_0 + \beta_1m_i
++ \beta_2x_i+\epsilon_{yi}\]</span> Equation 2: <span class="math display">\[ m_i = \gamma_0 +
+\gamma_1x_i+\epsilon_{mi}\]</span> Combined equation: <span class="math display">\[ y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_i +
+\epsilon_{mi})+\beta_2x_i+\epsilon_{yi}\]</span></p>
+<ul>
+<li>Example 1
+<ul>
+<li>Note that by default, Mplus utilizes a method to estimate a standard
+error of nonlinearly transformed parameters called the “Delta
+method”.</li>
+<li>Delta method analytically approximates the target standard error by
+assuming the normality of the sampling distribution of the parameter(s).
+<ul>
+<li>The indirect effect is a multiplication of two parameters</li>
+</ul></li>
+<li>Mplus syntax for the <code>model</code> section:
+<code>DV on IV1 IV2</code> and so on for however many IVs there are</li>
+</ul></li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhcImV4Mi4xLmlucFwiKVxuY2F0KCdcbmRhdGE6ICAgICBmaWxlID0gcHJvdGVzdC50eHQ7IFxuXG52YXJpYWJsZTogbmFtZXMgPSBzZXhpc20gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IFxuICAgICAgICAgIHVzZXYgPSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgXG4gICAgICAgICAgXG5hbmFseXNpczogZXN0aW1hdG9yID0gbWxyOyBcblxubW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0OyBcbiAgICAgICAgICBcbk1vZGVsIGluZGlyZWN0OiBcbiAgICAgICAgICBsaWtpbmcgaW5kIHByb3Rlc3Q7IFxuICAgICAgICAgIFxub3V0cHV0OiAgIGNpbnRlcnZhbDtcbicpXG5zaW5rKClcblxucnVuTW9kZWxzKFwiZXgyLjEuaW5wXCIpXG5cbm1vZGVsZml0MSA8LSByZWFkTW9kZWxzKFwiZXgyLjEub3V0XCIpXG5cbm1vZGVsZml0MSRwYXJhbWV0ZXJzJHVuc3RhbmRhcmRpemVkXG5gYGAifQ== -->
+<pre class="r"><code>sink(&quot;ex2.1.inp&quot;)
 cat(&#39;
 data:     file = protest.txt; 
 
@@ -3015,34 +2998,19 @@ output:   cinterval;
 &#39;)
 sink()
 
-runModels(\ex2.1.inp\)
+runModels(&quot;ex2.1.inp&quot;)
 
-modelfit1 &lt;- readModels(\ex2.1.out\)
+modelfit1 &lt;- readModels(&quot;ex2.1.out&quot;)
 
 modelfit1$parameters$unstandardized</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-**Basic Mediation Analysis with Bootstrap**
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhcXGV4Mi4xYi5pbnBcXClcbmNhdCgnXG5kYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyBcblxudmFyaWFibGU6IG5hbWVzID0gc2V4aXNtIGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IFxuICAgICAgICAgIFxuYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOyBcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcblxubW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0OyBcbiAgICAgICAgICBcbk1vZGVsIGluZGlyZWN0OiBcbiAgICAgICAgICBsaWtpbmcgaW5kIHByb3Rlc3Q7IFxuICAgICAgICAgIFxub3V0cHV0OiAgIGNpbnRlcnZhbChib290c3RyYXApO1xuJylcbnNpbmsoKVxuXG5ydW5Nb2RlbHMoXFxleDIuMWIuaW5wXFwpXG5cbm1vZGVsZml0MiA8LSByZWFkTW9kZWxzKFxcZXgyLjFiLm91dFxcKVxuXG5tb2RlbGZpdDIkcGFyYW1ldGVycyR1bnN0YW5kYXJkaXplZFxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-sink(\ex2.1b.inp\)
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Basic Mediation Analysis with Bootstrap</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhcImV4Mi4xYi5pbnBcIilcbmNhdCgnXG5kYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyBcblxudmFyaWFibGU6IG5hbWVzID0gc2V4aXNtIGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IFxuICAgICAgICAgIFxuYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOyBcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcblxubW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0OyBcbiAgICAgICAgICBcbk1vZGVsIGluZGlyZWN0OiBcbiAgICAgICAgICBsaWtpbmcgaW5kIHByb3Rlc3Q7IFxuICAgICAgICAgIFxub3V0cHV0OiAgIGNpbnRlcnZhbChib290c3RyYXApO1xuJylcbnNpbmsoKVxuXG5ydW5Nb2RlbHMoXCJleDIuMWIuaW5wXCIpXG5cbm1vZGVsZml0MiA8LSByZWFkTW9kZWxzKFwiZXgyLjFiLm91dFwiKVxuXG5tb2RlbGZpdDIkcGFyYW1ldGVycyR1bnN0YW5kYXJkaXplZFxuYGBgIn0= -->
+<pre class="r"><code>sink(&quot;ex2.1b.inp&quot;)
 cat(&#39;
 data:     file = protest.txt; 
 
@@ -3062,45 +3030,36 @@ output:   cinterval(bootstrap);
 &#39;)
 sink()
 
-runModels(\ex2.1b.inp\)
+runModels(&quot;ex2.1b.inp&quot;)
 
-modelfit2 &lt;- readModels(\ex2.1b.out\)
+modelfit2 &lt;- readModels(&quot;ex2.1b.out&quot;)
 
 modelfit2$parameters$unstandardized</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-**Mediation Analysis with Covariates** 
-
-- Data from the Maternal Health Project 
-- Sample: Mothers who drank at least three drinks a week during the first trimester of their pregnancy + mothers who used alcohol less often ($n=594$)
-- Variables 
-  * Alcohol use (`momcig3`)
-  * Cigarette use (`momalc3`)
-  * Child&#39;s gender (`male`)
-  * Ethnicity (`black`)
-  * Head circumference at birth (`hcirc0`)
-  * Head circumference at birth 
-**Another way to set up mediation analysis** 
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhcXGV4Mi4xYy5pbnBcXClcbmNhdCgnXG5kYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyBcblxudmFyaWFibGU6IG5hbWVzID0gc2V4aXNtIGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IFxuICAgICAgICAgIFxuYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOyBcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcblxubW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciAoYjEpXG4gICAgICAgICAgICAgICAgICAgICBwcm90ZXN0OyBcbiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0IChnMSk7IFxuICAgICAgICAgIFxuTW9kZWwgY29uc3RyYWludDogXG4gICAgICAgICAgbmV3KHByb2xpayk7IFxuICAgICAgICAgIHByb2xpayA9IGcxICogYjE7XG4gICAgICAgICAgXG5vdXRwdXQ6ICAgY2ludGVydmFsKGJvb3RzdHJhcCk7XG4nKVxuc2luaygpXG5cbnJ1bk1vZGVscyhcXGV4Mi4xYy5pbnBcXClcblxubW9kZWxmaXQzIDwtIHJlYWRNb2RlbHMoXFxleDIuMWMub3V0XFwpXG5cbm1vZGVsZml0MyRwYXJhbWV0ZXJzJHVuc3RhbmRhcmRpemVkXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-sink(\ex2.1c.inp\)
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Mediation Analysis with Covariates</strong></p>
+<ul>
+<li>Data from the Maternal Health Project</li>
+<li>Sample: Mothers who drank at least three drinks a week during the
+first trimester of their pregnancy + mothers who used alcohol less often
+(<span class="math inline">\(n=594\)</span>)</li>
+<li>Variables
+<ul>
+<li>Alcohol use (<code>momcig3</code>)</li>
+<li>Cigarette use (<code>momalc3</code>)</li>
+<li>Child’s gender (<code>male</code>)</li>
+<li>Ethnicity (<code>black</code>)</li>
+<li>Head circumference at birth (<code>hcirc0</code>)</li>
+<li><h1 id="head-circumference-at-birth">Head circumference at
+birth</h1></li>
+</ul></li>
+</ul>
+<p><strong>Another way to set up mediation analysis</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhcImV4Mi4xYy5pbnBcIilcbmNhdCgnXG5kYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyBcblxudmFyaWFibGU6IG5hbWVzID0gc2V4aXNtIGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyBcbiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IFxuICAgICAgICAgIFxuYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOyBcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcblxubW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciAoYjEpXG4gICAgICAgICAgICAgICAgICAgICBwcm90ZXN0OyBcbiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0IChnMSk7IFxuICAgICAgICAgIFxuTW9kZWwgY29uc3RyYWludDogXG4gICAgICAgICAgbmV3KHByb2xpayk7IFxuICAgICAgICAgIHByb2xpayA9IGcxICogYjE7XG4gICAgICAgICAgXG5vdXRwdXQ6ICAgY2ludGVydmFsKGJvb3RzdHJhcCk7XG4nKVxuc2luaygpXG5cbnJ1bk1vZGVscyhcImV4Mi4xYy5pbnBcIilcblxubW9kZWxmaXQzIDwtIHJlYWRNb2RlbHMoXCJleDIuMWMub3V0XCIpXG5cbm1vZGVsZml0MyRwYXJhbWV0ZXJzJHVuc3RhbmRhcmRpemVkXG5gYGAifQ== -->
+<pre class="r"><code>sink(&quot;ex2.1c.inp&quot;)
 cat(&#39;
 data:     file = protest.txt; 
 
@@ -3122,160 +3081,109 @@ output:   cinterval(bootstrap);
 &#39;)
 sink()
 
-runModels(\ex2.1c.inp\)
+runModels(&quot;ex2.1c.inp&quot;)
 
-modelfit3 &lt;- readModels(\ex2.1c.out\)
+modelfit3 &lt;- readModels(&quot;ex2.1c.out&quot;)
 
 modelfit3$parameters$unstandardized</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-**Basic Mediation Analysis with** `lavaan`
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuTUEubW9kMDEgPC0gJ1xubGlraW5nIH4gYjEqcmVzcGFwcHIgKyBwcm90ZXN0IFxucmVzcGFwcHIgfiBnMSpwcm90ZXN0IFxucHJvbGlrIDo9IGIxKmcxXG4nXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-MA.mod01 &lt;- &#39;
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Basic Mediation Analysis with</strong>
+<code>lavaan</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTUEubW9kMDEgPC0gJ1xubGlraW5nIH4gYjEqcmVzcGFwcHIgKyBwcm90ZXN0IFxucmVzcGFwcHIgfiBnMSpwcm90ZXN0IFxucHJvbGlrIDo9IGIxKmcxXG4nXG5gYGAifQ== -->
+<pre class="r"><code>MA.mod01 &lt;- &#39;
 liking ~ b1*respappr + protest 
 respappr ~ g1*protest 
 prolik := b1*g1
 &#39;</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Run the model with bootstrap. 
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuTUEuZml0MDEgPC0gc2VtKE1BLm1vZDAxLCBkYXRhPXByb3Rlc3RfZGYsIHNlPVxcYm9vdFxcLCBib290c3RyYXA9MTAwMDApXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-MA.fit01 &lt;- sem(MA.mod01, data=protest_df, se=\boot\, bootstrap=10000)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGFyYW1ldGVyRXN0aW1hdGVzKE1BLmZpdDAxLCB6c3RhdD1GLCBwdmFsdWU9RilcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-parameterEstimates(MA.fit01, zstat=F, pvalue=F)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-**Mediation Analysis with Covariates** 
-
-- Data from the Maternal Health Project (Day et al., 1994) is from a sample of mothers who drank at least three drinks a week during the first trimester of their pregnancy + mothers who drank alcohol less often ($n$ = 594). 
-- Variables
-  * Alcohol use (`momcig3`)
-  * Cigarette use (`momalc3`)
-  * Child&#39;s gender (`male`)
-  * Ethnicity (`black`)
-  * Head circumference at birth (`hcirc0`)
-  * Head circumference at 36 monoths (`hcirc36`)
-- The hypothesis is that there are no direct effects of `momalc3` and `momcig3` on `hcirc36`. 
-
-Equation 1: 
-$$
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Run the model with bootstrap.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTUEuZml0MDEgPC0gc2VtKE1BLm1vZDAxLCBkYXRhPXByb3Rlc3RfZGYsIHNlPVwiYm9vdFwiLCBib290c3RyYXA9MTAwMDApXG5gYGAifQ== -->
+<pre class="r"><code>MA.fit01 &lt;- sem(MA.mod01, data=protest_df, se=&quot;boot&quot;, bootstrap=10000)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFyYW1ldGVyRXN0aW1hdGVzKE1BLmZpdDAxLCB6c3RhdD1GLCBwdmFsdWU9RilcbmBgYCJ9 -->
+<pre class="r"><code>parameterEstimates(MA.fit01, zstat=F, pvalue=F)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Mediation Analysis with Covariates</strong></p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD - Data from the Maternal Health
+Project (Day et al., 1994) is from a sample of mothers who drank at
+least three drinks a week during the first trimester of their pregnancy
++ mothers who drank alcohol less often (<span class="math inline">\(n\)</span> = 594). ======= - Data from the
+Maternal Health Project (Day et al., 1994) is from a sample of mothers
+who drank at least three drinks a week duringn the first trimester of
+their pregnancy + mothers who drank alcohol less often (<span class="math inline">\(n\)</span> = 594). &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+88c00571ba57887efb4ff06c5af433f486cab0a9 - Variables * Alcohol use
+(<code>momcig3</code>) * Cigarette use (<code>momalc3</code>) * Child’s
+gender (<code>male</code>) * Ethnicity (<code>black</code>) * Head
+circumference at birth (<code>hcirc0</code>) * Head circumference at 36
+monoths (<code>hcirc36</code>) &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD - The
+hypothesis is that there are no direct effects of <code>momalc3</code>
+and <code>momcig3</code> on <code>hcirc36</code>. =======</p>
+<p>Equation 1: <span class="math display">\[
 y_i = \beta_0+\beta_1 m_i+\beta_2z_{1i}+\beta_3z_{2i}+\epsilon_{yi}
-$$
-Equation 2: 
-$$
+\]</span></p>
+<p>Equation 2: <span class="math display">\[
 m_i=\gamma_0+\gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi}
-$$
-- Substitute the second equation to the first equation: 
-$$
-y_i = \beta_0 + \beta_1(\gamma_0 + \gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi}) + \beta_2z_{1i}+\beta_3z_{2i}+\epsilon_{yi}
-$$
-  * No direct effect of $x$ to $y$ in this case. The indirect effect of $x_1$ to $y$ is $\beta_1 \gamma_1$; the indirect of $x_2$ to $y$ is $\beta_1 \gamma_2$. 
-  
-  
-**Mediation Analysis with multiple Mediators**
-
-- Data from a randomized study of media influence 
-- 43 male aned 80 females read a newspaper article and were randomly assigned to one of the two groups 
-  * One group was told that the story would appear on the front page of a major newspaper 
-  * The other group was told that it would appear in the middle of an economic supplement. 
-- Variables
-  * Group (0 = less visible; 1 = more visible) (`cond`)
-  * Intention to buy sugar and how much (`reaction`)
-  * Presumed media influence to others (`pmi`)
-  * Importance oof sugar shortage (`import`)
-Both direct effect annd mediation effect depends on the value of $z_i$ as a covariate (i.e., moderated by the covariate)
-
-Equation 1: 
-$$ 
-y_i = \beta_0 + \beta_1m_{1i} + \beta_2m_{2i} + \beta_3{x_i} + \epsilon_{yi}
-$$ 
-Equation 2: 
-$$ 
-m_{1i} = \gamma_{10} + \gamma_{11}x_i + \epsilon_{m1i}
-m_{2i} = \gamma_{20} + \gamma_{21}x_i + \epsilon_{m2i}
-
-$$
-- The direct effect of $x$ to $y$ is $\beta_3$; the indirect effect of $x$ too $y$ through $m_1$ is $\beta_1 \gamma_{11}$, and the indirect effect of $x$ to $y$ through $m_2$ is $\beta_2 \gamma_{21}$.
-
-
-If the moderation value is lower than .15, mediation effect is not significant as it&#39;s within the 95% band around 0. Within .15~+.85 would indicate significance, outside would be not significant. 
-- The outvome i
-
-**Moderated Mediation (1)**
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhcXGV4Mi4yMy5pbnBcXClcbmNhdCgnXG5hbmFseXNpczogZXN0aW1hdG9yID0gbWw7IFxuICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOyBcbm1vZGVsOiAgICByZW1vdmUgb24gYWdnNSB0eCBhZ2cxIHh4OyBcbiAgICAgICAgICBhZ2c1IG9uIHR4IGFnZzEgeHo7IFxubW9kZWwgaW5kaXJlY3Q6IFxuICByZW1vdmUgTU9EIGFnZzUgYWdnMSgtMSwgMSwgMC4xKSB4eiB0eDsgXG5vdXRwdXQ6IFxuICBzYW1wc3RhdCBwYXR0ZXJucyBzdGFuZGFyZGl6ZWQgXG4gIGNpbnRlcnZhbChib290c3RyYXApO1xucGxvdDogICAgIHR5cGUgPSBwbG90MztcbicpXG5zaW5rKClcblxucnVuTW9kZWxzKFxcZXgyLjIzLmlucFxcKVxuXG5tb2RlbGZpdDQgPC0gcmVhZE1vZGVscyhcXGV4Mi4yMy5vdXRcXClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-sink(\ex2.23.inp\)
+\]</span> - Substitute the second equation to the first equation: <span class="math display">\[
+y_i = \beta_0 + \beta_1(\gamma_0 +
+\gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi})
++ \beta_2z_{1i}+\beta_3z_{2i}+\epsilon_{yi}
+\]</span> * No direct effect of <span class="math inline">\(x\)</span>
+to <span class="math inline">\(y\)</span> in this case. The indirect
+effect of <span class="math inline">\(x_1\)</span> to <span class="math inline">\(y\)</span> is <span class="math inline">\(\beta_1
+\gamma_1\)</span>; the indirect of <span class="math inline">\(x_2\)</span> to <span class="math inline">\(y\)</span> is <span class="math inline">\(\beta_1
+\gamma_2\)</span>.</p>
+<p><strong>Mediation Analysis with multiple Mediators</strong></p>
+<ul>
+<li>Data from a randomized study of media influence</li>
+<li>43 male aned 80 females read a newspaper article and were randomly
+assigned to one of the two groups
+<ul>
+<li>One group was told that the story would appear on the front page of
+a major newspaper</li>
+<li>The other group was told that it would appear in the middle of an
+economic supplement.</li>
+</ul></li>
+<li>Variables
+<ul>
+<li>Group (0 = less visible; 1 = more visible) (<code>cond</code>)</li>
+<li>Intention to buy sugar and how much (<code>reaction</code>)</li>
+<li>Presumed media influence to others (<code>pmi</code>)</li>
+<li>Importance oof sugar shortage (<code>import</code>) Both direct
+effect annd mediation effect depends on the value of <span class="math inline">\(z_i\)</span> as a covariate (i.e., moderated by
+the covariate)</li>
+</ul></li>
+</ul>
+<p>Equation 1: <span class="math display">\[
+y_i = \beta_0 + \beta_1m_{1i} + \beta_2m_{2i} + \beta_3{x_i} +
+\epsilon_{yi}
+\]</span> Equation 2: $$ m_{1i} = <em>{10} + </em>{11}x_i + <em>{m1i}
+m</em>{2i} = <em>{20} + </em>{21}x_i + _{m2i}</p>
+<p>$$ - The direct effect of <span class="math inline">\(x\)</span> to
+<span class="math inline">\(y\)</span> is <span class="math inline">\(\beta_3\)</span>; the indirect effect of <span class="math inline">\(x\)</span> too <span class="math inline">\(y\)</span> through <span class="math inline">\(m_1\)</span> is <span class="math inline">\(\beta_1 \gamma_{11}\)</span>, and the indirect
+effect of <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span> through <span class="math inline">\(m_2\)</span> is <span class="math inline">\(\beta_2 \gamma_{21}\)</span>.</p>
+<p>If the moderation value is lower than .15, mediation effect is not
+significant as it’s within the 95% band around 0. Within .15~+.85 would
+indicate significance, outside would be not significant. - The outvome
+i</p>
+<p><strong>Moderated Mediation (1)</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhcImV4Mi4yMy5pbnBcIilcbmNhdCgnXG5hbmFseXNpczogZXN0aW1hdG9yID0gbWw7IFxuICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOyBcbm1vZGVsOiAgICByZW1vdmUgb24gYWdnNSB0eCBhZ2cxIHh4OyBcbiAgICAgICAgICBhZ2c1IG9uIHR4IGFnZzEgeHo7IFxubW9kZWwgaW5kaXJlY3Q6IFxuICByZW1vdmUgTU9EIGFnZzUgYWdnMSgtMSwgMSwgMC4xKSB4eiB0eDsgXG5vdXRwdXQ6IFxuICBzYW1wc3RhdCBwYXR0ZXJucyBzdGFuZGFyZGl6ZWQgXG4gIGNpbnRlcnZhbChib290c3RyYXApO1xucGxvdDogICAgIHR5cGUgPSBwbG90MztcbicpXG5zaW5rKClcblxucnVuTW9kZWxzKFwiZXgyLjIzLmlucFwiKVxuXG5tb2RlbGZpdDQgPC0gcmVhZE1vZGVscyhcImV4Mi4yMy5vdXRcIilcbmBgYCJ9 -->
+<pre class="r"><code>sink(&quot;ex2.23.inp&quot;)
 cat(&#39;
 analysis: estimator = ml; 
           bootstrap = 10000; 
@@ -3290,52 +3198,26 @@ plot:     type = plot3;
 &#39;)
 sink()
 
-runModels(\ex2.23.inp\)
+runModels(&quot;ex2.23.inp&quot;)
 
-modelfit4 &lt;- readModels(\ex2.23.out\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-`model indirect`
-- This simple approach works when the effects are moderated only by the moderator variable 
-- This approach produces &quot;causally defined&quot; direct and indirect effects
-- MOD keyword is added 
-- Variables are listed in the following order: 
-  * $y$ (outcome)
-  * MOD keyword 
-  * $m$ (mediator) 
-  * $z$ (moderator)
-  * $xz$ (interaction)
-  * $x$ (exposure variable)
-- THe range of $z$ (`agg1`) is provided, because the direct and indirect effects depend on the value of $z$.
-
-
-`model constraint`
-- `LOOP` specifies the range of values for the x-axis of the plot. 
-- `PLOT` names the variables to be plotted on the 
-
-
-
-**Moderated Mediation (2)** 
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhmaWxlID0gXFxleDIuMjUuaW5wXFwpXG5jYXQoJ1xuZGF0YTogICAgIGZpbGUgPSB0ZWFtcy50eHQ7XG52YXJpYWJsZTogbmFtZXMgPSBkeXNmdW5jIG5lZ3RvbmUgbmVnZXhwIHBlcmZvcm07XG4gICAgICAgICAgdXNldiA9IGR5c2Z1bmMgbmVndG9uZSBuZWdleHAgcGVyZm9ybSBtejtcbmRlZmluZTogICBteiA9IG5lZ3RvbmUqbmVnZXhwO1xuYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sO1xuICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwO1xubW9kZWw6ICAgIHBlcmZvcm0gb24gbmVndG9uZSBkeXNmdW5jIG5lZ2V4cCBtejtcbiAgICAgICAgICBuZWd0b25lIG9uIGR5c2Z1bmM7ICBcbm1vZGVsIGluZGlyZWN0OlxuICAgICAgICAgIHBlcmZvcm0gTU9EIG5lZ3RvbmUgbmVnZXhwKC0wLjQsMC42LDAuMDEpIG16IGR5c2Z1bmMgKDAuNDAzOCAwLjAzNSk7XG5vdXRwdXQ6ICAgY2ludGVydmFsIChib290c3RyYXApO1xucGxvdDogICAgIHR5cGUgPSBwbG90MztcbiAgJywgZmlsbD1UKVxuICBzaW5rKClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-sink(file = \ex2.25.inp\)
+modelfit4 &lt;- readModels(&quot;ex2.23.out&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><code>model indirect</code> - This simple approach works when the
+effects are moderated only by the moderator variable - This approach
+produces “causally defined” direct and indirect effects - MOD keyword is
+added - Variables are listed in the following order: * <span class="math inline">\(y\)</span> (outcome) * MOD keyword * <span class="math inline">\(m\)</span> (mediator) * <span class="math inline">\(z\)</span> (moderator) * <span class="math inline">\(xz\)</span> (interaction) * <span class="math inline">\(x\)</span> (exposure variable) - THe range of
+<span class="math inline">\(z\)</span> (<code>agg1</code>) is provided,
+because the direct and indirect effects depend on the value of <span class="math inline">\(z\)</span>.</p>
+<p><code>model constraint</code> - <code>LOOP</code> specifies the range
+of values for the x-axis of the plot. - <code>PLOT</code> names the
+variables to be plotted on the</p>
+<p><strong>Moderated Mediation (2)</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhmaWxlID0gXCJleDIuMjUuaW5wXCIpXG5jYXQoJ1xuZGF0YTogICAgIGZpbGUgPSB0ZWFtcy50eHQ7XG52YXJpYWJsZTogbmFtZXMgPSBkeXNmdW5jIG5lZ3RvbmUgbmVnZXhwIHBlcmZvcm07XG4gICAgICAgICAgdXNldiA9IGR5c2Z1bmMgbmVndG9uZSBuZWdleHAgcGVyZm9ybSBtejtcbmRlZmluZTogICBteiA9IG5lZ3RvbmUqbmVnZXhwO1xuYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sO1xuICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwO1xubW9kZWw6ICAgIHBlcmZvcm0gb24gbmVndG9uZSBkeXNmdW5jIG5lZ2V4cCBtejtcbiAgICAgICAgICBuZWd0b25lIG9uIGR5c2Z1bmM7ICBcbm1vZGVsIGluZGlyZWN0OlxuICAgICAgICAgIHBlcmZvcm0gTU9EIG5lZ3RvbmUgbmVnZXhwKC0wLjQsMC42LDAuMDEpIG16IGR5c2Z1bmMgKDAuNDAzOCAwLjAzNSk7XG5vdXRwdXQ6ICAgY2ludGVydmFsIChib290c3RyYXApO1xucGxvdDogICAgIHR5cGUgPSBwbG90MztcbiAgJywgZmlsbD1UKVxuICBzaW5rKClcbmBgYCJ9 -->
+<pre class="r"><code>sink(file = &quot;ex2.25.inp&quot;)
 cat(&#39;
 data:     file = teams.txt;
 variable: names = dysfunc negtone negexp perform;
@@ -3351,98 +3233,49 @@ output:   cinterval (bootstrap);
 plot:     type = plot3;
   &#39;, fill=T)
   sink()</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Run the model.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucnVuTW9kZWxzKFxcZXgyLjI1LmlucFxcKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-runModels(\ex2.25.inp\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Plot the moderated mediation effect by using a function available from `mplus.R`.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubXBsdXMucGxvdC5tb2RlcmF0aW9uKFxcZXgyLjI1LmdoNVxcKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-mplus.plot.moderation(\ex2.25.gh5\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-By using a function available in `mplus.R`, read values of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable. Note that these values are also reported in the Mplus output file `ex2.25.out`. However, it is nice to see them on R too.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudGliYmxlKFxuICBuZWdleHAgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi54dmFsdWVzKFxcZXgyLjI1LmdoNVxcKSxcbiAgZXN0cyA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLmVzdGltYXRlcyhcXGV4Mi4yNS5naDVcXCksXG4gIGxvY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5sb3dlcmNpKFxcZXgyLjI1LmdoNVxcKSxcbiAgdXBjaSA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLnVwcGVyY2koXFxleDIuMjUuZ2g1XFwpKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-tibble(
-  negexp = mplus.get.moderation.xvalues(\ex2.25.gh5\),
-  ests = mplus.get.moderation.estimates(\ex2.25.gh5\),
-  loci = mplus.get.moderation.lowerci(\ex2.25.gh5\),
-  upci = mplus.get.moderation.upperci(\ex2.25.gh5\))</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Now, run the same model by using a different approach by using &quot;model constraint&quot; command with &quot;loop&quot; to specify a series of evaluation points. 
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhmaWxlID0gXFxleDIuMjViLmlucFxcKVxuY2F0KCdcbmRhdGE6ICAgICBmaWxlID0gdGVhbXMudHh0O1xudmFyaWFibGU6IG5hbWVzID0gZHlzZnVuYyBuZWd0b25lIG5lZ2V4cCBwZXJmb3JtO1xuICAgICAgICAgIHVzZXYgPSBkeXNmdW5jIG5lZ3RvbmUgbmVnZXhwIHBlcmZvcm0gbXo7XG5kZWZpbmU6ICAgbXogPSBuZWd0b25lKm5lZ2V4cDtcbmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDtcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcbk1PREVMOiAgICBwZXJmb3JtIG9uIG5lZ3RvbmUgKGIxKVxuICAgICAgICAgIGR5c2Z1bmMgKGIyKVxuICAgICAgICAgIG5lZ2V4cCAoYjMpXG4gICAgICAgICAgbXogKGI0KTtcbiAgICAgICAgICBuZWd0b25lIG9uIGR5c2Z1bmMgKGcxKTtcbk1PREVMIENPTlNUUkFJTlQ6XG4gICAgICAgICAgcGxvdChpbmQpO1xuICAgICAgICAgIGxvb3AobmVnZXhwLCAtLjQsIC42LCAuMDEpO1xuICAgICAgICAgIGluZCA9IChiMSpnMSArIGI0KmcxKm5lZ2V4cCkgKiAoLjQwMzggLSAuMDM1KTtcbm91dHB1dDogICBjaW50ZXJ2YWwgKGJvb3RzdHJhcCk7XG5wbG90OiAgICAgdHlwZSA9IHBsb3QzO1xuICAnLCBmaWxsPVQpXG4gIHNpbmsoKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-sink(file = \ex2.25b.inp\)
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Run the model.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnVuTW9kZWxzKFwiZXgyLjI1LmlucFwiKVxuYGBgIn0= -->
+<pre class="r"><code>runModels(&quot;ex2.25.inp&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Plot the moderated mediation effect by using a function available
+from <code>mplus.R</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXBsdXMucGxvdC5tb2RlcmF0aW9uKFwiZXgyLjI1LmdoNVwiKVxuYGBgIn0= -->
+<pre class="r"><code>mplus.plot.moderation(&quot;ex2.25.gh5&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>By using a function available in <code>mplus.R</code>, read values of
+mediation effect, lower and upper bounds of 95% CI at each value of the
+moderator variable. Note that these values are also reported in the
+Mplus output file <code>ex2.25.out</code>. However, it is nice to see
+them on R too.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGliYmxlKFxuICBuZWdleHAgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi54dmFsdWVzKFwiZXgyLjI1LmdoNVwiKSxcbiAgZXN0cyA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLmVzdGltYXRlcyhcImV4Mi4yNS5naDVcIiksXG4gIGxvY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5sb3dlcmNpKFwiZXgyLjI1LmdoNVwiKSxcbiAgdXBjaSA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLnVwcGVyY2koXCJleDIuMjUuZ2g1XCIpKVxuYGBgIn0= -->
+<pre class="r"><code>tibble(
+  negexp = mplus.get.moderation.xvalues(&quot;ex2.25.gh5&quot;),
+  ests = mplus.get.moderation.estimates(&quot;ex2.25.gh5&quot;),
+  loci = mplus.get.moderation.lowerci(&quot;ex2.25.gh5&quot;),
+  upci = mplus.get.moderation.upperci(&quot;ex2.25.gh5&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now, run the same model by using a different approach by using “model
+constraint” command with “loop” to specify a series of evaluation
+points.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhmaWxlID0gXCJleDIuMjViLmlucFwiKVxuY2F0KCdcbmRhdGE6ICAgICBmaWxlID0gdGVhbXMudHh0O1xudmFyaWFibGU6IG5hbWVzID0gZHlzZnVuYyBuZWd0b25lIG5lZ2V4cCBwZXJmb3JtO1xuICAgICAgICAgIHVzZXYgPSBkeXNmdW5jIG5lZ3RvbmUgbmVnZXhwIHBlcmZvcm0gbXo7XG5kZWZpbmU6ICAgbXogPSBuZWd0b25lKm5lZ2V4cDtcbmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDtcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcbk1PREVMOiAgICBwZXJmb3JtIG9uIG5lZ3RvbmUgKGIxKVxuICAgICAgICAgIGR5c2Z1bmMgKGIyKVxuICAgICAgICAgIG5lZ2V4cCAoYjMpXG4gICAgICAgICAgbXogKGI0KTtcbiAgICAgICAgICBuZWd0b25lIG9uIGR5c2Z1bmMgKGcxKTtcbk1PREVMIENPTlNUUkFJTlQ6XG4gICAgICAgICAgcGxvdChpbmQpO1xuICAgICAgICAgIGxvb3AobmVnZXhwLCAtLjQsIC42LCAuMDEpO1xuICAgICAgICAgIGluZCA9IChiMSpnMSArIGI0KmcxKm5lZ2V4cCkgKiAoLjQwMzggLSAuMDM1KTtcbm91dHB1dDogICBjaW50ZXJ2YWwgKGJvb3RzdHJhcCk7XG5wbG90OiAgICAgdHlwZSA9IHBsb3QzO1xuICAnLCBmaWxsPVQpXG4gIHNpbmsoKVxuYGBgIn0= -->
+<pre class="r"><code>sink(file = &quot;ex2.25b.inp&quot;)
 cat(&#39;
 data:     file = teams.txt;
 variable: names = dysfunc negtone negexp perform;
@@ -3463,127 +3296,65 @@ output:   cinterval (bootstrap);
 plot:     type = plot3;
   &#39;, fill=T)
   sink()</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Run the model.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucnVuTW9kZWxzKFxcZXgyLjI1Yi5pbnBcXClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-runModels(\ex2.25b.inp\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Generate a plot of the moderated mediation effect by using a function available from `mplus.R`. Note that the function is different from the one for the other approach in ex2.25.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubXBsdXMucGxvdC5sb29wKFxcZXgyLjI1Yi5naDVcXCwgMSlcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-mplus.plot.loop(\ex2.25b.gh5\, 1)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Similar to the previous example, generate a table of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable by using a function available in `mplus.R`. Note that this table is not available in the Mplus output file when the &quot;model constraint&quot; approach is used. However, the necessary values are stored in the `.gh5` file, so we can extract the values and summarize as a table on R.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudGliYmxlKFxuICBuZWdleHAgPSBtcGx1cy5nZXQubG9vcC54dmFsdWVzKFxcZXgyLjI1Yi5naDVcXCksXG4gIGVzdHMgPSBtcGx1cy5nZXQubG9vcC5lc3RpbWF0ZXMoXFxleDIuMjViLmdoNVxcLCAxKSxcbiAgbG9jaSA9IG1wbHVzLmdldC5sb29wLmxvd2VyY2koXFxleDIuMjViLmdoNVxcLCAxKSxcbiAgdXBjaSA9IG1wbHVzLmdldC5sb29wLnVwcGVyY2koXFxleDIuMjViLmdoNVxcLCAxKSkgJT4lIHByaW50KG49MTAxKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-tibble(
-  negexp = mplus.get.loop.xvalues(\ex2.25b.gh5\),
-  ests = mplus.get.loop.estimates(\ex2.25b.gh5\, 1),
-  loci = mplus.get.loop.lowerci(\ex2.25b.gh5\, 1),
-  upci = mplus.get.loop.upperci(\ex2.25b.gh5\, 1)) %&gt;% print(n=101)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Read the data.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZXgyLjI2LmRhdCA8LSByZWFkLnRhYmxlKFxceG1WeDRzMW4yMDByZXA2LmRhdFxcKVxuY29sbmFtZXMoZXgyLjI2LmRhdCkgPC0gYyhcXHlcXCwgXFxtXFwsIFxceFxcKVxuZXgyLjI2LmRhdCA8LVxuICBleDIuMjYuZGF0ICU+JSBtdXRhdGUobXggPSBtKngpXG5wc3ljaDo6ZGVzY3JpYmUoZXgyLjI2LmRhdCwgZmFzdD1UKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-ex2.26.dat &lt;- read.table(\xmVx4s1n200rep6.dat\)
-colnames(ex2.26.dat) &lt;- c(\y\, \m\, \x\)
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Run the model.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnVuTW9kZWxzKFwiZXgyLjI1Yi5pbnBcIilcbmBgYCJ9 -->
+<pre class="r"><code>runModels(&quot;ex2.25b.inp&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Generate a plot of the moderated mediation effect by using a function
+available from <code>mplus.R</code>. Note that the function is different
+from the one for the other approach in ex2.25.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXBsdXMucGxvdC5sb29wKFwiZXgyLjI1Yi5naDVcIiwgMSlcbmBgYCJ9 -->
+<pre class="r"><code>mplus.plot.loop(&quot;ex2.25b.gh5&quot;, 1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Similar to the previous example, generate a table of mediation
+effect, lower and upper bounds of 95% CI at each value of the moderator
+variable by using a function available in <code>mplus.R</code>. Note
+that this table is not available in the Mplus output file when the
+“model constraint” approach is used. However, the necessary values are
+stored in the <code>.gh5</code> file, so we can extract the values and
+summarize as a table on R.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGliYmxlKFxuICBuZWdleHAgPSBtcGx1cy5nZXQubG9vcC54dmFsdWVzKFwiZXgyLjI1Yi5naDVcIiksXG4gIGVzdHMgPSBtcGx1cy5nZXQubG9vcC5lc3RpbWF0ZXMoXCJleDIuMjViLmdoNVwiLCAxKSxcbiAgbG9jaSA9IG1wbHVzLmdldC5sb29wLmxvd2VyY2koXCJleDIuMjViLmdoNVwiLCAxKSxcbiAgdXBjaSA9IG1wbHVzLmdldC5sb29wLnVwcGVyY2koXCJleDIuMjViLmdoNVwiLCAxKSkgJT4lIHByaW50KG49MTAxKVxuYGBgIn0= -->
+<pre class="r"><code>tibble(
+  negexp = mplus.get.loop.xvalues(&quot;ex2.25b.gh5&quot;),
+  ests = mplus.get.loop.estimates(&quot;ex2.25b.gh5&quot;, 1),
+  loci = mplus.get.loop.lowerci(&quot;ex2.25b.gh5&quot;, 1),
+  upci = mplus.get.loop.upperci(&quot;ex2.25b.gh5&quot;, 1)) %&gt;% print(n=101)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Read the data.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXgyLjI2LmRhdCA8LSByZWFkLnRhYmxlKFwieG1WeDRzMW4yMDByZXA2LmRhdFwiKVxuY29sbmFtZXMoZXgyLjI2LmRhdCkgPC0gYyhcInlcIiwgXCJtXCIsIFwieFwiKVxuZXgyLjI2LmRhdCA8LVxuICBleDIuMjYuZGF0ICU+JSBtdXRhdGUobXggPSBtKngpXG5wc3ljaDo6ZGVzY3JpYmUoZXgyLjI2LmRhdCwgZmFzdD1UKVxuYGBgIn0= -->
+<pre class="r"><code>ex2.26.dat &lt;- read.table(&quot;xmVx4s1n200rep6.dat&quot;)
+colnames(ex2.26.dat) &lt;- c(&quot;y&quot;, &quot;m&quot;, &quot;x&quot;)
 ex2.26.dat &lt;-
   ex2.26.dat %&gt;% mutate(mx = m*x)
 psych::describe(ex2.26.dat, fast=T)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Set up the Mplus specifications with MplusAutomation. Then, run the model with MplusAutomation.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2luayhmaWxlID0gXFxleDIuMjYuaW5wXFwpXG5jYXQoJ1xuZGF0YTogICAgIGZpbGUgPSBcXHhtVng0czFuMjAwcmVwNi5kYXRcXDtcbnZhcmlhYmxlOiBuYW1lcyA9IHkgbSB4O1xuICAgICAgICAgIHVzZXYgPSB5IG0geCBteDtcbmRlZmluZTogICBteCA9IG0qeDtcbmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDtcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcbk1PREVMOiAgICB5IG9uIG0geCBteDtcbiAgICAgICAgICBtIG9uIHg7XG5NT0RFTCBJTkRJUkVDVDpcbiAgICAgICAgICB5IE1PRCBtIG14IHggKDcsIDUpO1xub3V0cHV0OiAgIGNpbnRlcnZhbCAoYm9vdHN0cmFwKTtcbnBsb3Q6ICAgICB0eXBlID0gcGxvdDM7XG4gICcsIGZpbGw9VClcbiAgc2luaygpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-sink(file = \ex2.26.inp\)
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Set up the Mplus specifications with MplusAutomation. Then, run the
+model with MplusAutomation.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luayhmaWxlID0gXCJleDIuMjYuaW5wXCIpXG5jYXQoJ1xuZGF0YTogICAgIGZpbGUgPSBcInhtVng0czFuMjAwcmVwNi5kYXRcIjtcbnZhcmlhYmxlOiBuYW1lcyA9IHkgbSB4O1xuICAgICAgICAgIHVzZXYgPSB5IG0geCBteDtcbmRlZmluZTogICBteCA9IG0qeDtcbmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDtcbiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDtcbk1PREVMOiAgICB5IG9uIG0geCBteDtcbiAgICAgICAgICBtIG9uIHg7XG5NT0RFTCBJTkRJUkVDVDpcbiAgICAgICAgICB5IE1PRCBtIG14IHggKDcsIDUpO1xub3V0cHV0OiAgIGNpbnRlcnZhbCAoYm9vdHN0cmFwKTtcbnBsb3Q6ICAgICB0eXBlID0gcGxvdDM7XG4gICcsIGZpbGw9VClcbiAgc2luaygpXG5gYGAifQ== -->
+<pre class="r"><code>sink(file = &quot;ex2.26.inp&quot;)
 cat(&#39;
-data:     file = \xmVx4s1n200rep6.dat\;
+data:     file = &quot;xmVx4s1n200rep6.dat&quot;;
 variable: names = y m x;
           usev = y m x mx;
 define:   mx = m*x;
@@ -3597,92 +3368,268 @@ output:   cinterval (bootstrap);
 plot:     type = plot3;
   &#39;, fill=T)
   sink()</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-By using a function available in `mplus.R`, read values of mediation effect, lower and upper bounds of 95% CI at each value of the moderator variable. Note that these values are also reported in the Mplus output file `ex2.25.out`. However, it is nice to see them on R too.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudGliYmxlKFxuICBuZWdleHAgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi54dmFsdWVzKFxcZXgyLjI1LmdoNVxcKSxcbiAgZXN0cyA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLmVzdGltYXRlcyhcXGV4Mi4yNS5naDVcXCksXG4gIGxvY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5sb3dlcmNpKFxcZXgyLjI1LmdoNVxcKSxcbiAgdXBjaSA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLnVwcGVyY2koXFxleDIuMjUuZ2g1XFwpKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-tibble(
-  negexp = mplus.get.moderation.xvalues(\ex2.25.gh5\),
-  ests = mplus.get.moderation.estimates(\ex2.25.gh5\),
-  loci = mplus.get.moderation.lowerci(\ex2.25.gh5\),
-  upci = mplus.get.moderation.upperci(\ex2.25.gh5\))</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Interpretation by Aki: When the moderator negative expressiveness value is negative -.14 or larger, mediation effect is statistically significant. (range of value associated with statistically significant effect)
-
-
-
---- 
-
-**Just Identified Model**
-
-The number of unique elements in the data covariance matrix is $\frac{q(q+1)}{2}$ where $q$ is the order of data covariance matrix. Thus, $df = \frac{q(q+1)}{2}-k$. 
-
-Just identified path analysis model perfectly fits the data with $df=0$. The two example models for the just-identified model below has q=3, so the number of unique elements in the data covariance matrix is 3(3+1)2 = 12/2 = 6. For the model on the left, there are two reg coefficients for X1 predicting Y1 and X2 predicting Y1, covariance between X1 and X2, and error variances for X1, X2, and Y1. Total of 6, so $df=6-6=0$.For the model on the right, there are three reg coefficients for X1 predicting Y1, X1 predicting Y2, and Y1 predicting Y2. Also, there are error variances for X1, Y1, and Y2. Total of 6 again, so $df=6-6=0$. 
-
-**Path Analysis**
-
-Fitness is an exogenous variable as it is both a predictor and outcome variable. Others are endogenous variables. 
-
-**Chi-square Test for One Model** 
-
-- The test evaluates whether the observed covariance matrix is consistent with a specified model. 
-- It tests the null hypothesis $H_0: \Sigma =  \widehat{\Sigma}$ where $\Sigma$ is the observed data covariance matrix and $\widehat{\Sigma}$ is the reproduced data covariance matrix. 
-  * Note: Just like we 
-
-**Chi-square in Mplus**
-
-Chi-square doesn&#39;t make sense for just-identified model with $df=0$ because $\Sigma$ and $\widehat{\Sigma}$ are essentially the same, little to no discrepancy. So although $p = 0.0000$, this does not mean we reject $H_0: \Sigma = \widehat{\Sigma}$. However, it is of use for overidentified model with $df=4$. 
-
-Note: use `$summaries` for extracting model fit information. 
-
-** Chi-square Difference Test for Two Nested Models** 
-
-- Two models are nested if one is a subset of the other. The one on the left-hand side has only one additional parameter than the model on the right-hand side, so the model on the right-hand side is nested in the left-hand side. 
-- Chi-square difference test assesses whether the chi-square has been reduced enough to claim that the additional parameter on the left hand side has significantly improved model fit. 
-</code></pre>
-<p>pchisq(2.48, 1, lower.tail = F) # not statistically signifcant at
-alpha of .05</p>
-<pre><code>
-- If the test indicates that we do not have evidence for better fit for the more complex model, that suggests that the simpler model is a better (more parsimonious model choice)
-- Local fit vs. Global fit 
-  * Global fit is the fit of the model, in this case the chisq difference test   * Local fit is the significance of each of the paths in the model 
-  
-**Modification Index**
-
-Larger modification index means that the additional parameter for the more complex model improved model fit significantly. 
-
-`HARDINES` is predictor, `FITESS` is outcome. Y on X. 
-
-Edit to make to 01.PA3c.inp code</code></pre>
-<p>OUTPUT: stdyx modindices ```</p>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>By using a function available in <code>mplus.R</code>, read values of
+mediation effect, lower and upper bounds of 95% CI at each value of the
+moderator variable. Note that these values are also reported in the
+Mplus output file <code>ex2.25.out</code>. However, it is nice to see
+them on R too.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGliYmxlKFxuICBuZWdleHAgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi54dmFsdWVzKFwiZXgyLjI1LmdoNVwiKSxcbiAgZXN0cyA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLmVzdGltYXRlcyhcImV4Mi4yNS5naDVcIiksXG4gIGxvY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5sb3dlcmNpKFwiZXgyLjI1LmdoNVwiKSxcbiAgdXBjaSA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLnVwcGVyY2koXCJleDIuMjUuZ2g1XCIpKVxuYGBgIn0= -->
+<pre class="r"><code>tibble(
+  negexp = mplus.get.moderation.xvalues(&quot;ex2.25.gh5&quot;),
+  ests = mplus.get.moderation.estimates(&quot;ex2.25.gh5&quot;),
+  loci = mplus.get.moderation.lowerci(&quot;ex2.25.gh5&quot;),
+  upci = mplus.get.moderation.upperci(&quot;ex2.25.gh5&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Interpretation by Aki: When the moderator negative expressiveness
+value is negative -.14 or larger, mediation effect is statistically
+significant. (range of value associated with statistically significant
+effect)</p>
+<hr />
+<p><strong>Just Identified Model</strong></p>
+<p>The number of unique elements in the data covariance matrix is <span class="math inline">\(\frac{q(q+1)}{2}\)</span> where <span class="math inline">\(q\)</span> is the order of data covariance matrix.
+Thus, <span class="math inline">\(df = \frac{q(q+1)}{2}-k\)</span>.</p>
+<p>Just identified path analysis model perfectly fits the data with
+<span class="math inline">\(df=0\)</span>. The two example models for
+the just-identified model below has q=3, so the number of unique
+elements in the data covariance matrix is 3(3+1)2 = 12/2 = 6. For the
+model on the left, there are two reg coefficients for X1 predicting Y1
+and X2 predicting Y1, covariance between X1 and X2, and error variances
+for X1, X2, and Y1. Total of 6, so <span class="math inline">\(df=6-6=0\)</span>.For the model on the right,
+there are three reg coefficients for X1 predicting Y1, X1 predicting Y2,
+and Y1 predicting Y2. Also, there are error variances for X1, Y1, and
+Y2. Total of 6 again, so <span class="math inline">\(df=6-6=0\)</span>.</p>
+<p><strong>Path Analysis</strong></p>
+<p>Fitness is an exogenous variable as it is both a predictor and
+outcome variable. Others are endogenous variables.</p>
+<p><strong>Chi-square Test for One Model</strong></p>
+<ul>
+<li>The test evaluates whether the observed covariance matrix is
+consistent with a specified model.</li>
+<li>It tests the null hypothesis <span class="math inline">\(H_0: \Sigma
+= \widehat{\Sigma}\)</span> where <span class="math inline">\(\Sigma\)</span> is the observed data covariance
+matrix and <span class="math inline">\(\widehat{\Sigma}\)</span> is the
+reproduced data covariance matrix.
+<ul>
+<li>Note: Just like we</li>
+</ul></li>
+</ul>
+<p><strong>Chi-square in Mplus</strong></p>
+<p>Chi-square doesn’t make sense for just-identified model with <span class="math inline">\(df=0\)</span> because <span class="math inline">\(\Sigma\)</span> and <span class="math inline">\(\widehat{\Sigma}\)</span> are essentially the
+same, little to no discrepancy. So although <span class="math inline">\(p = 0.0000\)</span>, this does not mean we reject
+<span class="math inline">\(H_0: \Sigma = \widehat{\Sigma}\)</span>.
+However, it is of use for overidentified model with <span class="math inline">\(df=4\)</span>.</p>
+<p>Note: use <code>$summaries</code> for extracting model fit
+information.</p>
+<p>** Chi-square Difference Test for Two Nested Models**</p>
+<ul>
+<li>Two models are nested if one is a subset of the other. The one on
+the left-hand side has only one additional parameter than the model on
+the right-hand side, so the model on the right-hand side is nested in
+the left-hand side.</li>
+<li>Chi-square difference test assesses whether the chi-square has been
+reduced enough to claim that the additional parameter on the left hand
+side has significantly improved model fit.</li>
+</ul>
+<pre><code>pchisq(2.48, 1, lower.tail = F) # not statistically signifcant at alpha of .05</code></pre>
+<ul>
+<li>If the test indicates that we do not have evidence for better fit
+for the more complex model, that suggests that the simpler model is a
+better (more parsimonious model choice)</li>
+<li>Local fit vs. Global fit
+<ul>
+<li>Global fit is the fit of the model, in this case the chisq
+difference test * Local fit is the significance of each of the paths in
+the model</li>
+</ul></li>
+</ul>
+<p><strong>Modification Index</strong></p>
+<p>Larger modification index means that the additional parameter for the
+more complex model improved model fit significantly.</p>
+<p><code>HARDINES</code> is predictor, <code>FITESS</code> is outcome. Y
+on X.</p>
+<p>Edit to make to 01.PA3c.inp code</p>
+<pre><code>OUTPUT: stdyx
+        modindices</code></pre>
+<p>======= <span class="math display">\[
+m_i=\gamma_0+\gamma_1x_{1i}+\gamma_2x_{2i}+\gamma_3z_{1i}+\gamma_4z_{2i}+\epsilon_{mi}
+\]</span></p>
+<p><strong>Mediation Analysis with multiple Mediators</strong></p>
+<p>Both direct effect annd mediation effect depends on the value of
+<span class="math inline">\(z_i\)</span> as a covariate (i.e., moderated
+by the covariate)</p>
+<p>If the moderation value is lower than .15, mediation effect is not
+significant as it’s within the 95% band around 0. Within .15~+.85 would
+indicate significance, outside would be not significant.</p>
+<p><strong>One factor FA Model</strong></p>
+<p><span class="math display">\[x_{ij}=\mu_i+\lambda_{i}\xi_{j}+\delta_{ij}\]</span>
+- This model is a set of more than one regression equation * We have aas
+many regression equations as the number of items * For example, let’s
+say we have 3 items. Then, - <span class="math inline">\(x_{1j} = \mu_1
++ \lambda_1\xi_j+\delta_{1j}\)</span> - <span class="math inline">\(x_{2j} = \mu_2 +
+\lambda_2\xi_j+\delta_{2j}\)</span> - <span class="math inline">\(x_{3j}
+= \mu_3 + \lambda_3\xi_j+\delta_{3j}\)</span></p>
+<ul>
+<li>We can graphically represent this model (a set of three regression
+equations) as follows.
+<ul>
+<li>It is typical to indicate observed variables by rectangles</li>
+</ul></li>
+<li>The predictor <span class="math inline">\(\xi\)</span> is a latent
+factor and does not have any fixed scale</li>
+<li>Traditionally, it has been typical to scale the means of <span class="math inline">\(\xi\)</span> and <span class="math inline">\(x\)</span> to be 0.</li>
+</ul>
+<p><strong>CFA model</strong></p>
+<ul>
+<li>Model specification is needed for CFA
+<ul>
+<li>A specific model needs to be specified, including:
+<ul>
+<li>The number of observed indicators and latent factors</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[ x_{1j} =
+\lambda_{11}\xi_1+0\xi_2+\delta_{1j}\]</span> <span class="math display">\[ x_{2j} =
+\lambda_{21}\xi_1+0\xi_2+\delta_{2j}\]</span> - For ESEM, the 0
+constraints would be removed * Factor loadings for <span class="math inline">\(\xi\)</span> would be small but included -
+Requirements for identification of CFA model * Just like a path analysis
+model, the number of parameters in the model has to be the same or
+fewere than the unique variances and covariances ini the data covariance
+matrix * Also, the scale of the parameters has to be addressed</p>
+<p><strong>Scale Issues for Identification</strong></p>
+<ul>
+<li>First, let’s consider a simple regression model: <span class="math display">\[Y_j = B_0 + B_1X_j+\epsilon_J\]</span></li>
+<li>Recall that the scale of a regression slope (<span class="math inline">\(B_1\)</span>) is affected by the scale of both
+predictor (X) and outcome variable (Y) as follows: <span class="math display">\[ B_1=r_{XY}(\frac{SD_Y}{SD_X}) \]</span></li>
+<li>Now, let’s consider a one-factor model:</li>
+<li>Similar to a simple regression model, thescale of a factor loading
+<span class="math inline">\(\lambda\)</span> is affected by the scale of
+both predictor (<span class="math inline">\(\xi\)</span>) and outcome
+variable (<span class="math inline">\(x\)</span>) as follows:
+<ul>
+<li><span class="math inline">\(\lambda = r_{\xi x}
+(\frac{SD_X}{SD_Y})\)</span></li>
+</ul></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>If a scale is given to <span class="math inline">\(\xi\)</span>, the
+scale of <span class="math inline">\(\lambda\)</span> will follow</li>
+<li>If a scale is given to <span class="math inline">\(\lambda\)</span>,
+the scale of <span class="math inline">\(x\)</span> will follow</li>
+</ol>
+<ul>
+<li><p>Typically, Mplus will assign <span class="math inline">\(\lambda_1 = 1\)</span> to the first
+indicator</p></li>
+<li><p>For a CFA model with 2 or more factors, each factor needs to
+predict 2 or more observed indicators to fully estimate model
+parameters</p>
+<ul>
+<li>Only applies to simplex models (if it has cross-loadings and
+correlations, not obvious immediately whether model is identifiable or
+not)</li>
+</ul></li>
+<li><p>ESEM for differential item functioning?</p></li>
+</ul>
+<p><strong>CFA Model with Error Correlations</strong></p>
+<ul>
+<li>Also, it might be our interest to let some error variances to be
+correlated</li>
+</ul>
+<p><strong>Hypothesized 1-factor model</strong></p>
+<ul>
+<li>If only 6, then would be enough df but would not be the case by
+including variances</li>
+<li>stdyx indicates that both standard deviation and something else are
+assessed <code>sjlabelled</code> package has refined version of
+<code>read_sav</code> called <code>read_spss</code></li>
+</ul>
+<p><strong>Mplus output</strong></p>
+<ul>
+<li>The number ofparameters include mean-structure parameters</li>
+<li>It is possible to compute <span class="math inline">\(R^2\)</span></li>
+</ul>
+<div id="higher-order-and-bi-factor-cfa-models" class="section level3">
+<h3>Higher-order and Bi-factor CFA Models</h3>
+<p><strong>Higher-order Factor Models</strong> - In some context,we may
+be interested in developing a model with additional factor - Error
+variances correlated - covariate(s) commonly correlated to the outcome
+variables not included in the analysis as predictor(s) - Bifactor model
+fit indices will be inflated * Likely to see better model fit than we
+are supposed to * However, doesn’t make it useless - By giving the
+asterisk, we are saying that we are overriding the default and instead
+fix the variance of each latent factor to be 1.0 - Will try to estimate
+all possible correlations between factors - Have to be manually
+constrained to 0</p>
+</div>
+<div id="measurement-invariance" class="section level3">
+<h3>Measurement Invariance</h3>
+<p><strong>Multiple Group CFA</strong></p>
+<p><strong>Measurement Invariance with Multiple-Group CFA</strong></p>
+<ul>
+<li><p>Configural Invariance</p>
+<ul>
+<li>Only factor structure is the same</li>
+</ul></li>
+<li><p>Metric Invariance (i.e., weak invariance)</p>
+<ul>
+<li>Factor loadings are the same</li>
+</ul></li>
+<li><p>Scalar Invariance (i.e., strong invariance)</p>
+<ul>
+<li>Factor loadings &amp; intercepts are the same</li>
+</ul></li>
+<li><p>Strict Invariance</p>
+<ul>
+<li>Factor loadings, intercepts, &amp; residual variances are the
+same</li>
+</ul></li>
+<li><p>If configural invariance model fits better than weak invariance,
+we do not have evidence for weak ivnariance</p></li>
+<li><p>configural invariance model will always have lower chisq</p></li>
+<li><p>Partial invariance is invariance only for a subset of items</p>
+<ul>
+<li>We may be interested in identifying specific items that are
+different in factor loadings and/or intercepts between groups</li>
+<li>This idea is closely realted to DIF</li>
+</ul></li>
+<li><p>Latent factor means between groups</p></li>
+<li><p>Latent factor correlations between groups</p></li>
+<li><p>Metric against configural nonsignificant - metric invariance
+supported, more complex model (configural) is not a better fit</p></li>
+</ul>
+<p><em>Configural</em> <code>visual by x1 x2 x3;</code> factor loadings
+for the visual factor <code>x1-x9</code> error variances (not factor
+loadings!) <code>visual; textual; speed</code> variance between these
+three latent factors. <code>[x1-x9]</code> represent intercepts
+<code>[visual@0 textual@0 speed@0]</code> represent factor means -
+fixing to known values, arbitrarily to 0</p>
+<p><em>Metric</em> for metric, factor loadings are assumed to be the
+same so it is not included in model specification</p>
+<p><em>Scalar</em> <code>[x1-x9] (1-9)</code> indicate items 1-9 same
+between two groups</p>
+<ul>
+<li>in the scalar invariance model, where we assume intercept is
+different between two grouups, if we assume X3 is different between two
+groups, chisq improves by 19.193, if we assume X7 is different between
+two groups, chisq improves by 15.022
+<ul>
+<li>Can conclude that intercepts for items 3 and 7 are not
+invariant</li>
+</ul></li>
+</ul>
+<p><em>Partial Scalar</em>
+<code>[x1 x2 x4 x5 x6 x8 x9] (1-7);</code></p>
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ2xhc3MgMiAtIE1lZGlhdGlvbiBBbmFseXNpcyIKZGF0ZTogImByIFN5cy5EYXRlKClgIgpvdXRwdXQ6IAogIGh0bWxfbm90ZWJvb2s6CiAgICB0aGVtZTogY29zbW8KICAgIHRvYzogeWVzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogdHJ1ZQotLS0KCmBgYHtyIG1lc3NhZ2U9RiwgZWNobyA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0UsIHJlc3VsdHM9J2hpZGUnfQojIGRldGFjaCBhbGwgbGlicmFyaWVzCgpkZXRhY2hBbGxQYWNrYWdlcyA8LSBmdW5jdGlvbigpIHsKICBiYXNpYy5wYWNrYWdlcyA8LSBjKCJwYWNrYWdlOnN0YXRzIiwgInBhY2thZ2U6Z3JhcGhpY3MiLCAicGFja2FnZTpnckRldmljZXMiLCAicGFja2FnZTp1dGlscyIsICJwYWNrYWdlOmRhdGFzZXRzIiwgInBhY2thZ2U6bWV0aG9kcyIsICJwYWNrYWdlOmJhc2UiKQogIHBhY2thZ2UubGlzdCA8LSBzZWFyY2goKVtpZmVsc2UodW5saXN0KGdyZWdleHByKCJwYWNrYWdlOiIsIHNlYXJjaCgpKSk9PTEsIFRSVUUsIEZBTFNFKV0KICBwYWNrYWdlLmxpc3QgPC0gc2V0ZGlmZihwYWNrYWdlLmxpc3QsIGJhc2ljLnBhY2thZ2VzKQogIGlmIChsZW5ndGgocGFja2FnZS5saXN0KT4wKSAgZm9yIChwYWNrYWdlIGluIHBhY2thZ2UubGlzdCkgZGV0YWNoKHBhY2thZ2UsICBjaGFyYWN0ZXIub25seT1UUlVFKQp9CmRldGFjaEFsbFBhY2thZ2VzKCkKCiMgZnVuY3Rpb24gdG8gbG9hZCBsaWJyYXJpZXMKCnBrZ1Rlc3QgPC0gZnVuY3Rpb24ocGtnKXsKICBuZXcucGtnIDwtIHBrZ1shKHBrZyAlaW4lIGluc3RhbGxlZC5wYWNrYWdlcygpWywgICJQYWNrYWdlIl0pXQogIGlmIChsZW5ndGgobmV3LnBrZykpIAogICAgaW5zdGFsbC5wYWNrYWdlcyhuZXcucGtnLCAgZGVwZW5kZW5jaWVzID0gVFJVRSkKICBzYXBwbHkocGtnLCAgcmVxdWlyZSwgIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkKfQoKIyBsb2FkaW5nIHBhY2thZ2VzIAoKCmxhcHBseShjKCJnc3ViZm4iKSxwa2dUZXN0KQpsYXBwbHkoYygidGlkeXZlcnNlIikscGtnVGVzdCkKbGFwcGx5KGMoInNqbWlzYyIpLHBrZ1Rlc3QpCmxhcHBseShjKCJEVCIpLHBrZ1Rlc3QpCmxhcHBseShjKCJsYXZhYW4iKSxwa2dUZXN0KQpsYXBwbHkoYygiTXBsdXNBdXRvbWF0aW9uIikscGtnVGVzdCkKbGFwcGx5KGMoInBzeWNoIikscGtnVGVzdCkKbGlicmFyeShnc3ViZm4pCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KHNqbWlzYykKbGlicmFyeShEVCkKbGlicmFyeShsYXZhYW4pCmxpYnJhcnkoTXBsdXNBdXRvbWF0aW9uKQpsaWJyYXJ5KHBzeWNoKQoKaWYgKCFyZXF1aXJlKCJCaW9jTWFuYWdlciIsIHF1aWV0bHkgPSBUUlVFKSkgaW5zdGFsbC5wYWNrYWdlcygiQmlvY01hbmFnZXIiKQoKQmlvY01hbmFnZXI6Omluc3RhbGwoInJoZGY1IikKYGBgCgpgYGB7cn0Kc291cmNlKCJtcGx1cy5SIikKYGBgCgotIElucHV0IG5vdCBjYXNlLXNlbnNpdGl2ZSwgb3V0cHV0IGhhcyB0byBiZSBpbiB1cHBlcmNhc2UgCiMjIyBNZWRpYXRpb24gQW5hbHlzaXMgCgotIFRoZSBkaWZmZXJlbmNlICRjLWNeXHByaW1lJCBpcyBjb25zaWRlcmVkIGFzIHRoZSBtZWRpYXRpb24gZWZmZWN0LCBhbmQgJGMtY15ccHJpbWUgPSBhIFx0aW1lcyBiJCBvciAkYyA9IGEgXHRpbWVzIGIgLSBjXlxwcmltZSQKLSBIb3dldmVyLCB0aGUgZXF1aXR5IGhvbGRzIG9ubHkgZm9yIGEgc3BlY2lhbCBjYXNlIG9mIG1lZGlhdGlvbiBhbmFseXNpcyAKICAqIENvbnRpbnVvdXMgb3V0Y29tZSBhbmQgbGluZWFyIHJlZ3Jlc3Npb24gCi0gVGhlcmVmb3JlLCBpdCBpcyBub3QgcmVjb21tZW5kZWQgdG8gZXZhbHVhdGUgJGMgLSBjXlxwcmltZSQKCioqQmFzaWMgTWVkaWF0aW9uIEFuYWx5c2lzKioKCi0gRGF0YSBmcm9tIHRoZSBkaXNjcmltaW5hdGlvbiBzdHVkeSAoR2FyY2lhIGV0IGFsLiwgMjAxMCkgaW4gTXV0aGVuIGV0IGFsLiAoMjAxNjsgcC43MiksIGFzIHdlbGwgYXMgSGF5ZXMgKDIwMTMpIAotIFN1YmplY3RzICgxMjkgZmVtYWxlcykgd2VyZSBwcmVzZW50ZWQgYSBzdG9yeSBvZiBob293IGZlbWFsZSBhdHRvcm5leSBsb3N0IGEgcHJvbW90aW9uIHRvIGEgbGVzcyBxdWFsaWZpZWQgbWFsZSBkdWUgdG8gZGlzY3JpbWluYXRvcnkgYWN0aW9uIAotIFN1YmplY3RzIHdlcmUgcmFuZG9tbHkgYXNzaWduZWQgdG8gdHdvIGRpZmZlcmVudCBzY2VuYXJpb3M6IAogICogKDEpIHRoZSBmZW1hbGUgYXR0b3JuZXkgdGFrZXMgbm8gYWN0aW9uLCBhbmQgKDIpIHRoZSBmZW1hbGUgYXR0b3JuZXkgcHJvdGVzdHMgCi0gVmFyaWFibGVzIAogICogSW50ZXJ2ZW50aW9uIHZhcmlhYmxlICgwID0gbm8gcHJvdGVzdCwgMSA9IHByb3Rlc3QpIChgcHJvdGVzdGApIHByZWRpY3RvciAKICAqIEhvdyB3ZWxsIHRoZSBzdWJqZWN0IGxpa2VzIHRoZSBmZW1hbGUgYXR0b3JuZXkgb3V0Y29tZSAtIDctcG9pbnQgbGlrZXJ0IChgbGlraW5nYCkKICAqIFBlcmNlaXZlZCBhcHByb3ByaWF0ZW5lc3Mgb2YgdGhlIHJlc3BvbnNlIG9mIHRoZSBmZW1hbGUgYXR0b3JuZXkgKGByZXNwYXBwcmApIG1lZGlhdG9yIAogICogQmVsaWVmcyBpbiB0aGUgcGVydmFzaXZlbmVzcyBvZiBzZXggZGlzY3JpbWluYXRpb24gaW4gc29jaWV0eSAoYHNleGlzbWApCiAgCmBgYHtyfQpwcm90ZXN0X2RmIDwtIHJlYWQudGFibGUoInByb3Rlc3QudHh0Iiwgc2VwPSIiKQpjb2xuYW1lcyhwcm90ZXN0X2RmKSA8LSBjKCJzZXhpc20iLCAibGlraW5nIiwgInJlc3BhcHByIiwgInByb3Rlc3QiKQpwc3ljaDo6ZGVzY3JpYmUocHJvdGVzdF9kZikKYGBgCgotIEJ5IHN1YnN0aXR1dGluZyB0aGUgc2Vjb25kIGVxdWF0aW9uIGJlbG93IHRvIHRoZSBmaXJzdCBlcXVhdGlvbiBiZWxvdywgd2UgY2FuIGdldCB0aGUgY29tYmluZWQgZXF1YXRpb246ICAKCkVxdWF0aW9uIDE6CiQkIHlfaSA9IFxiZXRhXzAgKyBcYmV0YV8xbV9pICsgXGJldGFfMnhfaStcZXBzaWxvbl97eWl9JCQKRXF1YXRpb24gMjogCiQkIG1faSA9IFxnYW1tYV8wICsgXGdhbW1hXzF4X2krXGVwc2lsb25fe21pfSQkCkNvbWJpbmVkIGVxdWF0aW9uOgokJCB5X2kgPSBcYmV0YV8wICsgXGJldGFfMShcZ2FtbWFfMCArIFxnYW1tYV8xeF9pICsgXGVwc2lsb25fe21pfSkrXGJldGFfMnhfaStcZXBzaWxvbl97eWl9JCQKCi0gRXhhbXBsZSAxCiAgKiBOb3RlIHRoYXQgYnkgZGVmYXVsdCwgTXBsdXMgdXRpbGl6ZXMgYSBtZXRob2QgdG8gZXN0aW1hdGUgYSBzdGFuZGFyZCBlcnJvciBvZiBub25saW5lYXJseSB0cmFuc2Zvcm1lZCBwYXJhbWV0ZXJzIGNhbGxlZCB0aGUgIkRlbHRhIG1ldGhvZCIuIAogICogRGVsdGEgbWV0aG9kIGFuYWx5dGljYWxseSBhcHByb3hpbWF0ZXMgdGhlIHRhcmdldCBzdGFuZGFyZCBlcnJvciBieSBhc3N1bWluZyB0aGUgbm9ybWFsaXR5IG9mIHRoZSBzYW1wbGluZyBkaXN0cmlidXRpb24gb2YgdGhlIHBhcmFtZXRlcihzKS4gCiAgICAtIFRoZSBpbmRpcmVjdCBlZmZlY3QgaXMgYSBtdWx0aXBsaWNhdGlvbiBvZiB0d28gcGFyYW1ldGVycyAKICAqIE1wbHVzIHN5bnRheCBmb3IgdGhlIGBtb2RlbGAgc2VjdGlvbjogYERWIG9uIElWMSBJVjJgIGFuZCBzbyBvbiBmb3IgaG93ZXZlciBtYW55IElWcyB0aGVyZSBhcmUgCiAgCmBgYHtyfQpzaW5rKCJleDIuMS5pbnAiKQpjYXQoJwpkYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyAKCnZhcmlhYmxlOiBuYW1lcyA9IHNleGlzbSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgCiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IAogICAgICAgICAgCmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbHI7IAoKbW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciBwcm90ZXN0OyAKICAgICAgICAgIHJlc3BhcHByIG9uIHByb3Rlc3Q7IAogICAgICAgICAgCk1vZGVsIGluZGlyZWN0OiAKICAgICAgICAgIGxpa2luZyBpbmQgcHJvdGVzdDsgCiAgICAgICAgICAKb3V0cHV0OiAgIGNpbnRlcnZhbDsKJykKc2luaygpCgpydW5Nb2RlbHMoImV4Mi4xLmlucCIpCgptb2RlbGZpdDEgPC0gcmVhZE1vZGVscygiZXgyLjEub3V0IikKCm1vZGVsZml0MSRwYXJhbWV0ZXJzJHVuc3RhbmRhcmRpemVkCmBgYAoKKipCYXNpYyBNZWRpYXRpb24gQW5hbHlzaXMgd2l0aCBCb290c3RyYXAqKgoKYGBge3J9CnNpbmsoImV4Mi4xYi5pbnAiKQpjYXQoJwpkYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyAKCnZhcmlhYmxlOiBuYW1lcyA9IHNleGlzbSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgCiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IAogICAgICAgICAgCmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDsgCiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKCm1vZGVsOiAgICBsaWtpbmcgb24gcmVzcGFwcHIgcHJvdGVzdDsgCiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0OyAKICAgICAgICAgIApNb2RlbCBpbmRpcmVjdDogCiAgICAgICAgICBsaWtpbmcgaW5kIHByb3Rlc3Q7IAogICAgICAgICAgCm91dHB1dDogICBjaW50ZXJ2YWwoYm9vdHN0cmFwKTsKJykKc2luaygpCgpydW5Nb2RlbHMoImV4Mi4xYi5pbnAiKQoKbW9kZWxmaXQyIDwtIHJlYWRNb2RlbHMoImV4Mi4xYi5vdXQiKQoKbW9kZWxmaXQyJHBhcmFtZXRlcnMkdW5zdGFuZGFyZGl6ZWQKYGBgCgoqKk1lZGlhdGlvbiBBbmFseXNpcyB3aXRoIENvdmFyaWF0ZXMqKiAKCi0gRGF0YSBmcm9tIHRoZSBNYXRlcm5hbCBIZWFsdGggUHJvamVjdCAKLSBTYW1wbGU6IE1vdGhlcnMgd2hvIGRyYW5rIGF0IGxlYXN0IHRocmVlIGRyaW5rcyBhIHdlZWsgZHVyaW5nIHRoZSBmaXJzdCB0cmltZXN0ZXIgb2YgdGhlaXIgcHJlZ25hbmN5ICsgbW90aGVycyB3aG8gdXNlZCBhbGNvaG9sIGxlc3Mgb2Z0ZW4gKCRuPTU5NCQpCi0gVmFyaWFibGVzIAogICogQWxjb2hvbCB1c2UgKGBtb21jaWczYCkKICAqIENpZ2FyZXR0ZSB1c2UgKGBtb21hbGMzYCkKICAqIENoaWxkJ3MgZ2VuZGVyIChgbWFsZWApCiAgKiBFdGhuaWNpdHkgKGBibGFja2ApCiAgKiBIZWFkIGNpcmN1bWZlcmVuY2UgYXQgYmlydGggKGBoY2lyYzBgKQogICogSGVhZCBjaXJjdW1mZXJlbmNlIGF0IGJpcnRoIAoqKkFub3RoZXIgd2F5IHRvIHNldCB1cCBtZWRpYXRpb24gYW5hbHlzaXMqKiAKCmBgYHtyfQpzaW5rKCJleDIuMWMuaW5wIikKY2F0KCcKZGF0YTogICAgIGZpbGUgPSBwcm90ZXN0LnR4dDsgCgp2YXJpYWJsZTogbmFtZXMgPSBzZXhpc20gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IAogICAgICAgICAgdXNldiA9IGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyAKICAgICAgICAgIAphbmFseXNpczogZXN0aW1hdG9yID0gbWw7IAogICAgICAgICAgYm9vdHN0cmFwID0gMTAwMDA7Cgptb2RlbDogICAgbGlraW5nIG9uIHJlc3BhcHByIChiMSkKICAgICAgICAgICAgICAgICAgICAgcHJvdGVzdDsgCiAgICAgICAgICByZXNwYXBwciBvbiBwcm90ZXN0IChnMSk7IAogICAgICAgICAgCk1vZGVsIGNvbnN0cmFpbnQ6IAogICAgICAgICAgbmV3KHByb2xpayk7IAogICAgICAgICAgcHJvbGlrID0gZzEgKiBiMTsKICAgICAgICAgIApvdXRwdXQ6ICAgY2ludGVydmFsKGJvb3RzdHJhcCk7CicpCnNpbmsoKQoKcnVuTW9kZWxzKCJleDIuMWMuaW5wIikKCm1vZGVsZml0MyA8LSByZWFkTW9kZWxzKCJleDIuMWMub3V0IikKCm1vZGVsZml0MyRwYXJhbWV0ZXJzJHVuc3RhbmRhcmRpemVkCmBgYAoKKipCYXNpYyBNZWRpYXRpb24gQW5hbHlzaXMgd2l0aCoqIGBsYXZhYW5gCgpgYGB7cn0KTUEubW9kMDEgPC0gJwpsaWtpbmcgfiBiMSpyZXNwYXBwciArIHByb3Rlc3QgCnJlc3BhcHByIH4gZzEqcHJvdGVzdCAKcHJvbGlrIDo9IGIxKmcxCicKYGBgCgpSdW4gdGhlIG1vZGVsIHdpdGggYm9vdHN0cmFwLiAKYGBge3J9Ck1BLmZpdDAxIDwtIHNlbShNQS5tb2QwMSwgZGF0YT1wcm90ZXN0X2RmLCBzZT0iYm9vdCIsIGJvb3RzdHJhcD0xMDAwMCkKYGBgCgpgYGB7cn0KcGFyYW1ldGVyRXN0aW1hdGVzKE1BLmZpdDAxLCB6c3RhdD1GLCBwdmFsdWU9RikKYGBgCgoqKk1lZGlhdGlvbiBBbmFseXNpcyB3aXRoIENvdmFyaWF0ZXMqKiAKCi0gRGF0YSBmcm9tIHRoZSBNYXRlcm5hbCBIZWFsdGggUHJvamVjdCAoRGF5IGV0IGFsLiwgMTk5NCkgaXMgZnJvbSBhIHNhbXBsZSBvZiBtb3RoZXJzIHdobyBkcmFuayBhdCBsZWFzdCB0aHJlZSBkcmlua3MgYSB3ZWVrIGR1cmluZyB0aGUgZmlyc3QgdHJpbWVzdGVyIG9mIHRoZWlyIHByZWduYW5jeSArIG1vdGhlcnMgd2hvIGRyYW5rIGFsY29ob2wgbGVzcyBvZnRlbiAoJG4kID0gNTk0KS4gCi0gVmFyaWFibGVzCiAgKiBBbGNvaG9sIHVzZSAoYG1vbWNpZzNgKQogICogQ2lnYXJldHRlIHVzZSAoYG1vbWFsYzNgKQogICogQ2hpbGQncyBnZW5kZXIgKGBtYWxlYCkKICAqIEV0aG5pY2l0eSAoYGJsYWNrYCkKICAqIEhlYWQgY2lyY3VtZmVyZW5jZSBhdCBiaXJ0aCAoYGhjaXJjMGApCiAgKiBIZWFkIGNpcmN1bWZlcmVuY2UgYXQgMzYgbW9ub3RocyAoYGhjaXJjMzZgKQotIFRoZSBoeXBvdGhlc2lzIGlzIHRoYXQgdGhlcmUgYXJlIG5vIGRpcmVjdCBlZmZlY3RzIG9mIGBtb21hbGMzYCBhbmQgYG1vbWNpZzNgIG9uIGBoY2lyYzM2YC4gCgpFcXVhdGlvbiAxOiAKJCQKeV9pID0gXGJldGFfMCtcYmV0YV8xIG1faStcYmV0YV8yel97MWl9K1xiZXRhXzN6X3syaX0rXGVwc2lsb25fe3lpfQokJApFcXVhdGlvbiAyOiAKJCQKbV9pPVxnYW1tYV8wK1xnYW1tYV8xeF97MWl9K1xnYW1tYV8yeF97Mml9K1xnYW1tYV8zel97MWl9K1xnYW1tYV80el97Mml9K1xlcHNpbG9uX3ttaX0KJCQKLSBTdWJzdGl0dXRlIHRoZSBzZWNvbmQgZXF1YXRpb24gdG8gdGhlIGZpcnN0IGVxdWF0aW9uOiAKJCQKeV9pID0gXGJldGFfMCArIFxiZXRhXzEoXGdhbW1hXzAgKyBcZ2FtbWFfMXhfezFpfStcZ2FtbWFfMnhfezJpfStcZ2FtbWFfM3pfezFpfStcZ2FtbWFfNHpfezJpfStcZXBzaWxvbl97bWl9KSArIFxiZXRhXzJ6X3sxaX0rXGJldGFfM3pfezJpfStcZXBzaWxvbl97eWl9CiQkCiAgKiBObyBkaXJlY3QgZWZmZWN0IG9mICR4JCB0byAkeSQgaW4gdGhpcyBjYXNlLiBUaGUgaW5kaXJlY3QgZWZmZWN0IG9mICR4XzEkIHRvICR5JCBpcyAkXGJldGFfMSBcZ2FtbWFfMSQ7IHRoZSBpbmRpcmVjdCBvZiAkeF8yJCB0byAkeSQgaXMgJFxiZXRhXzEgXGdhbW1hXzIkLiAKICAKICAKKipNZWRpYXRpb24gQW5hbHlzaXMgd2l0aCBtdWx0aXBsZSBNZWRpYXRvcnMqKgoKLSBEYXRhIGZyb20gYSByYW5kb21pemVkIHN0dWR5IG9mIG1lZGlhIGluZmx1ZW5jZSAKLSA0MyBtYWxlIGFuZWQgODAgZmVtYWxlcyByZWFkIGEgbmV3c3BhcGVyIGFydGljbGUgYW5kIHdlcmUgcmFuZG9tbHkgYXNzaWduZWQgdG8gb25lIG9mIHRoZSB0d28gZ3JvdXBzIAogICogT25lIGdyb3VwIHdhcyB0b2xkIHRoYXQgdGhlIHN0b3J5IHdvdWxkIGFwcGVhciBvbiB0aGUgZnJvbnQgcGFnZSBvZiBhIG1ham9yIG5ld3NwYXBlciAKICAqIFRoZSBvdGhlciBncm91cCB3YXMgdG9sZCB0aGF0IGl0IHdvdWxkIGFwcGVhciBpbiB0aGUgbWlkZGxlIG9mIGFuIGVjb25vbWljIHN1cHBsZW1lbnQuIAotIFZhcmlhYmxlcwogICogR3JvdXAgKDAgPSBsZXNzIHZpc2libGU7IDEgPSBtb3JlIHZpc2libGUpIChgY29uZGApCiAgKiBJbnRlbnRpb24gdG8gYnV5IHN1Z2FyIGFuZCBob3cgbXVjaCAoYHJlYWN0aW9uYCkKICAqIFByZXN1bWVkIG1lZGlhIGluZmx1ZW5jZSB0byBvdGhlcnMgKGBwbWlgKQogICogSW1wb3J0YW5jZSBvb2Ygc3VnYXIgc2hvcnRhZ2UgKGBpbXBvcnRgKQpCb3RoIGRpcmVjdCBlZmZlY3QgYW5uZCBtZWRpYXRpb24gZWZmZWN0IGRlcGVuZHMgb24gdGhlIHZhbHVlIG9mICR6X2kkIGFzIGEgY292YXJpYXRlIChpLmUuLCBtb2RlcmF0ZWQgYnkgdGhlIGNvdmFyaWF0ZSkKCkVxdWF0aW9uIDE6IAokJCAKeV9pID0gXGJldGFfMCArIFxiZXRhXzFtX3sxaX0gKyBcYmV0YV8ybV97Mml9ICsgXGJldGFfM3t4X2l9ICsgXGVwc2lsb25fe3lpfQokJCAKRXF1YXRpb24gMjogCiQkIAptX3sxaX0gPSBcZ2FtbWFfezEwfSArIFxnYW1tYV97MTF9eF9pICsgXGVwc2lsb25fe20xaX0KbV97Mml9ID0gXGdhbW1hX3syMH0gKyBcZ2FtbWFfezIxfXhfaSArIFxlcHNpbG9uX3ttMml9CgokJAotIFRoZSBkaXJlY3QgZWZmZWN0IG9mICR4JCB0byAkeSQgaXMgJFxiZXRhXzMkOyB0aGUgaW5kaXJlY3QgZWZmZWN0IG9mICR4JCB0b28gJHkkIHRocm91Z2ggJG1fMSQgaXMgJFxiZXRhXzEgXGdhbW1hX3sxMX0kLCBhbmQgdGhlIGluZGlyZWN0IGVmZmVjdCBvZiAkeCQgdG8gJHkkIHRocm91Z2ggJG1fMiQgaXMgJFxiZXRhXzIgXGdhbW1hX3syMX0kLgoKCklmIHRoZSBtb2RlcmF0aW9uIHZhbHVlIGlzIGxvd2VyIHRoYW4gLjE1LCBtZWRpYXRpb24gZWZmZWN0IGlzIG5vdCBzaWduaWZpY2FudCBhcyBpdCdzIHdpdGhpbiB0aGUgOTUlIGJhbmQgYXJvdW5kIDAuIFdpdGhpbiAuMTV+Ky44NSB3b3VsZCBpbmRpY2F0ZSBzaWduaWZpY2FuY2UsIG91dHNpZGUgd291bGQgYmUgbm90IHNpZ25pZmljYW50LiAKLSBUaGUgb3V0dm9tZSBpCgoqKk1vZGVyYXRlZCBNZWRpYXRpb24gKDEpKioKCmBgYHtyfQpzaW5rKCJleDIuMjMuaW5wIikKY2F0KCcKYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOyAKICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOyAKbW9kZWw6ICAgIHJlbW92ZSBvbiBhZ2c1IHR4IGFnZzEgeHg7IAogICAgICAgICAgYWdnNSBvbiB0eCBhZ2cxIHh6OyAKbW9kZWwgaW5kaXJlY3Q6IAogIHJlbW92ZSBNT0QgYWdnNSBhZ2cxKC0xLCAxLCAwLjEpIHh6IHR4OyAKb3V0cHV0OiAKICBzYW1wc3RhdCBwYXR0ZXJucyBzdGFuZGFyZGl6ZWQgCiAgY2ludGVydmFsKGJvb3RzdHJhcCk7CnBsb3Q6ICAgICB0eXBlID0gcGxvdDM7CicpCnNpbmsoKQoKcnVuTW9kZWxzKCJleDIuMjMuaW5wIikKCm1vZGVsZml0NCA8LSByZWFkTW9kZWxzKCJleDIuMjMub3V0IikKYGBgCgpgbW9kZWwgaW5kaXJlY3RgCi0gVGhpcyBzaW1wbGUgYXBwcm9hY2ggd29ya3Mgd2hlbiB0aGUgZWZmZWN0cyBhcmUgbW9kZXJhdGVkIG9ubHkgYnkgdGhlIG1vZGVyYXRvciB2YXJpYWJsZSAKLSBUaGlzIGFwcHJvYWNoIHByb2R1Y2VzICJjYXVzYWxseSBkZWZpbmVkIiBkaXJlY3QgYW5kIGluZGlyZWN0IGVmZmVjdHMKLSBNT0Qga2V5d29yZCBpcyBhZGRlZCAKLSBWYXJpYWJsZXMgYXJlIGxpc3RlZCBpbiB0aGUgZm9sbG93aW5nIG9yZGVyOiAKICAqICR5JCAob3V0Y29tZSkKICAqIE1PRCBrZXl3b3JkIAogICogJG0kIChtZWRpYXRvcikgCiAgKiAkeiQgKG1vZGVyYXRvcikKICAqICR4eiQgKGludGVyYWN0aW9uKQogICogJHgkIChleHBvc3VyZSB2YXJpYWJsZSkKLSBUSGUgcmFuZ2Ugb2YgJHokIChgYWdnMWApIGlzIHByb3ZpZGVkLCBiZWNhdXNlIHRoZSBkaXJlY3QgYW5kIGluZGlyZWN0IGVmZmVjdHMgZGVwZW5kIG9uIHRoZSB2YWx1ZSBvZiAkeiQuCgoKYG1vZGVsIGNvbnN0cmFpbnRgCi0gYExPT1BgIHNwZWNpZmllcyB0aGUgcmFuZ2Ugb2YgdmFsdWVzIGZvciB0aGUgeC1heGlzIG9mIHRoZSBwbG90LiAKLSBgUExPVGAgbmFtZXMgdGhlIHZhcmlhYmxlcyB0byBiZSBwbG90dGVkIG9uIHRoZSAKCgoKKipNb2RlcmF0ZWQgTWVkaWF0aW9uICgyKSoqIAoKYGBge3J9CnNpbmsoZmlsZSA9ICJleDIuMjUuaW5wIikKY2F0KCcKZGF0YTogICAgIGZpbGUgPSB0ZWFtcy50eHQ7CnZhcmlhYmxlOiBuYW1lcyA9IGR5c2Z1bmMgbmVndG9uZSBuZWdleHAgcGVyZm9ybTsKICAgICAgICAgIHVzZXYgPSBkeXNmdW5jIG5lZ3RvbmUgbmVnZXhwIHBlcmZvcm0gbXo7CmRlZmluZTogICBteiA9IG5lZ3RvbmUqbmVnZXhwOwphbmFseXNpczogZXN0aW1hdG9yID0gbWw7CiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKbW9kZWw6ICAgIHBlcmZvcm0gb24gbmVndG9uZSBkeXNmdW5jIG5lZ2V4cCBtejsKICAgICAgICAgIG5lZ3RvbmUgb24gZHlzZnVuYzsgIAptb2RlbCBpbmRpcmVjdDoKICAgICAgICAgIHBlcmZvcm0gTU9EIG5lZ3RvbmUgbmVnZXhwKC0wLjQsMC42LDAuMDEpIG16IGR5c2Z1bmMgKDAuNDAzOCAwLjAzNSk7Cm91dHB1dDogICBjaW50ZXJ2YWwgKGJvb3RzdHJhcCk7CnBsb3Q6ICAgICB0eXBlID0gcGxvdDM7CiAgJywgZmlsbD1UKQogIHNpbmsoKQpgYGAKClJ1biB0aGUgbW9kZWwuCmBgYHtyfQpydW5Nb2RlbHMoImV4Mi4yNS5pbnAiKQpgYGAKClBsb3QgdGhlIG1vZGVyYXRlZCBtZWRpYXRpb24gZWZmZWN0IGJ5IHVzaW5nIGEgZnVuY3Rpb24gYXZhaWxhYmxlIGZyb20gYG1wbHVzLlJgLgpgYGB7cn0KbXBsdXMucGxvdC5tb2RlcmF0aW9uKCJleDIuMjUuZ2g1IikKYGBgCgpCeSB1c2luZyBhIGZ1bmN0aW9uIGF2YWlsYWJsZSBpbiBgbXBsdXMuUmAsIHJlYWQgdmFsdWVzIG9mIG1lZGlhdGlvbiBlZmZlY3QsIGxvd2VyIGFuZCB1cHBlciBib3VuZHMgb2YgOTUlIENJIGF0IGVhY2ggdmFsdWUgb2YgdGhlIG1vZGVyYXRvciB2YXJpYWJsZS4gTm90ZSB0aGF0IHRoZXNlIHZhbHVlcyBhcmUgYWxzbyByZXBvcnRlZCBpbiB0aGUgTXBsdXMgb3V0cHV0IGZpbGUgYGV4Mi4yNS5vdXRgLiBIb3dldmVyLCBpdCBpcyBuaWNlIHRvIHNlZSB0aGVtIG9uIFIgdG9vLgpgYGB7cn0KdGliYmxlKAogIG5lZ2V4cCA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLnh2YWx1ZXMoImV4Mi4yNS5naDUiKSwKICBlc3RzID0gbXBsdXMuZ2V0Lm1vZGVyYXRpb24uZXN0aW1hdGVzKCJleDIuMjUuZ2g1IiksCiAgbG9jaSA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLmxvd2VyY2koImV4Mi4yNS5naDUiKSwKICB1cGNpID0gbXBsdXMuZ2V0Lm1vZGVyYXRpb24udXBwZXJjaSgiZXgyLjI1LmdoNSIpKQpgYGAKCk5vdywgcnVuIHRoZSBzYW1lIG1vZGVsIGJ5IHVzaW5nIGEgZGlmZmVyZW50IGFwcHJvYWNoIGJ5IHVzaW5nICJtb2RlbCBjb25zdHJhaW50IiBjb21tYW5kIHdpdGggImxvb3AiIHRvIHNwZWNpZnkgYSBzZXJpZXMgb2YgZXZhbHVhdGlvbiBwb2ludHMuIApgYGB7cn0Kc2luayhmaWxlID0gImV4Mi4yNWIuaW5wIikKY2F0KCcKZGF0YTogICAgIGZpbGUgPSB0ZWFtcy50eHQ7CnZhcmlhYmxlOiBuYW1lcyA9IGR5c2Z1bmMgbmVndG9uZSBuZWdleHAgcGVyZm9ybTsKICAgICAgICAgIHVzZXYgPSBkeXNmdW5jIG5lZ3RvbmUgbmVnZXhwIHBlcmZvcm0gbXo7CmRlZmluZTogICBteiA9IG5lZ3RvbmUqbmVnZXhwOwphbmFseXNpczogZXN0aW1hdG9yID0gbWw7CiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKTU9ERUw6ICAgIHBlcmZvcm0gb24gbmVndG9uZSAoYjEpCiAgICAgICAgICBkeXNmdW5jIChiMikKICAgICAgICAgIG5lZ2V4cCAoYjMpCiAgICAgICAgICBteiAoYjQpOwogICAgICAgICAgbmVndG9uZSBvbiBkeXNmdW5jIChnMSk7Ck1PREVMIENPTlNUUkFJTlQ6CiAgICAgICAgICBwbG90KGluZCk7CiAgICAgICAgICBsb29wKG5lZ2V4cCwgLS40LCAuNiwgLjAxKTsKICAgICAgICAgIGluZCA9IChiMSpnMSArIGI0KmcxKm5lZ2V4cCkgKiAoLjQwMzggLSAuMDM1KTsKb3V0cHV0OiAgIGNpbnRlcnZhbCAoYm9vdHN0cmFwKTsKcGxvdDogICAgIHR5cGUgPSBwbG90MzsKICAnLCBmaWxsPVQpCiAgc2luaygpCmBgYAoKUnVuIHRoZSBtb2RlbC4KYGBge3J9CnJ1bk1vZGVscygiZXgyLjI1Yi5pbnAiKQpgYGAKCkdlbmVyYXRlIGEgcGxvdCBvZiB0aGUgbW9kZXJhdGVkIG1lZGlhdGlvbiBlZmZlY3QgYnkgdXNpbmcgYSBmdW5jdGlvbiBhdmFpbGFibGUgZnJvbSBgbXBsdXMuUmAuIE5vdGUgdGhhdCB0aGUgZnVuY3Rpb24gaXMgZGlmZmVyZW50IGZyb20gdGhlIG9uZSBmb3IgdGhlIG90aGVyIGFwcHJvYWNoIGluIGV4Mi4yNS4KYGBge3J9Cm1wbHVzLnBsb3QubG9vcCgiZXgyLjI1Yi5naDUiLCAxKQpgYGAKClNpbWlsYXIgdG8gdGhlIHByZXZpb3VzIGV4YW1wbGUsIGdlbmVyYXRlIGEgdGFibGUgb2YgbWVkaWF0aW9uIGVmZmVjdCwgbG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBvZiA5NSUgQ0kgYXQgZWFjaCB2YWx1ZSBvZiB0aGUgbW9kZXJhdG9yIHZhcmlhYmxlIGJ5IHVzaW5nIGEgZnVuY3Rpb24gYXZhaWxhYmxlIGluIGBtcGx1cy5SYC4gTm90ZSB0aGF0IHRoaXMgdGFibGUgaXMgbm90IGF2YWlsYWJsZSBpbiB0aGUgTXBsdXMgb3V0cHV0IGZpbGUgd2hlbiB0aGUgIm1vZGVsIGNvbnN0cmFpbnQiIGFwcHJvYWNoIGlzIHVzZWQuIEhvd2V2ZXIsIHRoZSBuZWNlc3NhcnkgdmFsdWVzIGFyZSBzdG9yZWQgaW4gdGhlIGAuZ2g1YCBmaWxlLCBzbyB3ZSBjYW4gZXh0cmFjdCB0aGUgdmFsdWVzIGFuZCBzdW1tYXJpemUgYXMgYSB0YWJsZSBvbiBSLgoKYGBge3J9CnRpYmJsZSgKICBuZWdleHAgPSBtcGx1cy5nZXQubG9vcC54dmFsdWVzKCJleDIuMjViLmdoNSIpLAogIGVzdHMgPSBtcGx1cy5nZXQubG9vcC5lc3RpbWF0ZXMoImV4Mi4yNWIuZ2g1IiwgMSksCiAgbG9jaSA9IG1wbHVzLmdldC5sb29wLmxvd2VyY2koImV4Mi4yNWIuZ2g1IiwgMSksCiAgdXBjaSA9IG1wbHVzLmdldC5sb29wLnVwcGVyY2koImV4Mi4yNWIuZ2g1IiwgMSkpICU+JSBwcmludChuPTEwMSkKYGBgCgpSZWFkIHRoZSBkYXRhLgpgYGB7cn0KZXgyLjI2LmRhdCA8LSByZWFkLnRhYmxlKCJ4bVZ4NHMxbjIwMHJlcDYuZGF0IikKY29sbmFtZXMoZXgyLjI2LmRhdCkgPC0gYygieSIsICJtIiwgIngiKQpleDIuMjYuZGF0IDwtCiAgZXgyLjI2LmRhdCAlPiUgbXV0YXRlKG14ID0gbSp4KQpwc3ljaDo6ZGVzY3JpYmUoZXgyLjI2LmRhdCwgZmFzdD1UKQpgYGAKClNldCB1cCB0aGUgTXBsdXMgc3BlY2lmaWNhdGlvbnMgd2l0aCBNcGx1c0F1dG9tYXRpb24uIFRoZW4sIHJ1biB0aGUgbW9kZWwgd2l0aCBNcGx1c0F1dG9tYXRpb24uCmBgYHtyfQpzaW5rKGZpbGUgPSAiZXgyLjI2LmlucCIpCmNhdCgnCmRhdGE6ICAgICBmaWxlID0gInhtVng0czFuMjAwcmVwNi5kYXQiOwp2YXJpYWJsZTogbmFtZXMgPSB5IG0geDsKICAgICAgICAgIHVzZXYgPSB5IG0geCBteDsKZGVmaW5lOiAgIG14ID0gbSp4OwphbmFseXNpczogZXN0aW1hdG9yID0gbWw7CiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKTU9ERUw6ICAgIHkgb24gbSB4IG14OwogICAgICAgICAgbSBvbiB4OwpNT0RFTCBJTkRJUkVDVDoKICAgICAgICAgIHkgTU9EIG0gbXggeCAoNywgNSk7Cm91dHB1dDogICBjaW50ZXJ2YWwgKGJvb3RzdHJhcCk7CnBsb3Q6ICAgICB0eXBlID0gcGxvdDM7CiAgJywgZmlsbD1UKQogIHNpbmsoKQpgYGAKCkJ5IHVzaW5nIGEgZnVuY3Rpb24gYXZhaWxhYmxlIGluIGBtcGx1cy5SYCwgcmVhZCB2YWx1ZXMgb2YgbWVkaWF0aW9uIGVmZmVjdCwgbG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBvZiA5NSUgQ0kgYXQgZWFjaCB2YWx1ZSBvZiB0aGUgbW9kZXJhdG9yIHZhcmlhYmxlLiBOb3RlIHRoYXQgdGhlc2UgdmFsdWVzIGFyZSBhbHNvIHJlcG9ydGVkIGluIHRoZSBNcGx1cyBvdXRwdXQgZmlsZSBgZXgyLjI1Lm91dGAuIEhvd2V2ZXIsIGl0IGlzIG5pY2UgdG8gc2VlIHRoZW0gb24gUiB0b28uCmBgYHtyfQp0aWJibGUoCiAgbmVnZXhwID0gbXBsdXMuZ2V0Lm1vZGVyYXRpb24ueHZhbHVlcygiZXgyLjI1LmdoNSIpLAogIGVzdHMgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5lc3RpbWF0ZXMoImV4Mi4yNS5naDUiKSwKICBsb2NpID0gbXBsdXMuZ2V0Lm1vZGVyYXRpb24ubG93ZXJjaSgiZXgyLjI1LmdoNSIpLAogIHVwY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi51cHBlcmNpKCJleDIuMjUuZ2g1IikpCmBgYAoKSW50ZXJwcmV0YXRpb24gYnkgQWtpOiBXaGVuIHRoZSBtb2RlcmF0b3IgbmVnYXRpdmUgZXhwcmVzc2l2ZW5lc3MgdmFsdWUgaXMgbmVnYXRpdmUgLS4xNCBvciBsYXJnZXIsIG1lZGlhdGlvbiBlZmZlY3QgaXMgc3RhdGlzdGljYWxseSBzaWduaWZpY2FudC4gKHJhbmdlIG9mIHZhbHVlIGFzc29jaWF0ZWQgd2l0aCBzdGF0aXN0aWNhbGx5IHNpZ25pZmljYW50IGVmZmVjdCkKCgoKLS0tIAoKKipKdXN0IElkZW50aWZpZWQgTW9kZWwqKgoKVGhlIG51bWJlciBvZiB1bmlxdWUgZWxlbWVudHMgaW4gdGhlIGRhdGEgY292YXJpYW5jZSBtYXRyaXggaXMgJFxmcmFje3EocSsxKX17Mn0kIHdoZXJlICRxJCBpcyB0aGUgb3JkZXIgb2YgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeC4gVGh1cywgJGRmID0gXGZyYWN7cShxKzEpfXsyfS1rJC4gCgpKdXN0IGlkZW50aWZpZWQgcGF0aCBhbmFseXNpcyBtb2RlbCBwZXJmZWN0bHkgZml0cyB0aGUgZGF0YSB3aXRoICRkZj0wJC4gVGhlIHR3byBleGFtcGxlIG1vZGVscyBmb3IgdGhlIGp1c3QtaWRlbnRpZmllZCBtb2RlbCBiZWxvdyBoYXMgcT0zLCBzbyB0aGUgbnVtYmVyIG9mIHVuaXF1ZSBlbGVtZW50cyBpbiB0aGUgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeCBpcyAzKDMrMSkyID0gMTIvMiA9IDYuIEZvciB0aGUgbW9kZWwgb24gdGhlIGxlZnQsIHRoZXJlIGFyZSB0d28gcmVnIGNvZWZmaWNpZW50cyBmb3IgWDEgcHJlZGljdGluZyBZMSBhbmQgWDIgcHJlZGljdGluZyBZMSwgY292YXJpYW5jZSBiZXR3ZWVuIFgxIGFuZCBYMiwgYW5kIGVycm9yIHZhcmlhbmNlcyBmb3IgWDEsIFgyLCBhbmQgWTEuIFRvdGFsIG9mIDYsIHNvICRkZj02LTY9MCQuRm9yIHRoZSBtb2RlbCBvbiB0aGUgcmlnaHQsIHRoZXJlIGFyZSB0aHJlZSByZWcgY29lZmZpY2llbnRzIGZvciBYMSBwcmVkaWN0aW5nIFkxLCBYMSBwcmVkaWN0aW5nIFkyLCBhbmQgWTEgcHJlZGljdGluZyBZMi4gQWxzbywgdGhlcmUgYXJlIGVycm9yIHZhcmlhbmNlcyBmb3IgWDEsIFkxLCBhbmQgWTIuIFRvdGFsIG9mIDYgYWdhaW4sIHNvICRkZj02LTY9MCQuIAoKKipQYXRoIEFuYWx5c2lzKioKCkZpdG5lc3MgaXMgYW4gZXhvZ2Vub3VzIHZhcmlhYmxlIGFzIGl0IGlzIGJvdGggYSBwcmVkaWN0b3IgYW5kIG91dGNvbWUgdmFyaWFibGUuIE90aGVycyBhcmUgZW5kb2dlbm91cyB2YXJpYWJsZXMuIAoKKipDaGktc3F1YXJlIFRlc3QgZm9yIE9uZSBNb2RlbCoqIAoKLSBUaGUgdGVzdCBldmFsdWF0ZXMgd2hldGhlciB0aGUgb2JzZXJ2ZWQgY292YXJpYW5jZSBtYXRyaXggaXMgY29uc2lzdGVudCB3aXRoIGEgc3BlY2lmaWVkIG1vZGVsLiAKLSBJdCB0ZXN0cyB0aGUgbnVsbCBoeXBvdGhlc2lzICRIXzA6IFxTaWdtYSA9ICBcd2lkZWhhdHtcU2lnbWF9JCB3aGVyZSAkXFNpZ21hJCBpcyB0aGUgb2JzZXJ2ZWQgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeCBhbmQgJFx3aWRlaGF0e1xTaWdtYX0kIGlzIHRoZSByZXByb2R1Y2VkIGRhdGEgY292YXJpYW5jZSBtYXRyaXguIAogICogTm90ZTogSnVzdCBsaWtlIHdlIAoKKipDaGktc3F1YXJlIGluIE1wbHVzKioKCkNoaS1zcXVhcmUgZG9lc24ndCBtYWtlIHNlbnNlIGZvciBqdXN0LWlkZW50aWZpZWQgbW9kZWwgd2l0aCAkZGY9MCQgYmVjYXVzZSAkXFNpZ21hJCBhbmQgJFx3aWRlaGF0e1xTaWdtYX0kIGFyZSBlc3NlbnRpYWxseSB0aGUgc2FtZSwgbGl0dGxlIHRvIG5vIGRpc2NyZXBhbmN5LiBTbyBhbHRob3VnaCAkcCA9IDAuMDAwMCQsIHRoaXMgZG9lcyBub3QgbWVhbiB3ZSByZWplY3QgJEhfMDogXFNpZ21hID0gXHdpZGVoYXR7XFNpZ21hfSQuIEhvd2V2ZXIsIGl0IGlzIG9mIHVzZSBmb3Igb3ZlcmlkZW50aWZpZWQgbW9kZWwgd2l0aCAkZGY9NCQuIAoKTm90ZTogdXNlIGAkc3VtbWFyaWVzYCBmb3IgZXh0cmFjdGluZyBtb2RlbCBmaXQgaW5mb3JtYXRpb24uIAoKKiogQ2hpLXNxdWFyZSBEaWZmZXJlbmNlIFRlc3QgZm9yIFR3byBOZXN0ZWQgTW9kZWxzKiogCgotIFR3byBtb2RlbHMgYXJlIG5lc3RlZCBpZiBvbmUgaXMgYSBzdWJzZXQgb2YgdGhlIG90aGVyLiBUaGUgb25lIG9uIHRoZSBsZWZ0LWhhbmQgc2lkZSBoYXMgb25seSBvbmUgYWRkaXRpb25hbCBwYXJhbWV0ZXIgdGhhbiB0aGUgbW9kZWwgb24gdGhlIHJpZ2h0LWhhbmQgc2lkZSwgc28gdGhlIG1vZGVsIG9uIHRoZSByaWdodC1oYW5kIHNpZGUgaXMgbmVzdGVkIGluIHRoZSBsZWZ0LWhhbmQgc2lkZS4gCi0gQ2hpLXNxdWFyZSBkaWZmZXJlbmNlIHRlc3QgYXNzZXNzZXMgd2hldGhlciB0aGUgY2hpLXNxdWFyZSBoYXMgYmVlbiByZWR1Y2VkIGVub3VnaCB0byBjbGFpbSB0aGF0IHRoZSBhZGRpdGlvbmFsIHBhcmFtZXRlciBvbiB0aGUgbGVmdCBoYW5kIHNpZGUgaGFzIHNpZ25pZmljYW50bHkgaW1wcm92ZWQgbW9kZWwgZml0LiAKCmBgYApwY2hpc3EoMi40OCwgMSwgbG93ZXIudGFpbCA9IEYpICMgbm90IHN0YXRpc3RpY2FsbHkgc2lnbmlmY2FudCBhdCBhbHBoYSBvZiAuMDUKYGBgCgotIElmIHRoZSB0ZXN0IGluZGljYXRlcyB0aGF0IHdlIGRvIG5vdCBoYXZlIGV2aWRlbmNlIGZvciBiZXR0ZXIgZml0IGZvciB0aGUgbW9yZSBjb21wbGV4IG1vZGVsLCB0aGF0IHN1Z2dlc3RzIHRoYXQgdGhlIHNpbXBsZXIgbW9kZWwgaXMgYSBiZXR0ZXIgKG1vcmUgcGFyc2ltb25pb3VzIG1vZGVsIGNob2ljZSkKLSBMb2NhbCBmaXQgdnMuIEdsb2JhbCBmaXQgCiAgKiBHbG9iYWwgZml0IGlzIHRoZSBmaXQgb2YgdGhlIG1vZGVsLCBpbiB0aGlzIGNhc2UgdGhlIGNoaXNxIGRpZmZlcmVuY2UgdGVzdCAgICogTG9jYWwgZml0IGlzIHRoZSBzaWduaWZpY2FuY2Ugb2YgZWFjaCBvZiB0aGUgcGF0aHMgaW4gdGhlIG1vZGVsIAogIAoqKk1vZGlmaWNhdGlvbiBJbmRleCoqCgpMYXJnZXIgbW9kaWZpY2F0aW9uIGluZGV4IG1lYW5zIHRoYXQgdGhlIGFkZGl0aW9uYWwgcGFyYW1ldGVyIGZvciB0aGUgbW9yZSBjb21wbGV4IG1vZGVsIGltcHJvdmVkIG1vZGVsIGZpdCBzaWduaWZpY2FudGx5LiAKCmBIQVJESU5FU2AgaXMgcHJlZGljdG9yLCBgRklURVNTYCBpcyBvdXRjb21lLiBZIG9uIFguIAoKRWRpdCB0byBtYWtlIHRvIDAxLlBBM2MuaW5wIGNvZGUKYGBgCk9VVFBVVDogc3RkeXgKICAgICAgICBtb2RpbmRpY2VzCmBgYAoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ2xhc3MgMiAtIE1lZGlhdGlvbiBBbmFseXNpcyIKZGF0ZTogImByIFN5cy5EYXRlKClgIgpvdXRwdXQ6IAogIGh0bWxfbm90ZWJvb2s6CiAgICB0aGVtZTogY29zbW8KICAgIHRvYzogeWVzCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogdHJ1ZQotLS0KCmBgYHtyIG1lc3NhZ2U9RiwgZWNobyA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0UsIHJlc3VsdHM9J2hpZGUnfQojIGRldGFjaCBhbGwgbGlicmFyaWVzCgpkZXRhY2hBbGxQYWNrYWdlcyA8LSBmdW5jdGlvbigpIHsKICBiYXNpYy5wYWNrYWdlcyA8LSBjKCJwYWNrYWdlOnN0YXRzIiwgInBhY2thZ2U6Z3JhcGhpY3MiLCAicGFja2FnZTpnckRldmljZXMiLCAicGFja2FnZTp1dGlscyIsICJwYWNrYWdlOmRhdGFzZXRzIiwgInBhY2thZ2U6bWV0aG9kcyIsICJwYWNrYWdlOmJhc2UiKQogIHBhY2thZ2UubGlzdCA8LSBzZWFyY2goKVtpZmVsc2UodW5saXN0KGdyZWdleHByKCJwYWNrYWdlOiIsIHNlYXJjaCgpKSk9PTEsIFRSVUUsIEZBTFNFKV0KICBwYWNrYWdlLmxpc3QgPC0gc2V0ZGlmZihwYWNrYWdlLmxpc3QsIGJhc2ljLnBhY2thZ2VzKQogIGlmIChsZW5ndGgocGFja2FnZS5saXN0KT4wKSAgZm9yIChwYWNrYWdlIGluIHBhY2thZ2UubGlzdCkgZGV0YWNoKHBhY2thZ2UsICBjaGFyYWN0ZXIub25seT1UUlVFKQp9CmRldGFjaEFsbFBhY2thZ2VzKCkKCiMgZnVuY3Rpb24gdG8gbG9hZCBsaWJyYXJpZXMKCnBrZ1Rlc3QgPC0gZnVuY3Rpb24ocGtnKXsKICBuZXcucGtnIDwtIHBrZ1shKHBrZyAlaW4lIGluc3RhbGxlZC5wYWNrYWdlcygpWywgICJQYWNrYWdlIl0pXQogIGlmIChsZW5ndGgobmV3LnBrZykpIAogICAgaW5zdGFsbC5wYWNrYWdlcyhuZXcucGtnLCAgZGVwZW5kZW5jaWVzID0gVFJVRSkKICBzYXBwbHkocGtnLCAgcmVxdWlyZSwgIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkKfQoKIyBsb2FkaW5nIHBhY2thZ2VzIAoKCmxhcHBseShjKCJnc3ViZm4iKSxwa2dUZXN0KQpsYXBwbHkoYygidGlkeXZlcnNlIikscGtnVGVzdCkKbGFwcGx5KGMoInNqbWlzYyIpLHBrZ1Rlc3QpCmxhcHBseShjKCJEVCIpLHBrZ1Rlc3QpCmxhcHBseShjKCJsYXZhYW4iKSxwa2dUZXN0KQpsYXBwbHkoYygiTXBsdXNBdXRvbWF0aW9uIikscGtnVGVzdCkKbGFwcGx5KGMoInBzeWNoIikscGtnVGVzdCkKbGlicmFyeShnc3ViZm4pCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KHNqbWlzYykKbGlicmFyeShEVCkKbGlicmFyeShsYXZhYW4pCmxpYnJhcnkoTXBsdXNBdXRvbWF0aW9uKQpsaWJyYXJ5KHBzeWNoKQoKaWYgKCFyZXF1aXJlKCJCaW9jTWFuYWdlciIsIHF1aWV0bHkgPSBUUlVFKSkgaW5zdGFsbC5wYWNrYWdlcygiQmlvY01hbmFnZXIiKQoKQmlvY01hbmFnZXI6Omluc3RhbGwoInJoZGY1IikKYGBgCgpgYGB7cn0Kc291cmNlKCJtcGx1cy5SIikKYGBgCgotIElucHV0IG5vdCBjYXNlLXNlbnNpdGl2ZSwgb3V0cHV0IGhhcyB0byBiZSBpbiB1cHBlcmNhc2UgCj09PT09PT0KYGBgCgo+Pj4+Pj4+IDg4YzAwNTcxYmE1Nzg4N2VmYjRmZjA2YzVhZjQzM2Y0ODZjYWIwYTkKIyMjIE1lZGlhdGlvbiBBbmFseXNpcyAKCi0gVGhlIGRpZmZlcmVuY2UgJGMtY15ccHJpbWUkIGlzIGNvbnNpZGVyZWQgYXMgdGhlIG1lZGlhdGlvbiBlZmZlY3QsIGFuZCAkYy1jXlxwcmltZSA9IGEgXHRpbWVzIGIkIG9yICRjID0gYSBcdGltZXMgYiAtIGNeXHByaW1lJAotIEhvd2V2ZXIsIHRoZSBlcXVpdHkgaG9sZHMgb25seSBmb3IgYSBzcGVjaWFsIGNhc2Ugb2YgbWVkaWF0aW9uIGFuYWx5c2lzIAogICogQ29udGludW91cyBvdXRjb21lIGFuZCBsaW5lYXIgcmVncmVzc2lvbiAKLSBUaGVyZWZvcmUsIGl0IGlzIG5vdCByZWNvbW1lbmRlZCB0byBldmFsdWF0ZSAkYyAtIGNeXHByaW1lJAoKKipCYXNpYyBNZWRpYXRpb24gQW5hbHlzaXMqKgoKLSBEYXRhIGZyb20gdGhlIGRpc2NyaW1pbmF0aW9uIHN0dWR5IChHYXJjaWEgZXQgYWwuLCAyMDEwKSBpbiBNdXRoZW4gZXQgYWwuICgyMDE2OyBwLjcyKSwgYXMgd2VsbCBhcyBIYXllcyAoMjAxMykgCi0gU3ViamVjdHMgKDEyOSBmZW1hbGVzKSB3ZXJlIHByZXNlbnRlZCBhIHN0b3J5IG9mIGhvb3cgZmVtYWxlIGF0dG9ybmV5IGxvc3QgYSBwcm9tb3Rpb24gdG8gYSBsZXNzIHF1YWxpZmllZCBtYWxlIGR1ZSB0byBkaXNjcmltaW5hdG9yeSBhY3Rpb24gCi0gU3ViamVjdHMgd2VyZSByYW5kb21seSBhc3NpZ25lZCB0byB0d28gZGlmZmVyZW50IHNjZW5hcmlvczogCiAgKiAoMSkgdGhlIGZlbWFsZSBhdHRvcm5leSB0YWtlcyBubyBhY3Rpb24sIGFuZCAoMikgdGhlIGZlbWFsZSBhdHRvcm5leSBwcm90ZXN0cyAKLSBWYXJpYWJsZXMgCiAgKiBJbnRlcnZlbnRpb24gdmFyaWFibGUgKDAgPSBubyBwcm90ZXN0LCAxID0gcHJvdGVzdCkgKGBwcm90ZXN0YCkgcHJlZGljdG9yIAogICogSG93IHdlbGwgdGhlIHN1YmplY3QgbGlrZXMgdGhlIGZlbWFsZSBhdHRvcm5leSBvdXRjb21lIC0gNy1wb2ludCBsaWtlcnQgKGBsaWtpbmdgKQogICogUGVyY2VpdmVkIGFwcHJvcHJpYXRlbmVzcyBvZiB0aGUgcmVzcG9uc2Ugb2YgdGhlIGZlbWFsZSBhdHRvcm5leSAoYHJlc3BhcHByYCkgbWVkaWF0b3IgCiAgKiBCZWxpZWZzIGluIHRoZSBwZXJ2YXNpdmVuZXNzIG9mIHNleCBkaXNjcmltaW5hdGlvbiBpbiBzb2NpZXR5IChgc2V4aXNtYCkKICAKYGBge3J9CnByb3Rlc3RfZGYgPC0gcmVhZC50YWJsZSgicHJvdGVzdC50eHQiLCBzZXA9IiIpCmNvbG5hbWVzKHByb3Rlc3RfZGYpIDwtIGMoInNleGlzbSIsICJsaWtpbmciLCAicmVzcGFwcHIiLCAicHJvdGVzdCIpCnBzeWNoOjpkZXNjcmliZShwcm90ZXN0X2RmKQpgYGAKCi0gQnkgc3Vic3RpdHV0aW5nIHRoZSBzZWNvbmQgZXF1YXRpb24gYmVsb3cgdG8gdGhlIGZpcnN0IGVxdWF0aW9uIGJlbG93LCB3ZSBjYW4gZ2V0IHRoZSBjb21iaW5lZCBlcXVhdGlvbjogIAoKRXF1YXRpb24gMToKJCQgeV9pID0gXGJldGFfMCArIFxiZXRhXzFtX2kgKyBcYmV0YV8yeF9pK1xlcHNpbG9uX3t5aX0kJApFcXVhdGlvbiAyOiAKJCQgbV9pID0gXGdhbW1hXzAgKyBcZ2FtbWFfMXhfaStcZXBzaWxvbl97bWl9JCQKQ29tYmluZWQgZXF1YXRpb246CiQkIHlfaSA9IFxiZXRhXzAgKyBcYmV0YV8xKFxnYW1tYV8wICsgXGdhbW1hXzF4X2kgKyBcZXBzaWxvbl97bWl9KStcYmV0YV8yeF9pK1xlcHNpbG9uX3t5aX0kJAoKLSBFeGFtcGxlIDEKICAqIE5vdGUgdGhhdCBieSBkZWZhdWx0LCBNcGx1cyB1dGlsaXplcyBhIG1ldGhvZCB0byBlc3RpbWF0ZSBhIHN0YW5kYXJkIGVycm9yIG9mIG5vbmxpbmVhcmx5IHRyYW5zZm9ybWVkIHBhcmFtZXRlcnMgY2FsbGVkIHRoZSAiRGVsdGEgbWV0aG9kIi4gCiAgKiBEZWx0YSBtZXRob2QgYW5hbHl0aWNhbGx5IGFwcHJveGltYXRlcyB0aGUgdGFyZ2V0IHN0YW5kYXJkIGVycm9yIGJ5IGFzc3VtaW5nIHRoZSBub3JtYWxpdHkgb2YgdGhlIHNhbXBsaW5nIGRpc3RyaWJ1dGlvbiBvZiB0aGUgcGFyYW1ldGVyKHMpLiAKICAgIC0gVGhlIGluZGlyZWN0IGVmZmVjdCBpcyBhIG11bHRpcGxpY2F0aW9uIG9mIHR3byBwYXJhbWV0ZXJzIAogICogTXBsdXMgc3ludGF4IGZvciB0aGUgYG1vZGVsYCBzZWN0aW9uOiBgRFYgb24gSVYxIElWMmAgYW5kIHNvIG9uIGZvciBob3dldmVyIG1hbnkgSVZzIHRoZXJlIGFyZSAKICAKYGBge3J9CnNpbmsoImV4Mi4xLmlucCIpCmNhdCgnCmRhdGE6ICAgICBmaWxlID0gcHJvdGVzdC50eHQ7IAoKdmFyaWFibGU6IG5hbWVzID0gc2V4aXNtIGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyAKICAgICAgICAgIHVzZXYgPSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgCiAgICAgICAgICAKYW5hbHlzaXM6IGVzdGltYXRvciA9IG1scjsgCgptb2RlbDogICAgbGlraW5nIG9uIHJlc3BhcHByIHByb3Rlc3Q7IAogICAgICAgICAgcmVzcGFwcHIgb24gcHJvdGVzdDsgCiAgICAgICAgICAKTW9kZWwgaW5kaXJlY3Q6IAogICAgICAgICAgbGlraW5nIGluZCBwcm90ZXN0OyAKICAgICAgICAgIApvdXRwdXQ6ICAgY2ludGVydmFsOwonKQpzaW5rKCkKCnJ1bk1vZGVscygiZXgyLjEuaW5wIikKCm1vZGVsZml0MSA8LSByZWFkTW9kZWxzKCJleDIuMS5vdXQiKQoKbW9kZWxmaXQxJHBhcmFtZXRlcnMkdW5zdGFuZGFyZGl6ZWQKYGBgCgoqKkJhc2ljIE1lZGlhdGlvbiBBbmFseXNpcyB3aXRoIEJvb3RzdHJhcCoqCgpgYGB7cn0Kc2luaygiZXgyLjFiLmlucCIpCmNhdCgnCmRhdGE6ICAgICBmaWxlID0gcHJvdGVzdC50eHQ7IAoKdmFyaWFibGU6IG5hbWVzID0gc2V4aXNtIGxpa2luZyByZXNwYXBwciBwcm90ZXN0OyAKICAgICAgICAgIHVzZXYgPSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgCiAgICAgICAgICAKYW5hbHlzaXM6IGVzdGltYXRvciA9IG1sOyAKICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOwoKbW9kZWw6ICAgIGxpa2luZyBvbiByZXNwYXBwciBwcm90ZXN0OyAKICAgICAgICAgIHJlc3BhcHByIG9uIHByb3Rlc3Q7IAogICAgICAgICAgCk1vZGVsIGluZGlyZWN0OiAKICAgICAgICAgIGxpa2luZyBpbmQgcHJvdGVzdDsgCiAgICAgICAgICAKb3V0cHV0OiAgIGNpbnRlcnZhbChib290c3RyYXApOwonKQpzaW5rKCkKCnJ1bk1vZGVscygiZXgyLjFiLmlucCIpCgptb2RlbGZpdDIgPC0gcmVhZE1vZGVscygiZXgyLjFiLm91dCIpCgptb2RlbGZpdDIkcGFyYW1ldGVycyR1bnN0YW5kYXJkaXplZApgYGAKCiAKKipNZWRpYXRpb24gQW5hbHlzaXMgd2l0aCBDb3ZhcmlhdGVzKiogCgotIERhdGEgZnJvbSB0aGUgTWF0ZXJuYWwgSGVhbHRoIFByb2plY3QgCi0gU2FtcGxlOiBNb3RoZXJzIHdobyBkcmFuayBhdCBsZWFzdCB0aHJlZSBkcmlua3MgYSB3ZWVrIGR1cmluZyB0aGUgZmlyc3QgdHJpbWVzdGVyIG9mIHRoZWlyIHByZWduYW5jeSArIG1vdGhlcnMgd2hvIHVzZWQgYWxjb2hvbCBsZXNzIG9mdGVuICgkbj01OTQkKQotIFZhcmlhYmxlcyAKICAqIEFsY29ob2wgdXNlIChgbW9tY2lnM2ApCiAgKiBDaWdhcmV0dGUgdXNlIChgbW9tYWxjM2ApCiAgKiBDaGlsZCdzIGdlbmRlciAoYG1hbGVgKQogICogRXRobmljaXR5IChgYmxhY2tgKQogICogSGVhZCBjaXJjdW1mZXJlbmNlIGF0IGJpcnRoIChgaGNpcmMwYCkKICAqIEhlYWQgY2lyY3VtZmVyZW5jZSBhdCBiaXJ0aCAKPT09PT09PQogCioqQW5vdGhlciB3YXkgdG8gc2V0IHVwIG1lZGlhdGlvbiBhbmFseXNpcyoqIAoKYGBge3J9CnNpbmsoImV4Mi4xYy5pbnAiKQpjYXQoJwpkYXRhOiAgICAgZmlsZSA9IHByb3Rlc3QudHh0OyAKCnZhcmlhYmxlOiBuYW1lcyA9IHNleGlzbSBsaWtpbmcgcmVzcGFwcHIgcHJvdGVzdDsgCiAgICAgICAgICB1c2V2ID0gbGlraW5nIHJlc3BhcHByIHByb3Rlc3Q7IAogICAgICAgICAgCmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDsgCiAgICAgICAgICBib290c3RyYXAgPSAxMDAwMDsKCm1vZGVsOiAgICBsaWtpbmcgb24gcmVzcGFwcHIgKGIxKQogICAgICAgICAgICAgICAgICAgICBwcm90ZXN0OyAKICAgICAgICAgIHJlc3BhcHByIG9uIHByb3Rlc3QgKGcxKTsgCiAgICAgICAgICAKTW9kZWwgY29uc3RyYWludDogCiAgICAgICAgICBuZXcocHJvbGlrKTsgCiAgICAgICAgICBwcm9saWsgPSBnMSAqIGIxOwogICAgICAgICAgCm91dHB1dDogICBjaW50ZXJ2YWwoYm9vdHN0cmFwKTsKJykKc2luaygpCgpydW5Nb2RlbHMoImV4Mi4xYy5pbnAiKQoKbW9kZWxmaXQzIDwtIHJlYWRNb2RlbHMoImV4Mi4xYy5vdXQiKQoKbW9kZWxmaXQzJHBhcmFtZXRlcnMkdW5zdGFuZGFyZGl6ZWQKYGBgCgoqKkJhc2ljIE1lZGlhdGlvbiBBbmFseXNpcyB3aXRoKiogYGxhdmFhbmAKCmBgYHtyfQpNQS5tb2QwMSA8LSAnCmxpa2luZyB+IGIxKnJlc3BhcHByICsgcHJvdGVzdCAKcmVzcGFwcHIgfiBnMSpwcm90ZXN0IApwcm9saWsgOj0gYjEqZzEKJwpgYGAKClJ1biB0aGUgbW9kZWwgd2l0aCBib290c3RyYXAuIApgYGB7cn0KTUEuZml0MDEgPC0gc2VtKE1BLm1vZDAxLCBkYXRhPXByb3Rlc3RfZGYsIHNlPSJib290IiwgYm9vdHN0cmFwPTEwMDAwKQpgYGAKCmBgYHtyfQpwYXJhbWV0ZXJFc3RpbWF0ZXMoTUEuZml0MDEsIHpzdGF0PUYsIHB2YWx1ZT1GKQpgYGAKCioqTWVkaWF0aW9uIEFuYWx5c2lzIHdpdGggQ292YXJpYXRlcyoqIAoKPDw8PDw8PCBIRUFECi0gRGF0YSBmcm9tIHRoZSBNYXRlcm5hbCBIZWFsdGggUHJvamVjdCAoRGF5IGV0IGFsLiwgMTk5NCkgaXMgZnJvbSBhIHNhbXBsZSBvZiBtb3RoZXJzIHdobyBkcmFuayBhdCBsZWFzdCB0aHJlZSBkcmlua3MgYSB3ZWVrIGR1cmluZyB0aGUgZmlyc3QgdHJpbWVzdGVyIG9mIHRoZWlyIHByZWduYW5jeSArIG1vdGhlcnMgd2hvIGRyYW5rIGFsY29ob2wgbGVzcyBvZnRlbiAoJG4kID0gNTk0KS4gCj09PT09PT0KLSBEYXRhIGZyb20gdGhlIE1hdGVybmFsIEhlYWx0aCBQcm9qZWN0IChEYXkgZXQgYWwuLCAxOTk0KSBpcyBmcm9tIGEgc2FtcGxlIG9mIG1vdGhlcnMgd2hvIGRyYW5rIGF0IGxlYXN0IHRocmVlIGRyaW5rcyBhIHdlZWsgZHVyaW5nbiB0aGUgZmlyc3QgdHJpbWVzdGVyIG9mIHRoZWlyIHByZWduYW5jeSArIG1vdGhlcnMgd2hvIGRyYW5rIGFsY29ob2wgbGVzcyBvZnRlbiAoJG4kID0gNTk0KS4gCj4+Pj4+Pj4gODhjMDA1NzFiYTU3ODg3ZWZiNGZmMDZjNWFmNDMzZjQ4NmNhYjBhOQotIFZhcmlhYmxlcwogICogQWxjb2hvbCB1c2UgKGBtb21jaWczYCkKICAqIENpZ2FyZXR0ZSB1c2UgKGBtb21hbGMzYCkKICAqIENoaWxkJ3MgZ2VuZGVyIChgbWFsZWApCiAgKiBFdGhuaWNpdHkgKGBibGFja2ApCiAgKiBIZWFkIGNpcmN1bWZlcmVuY2UgYXQgYmlydGggKGBoY2lyYzBgKQogICogSGVhZCBjaXJjdW1mZXJlbmNlIGF0IDM2IG1vbm90aHMgKGBoY2lyYzM2YCkKPDw8PDw8PCBIRUFECi0gVGhlIGh5cG90aGVzaXMgaXMgdGhhdCB0aGVyZSBhcmUgbm8gZGlyZWN0IGVmZmVjdHMgb2YgYG1vbWFsYzNgIGFuZCBgbW9tY2lnM2Agb24gYGhjaXJjMzZgLiAKPT09PT09PQogCgpFcXVhdGlvbiAxOiAKJCQKeV9pID0gXGJldGFfMCtcYmV0YV8xIG1faStcYmV0YV8yel97MWl9K1xiZXRhXzN6X3syaX0rXGVwc2lsb25fe3lpfQokJAogCkVxdWF0aW9uIDI6IAokJAptX2k9XGdhbW1hXzArXGdhbW1hXzF4X3sxaX0rXGdhbW1hXzJ4X3syaX0rXGdhbW1hXzN6X3sxaX0rXGdhbW1hXzR6X3syaX0rXGVwc2lsb25fe21pfQokJAotIFN1YnN0aXR1dGUgdGhlIHNlY29uZCBlcXVhdGlvbiB0byB0aGUgZmlyc3QgZXF1YXRpb246IAokJAp5X2kgPSBcYmV0YV8wICsgXGJldGFfMShcZ2FtbWFfMCArIFxnYW1tYV8xeF97MWl9K1xnYW1tYV8yeF97Mml9K1xnYW1tYV8zel97MWl9K1xnYW1tYV80el97Mml9K1xlcHNpbG9uX3ttaX0pICsgXGJldGFfMnpfezFpfStcYmV0YV8zel97Mml9K1xlcHNpbG9uX3t5aX0KJCQKICAqIE5vIGRpcmVjdCBlZmZlY3Qgb2YgJHgkIHRvICR5JCBpbiB0aGlzIGNhc2UuIFRoZSBpbmRpcmVjdCBlZmZlY3Qgb2YgJHhfMSQgdG8gJHkkIGlzICRcYmV0YV8xIFxnYW1tYV8xJDsgdGhlIGluZGlyZWN0IG9mICR4XzIkIHRvICR5JCBpcyAkXGJldGFfMSBcZ2FtbWFfMiQuIAogIAogIAoqKk1lZGlhdGlvbiBBbmFseXNpcyB3aXRoIG11bHRpcGxlIE1lZGlhdG9ycyoqCgotIERhdGEgZnJvbSBhIHJhbmRvbWl6ZWQgc3R1ZHkgb2YgbWVkaWEgaW5mbHVlbmNlIAotIDQzIG1hbGUgYW5lZCA4MCBmZW1hbGVzIHJlYWQgYSBuZXdzcGFwZXIgYXJ0aWNsZSBhbmQgd2VyZSByYW5kb21seSBhc3NpZ25lZCB0byBvbmUgb2YgdGhlIHR3byBncm91cHMgCiAgKiBPbmUgZ3JvdXAgd2FzIHRvbGQgdGhhdCB0aGUgc3Rvcnkgd291bGQgYXBwZWFyIG9uIHRoZSBmcm9udCBwYWdlIG9mIGEgbWFqb3IgbmV3c3BhcGVyIAogICogVGhlIG90aGVyIGdyb3VwIHdhcyB0b2xkIHRoYXQgaXQgd291bGQgYXBwZWFyIGluIHRoZSBtaWRkbGUgb2YgYW4gZWNvbm9taWMgc3VwcGxlbWVudC4gCi0gVmFyaWFibGVzCiAgKiBHcm91cCAoMCA9IGxlc3MgdmlzaWJsZTsgMSA9IG1vcmUgdmlzaWJsZSkgKGBjb25kYCkKICAqIEludGVudGlvbiB0byBidXkgc3VnYXIgYW5kIGhvdyBtdWNoIChgcmVhY3Rpb25gKQogICogUHJlc3VtZWQgbWVkaWEgaW5mbHVlbmNlIHRvIG90aGVycyAoYHBtaWApCiAgKiBJbXBvcnRhbmNlIG9vZiBzdWdhciBzaG9ydGFnZSAoYGltcG9ydGApCkJvdGggZGlyZWN0IGVmZmVjdCBhbm5kIG1lZGlhdGlvbiBlZmZlY3QgZGVwZW5kcyBvbiB0aGUgdmFsdWUgb2YgJHpfaSQgYXMgYSBjb3ZhcmlhdGUgKGkuZS4sIG1vZGVyYXRlZCBieSB0aGUgY292YXJpYXRlKQoKRXF1YXRpb24gMTogCiQkIAp5X2kgPSBcYmV0YV8wICsgXGJldGFfMW1fezFpfSArIFxiZXRhXzJtX3syaX0gKyBcYmV0YV8ze3hfaX0gKyBcZXBzaWxvbl97eWl9CiQkIApFcXVhdGlvbiAyOiAKJCQgCm1fezFpfSA9IFxnYW1tYV97MTB9ICsgXGdhbW1hX3sxMX14X2kgKyBcZXBzaWxvbl97bTFpfQptX3syaX0gPSBcZ2FtbWFfezIwfSArIFxnYW1tYV97MjF9eF9pICsgXGVwc2lsb25fe20yaX0KCiQkCi0gVGhlIGRpcmVjdCBlZmZlY3Qgb2YgJHgkIHRvICR5JCBpcyAkXGJldGFfMyQ7IHRoZSBpbmRpcmVjdCBlZmZlY3Qgb2YgJHgkIHRvbyAkeSQgdGhyb3VnaCAkbV8xJCBpcyAkXGJldGFfMSBcZ2FtbWFfezExfSQsIGFuZCB0aGUgaW5kaXJlY3QgZWZmZWN0IG9mICR4JCB0byAkeSQgdGhyb3VnaCAkbV8yJCBpcyAkXGJldGFfMiBcZ2FtbWFfezIxfSQuCgoKSWYgdGhlIG1vZGVyYXRpb24gdmFsdWUgaXMgbG93ZXIgdGhhbiAuMTUsIG1lZGlhdGlvbiBlZmZlY3QgaXMgbm90IHNpZ25pZmljYW50IGFzIGl0J3Mgd2l0aGluIHRoZSA5NSUgYmFuZCBhcm91bmQgMC4gV2l0aGluIC4xNX4rLjg1IHdvdWxkIGluZGljYXRlIHNpZ25pZmljYW5jZSwgb3V0c2lkZSB3b3VsZCBiZSBub3Qgc2lnbmlmaWNhbnQuIAotIFRoZSBvdXR2b21lIGkKCioqTW9kZXJhdGVkIE1lZGlhdGlvbiAoMSkqKgoKYGBge3J9CnNpbmsoImV4Mi4yMy5pbnAiKQpjYXQoJwphbmFseXNpczogZXN0aW1hdG9yID0gbWw7IAogICAgICAgICAgYm9vdHN0cmFwID0gMTAwMDA7IAptb2RlbDogICAgcmVtb3ZlIG9uIGFnZzUgdHggYWdnMSB4eDsgCiAgICAgICAgICBhZ2c1IG9uIHR4IGFnZzEgeHo7IAptb2RlbCBpbmRpcmVjdDogCiAgcmVtb3ZlIE1PRCBhZ2c1IGFnZzEoLTEsIDEsIDAuMSkgeHogdHg7IApvdXRwdXQ6IAogIHNhbXBzdGF0IHBhdHRlcm5zIHN0YW5kYXJkaXplZCAKICBjaW50ZXJ2YWwoYm9vdHN0cmFwKTsKcGxvdDogICAgIHR5cGUgPSBwbG90MzsKJykKc2luaygpCgpydW5Nb2RlbHMoImV4Mi4yMy5pbnAiKQoKbW9kZWxmaXQ0IDwtIHJlYWRNb2RlbHMoImV4Mi4yMy5vdXQiKQpgYGAKCmBtb2RlbCBpbmRpcmVjdGAKLSBUaGlzIHNpbXBsZSBhcHByb2FjaCB3b3JrcyB3aGVuIHRoZSBlZmZlY3RzIGFyZSBtb2RlcmF0ZWQgb25seSBieSB0aGUgbW9kZXJhdG9yIHZhcmlhYmxlIAotIFRoaXMgYXBwcm9hY2ggcHJvZHVjZXMgImNhdXNhbGx5IGRlZmluZWQiIGRpcmVjdCBhbmQgaW5kaXJlY3QgZWZmZWN0cwotIE1PRCBrZXl3b3JkIGlzIGFkZGVkIAotIFZhcmlhYmxlcyBhcmUgbGlzdGVkIGluIHRoZSBmb2xsb3dpbmcgb3JkZXI6IAogICogJHkkIChvdXRjb21lKQogICogTU9EIGtleXdvcmQgCiAgKiAkbSQgKG1lZGlhdG9yKSAKICAqICR6JCAobW9kZXJhdG9yKQogICogJHh6JCAoaW50ZXJhY3Rpb24pCiAgKiAkeCQgKGV4cG9zdXJlIHZhcmlhYmxlKQotIFRIZSByYW5nZSBvZiAkeiQgKGBhZ2cxYCkgaXMgcHJvdmlkZWQsIGJlY2F1c2UgdGhlIGRpcmVjdCBhbmQgaW5kaXJlY3QgZWZmZWN0cyBkZXBlbmQgb24gdGhlIHZhbHVlIG9mICR6JC4KCgpgbW9kZWwgY29uc3RyYWludGAKLSBgTE9PUGAgc3BlY2lmaWVzIHRoZSByYW5nZSBvZiB2YWx1ZXMgZm9yIHRoZSB4LWF4aXMgb2YgdGhlIHBsb3QuIAotIGBQTE9UYCBuYW1lcyB0aGUgdmFyaWFibGVzIHRvIGJlIHBsb3R0ZWQgb24gdGhlIAoKCgoqKk1vZGVyYXRlZCBNZWRpYXRpb24gKDIpKiogCgpgYGB7cn0Kc2luayhmaWxlID0gImV4Mi4yNS5pbnAiKQpjYXQoJwpkYXRhOiAgICAgZmlsZSA9IHRlYW1zLnR4dDsKdmFyaWFibGU6IG5hbWVzID0gZHlzZnVuYyBuZWd0b25lIG5lZ2V4cCBwZXJmb3JtOwogICAgICAgICAgdXNldiA9IGR5c2Z1bmMgbmVndG9uZSBuZWdleHAgcGVyZm9ybSBtejsKZGVmaW5lOiAgIG16ID0gbmVndG9uZSpuZWdleHA7CmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDsKICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOwptb2RlbDogICAgcGVyZm9ybSBvbiBuZWd0b25lIGR5c2Z1bmMgbmVnZXhwIG16OwogICAgICAgICAgbmVndG9uZSBvbiBkeXNmdW5jOyAgCm1vZGVsIGluZGlyZWN0OgogICAgICAgICAgcGVyZm9ybSBNT0QgbmVndG9uZSBuZWdleHAoLTAuNCwwLjYsMC4wMSkgbXogZHlzZnVuYyAoMC40MDM4IDAuMDM1KTsKb3V0cHV0OiAgIGNpbnRlcnZhbCAoYm9vdHN0cmFwKTsKcGxvdDogICAgIHR5cGUgPSBwbG90MzsKICAnLCBmaWxsPVQpCiAgc2luaygpCmBgYAoKUnVuIHRoZSBtb2RlbC4KYGBge3J9CnJ1bk1vZGVscygiZXgyLjI1LmlucCIpCmBgYAoKUGxvdCB0aGUgbW9kZXJhdGVkIG1lZGlhdGlvbiBlZmZlY3QgYnkgdXNpbmcgYSBmdW5jdGlvbiBhdmFpbGFibGUgZnJvbSBgbXBsdXMuUmAuCmBgYHtyfQptcGx1cy5wbG90Lm1vZGVyYXRpb24oImV4Mi4yNS5naDUiKQpgYGAKCkJ5IHVzaW5nIGEgZnVuY3Rpb24gYXZhaWxhYmxlIGluIGBtcGx1cy5SYCwgcmVhZCB2YWx1ZXMgb2YgbWVkaWF0aW9uIGVmZmVjdCwgbG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBvZiA5NSUgQ0kgYXQgZWFjaCB2YWx1ZSBvZiB0aGUgbW9kZXJhdG9yIHZhcmlhYmxlLiBOb3RlIHRoYXQgdGhlc2UgdmFsdWVzIGFyZSBhbHNvIHJlcG9ydGVkIGluIHRoZSBNcGx1cyBvdXRwdXQgZmlsZSBgZXgyLjI1Lm91dGAuIEhvd2V2ZXIsIGl0IGlzIG5pY2UgdG8gc2VlIHRoZW0gb24gUiB0b28uCmBgYHtyfQp0aWJibGUoCiAgbmVnZXhwID0gbXBsdXMuZ2V0Lm1vZGVyYXRpb24ueHZhbHVlcygiZXgyLjI1LmdoNSIpLAogIGVzdHMgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5lc3RpbWF0ZXMoImV4Mi4yNS5naDUiKSwKICBsb2NpID0gbXBsdXMuZ2V0Lm1vZGVyYXRpb24ubG93ZXJjaSgiZXgyLjI1LmdoNSIpLAogIHVwY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi51cHBlcmNpKCJleDIuMjUuZ2g1IikpCmBgYAoKTm93LCBydW4gdGhlIHNhbWUgbW9kZWwgYnkgdXNpbmcgYSBkaWZmZXJlbnQgYXBwcm9hY2ggYnkgdXNpbmcgIm1vZGVsIGNvbnN0cmFpbnQiIGNvbW1hbmQgd2l0aCAibG9vcCIgdG8gc3BlY2lmeSBhIHNlcmllcyBvZiBldmFsdWF0aW9uIHBvaW50cy4gCmBgYHtyfQpzaW5rKGZpbGUgPSAiZXgyLjI1Yi5pbnAiKQpjYXQoJwpkYXRhOiAgICAgZmlsZSA9IHRlYW1zLnR4dDsKdmFyaWFibGU6IG5hbWVzID0gZHlzZnVuYyBuZWd0b25lIG5lZ2V4cCBwZXJmb3JtOwogICAgICAgICAgdXNldiA9IGR5c2Z1bmMgbmVndG9uZSBuZWdleHAgcGVyZm9ybSBtejsKZGVmaW5lOiAgIG16ID0gbmVndG9uZSpuZWdleHA7CmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDsKICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOwpNT0RFTDogICAgcGVyZm9ybSBvbiBuZWd0b25lIChiMSkKICAgICAgICAgIGR5c2Z1bmMgKGIyKQogICAgICAgICAgbmVnZXhwIChiMykKICAgICAgICAgIG16IChiNCk7CiAgICAgICAgICBuZWd0b25lIG9uIGR5c2Z1bmMgKGcxKTsKTU9ERUwgQ09OU1RSQUlOVDoKICAgICAgICAgIHBsb3QoaW5kKTsKICAgICAgICAgIGxvb3AobmVnZXhwLCAtLjQsIC42LCAuMDEpOwogICAgICAgICAgaW5kID0gKGIxKmcxICsgYjQqZzEqbmVnZXhwKSAqICguNDAzOCAtIC4wMzUpOwpvdXRwdXQ6ICAgY2ludGVydmFsIChib290c3RyYXApOwpwbG90OiAgICAgdHlwZSA9IHBsb3QzOwogICcsIGZpbGw9VCkKICBzaW5rKCkKYGBgCgpSdW4gdGhlIG1vZGVsLgpgYGB7cn0KcnVuTW9kZWxzKCJleDIuMjViLmlucCIpCmBgYAoKR2VuZXJhdGUgYSBwbG90IG9mIHRoZSBtb2RlcmF0ZWQgbWVkaWF0aW9uIGVmZmVjdCBieSB1c2luZyBhIGZ1bmN0aW9uIGF2YWlsYWJsZSBmcm9tIGBtcGx1cy5SYC4gTm90ZSB0aGF0IHRoZSBmdW5jdGlvbiBpcyBkaWZmZXJlbnQgZnJvbSB0aGUgb25lIGZvciB0aGUgb3RoZXIgYXBwcm9hY2ggaW4gZXgyLjI1LgpgYGB7cn0KbXBsdXMucGxvdC5sb29wKCJleDIuMjViLmdoNSIsIDEpCmBgYAoKU2ltaWxhciB0byB0aGUgcHJldmlvdXMgZXhhbXBsZSwgZ2VuZXJhdGUgYSB0YWJsZSBvZiBtZWRpYXRpb24gZWZmZWN0LCBsb3dlciBhbmQgdXBwZXIgYm91bmRzIG9mIDk1JSBDSSBhdCBlYWNoIHZhbHVlIG9mIHRoZSBtb2RlcmF0b3IgdmFyaWFibGUgYnkgdXNpbmcgYSBmdW5jdGlvbiBhdmFpbGFibGUgaW4gYG1wbHVzLlJgLiBOb3RlIHRoYXQgdGhpcyB0YWJsZSBpcyBub3QgYXZhaWxhYmxlIGluIHRoZSBNcGx1cyBvdXRwdXQgZmlsZSB3aGVuIHRoZSAibW9kZWwgY29uc3RyYWludCIgYXBwcm9hY2ggaXMgdXNlZC4gSG93ZXZlciwgdGhlIG5lY2Vzc2FyeSB2YWx1ZXMgYXJlIHN0b3JlZCBpbiB0aGUgYC5naDVgIGZpbGUsIHNvIHdlIGNhbiBleHRyYWN0IHRoZSB2YWx1ZXMgYW5kIHN1bW1hcml6ZSBhcyBhIHRhYmxlIG9uIFIuCgpgYGB7cn0KdGliYmxlKAogIG5lZ2V4cCA9IG1wbHVzLmdldC5sb29wLnh2YWx1ZXMoImV4Mi4yNWIuZ2g1IiksCiAgZXN0cyA9IG1wbHVzLmdldC5sb29wLmVzdGltYXRlcygiZXgyLjI1Yi5naDUiLCAxKSwKICBsb2NpID0gbXBsdXMuZ2V0Lmxvb3AubG93ZXJjaSgiZXgyLjI1Yi5naDUiLCAxKSwKICB1cGNpID0gbXBsdXMuZ2V0Lmxvb3AudXBwZXJjaSgiZXgyLjI1Yi5naDUiLCAxKSkgJT4lIHByaW50KG49MTAxKQpgYGAKClJlYWQgdGhlIGRhdGEuCmBgYHtyfQpleDIuMjYuZGF0IDwtIHJlYWQudGFibGUoInhtVng0czFuMjAwcmVwNi5kYXQiKQpjb2xuYW1lcyhleDIuMjYuZGF0KSA8LSBjKCJ5IiwgIm0iLCAieCIpCmV4Mi4yNi5kYXQgPC0KICBleDIuMjYuZGF0ICU+JSBtdXRhdGUobXggPSBtKngpCnBzeWNoOjpkZXNjcmliZShleDIuMjYuZGF0LCBmYXN0PVQpCmBgYAoKU2V0IHVwIHRoZSBNcGx1cyBzcGVjaWZpY2F0aW9ucyB3aXRoIE1wbHVzQXV0b21hdGlvbi4gVGhlbiwgcnVuIHRoZSBtb2RlbCB3aXRoIE1wbHVzQXV0b21hdGlvbi4KYGBge3J9CnNpbmsoZmlsZSA9ICJleDIuMjYuaW5wIikKY2F0KCcKZGF0YTogICAgIGZpbGUgPSAieG1WeDRzMW4yMDByZXA2LmRhdCI7CnZhcmlhYmxlOiBuYW1lcyA9IHkgbSB4OwogICAgICAgICAgdXNldiA9IHkgbSB4IG14OwpkZWZpbmU6ICAgbXggPSBtKng7CmFuYWx5c2lzOiBlc3RpbWF0b3IgPSBtbDsKICAgICAgICAgIGJvb3RzdHJhcCA9IDEwMDAwOwpNT0RFTDogICAgeSBvbiBtIHggbXg7CiAgICAgICAgICBtIG9uIHg7Ck1PREVMIElORElSRUNUOgogICAgICAgICAgeSBNT0QgbSBteCB4ICg3LCA1KTsKb3V0cHV0OiAgIGNpbnRlcnZhbCAoYm9vdHN0cmFwKTsKcGxvdDogICAgIHR5cGUgPSBwbG90MzsKICAnLCBmaWxsPVQpCiAgc2luaygpCmBgYAoKQnkgdXNpbmcgYSBmdW5jdGlvbiBhdmFpbGFibGUgaW4gYG1wbHVzLlJgLCByZWFkIHZhbHVlcyBvZiBtZWRpYXRpb24gZWZmZWN0LCBsb3dlciBhbmQgdXBwZXIgYm91bmRzIG9mIDk1JSBDSSBhdCBlYWNoIHZhbHVlIG9mIHRoZSBtb2RlcmF0b3IgdmFyaWFibGUuIE5vdGUgdGhhdCB0aGVzZSB2YWx1ZXMgYXJlIGFsc28gcmVwb3J0ZWQgaW4gdGhlIE1wbHVzIG91dHB1dCBmaWxlIGBleDIuMjUub3V0YC4gSG93ZXZlciwgaXQgaXMgbmljZSB0byBzZWUgdGhlbSBvbiBSIHRvby4KYGBge3J9CnRpYmJsZSgKICBuZWdleHAgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi54dmFsdWVzKCJleDIuMjUuZ2g1IiksCiAgZXN0cyA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLmVzdGltYXRlcygiZXgyLjI1LmdoNSIpLAogIGxvY2kgPSBtcGx1cy5nZXQubW9kZXJhdGlvbi5sb3dlcmNpKCJleDIuMjUuZ2g1IiksCiAgdXBjaSA9IG1wbHVzLmdldC5tb2RlcmF0aW9uLnVwcGVyY2koImV4Mi4yNS5naDUiKSkKYGBgCgpJbnRlcnByZXRhdGlvbiBieSBBa2k6IFdoZW4gdGhlIG1vZGVyYXRvciBuZWdhdGl2ZSBleHByZXNzaXZlbmVzcyB2YWx1ZSBpcyBuZWdhdGl2ZSAtLjE0IG9yIGxhcmdlciwgbWVkaWF0aW9uIGVmZmVjdCBpcyBzdGF0aXN0aWNhbGx5IHNpZ25pZmljYW50LiAocmFuZ2Ugb2YgdmFsdWUgYXNzb2NpYXRlZCB3aXRoIHN0YXRpc3RpY2FsbHkgc2lnbmlmaWNhbnQgZWZmZWN0KQoKCgotLS0gCgoqKkp1c3QgSWRlbnRpZmllZCBNb2RlbCoqCgpUaGUgbnVtYmVyIG9mIHVuaXF1ZSBlbGVtZW50cyBpbiB0aGUgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeCBpcyAkXGZyYWN7cShxKzEpfXsyfSQgd2hlcmUgJHEkIGlzIHRoZSBvcmRlciBvZiBkYXRhIGNvdmFyaWFuY2UgbWF0cml4LiBUaHVzLCAkZGYgPSBcZnJhY3txKHErMSl9ezJ9LWskLiAKCkp1c3QgaWRlbnRpZmllZCBwYXRoIGFuYWx5c2lzIG1vZGVsIHBlcmZlY3RseSBmaXRzIHRoZSBkYXRhIHdpdGggJGRmPTAkLiBUaGUgdHdvIGV4YW1wbGUgbW9kZWxzIGZvciB0aGUganVzdC1pZGVudGlmaWVkIG1vZGVsIGJlbG93IGhhcyBxPTMsIHNvIHRoZSBudW1iZXIgb2YgdW5pcXVlIGVsZW1lbnRzIGluIHRoZSBkYXRhIGNvdmFyaWFuY2UgbWF0cml4IGlzIDMoMysxKTIgPSAxMi8yID0gNi4gRm9yIHRoZSBtb2RlbCBvbiB0aGUgbGVmdCwgdGhlcmUgYXJlIHR3byByZWcgY29lZmZpY2llbnRzIGZvciBYMSBwcmVkaWN0aW5nIFkxIGFuZCBYMiBwcmVkaWN0aW5nIFkxLCBjb3ZhcmlhbmNlIGJldHdlZW4gWDEgYW5kIFgyLCBhbmQgZXJyb3IgdmFyaWFuY2VzIGZvciBYMSwgWDIsIGFuZCBZMS4gVG90YWwgb2YgNiwgc28gJGRmPTYtNj0wJC5Gb3IgdGhlIG1vZGVsIG9uIHRoZSByaWdodCwgdGhlcmUgYXJlIHRocmVlIHJlZyBjb2VmZmljaWVudHMgZm9yIFgxIHByZWRpY3RpbmcgWTEsIFgxIHByZWRpY3RpbmcgWTIsIGFuZCBZMSBwcmVkaWN0aW5nIFkyLiBBbHNvLCB0aGVyZSBhcmUgZXJyb3IgdmFyaWFuY2VzIGZvciBYMSwgWTEsIGFuZCBZMi4gVG90YWwgb2YgNiBhZ2Fpbiwgc28gJGRmPTYtNj0wJC4gCgoqKlBhdGggQW5hbHlzaXMqKgoKRml0bmVzcyBpcyBhbiBleG9nZW5vdXMgdmFyaWFibGUgYXMgaXQgaXMgYm90aCBhIHByZWRpY3RvciBhbmQgb3V0Y29tZSB2YXJpYWJsZS4gT3RoZXJzIGFyZSBlbmRvZ2Vub3VzIHZhcmlhYmxlcy4gCgoqKkNoaS1zcXVhcmUgVGVzdCBmb3IgT25lIE1vZGVsKiogCgotIFRoZSB0ZXN0IGV2YWx1YXRlcyB3aGV0aGVyIHRoZSBvYnNlcnZlZCBjb3ZhcmlhbmNlIG1hdHJpeCBpcyBjb25zaXN0ZW50IHdpdGggYSBzcGVjaWZpZWQgbW9kZWwuIAotIEl0IHRlc3RzIHRoZSBudWxsIGh5cG90aGVzaXMgJEhfMDogXFNpZ21hID0gIFx3aWRlaGF0e1xTaWdtYX0kIHdoZXJlICRcU2lnbWEkIGlzIHRoZSBvYnNlcnZlZCBkYXRhIGNvdmFyaWFuY2UgbWF0cml4IGFuZCAkXHdpZGVoYXR7XFNpZ21hfSQgaXMgdGhlIHJlcHJvZHVjZWQgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeC4gCiAgKiBOb3RlOiBKdXN0IGxpa2Ugd2UgCgoqKkNoaS1zcXVhcmUgaW4gTXBsdXMqKgoKQ2hpLXNxdWFyZSBkb2Vzbid0IG1ha2Ugc2Vuc2UgZm9yIGp1c3QtaWRlbnRpZmllZCBtb2RlbCB3aXRoICRkZj0wJCBiZWNhdXNlICRcU2lnbWEkIGFuZCAkXHdpZGVoYXR7XFNpZ21hfSQgYXJlIGVzc2VudGlhbGx5IHRoZSBzYW1lLCBsaXR0bGUgdG8gbm8gZGlzY3JlcGFuY3kuIFNvIGFsdGhvdWdoICRwID0gMC4wMDAwJCwgdGhpcyBkb2VzIG5vdCBtZWFuIHdlIHJlamVjdCAkSF8wOiBcU2lnbWEgPSBcd2lkZWhhdHtcU2lnbWF9JC4gSG93ZXZlciwgaXQgaXMgb2YgdXNlIGZvciBvdmVyaWRlbnRpZmllZCBtb2RlbCB3aXRoICRkZj00JC4gCgpOb3RlOiB1c2UgYCRzdW1tYXJpZXNgIGZvciBleHRyYWN0aW5nIG1vZGVsIGZpdCBpbmZvcm1hdGlvbi4gCgoqKiBDaGktc3F1YXJlIERpZmZlcmVuY2UgVGVzdCBmb3IgVHdvIE5lc3RlZCBNb2RlbHMqKiAKCi0gVHdvIG1vZGVscyBhcmUgbmVzdGVkIGlmIG9uZSBpcyBhIHN1YnNldCBvZiB0aGUgb3RoZXIuIFRoZSBvbmUgb24gdGhlIGxlZnQtaGFuZCBzaWRlIGhhcyBvbmx5IG9uZSBhZGRpdGlvbmFsIHBhcmFtZXRlciB0aGFuIHRoZSBtb2RlbCBvbiB0aGUgcmlnaHQtaGFuZCBzaWRlLCBzbyB0aGUgbW9kZWwgb24gdGhlIHJpZ2h0LWhhbmQgc2lkZSBpcyBuZXN0ZWQgaW4gdGhlIGxlZnQtaGFuZCBzaWRlLiAKLSBDaGktc3F1YXJlIGRpZmZlcmVuY2UgdGVzdCBhc3Nlc3NlcyB3aGV0aGVyIHRoZSBjaGktc3F1YXJlIGhhcyBiZWVuIHJlZHVjZWQgZW5vdWdoIHRvIGNsYWltIHRoYXQgdGhlIGFkZGl0aW9uYWwgcGFyYW1ldGVyIG9uIHRoZSBsZWZ0IGhhbmQgc2lkZSBoYXMgc2lnbmlmaWNhbnRseSBpbXByb3ZlZCBtb2RlbCBmaXQuIAoKYGBgCnBjaGlzcSgyLjQ4LCAxLCBsb3dlci50YWlsID0gRikgIyBub3Qgc3RhdGlzdGljYWxseSBzaWduaWZjYW50IGF0IGFscGhhIG9mIC4wNQpgYGAKCi0gSWYgdGhlIHRlc3QgaW5kaWNhdGVzIHRoYXQgd2UgZG8gbm90IGhhdmUgZXZpZGVuY2UgZm9yIGJldHRlciBmaXQgZm9yIHRoZSBtb3JlIGNvbXBsZXggbW9kZWwsIHRoYXQgc3VnZ2VzdHMgdGhhdCB0aGUgc2ltcGxlciBtb2RlbCBpcyBhIGJldHRlciAobW9yZSBwYXJzaW1vbmlvdXMgbW9kZWwgY2hvaWNlKQotIExvY2FsIGZpdCB2cy4gR2xvYmFsIGZpdCAKICAqIEdsb2JhbCBmaXQgaXMgdGhlIGZpdCBvZiB0aGUgbW9kZWwsIGluIHRoaXMgY2FzZSB0aGUgY2hpc3EgZGlmZmVyZW5jZSB0ZXN0ICAgKiBMb2NhbCBmaXQgaXMgdGhlIHNpZ25pZmljYW5jZSBvZiBlYWNoIG9mIHRoZSBwYXRocyBpbiB0aGUgbW9kZWwgCiAgCioqTW9kaWZpY2F0aW9uIEluZGV4KioKCkxhcmdlciBtb2RpZmljYXRpb24gaW5kZXggbWVhbnMgdGhhdCB0aGUgYWRkaXRpb25hbCBwYXJhbWV0ZXIgZm9yIHRoZSBtb3JlIGNvbXBsZXggbW9kZWwgaW1wcm92ZWQgbW9kZWwgZml0IHNpZ25pZmljYW50bHkuIAoKYEhBUkRJTkVTYCBpcyBwcmVkaWN0b3IsIGBGSVRFU1NgIGlzIG91dGNvbWUuIFkgb24gWC4gCgpFZGl0IHRvIG1ha2UgdG8gMDEuUEEzYy5pbnAgY29kZQpgYGAKT1VUUFVUOiBzdGR5eAogICAgICAgIG1vZGluZGljZXMKYGBgCgoKPT09PT09PQokJAptX2k9XGdhbW1hXzArXGdhbW1hXzF4X3sxaX0rXGdhbW1hXzJ4X3syaX0rXGdhbW1hXzN6X3sxaX0rXGdhbW1hXzR6X3syaX0rXGVwc2lsb25fe21pfQokJAoKKipNZWRpYXRpb24gQW5hbHlzaXMgd2l0aCBtdWx0aXBsZSBNZWRpYXRvcnMqKgoKQm90aCBkaXJlY3QgZWZmZWN0IGFubmQgbWVkaWF0aW9uIGVmZmVjdCBkZXBlbmRzIG9uIHRoZSB2YWx1ZSBvZiAkel9pJCBhcyBhIGNvdmFyaWF0ZSAoaS5lLiwgbW9kZXJhdGVkIGJ5IHRoZSBjb3ZhcmlhdGUpCgpJZiB0aGUgbW9kZXJhdGlvbiB2YWx1ZSBpcyBsb3dlciB0aGFuIC4xNSwgbWVkaWF0aW9uIGVmZmVjdCBpcyBub3Qgc2lnbmlmaWNhbnQgYXMgaXQncyB3aXRoaW4gdGhlIDk1JSBiYW5kIGFyb3VuZCAwLiBXaXRoaW4gLjE1fisuODUgd291bGQgaW5kaWNhdGUgc2lnbmlmaWNhbmNlLCBvdXRzaWRlIHdvdWxkIGJlIG5vdCBzaWduaWZpY2FudC4gCgoKKipPbmUgZmFjdG9yIEZBIE1vZGVsKioKCiQkeF97aWp9PVxtdV9pK1xsYW1iZGFfe2l9XHhpX3tqfStcZGVsdGFfe2lqfSQkCi0gVGhpcyBtb2RlbCBpcyBhIHNldCBvZiBtb3JlIHRoYW4gb25lIHJlZ3Jlc3Npb24gZXF1YXRpb24gCiAgKiBXZSBoYXZlIGFhcyBtYW55IHJlZ3Jlc3Npb24gZXF1YXRpb25zIGFzIHRoZSBudW1iZXIgb2YgaXRlbXMgCiAgKiBGb3IgZXhhbXBsZSwgbGV0J3Mgc2F5IHdlIGhhdmUgMyBpdGVtcy4gVGhlbiwgCiAgICAtICR4X3sxan0gPSBcbXVfMSArIFxsYW1iZGFfMVx4aV9qK1xkZWx0YV97MWp9JAogICAgLSAkeF97Mmp9ID0gXG11XzIgKyBcbGFtYmRhXzJceGlfaitcZGVsdGFfezJqfSQKICAgIC0gJHhfezNqfSA9IFxtdV8zICsgXGxhbWJkYV8zXHhpX2orXGRlbHRhX3szan0kCiAgICAKLSBXZSBjYW4gZ3JhcGhpY2FsbHkgcmVwcmVzZW50IHRoaXMgbW9kZWwgKGEgc2V0IG9mIHRocmVlIHJlZ3Jlc3Npb24gZXF1YXRpb25zKSBhcyBmb2xsb3dzLiAKICAqIEl0IGlzIHR5cGljYWwgdG8gaW5kaWNhdGUgb2JzZXJ2ZWQgdmFyaWFibGVzIGJ5IHJlY3RhbmdsZXMgCi0gVGhlIHByZWRpY3RvciAkXHhpJCBpcyBhIGxhdGVudCBmYWN0b3IgYW5kIGRvZXMgbm90IGhhdmUgYW55IGZpeGVkIHNjYWxlIAotIFRyYWRpdGlvbmFsbHksIGl0IGhhcyBiZWVuIHR5cGljYWwgdG8gc2NhbGUgdGhlIG1lYW5zIG9mICRceGkkIGFuZCAkeCQgdG8gYmUgMC4gCgoqKkNGQSBtb2RlbCoqIAoKLSBNb2RlbCBzcGVjaWZpY2F0aW9uIGlzIG5lZWRlZCBmb3IgQ0ZBIAogICogQSBzcGVjaWZpYyBtb2RlbCBuZWVkcyB0byBiZSBzcGVjaWZpZWQsIGluY2x1ZGluZzogCiAgICAgLSBUaGUgbnVtYmVyIG9mIG9ic2VydmVkIGluZGljYXRvcnMgYW5kIGxhdGVudCBmYWN0b3JzIAoKJCQgeF97MWp9ID0gXGxhbWJkYV97MTF9XHhpXzErMFx4aV8yK1xkZWx0YV97MWp9JCQKJCQgeF97Mmp9ID0gXGxhbWJkYV97MjF9XHhpXzErMFx4aV8yK1xkZWx0YV97Mmp9JCQKLSBGb3IgRVNFTSwgdGhlIDAgY29uc3RyYWludHMgd291bGQgYmUgcmVtb3ZlZCAKICAqIEZhY3RvciBsb2FkaW5ncyBmb3IgJFx4aSQgd291bGQgYmUgc21hbGwgYnV0IGluY2x1ZGVkIAotIFJlcXVpcmVtZW50cyBmb3IgaWRlbnRpZmljYXRpb24gb2YgQ0ZBIG1vZGVsIAogICogSnVzdCBsaWtlIGEgcGF0aCBhbmFseXNpcyBtb2RlbCwgdGhlIG51bWJlciBvZiBwYXJhbWV0ZXJzIGluIHRoZSBtb2RlbCBoYXMgdG8gYmUgdGhlIHNhbWUgb3IgZmV3ZXJlIHRoYW4gdGhlIHVuaXF1ZSB2YXJpYW5jZXMgYW5kIGNvdmFyaWFuY2VzIGluaSB0aGUgZGF0YSBjb3ZhcmlhbmNlIG1hdHJpeCAKICAqIEFsc28sIHRoZSBzY2FsZSBvZiB0aGUgcGFyYW1ldGVycyBoYXMgdG8gYmUgYWRkcmVzc2VkIAoKKipTY2FsZSBJc3N1ZXMgZm9yIElkZW50aWZpY2F0aW9uKiogCgotIEZpcnN0LCBsZXQncyBjb25zaWRlciBhIHNpbXBsZSByZWdyZXNzaW9uIG1vZGVsOiAKJCRZX2ogPSBCXzAgKyBCXzFYX2orXGVwc2lsb25fSiQkCi0gUmVjYWxsIHRoYXQgdGhlIHNjYWxlIG9mIGEgcmVncmVzc2lvbiBzbG9wZSAoJEJfMSQpIGlzIGFmZmVjdGVkIGJ5IHRoZSBzY2FsZSBvZiBib3RoIHByZWRpY3RvciAoWCkgYW5kIG91dGNvbWUgdmFyaWFibGUgKFkpIGFzIGZvbGxvd3M6IAokJCBCXzE9cl97WFl9KFxmcmFje1NEX1l9e1NEX1h9KSAkJAotIE5vdywgbGV0J3MgY29uc2lkZXIgYSBvbmUtZmFjdG9yIG1vZGVsOiAKLSBTaW1pbGFyIHRvIGEgc2ltcGxlIHJlZ3Jlc3Npb24gbW9kZWwsIHRoZXNjYWxlIG9mIGEgZmFjdG9yIGxvYWRpbmcgJFxsYW1iZGEkIGlzIGFmZmVjdGVkIGJ5IHRoZSBzY2FsZSBvZiBib3RoIHByZWRpY3RvciAoJFx4aSQpIGFuZCBvdXRjb21lIHZhcmlhYmxlICgkeCQpIGFzIGZvbGxvd3M6CiAgKiAkXGxhbWJkYSA9IHJfe1x4aSB4fSAoXGZyYWN7U0RfWH17U0RfWX0pJAoKMSkgSWYgYSBzY2FsZSBpcyBnaXZlbiB0byAkXHhpJCwgdGhlIHNjYWxlIG9mICRcbGFtYmRhJCB3aWxsIGZvbGxvdyAKMikgSWYgYSBzY2FsZSBpcyBnaXZlbiB0byAkXGxhbWJkYSQsIHRoZSBzY2FsZSBvZiAkeCQgd2lsbCBmb2xsb3cgCiAgKiBUeXBpY2FsbHksIE1wbHVzIHdpbGwgYXNzaWduICRcbGFtYmRhXzEgPSAxJCB0byB0aGUgZmlyc3QgaW5kaWNhdG9yIAogIAotIEZvciBhIENGQSBtb2RlbCB3aXRoIDIgb3IgbW9yZSBmYWN0b3JzLCBlYWNoIGZhY3RvciBuZWVkcyB0byBwcmVkaWN0IDIgb3IgbW9yZSBvYnNlcnZlZCBpbmRpY2F0b3JzIHRvIGZ1bGx5IGVzdGltYXRlIG1vZGVsIHBhcmFtZXRlcnMgCiAgKiBPbmx5IGFwcGxpZXMgdG8gc2ltcGxleCBtb2RlbHMgKGlmIGl0IGhhcyBjcm9zcy1sb2FkaW5ncyBhbmQgY29ycmVsYXRpb25zLCBub3Qgb2J2aW91cyBpbW1lZGlhdGVseSB3aGV0aGVyIG1vZGVsIGlzIGlkZW50aWZpYWJsZSBvciBub3QpCiAgCi0gRVNFTSBmb3IgZGlmZmVyZW50aWFsIGl0ZW0gZnVuY3Rpb25pbmc/IAogIAoqKkNGQSBNb2RlbCB3aXRoIEVycm9yIENvcnJlbGF0aW9ucyoqCgotIEFsc28sIGl0IG1pZ2h0IGJlIG91ciBpbnRlcmVzdCB0byBsZXQgc29tZSBlcnJvciB2YXJpYW5jZXMgdG8gYmUgY29ycmVsYXRlZCAKCioqSHlwb3RoZXNpemVkIDEtZmFjdG9yIG1vZGVsKiogCgotIElmIG9ubHkgNiwgdGhlbiB3b3VsZCBiZSBlbm91Z2ggZGYgYnV0IHdvdWxkIG5vdCBiZSB0aGUgY2FzZSBieSBpbmNsdWRpbmcgdmFyaWFuY2VzIAotIHN0ZHl4IGluZGljYXRlcyB0aGF0IGJvdGggc3RhbmRhcmQgZGV2aWF0aW9uIGFuZCBzb21ldGhpbmcgZWxzZSBhcmUgYXNzZXNzZWQgCmBzamxhYmVsbGVkYCBwYWNrYWdlIGhhcyByZWZpbmVkIHZlcnNpb24gb2YgYHJlYWRfc2F2YCBjYWxsZWQgYHJlYWRfc3Bzc2AKCioqTXBsdXMgb3V0cHV0KiogCgotIFRoZSBudW1iZXIgb2ZwYXJhbWV0ZXJzIGluY2x1ZGUgbWVhbi1zdHJ1Y3R1cmUgcGFyYW1ldGVycyAKLSBJdCBpcyBwb3NzaWJsZSB0byBjb21wdXRlICRSXjIkCgojIyMgSGlnaGVyLW9yZGVyIGFuZCBCaS1mYWN0b3IgQ0ZBIE1vZGVscwoKKipIaWdoZXItb3JkZXIgRmFjdG9yIE1vZGVscyoqIAotIEluIHNvbWUgY29udGV4dCx3ZSBtYXkgYmUgaW50ZXJlc3RlZCBpbiBkZXZlbG9waW5nIGEgbW9kZWwgd2l0aCBhZGRpdGlvbmFsIGZhY3RvciAKLSBFcnJvciB2YXJpYW5jZXMgY29ycmVsYXRlZCAtIGNvdmFyaWF0ZShzKSBjb21tb25seSBjb3JyZWxhdGVkIHRvIHRoZSBvdXRjb21lIHZhcmlhYmxlcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFuYWx5c2lzIGFzIHByZWRpY3RvcihzKQotIEJpZmFjdG9yIG1vZGVsIGZpdCBpbmRpY2VzIHdpbGwgYmUgaW5mbGF0ZWQgCiAgKiBMaWtlbHkgdG8gc2VlIGJldHRlciBtb2RlbCBmaXQgdGhhbiB3ZSBhcmUgc3VwcG9zZWQgdG8gCiAgKiBIb3dldmVyLCBkb2Vzbid0IG1ha2UgaXQgdXNlbGVzcyAKLSBCeSBnaXZpbmcgdGhlIGFzdGVyaXNrLCB3ZSBhcmUgc2F5aW5nIHRoYXQgd2UgYXJlIG92ZXJyaWRpbmcgdGhlIGRlZmF1bHQgYW5kIGluc3RlYWQgZml4IHRoZSB2YXJpYW5jZSBvZiBlYWNoIGxhdGVudCBmYWN0b3IgdG8gYmUgMS4wCi0gV2lsbCB0cnkgdG8gZXN0aW1hdGUgYWxsIHBvc3NpYmxlIGNvcnJlbGF0aW9ucyBiZXR3ZWVuIGZhY3RvcnMgCi0gSGF2ZSB0byBiZSBtYW51YWxseSBjb25zdHJhaW5lZCB0byAwIAoKIyMjIE1lYXN1cmVtZW50IEludmFyaWFuY2UgCgoqKk11bHRpcGxlIEdyb3VwIENGQSoqCgoqKk1lYXN1cmVtZW50IEludmFyaWFuY2Ugd2l0aCBNdWx0aXBsZS1Hcm91cCBDRkEqKgoKLSBDb25maWd1cmFsIEludmFyaWFuY2UgCiAgKiBPbmx5IGZhY3RvciBzdHJ1Y3R1cmUgaXMgdGhlIHNhbWUgCi0gTWV0cmljIEludmFyaWFuY2UgKGkuZS4sIHdlYWsgaW52YXJpYW5jZSkKICAqIEZhY3RvciBsb2FkaW5ncyBhcmUgdGhlIHNhbWUgCi0gU2NhbGFyIEludmFyaWFuY2UgKGkuZS4sIHN0cm9uZyBpbnZhcmlhbmNlKQogICogRmFjdG9yIGxvYWRpbmdzICYgaW50ZXJjZXB0cyBhcmUgdGhlIHNhbWUgCi0gU3RyaWN0IEludmFyaWFuY2UgCiAgKiBGYWN0b3IgbG9hZGluZ3MsIGludGVyY2VwdHMsICYgcmVzaWR1YWwgdmFyaWFuY2VzIGFyZSB0aGUgc2FtZSAKCi0gSWYgY29uZmlndXJhbCBpbnZhcmlhbmNlIG1vZGVsIGZpdHMgYmV0dGVyIHRoYW4gd2VhayBpbnZhcmlhbmNlLCB3ZSBkbyBub3QgaGF2ZSBldmlkZW5jZSBmb3Igd2VhayBpdm5hcmlhbmNlIAotIGNvbmZpZ3VyYWwgaW52YXJpYW5jZSBtb2RlbCB3aWxsIGFsd2F5cyBoYXZlIGxvd2VyIGNoaXNxCgotIFBhcnRpYWwgaW52YXJpYW5jZSBpcyBpbnZhcmlhbmNlIG9ubHkgZm9yIGEgc3Vic2V0IG9mIGl0ZW1zIAogICogV2UgbWF5IGJlIGludGVyZXN0ZWQgaW4gaWRlbnRpZnlpbmcgc3BlY2lmaWMgaXRlbXMgdGhhdCBhcmUgZGlmZmVyZW50IGluIGZhY3RvciBsb2FkaW5ncyBhbmQvb3IgaW50ZXJjZXB0cyBiZXR3ZWVuIGdyb3VwcyAKICAqIFRoaXMgaWRlYSBpcyBjbG9zZWx5IHJlYWx0ZWQgdG8gRElGCi0gTGF0ZW50IGZhY3RvciBtZWFucyBiZXR3ZWVuIGdyb3VwcyAKLSBMYXRlbnQgZmFjdG9yIGNvcnJlbGF0aW9ucyBiZXR3ZWVuIGdyb3VwcyAKCi0gTWV0cmljIGFnYWluc3QgY29uZmlndXJhbCBub25zaWduaWZpY2FudCAtIG1ldHJpYyBpbnZhcmlhbmNlIHN1cHBvcnRlZCwgbW9yZSBjb21wbGV4IG1vZGVsIChjb25maWd1cmFsKSBpcyBub3QgYSBiZXR0ZXIgZml0CgpfQ29uZmlndXJhbF8KYHZpc3VhbCBieSB4MSB4MiB4MztgIGZhY3RvciBsb2FkaW5ncyBmb3IgdGhlIHZpc3VhbCBmYWN0b3IgCmB4MS14OWAgZXJyb3IgdmFyaWFuY2VzIChub3QgZmFjdG9yIGxvYWRpbmdzISkKYHZpc3VhbDsgdGV4dHVhbDsgc3BlZWRgIHZhcmlhbmNlIGJldHdlZW4gdGhlc2UgdGhyZWUgbGF0ZW50IGZhY3RvcnMuIApgW3gxLXg5XWAgcmVwcmVzZW50IGludGVyY2VwdHMgCmBbdmlzdWFsQDAgdGV4dHVhbEAwIHNwZWVkQDBdYCByZXByZXNlbnQgZmFjdG9yIG1lYW5zIC0gZml4aW5nIHRvIGtub3duIHZhbHVlcywgYXJiaXRyYXJpbHkgdG8gMAoKX01ldHJpY18KZm9yIG1ldHJpYywgZmFjdG9yIGxvYWRpbmdzIGFyZSBhc3N1bWVkIHRvIGJlIHRoZSBzYW1lIHNvIGl0IGlzIG5vdCBpbmNsdWRlZCBpbiBtb2RlbCBzcGVjaWZpY2F0aW9uIAoKX1NjYWxhcl8KYFt4MS14OV0gKDEtOSlgIGluZGljYXRlIGl0ZW1zIDEtOSBzYW1lIGJldHdlZW4gdHdvIGdyb3VwcyAKCi0gaW4gdGhlIHNjYWxhciBpbnZhcmlhbmNlIG1vZGVsLCB3aGVyZSB3ZSBhc3N1bWUgaW50ZXJjZXB0IGlzIGRpZmZlcmVudCBiZXR3ZWVuIHR3byBncm91dXBzLCBpZiB3ZSBhc3N1bWUgWDMgaXMgZGlmZmVyZW50IGJldHdlZW4gdHdvIGdyb3VwcywgY2hpc3EgaW1wcm92ZXMgYnkgMTkuMTkzLCBpZiB3ZSBhc3N1bWUgWDcgaXMgZGlmZmVyZW50IGJldHdlZW4gdHdvIGdyb3VwcywgY2hpc3EgaW1wcm92ZXMgYnkgMTUuMDIyCiAgKiBDYW4gY29uY2x1ZGUgdGhhdCBpbnRlcmNlcHRzIGZvciBpdGVtcyAzIGFuZCA3IGFyZSBub3QgaW52YXJpYW50IAoKX1BhcnRpYWwgU2NhbGFyXwpgW3gxIHgyIHg0IHg1IHg2IHg4IHg5XSAoMS03KTtgIAogCg==</div>
 
 
 </div>

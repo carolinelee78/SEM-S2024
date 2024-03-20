@@ -1,0 +1,198 @@
+---
+title: "SEM Project 3"
+author: "Caroline Lee"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+```{r setup, include = FALSE, results='hide'}
+# detach all libraries
+
+detachAllPackages <- function() {
+  basic.packages <- c("package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "package:base")
+  package.list <- search()[ifelse(unlist(gregexpr("package:", search()))==1, TRUE, FALSE)]
+  package.list <- setdiff(package.list, basic.packages)
+  if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
+}
+detachAllPackages()
+
+# function to load libraries
+
+pkgTest <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg,  dependencies = TRUE)
+  sapply(pkg,  require,  character.only = TRUE)
+}
+
+# loading packages 
+
+lapply(c("DT"),pkgTest)
+lapply(c("haven"),pkgTest)
+lapply(c("lavaan"),pkgTest)
+lapply(c("MplusAutomation"),pkgTest)
+lapply(c("readxl"),pkgTest)
+lapply(c("sjlabelled"),pkgTest)
+lapply(c("sjmisc"),pkgTest)
+lapply(c("texreg"),pkgTest)
+lapply(c("tidyverse"),pkgTest)
+
+library(DT)
+library(haven)
+library(lavaan)
+library(MplusAutomation)
+library(readxl)
+library(sjlabelled)
+library(sjmisc)
+library(texreg)
+library(tidyverse)
+```
+
+## Introduction
+
+Parental Self-Care Scale (PSCS) (Abell, Ryan, & Kamata, 2006) is a 30-item scale that measures ill HIV-positive parents' capacities to manage their own emotional, instrumental, and nursing needs while maintaining family responsibilities. Respondents are asked to rate their belief on their own capacity on each of the 30 items with a 11-point scale (0 = Cannot do at all, 5 =  Probably can do, 10 = Sure I can do). The list of items is in the table at the end of this document.
+
+The data set `PSCS_combined.sav` consists of item responses from 500 HIV-positive parents on items 1-30. Column 1-30 are item responses for the 30 items (`x1-x30`) and Column 31 is the language group (`lang`) variable. There were two groups of parents based on the language form they took (variable `lang`; 1 = Spanish, 2 = English). In this project, you will conduct a series of invariance study analyses for Spanish and English versions of the PSCS scale.  
+
+## Questions
+### Q.1  
+
+(a) Load required packages and read data file in. Use `read_spss()` function in the `sjlabelled` package to read the data file into R. Be sure to include `convert.factors=FALSE` option to prevent the variables to be converted to categorical variables. Show R code.  
+
+```{r}
+setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_3")
+
+PSCS <- read_spss("pscs_combined.sav")
+```
+
+(b) Generate descriptive statistics for the 30 items using `descr()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+
+```{r}
+descr(PSCS[,1:30])
+```
+
+(c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
+
+```{r}
+frq(PSCS[,1:30])
+```
+
+(d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
+
+```{r}
+PSCS_dat <- prepareMplusData(PSCS, "PSCS.dat")
+```
+
+### Q.2
+Using Mplus, fit a single-group 3-factor CFA model with ULI scaling strategy. Show all R code.   
+
+(a) Generate an external Mplus input file for a 3-factor CFA model with all 30 items.  
+
+```{r}
+sink(file = "PSCS.inp")
+cat('
+DATA:     file = PSCS.dat;
+VARIABLE: names = e1 e2 e3 e4 e5 e6 e7 e8 e9 e10
+                  i1 i2 i3 i4 i5 i6 i7 i8 i9 i10
+                  n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 lang;
+          usev = e1 e2 e3 e4 e5 e6 e7 e8 e9 e10
+                 i1 i2 i3 i4 i5 i6 i7 i8 i9 i10
+                 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10;
+          missing = .;
+MODEL:    emotion by e1 e2 e3 e4 e5 e6 e7 e8 e9 e10;
+          instrum by i1 i2 i3 i4 i5 i6 i7 i8 i9 i10;
+          nursing by n1 n2 n3 n4 n5 n6 n7 n8 n9 n10;
+OUTPUT:   stdyx modindices;
+  ', fill=T)
+sink()
+```
+
+(b) Run the input file by the `runModels()` function in the `MplusAutomation` package.  
+
+```{r}
+runModels("PSCS.inp")
+```
+
+(c) By using `readModels()` function in the `MplusAutomation`, read the output file. Then, extract CFI, TLI, RMSEA, and 90% CI of RMSEA. Comment on the model fit based on these values.  
+
+```{r warning=FALSE}
+PSCS_fit <- readModels("pscs.out")
+```
+
+```{r}
+PSCS_fit$summaries %>% unlist()
+```
+- We can conclude that the model fit is good based on the following paramters. 
+  * CFI is 0.987 and >.95, indicating good fit.
+  * TLI is 0.986 and >.95, indicating good fit.
+  * RMSEA is 0.021 and $\leq$.06, indicating good fit.
+  * Lower bound of 90% CI for RMSEA is 0.014 and $\leq$.05, indicating good fit.
+  * Upper bound of 90% CI for RMSEA is 0.027 and <.07, indicating good fit. 
+
+(d) Extract standardized factor loadings.   
+
+```{r}
+PSCS_fit$parameters$stdyx.standardized
+```
+
+### Q.3
+Now, use Mplus to conduct one Mplus run of overall invariance tests between Spanish and English groups. Show all R code. 
+
+(a) Show R code to generate an external Mplus input file for the analysis. Use ULI scaling strategy. 
+
+```{r}
+PSCS %>% 
+  mutate(PSCS_MI=recode(lang, 
+                        "Spanish" = 1,
+                        "English" = 2)) %>% 
+  prepareMplusData("pscsmi.dat")
+```
+
+```{r}
+sink('PSCS_MI.inp')
+cat('
+DATA:      file = pscsmi.dat;
+VARIABLE:  names = e1 e2 e3 e4 e5 e6 e7 e8 e9 e10
+                  i1 i2 i3 i4 i5 i6 i7 i8 i9 i10
+                  n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 lang;
+           grouping is lang (1=Spanish 2=English);
+ANALYSIS:  model = configural metric scalar;
+MODEL:     emotion by e1 e2 e3 e4 e5 e6 e7 e8 e9 e10;
+           instrum by i1 i2 i3 i4 i5 i6 i7 i8 i9 i10;
+           nursing by n1 n2 n3 n4 n5 n6 n7 n8 n9 n10;
+', fill=T)
+sink()
+```
+
+```{r}
+runModels("PSCS_MI.inp")
+```
+
+(b) By using `readModels()` function in the `MplusAutomation`, read the output file. Then extract the Mplus results that show model comparisons between configural, metric, and scalar invariance models. 
+
+```{r, warning=FALSE}
+PSCS.MI.fit <- readModels("pscs_mi.out")
+```
+
+```{r}
+PSCS.MI.fit$invariance_testing
+```
+
+(c) Briefly define what metric (weak) invariance means. Then, state whether weak invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
+
+- Metric invariance means that the factor loadings and factor structure of PCSC data is the same across the two groups (i.e., Spanish vs. English language groups).
+- The configural model did not improve the model fit compared to the metric model (the more restrictive model). Therefore,  there is evidence for the metric invariance. 
+
+(d) Briefly define what scalar (strong) invariance means. Then, state whether strong invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
+
+- Scalar invariance meanns that the factor loadings, intercepts, and structure are same across the two groups (i.e., Spanish vs. English language groups) for the PSCS dataset. 
+- The metric model did improve the model fit compared to the scalar model (the more restrictive model). Therefore, there is no evidence for the scalar invariance. 
+
+
+
+
+
+
+
+
+

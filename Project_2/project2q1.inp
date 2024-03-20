@@ -1,0 +1,22 @@
+
+data:     file = coping.dat; 
+
+variable: names = stress efficacy resilien probsolv socisupp avoidanc; 
+          missing = .;
+          
+analysis: estimator = ml; 
+          bootstrap = 10000;
+
+model:    probsolv on stress efficacy resilien;
+          socisupp on stress resilien;
+          avoidanc on stress efficacy resilien; 
+          resilien on efficacy; 
+          stress on resilien;
+          probsolv with socisupp@0; 
+          probsolv with avoidanc@0;
+          socisupp with avoidanc@0;
+          
+model indirect: 
+          avoidanc ind efficacy; 
+
+output: STDYX cinterval(bootstrap);
