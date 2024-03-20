@@ -53,7 +53,6 @@ BiocManager::install("rhdf5")
 ```
 
 ```{r}
-setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024")
 source("mplus.R")
 ```
 
@@ -295,12 +294,26 @@ runModels("ex2.23.inp")
 
 modelfit4 <- readModels("ex2.23.out")
 ```
+
 `model indirect`
-- This simple approach works when 
-- This approach creates indirect and direct effects "manually" at 
+- This simple approach works when the effects are moderated only by the moderator variable 
+- This approach produces "causally defined" direct and indirect effects
+- MOD keyword is added 
+- Variables are listed in the following order: 
+  * $y$ (outcome)
+  * MOD keyword 
+  * $m$ (mediator) 
+  * $z$ (moderator)
+  * $xz$ (interaction)
+  * $x$ (exposure variable)
+- THe range of $z$ (`agg1`) is provided, because the direct and indirect effects depend on the value of $z$.
+
 
 `model constraint`
+- `LOOP` specifies the range of values for the x-axis of the plot. 
 - `PLOT` names the variables to be plotted on the 
+
+
 
 **Moderated Mediation (2)** 
 
@@ -426,3 +439,56 @@ tibble(
 ```
 
 Interpretation by Aki: When the moderator negative expressiveness value is negative -.14 or larger, mediation effect is statistically significant. (range of value associated with statistically significant effect)
+
+
+
+--- 
+
+**Just Identified Model**
+
+The number of unique elements in the data covariance matrix is $\frac{q(q+1)}{2}$ where $q$ is the order of data covariance matrix. Thus, $df = \frac{q(q+1)}{2}-k$. 
+
+Just identified path analysis model perfectly fits the data with $df=0$. The two example models for the just-identified model below has q=3, so the number of unique elements in the data covariance matrix is 3(3+1)2 = 12/2 = 6. For the model on the left, there are two reg coefficients for X1 predicting Y1 and X2 predicting Y1, covariance between X1 and X2, and error variances for X1, X2, and Y1. Total of 6, so $df=6-6=0$.For the model on the right, there are three reg coefficients for X1 predicting Y1, X1 predicting Y2, and Y1 predicting Y2. Also, there are error variances for X1, Y1, and Y2. Total of 6 again, so $df=6-6=0$. 
+
+**Path Analysis**
+
+Fitness is an exogenous variable as it is both a predictor and outcome variable. Others are endogenous variables. 
+
+**Chi-square Test for One Model** 
+
+- The test evaluates whether the observed covariance matrix is consistent with a specified model. 
+- It tests the null hypothesis $H_0: \Sigma =  \widehat{\Sigma}$ where $\Sigma$ is the observed data covariance matrix and $\widehat{\Sigma}$ is the reproduced data covariance matrix. 
+  * Note: Just like we 
+
+**Chi-square in Mplus**
+
+Chi-square doesn't make sense for just-identified model with $df=0$ because $\Sigma$ and $\widehat{\Sigma}$ are essentially the same, little to no discrepancy. So although $p = 0.0000$, this does not mean we reject $H_0: \Sigma = \widehat{\Sigma}$. However, it is of use for overidentified model with $df=4$. 
+
+Note: use `$summaries` for extracting model fit information. 
+
+** Chi-square Difference Test for Two Nested Models** 
+
+- Two models are nested if one is a subset of the other. The one on the left-hand side has only one additional parameter than the model on the right-hand side, so the model on the right-hand side is nested in the left-hand side. 
+- Chi-square difference test assesses whether the chi-square has been reduced enough to claim that the additional parameter on the left hand side has significantly improved model fit. 
+
+```
+pchisq(2.48, 1, lower.tail = F) # not statistically signifcant at alpha of .05
+```
+
+- If the test indicates that we do not have evidence for better fit for the more complex model, that suggests that the simpler model is a better (more parsimonious model choice)
+- Local fit vs. Global fit 
+  * Global fit is the fit of the model, in this case the chisq difference test   * Local fit is the significance of each of the paths in the model 
+  
+**Modification Index**
+
+Larger modification index means that the additional parameter for the more complex model improved model fit significantly. 
+
+`HARDINES` is predictor, `FITESS` is outcome. Y on X. 
+
+Edit to make to 01.PA3c.inp code
+```
+OUTPUT: stdyx
+        modindices
+```
+
+
