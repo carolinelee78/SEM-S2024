@@ -84,7 +84,7 @@ descr(PSCS[,1:30])
 PSCS %>% select(lang) %>% frq()
 ```
 
-<span style="color:orange"> **There was no irregularity in the data** </span>  
+<span style="color:orange"> **There was no irregularity in the data.** </span>  
 
 (d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
 
@@ -128,7 +128,7 @@ runModels("PSCS.inp")
 PSCS_fit <- readModels("pscs.out")
 ```
 
-<span style="color:orange"> **Changed from** </span> `PSCS_fit$summaries %>% unlist()` <span style="color:orange"> **(which provided much more than just CFI, TL, RMSEA, and 90% CI of RMSEA)** </span> 
+<span style="color:orange"> **Changed from** </span> `PSCS_fit$summaries %>% unlist()` <span style="color:orange"> **(which provided much more than just CFI, TLI, RMSEA, and 90% CI of RMSEA)** </span> 
 ```{r}
 PSCS_fit$summaries %>% as_tibble() %>% select(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB)
 ```
@@ -188,6 +188,19 @@ PSCS.MI.fit <- readModels("pscs_mi.out")
 PSCS.MI.fit$invariance_testing
 ```
 
+<span style="color:orange"> **Extracted CFI, TLI, AIC, BIC, and aBIC for the three models.** </span>
+
+```{r}
+tibble(
+  Models = c("Configural", "Metric", "Scalar"),
+  CFI = c(0.971, 0.969, 0.966),
+  TLI = c(0.968, 0.968, 0.965),
+  ACI = c(61111.23, 61092.51, 61089),
+  BIC = c(61895.15, 61762.63, 61645.52),
+  aBIC = c(61304.78, 61257.96, 61226.54)
+)
+```
+
 (c) Briefly define what metric (weak) invariance means. Then, state whether weak invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
 
 - Metric invariance means that the factor loadings and factor structure of PCSC data is the same across the two groups (i.e., Spanish vs. English language groups).
@@ -196,7 +209,7 @@ PSCS.MI.fit$invariance_testing
 (d) Briefly define what scalar (strong) invariance means. Then, state whether strong invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
 
 - Scalar invariance means that the factor loadings, intercepts, and structure are same across the two groups (i.e., Spanish vs. English language groups) for the PSCS dataset. 
-- The metric model (CFI = 0.969; $\chi^2$ = 1042.748) did improve the model fit compared to the scalar model (the more restrictive model; CFI = 0.962, $\chi^2$ = 1093.370). Therefore, there is no evidence for the scalar invariance. 
+- The metric model (CFI = 0.969; $\chi^2$ = 1042.748) did improve the model fit compared to the scalar model (the more restrictive model; CFI = 0.962, $\chi^2$ = 1093.370). Therefore, there is  <span style="color:orange"> **not enough** </span> evidence for the scalar invariance. 
 
 #### Q.4
 Now, fit various invariance models with multiple group analysis by Mplus. The goal here is to match the results for all models from the one-step approach in Q.2. For each of the model below, attach the R code to generate the Mplus syntax. Then, run the model by using the `runModels()` function, and read the results by using the `readModels()` function. Then, extract  df, chi-squre statistic, CFI, TLI, AIC, BIC, and aBIC. Verify these values match the results from Q.2.   
@@ -370,9 +383,7 @@ runModels("PSCS_MI_Partial_Scalar.inp")
 PSCS.MI.PartialScalar.fit <- readModels("pscs_mi_partial_scalar.out")
 ```
 
-```{r}
-PSCS.MI.PartialScalar.fit$summaries %>% unlist()
-```
+<span style="color:orange"> **Changed from** </span> `PSCS.MI.PartialScalar.fit$summaries %>% unlist()` <span style="color:orange"> **(which provided much more than just CFI, TLI, RMSEA, and 90% CI of RMSEA)** </span> 
 
 ```{r}
 rbind(PSCS.MI.Metric.fit$summaries %>% as_tibble() %>% 
@@ -386,10 +397,14 @@ rbind(PSCS.MI.Metric.fit$summaries %>% as_tibble() %>%
   relocate(Model)
 ```
 
+<span style="color:orange"> **By CFI and TLI, the model fit did not improve by the metric invariance. They are the same between the partial-scalar invariance model and the metric invariance model. AIC, BIC, and aBIC indicate that the partial-scalar invariance model is preferred. Therefore, these results support the partial-scalar invariance model.** </span>  
+
 (c) Conduct the Chi-square difference test by manually entering the values to the `pchisq()` function to verify the p-value in the table. 
 
+<span style="color:orange"> **Revised calculation:** </span>  
+
 ```{r}
-1 - pchisq((1072.540-1042.748), 25)
+pchisq((1072.590-1042.739), (856-831), lower.tail = FALSE)
 ```
 
 (d) Comment whether this partial-scalar invariance model is supported by Chi-square difference test, information criteria and other fit indices.  
@@ -431,9 +446,7 @@ runModels("PSCS_MI_Partial_Scalar_02.inp")
 PSCS.MI.PartialScalar02.fit <- readModels("pscs_mi_partial_scalar_02.out")
 ```
 
-```{r}
-PSCS.MI.PartialScalar02.fit$summaries %>% unlist()
-```
+<span style="color:orange"> **Changed from** </span> `PSCS.MI.PartialScalar02.fit$summaries %>% unlist()` <span style="color:orange"> **(which provided much more than just CFI, TLI, RMSEA, and 90% CI of RMSEA)** </span> 
 
 ```{r}
 rbind(PSCS.MI.Metric.fit$summaries %>% as_tibble() %>% 
@@ -446,8 +459,9 @@ rbind(PSCS.MI.Metric.fit$summaries %>% as_tibble() %>%
          Model = c("Metric", "Partial Scalar")) %>% 
   relocate(Model)
 ```
+<span style="color:orange"> **Revised calculation:** </span>  
 ```{r}
-1 - pchisq((1082.897 - 1042.748), 26)
+pchisq((1082.946-1042.739), (857-831), lower.tail = FALSE)
 ```
 - As the metric model significantly improves the model fit and as the information criterion indicates the metric model is preferred, there is no evidence for partial scalar invariance except for items 2.
 
@@ -486,9 +500,7 @@ runModels("PSCS_MI_Partial_Scalar_05.inp")
 PSCS.MI.PartialScalar05.fit <- readModels("pscs_mi_partial_scalar_05.out")
 ```
 
-```{r}
-PSCS.MI.PartialScalar05.fit$summaries %>% unlist()
-```
+<span style="color:orange"> **Changed from** </span> `PSCS.MI.PartialScalar05.fit$summaries %>% unlist()` <span style="color:orange"> **(which provided much more than just CFI, TLI, RMSEA, and 90% CI of RMSEA)** </span> 
 
 ```{r}
 rbind(PSCS.MI.Metric.fit$summaries %>% as_tibble() %>% 
@@ -501,8 +513,10 @@ rbind(PSCS.MI.Metric.fit$summaries %>% as_tibble() %>%
          Model = c("Metric", "Partial Scalar")) %>% 
   relocate(Model)
 ```
+<span style="color:orange"> **Revised calculation:** </span>  
+
 ```{r}
-1 - pchisq((1079.892 - 1042.748), 26)
+pchisq((1079.941-1042.739), (857-831), lower.tail = FALSE)
 ```
 - As the metric model does not significantly improve the model fit and as the information criterion indicates the partial scalar model is preferred, there is evidence for partial scalar invariance except for item 5.
 
