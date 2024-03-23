@@ -48,6 +48,8 @@ library(texreg)
 library(tidyverse)
 ```
 
+### <span style="color:orange"> **Revisions for the self evaluation are in orange text.** </span>
+
 ## Introduction
 
 Parental Self-Care Scale (PSCS) (Abell, Ryan, & Kamata, 2006) is a 30-item scale that measures ill HIV-positive parents' capacities to manage their own emotional, instrumental, and nursing needs while maintaining family responsibilities. Respondents are asked to rate their belief on their own capacity on each of the 30 items with a 11-point scale (0 = Cannot do at all, 5 =  Probably can do, 10 = Sure I can do). The list of items is in the table at the end of this document.
@@ -61,14 +63,17 @@ The data set `PSCS_combined.sav` consists of item responses from 500 HIV-positiv
 
 ```{r}
 setwd("C:/Users/48909138/OneDrive - Southern Methodist University/Desktop/SEM-S2024/Project_3")
+```
 
-PSCS <- read_spss("pscs_combined.sav")
+<span style="color:orange"> **Added** </span> `convert.factors = FALSE`
+```{r}
+PSCS <- read_spss("pscs_combined.sav", convert.factors=FALSE)
 ```
 
 (b) Generate descriptive statistics for the 30 items using `descr()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
 
 ```{r}
-descr(PSCS[,1:30])
+descr(PSCS[,1:30]) # excluding `lang`
 ```
 
 (c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
