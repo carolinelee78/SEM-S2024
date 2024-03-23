@@ -78,8 +78,10 @@ descr(PSCS[,1:30]) # excluding `lang`
 
 (c) Generate a frequency table for the [lang] variable using `frq()` function in `sjmisc` package. Confirm that there is no irregularity in the data, such as out-of-range scores and excessive missing data.  
 
+<span style="color:orange"> **Fixed to only include `lang` as opposed to excluding `lang`** </span>  
+
 ```{r}
-frq(PSCS[,1:30])
+PSCS %>% select(lang) %>% frq()
 ```
 
 (d) Using `prepareMplusData()` function in the `MplusAutomation` package, generate an external data file for Mplus use.
@@ -124,15 +126,16 @@ runModels("PSCS.inp")
 PSCS_fit <- readModels("pscs.out")
 ```
 
+<span style="color:orange"> **Changed from** </span> `PSCS_fit$summaries %>% unlist()` <span style="color:orange"> **(which provided much more than just CFI, TL, RMSEA, and 90% CI of RMSEA)** </span> 
 ```{r}
-PSCS_fit$summaries %>% unlist()
+PSCS_fit$summaries %>% as_tibble() %>% select(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB)
 ```
 - We can conclude that the model fit is good based on the following paramters. 
   * CFI is 0.987 and >.95, indicating good fit.
   * TLI is 0.986 and >.95, indicating good fit.
   * RMSEA is 0.021 and $\leq$.06, indicating good fit.
-  * Lower bound of 90% CI for RMSEA is 0.014 and $\leq$.05, indicating good fit.
-  * Upper bound of 90% CI for RMSEA is 0.027 and <.07, indicating good fit. 
+  * Lower bound of 90% CI for RMSEA is 0.014 and $\leq$.05, <span style="color:orange"> **rejecting poor-fit hypothesis and** </span> indicating good fit.
+  * Upper bound of 90% CI for RMSEA is 0.027 and <.07, <span style="color:orange"> **rejecting poor-fit hypothesis and** </span> indicating good fit. 
 
 (d) Extract standardized factor loadings.   
 
@@ -182,13 +185,42 @@ PSCS.MI.fit <- readModels("pscs_mi.out")
 ```{r}
 PSCS.MI.fit$invariance_testing
 ```
+<span style="color:orange"> **Extracted CFI, TLI, AIC, BIC, and aBIC for the three models.** </span>
+
+```{r}
+tibble(
+  Models = c("Configural", "Metric", "Scalar"),
+  CFI = c(0.971, 0.969, 0.966),
+  TLI = c(0.968, 0.968, 0.965),
+  ACI = c(61111.23, 61092.51, 61089),
+  BIC = c(61895.15, 61762.63, 61645.52),
+  aBIC = c(61304.78, 61257.96, 61226.54)
+)
+```
 
 (c) Briefly define what metric (weak) invariance means. Then, state whether weak invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
 
 - Metric invariance means that the factor loadings and factor structure of PCSC data is the same across the two groups (i.e., Spanish vs. English language groups).
-- The configural model did not improve the model fit compared to the metric model (the more restrictive model). Therefore,  there is evidence for the metric invariance. 
+- The configural model did not improve the model fit compared to the metric model (the more restrictive model). <span style="color:orange"> **Both chi-square difference test and CFI change supported metric invariance. Chi-square different test was not significant if metric invariance model is compared to configural invariance model (chi-square dif=35.275, df=27, p=.132). CFI change was only .002 (.971 for configural and .969 for metric), which was less than the .01 criterion suggested by Cheung and Rensvold (2002).** </span>
+Therefore, there is evidence for the metric invariance. 
 
 (d) Briefly define what scalar (strong) invariance means. Then, state whether strong invariance was supported by the result. State why or why not. Evaluate both Chi-square difference test and CFI change.  
 
-- Scalar invariance meanns that the factor loadings, intercepts, and structure are same across the two groups (i.e., Spanish vs. English language groups) for the PSCS dataset. 
-- The metric model did improve the model fit compared to the scalar model (the more restrictive model). Therefore, there is no evidence for the scalar invariance. 
+- Scalar invariance means that the factor loadings, intercepts, and structure are same across the two groups (i.e., Spanish vs. English language groups) for the PSCS dataset. 
+- The metric model did improve the model fit compared to the scalar model (the more restrictive model). <span style="color:orange"> **CFI change supported scalar invariance (.969 for metric and .966 for scalar). CFI change was .003, which was less than the .01 criterion. However, chi-square difference test did NOT support strong invariance. Chi-square different test was significant if scalar invariance model is compared to metric invariance model (chi-square dif=50.681, df=27, p=.0038).** </span> Therefore, there is <span style="color:orange"> **not enough** </span> evidence for the scalar invariance. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

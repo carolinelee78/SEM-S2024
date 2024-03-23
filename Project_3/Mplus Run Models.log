@@ -1,9 +1,9 @@
-------Begin Mplus Model Run: 08Mar2024 22:48:40------
+------Begin Mplus Model Run: 22Mar2024 22:07:25------
 Run options:
 	Recursive (run models in subdirectories): FALSE
 	Show output on console: FALSE
 	Replace existing outfile: always
 ------
-Currently running model: PSCS_MI_Partial_Scalar_05.inp
+Currently running model: PSCS_MI.inp
 
-------End Mplus Model Run: 08Mar2024 22:48:41------
+------End Mplus Model Run: 22Mar2024 22:07:27------
